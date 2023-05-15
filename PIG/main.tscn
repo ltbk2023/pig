@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://dl2tg7dt0quws"]
+
+[ext_resource type="Texture2D" uid="uid://ccno4bqx5adkq" path="res://icon.svg" id="1_fopfc"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="Background"]
+position = Vector2(100, 107)
+texture = ExtResource("1_fopfc")
+
+[node name="Icon2" type="Sprite2D" parent="Background"]
+position = Vector2(257, 201)
+texture = ExtResource("1_fopfc")
+
+[node name="Icon3" type="Sprite2D" parent="Background"]
+position = Vector2(96, 464)
+texture = ExtResource("1_fopfc")
+
+[node name="Icon4" type="Sprite2D" parent="Background"]
+position = Vector2(255, 587)
+texture = ExtResource("1_fopfc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor_description = "This node allows to combine 2d with ui without losing docking options"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Quit" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
