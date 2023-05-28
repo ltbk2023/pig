@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dom60ed6nbcjt"]
+
+[sub_resource type="Gradient" id="Gradient_tw0tl"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.681327, 0.372332, 4.81307e-07, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fecow"]
+gradient = SubResource("Gradient_tw0tl")
+width = 360
+height = 680
+
+[node name="Office" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(180, 340)
+texture = SubResource("GradientTexture2D_fecow")
+
+[node name="Name" type="RichTextLabel" parent="Background"]
+offset_left = -81.0
+offset_top = -296.0
+offset_right = 80.0
+offset_bottom = -256.0
+bbcode_enabled = true
+text = "[font_size=25]Agile Pig, Inc.[/font_size]
+"
