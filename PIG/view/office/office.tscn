@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dom60ed6nbcjt"]
+[gd_scene load_steps=4 format=3 uid="uid://dom60ed6nbcjt"]
+
+[ext_resource type="Script" path="res://view/office/office.gd" id="1_3xo2g"]
 
 [sub_resource type="Gradient" id="Gradient_tw0tl"]
 offsets = PackedFloat32Array(0)
@@ -10,6 +12,7 @@ width = 360
 height = 680
 
 [node name="Office" type="Node2D"]
+script = ExtResource("1_3xo2g")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(180, 340)
