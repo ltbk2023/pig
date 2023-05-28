@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 [gd_scene load_steps=4 format=3 uid="uid://dom60ed6nbcjt"]
 
 [ext_resource type="Script" path="res://view/office/office.gd" id="1_3xo2g"]
+=======
+[gd_scene load_steps=3 format=3 uid="uid://dom60ed6nbcjt"]
+>>>>>>> 46d33da (PIG-72: Office scene setup)
 
 [sub_resource type="Gradient" id="Gradient_tw0tl"]
 offsets = PackedFloat32Array(0)
@@ -13,6 +17,7 @@ height = 680
 
 [node name="Office" type="Node2D"]
 script = ExtResource("1_3xo2g")
+
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(180, 340)
@@ -27,4 +32,6 @@ bbcode_enabled = true
 text = "[font_size=25]Agile Pig, Inc.[/font_size]
 "
 
+
 [node name="Employees" type="Node2D" parent="Background"]
+
