@@ -10,6 +10,9 @@ func _ready():
 func _process(delta):
 	pass
 
-
+# Called when "Play" button is released. Hides menu and adds game scene to Main node
 func _on_play_button_up():
-	get_tree().change_scene_to_file("res://game/game.tscn")
+	var game = load("res://game/game.tscn").instantiate()
+	add_child(game)
+	$Background.visible = false
+	$CanvasLayer.visible = false
