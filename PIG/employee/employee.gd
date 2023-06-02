@@ -1,4 +1,5 @@
 extends Node2D
+class_name Employee
 
 @export_category("Skills")
 @export_range(1,3) var quality = 2 
