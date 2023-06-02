@@ -46,3 +46,4 @@ layout_mode = 2
 text = "Quit"
 
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/Play" to="." method="_on_play_button_up"]
+[connection signal="button_up" from="CanvasLayer/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
