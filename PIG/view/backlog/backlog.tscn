@@ -40,3 +40,6 @@ offset_bottom = -122.0
 bbcode_enabled = true
 text = "[font_size=20]Product Backlog[/font_size]"
 scroll_active = false
+
+[node name="Issues" type="Node2D" parent="."]
+position = Vector2(20, 120)
