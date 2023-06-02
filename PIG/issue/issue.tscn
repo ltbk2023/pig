@@ -8,7 +8,7 @@ colors = PackedColorArray(0.720467, 0.720468, 0.720467, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_r2p30"]
 gradient = SubResource("Gradient_dqevm")
-width = 340
+width = 330
 height = 25
 
 [sub_resource type="Gradient" id="Gradient_blit4"]
@@ -17,7 +17,7 @@ colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_12x6g"]
 gradient = SubResource("Gradient_blit4")
-width = 340
+width = 330
 height = 150
 
 [node name="Issue" type="Node2D"]
@@ -30,12 +30,19 @@ centered = false
 
 [node name="Sumary" type="RichTextLabel" parent="."]
 offset_left = 5.0
-offset_right = 335.0
+offset_right = 325.0
 offset_bottom = 25.0
 bbcode_enabled = true
 text = "[color=BLACK]FEATURE name D 0 / T 0 in backlog [/color]"
 
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 339.0
+offset_bottom = 31.0
+
 [node name="Extended" type="Node2D" parent="."]
+visible = false
+z_index = 1
 
 [node name="Sprite2D2" type="Sprite2D" parent="Extended"]
 position = Vector2(0, 35)
@@ -45,7 +52,7 @@ centered = false
 [node name="Description" type="RichTextLabel" parent="Extended"]
 offset_left = 5.0
 offset_top = 35.0
-offset_right = 335.0
+offset_right = 325.0
 offset_bottom = 155.0
 bbcode_enabled = true
 text = "[color=BLACK]implementation of desintegration unexisting information for confirmation of button aplication[/color]
@@ -54,7 +61,9 @@ text = "[color=BLACK]implementation of desintegration unexisting information for
 [node name="Assinment" type="RichTextLabel" parent="Extended"]
 offset_left = 5.0
 offset_top = 160.0
-offset_right = 335.0
+offset_right = 325.0
 offset_bottom = 185.0
 bbcode_enabled = true
 text = "[color=BLACK]Assing to Name[/color]"
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
