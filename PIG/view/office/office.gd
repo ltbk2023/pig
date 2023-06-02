@@ -8,7 +8,11 @@ class_name Office
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+# Add an employee to the scene. Should be called from the Game script.
+func add_employee(employee: Employee):
+	$Background/Employees.add_child(employee)
+	
