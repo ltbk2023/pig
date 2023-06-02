@@ -1,25 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://dd083tmt7puk4"]
+[gd_scene load_steps=6 format=3 uid="uid://dd083tmt7puk4"]
 
 [ext_resource type="Script" path="res://issue/issue.gd" id="1_dnevk"]
 
 [sub_resource type="Gradient" id="Gradient_dqevm"]
-offsets = PackedFloat32Array(0.748387)
-colors = PackedColorArray(0.719905, 0.129036, 0.739156, 1)
+offsets = PackedFloat32Array(0.666667)
+colors = PackedColorArray(0.720467, 0.720468, 0.720467, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_r2p30"]
 gradient = SubResource("Gradient_dqevm")
+width = 340
+height = 25
+
+[sub_resource type="Gradient" id="Gradient_blit4"]
+offsets = PackedFloat32Array(0.666667)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_12x6g"]
+gradient = SubResource("Gradient_blit4")
+width = 340
+height = 150
 
 [node name="Issue" type="Node2D"]
 script = ExtResource("1_dnevk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
 texture = SubResource("GradientTexture2D_r2p30")
 centered = false
 
-[node name="Description" type="RichTextLabel" parent="."]
-offset_left = 2.0
-offset_top = 3.0
-offset_right = 59.0
-offset_bottom = 62.0
-text = "tttttt
+[node name="Sumary" type="RichTextLabel" parent="."]
+offset_left = 5.0
+offset_right = 335.0
+offset_bottom = 25.0
+bbcode_enabled = true
+text = "[color=BLACK]FEATURE name D 0 / T 0 in backlog [/color]"
+
+[node name="Extended" type="Node2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="Extended"]
+position = Vector2(0, 35)
+texture = SubResource("GradientTexture2D_12x6g")
+centered = false
+
+[node name="Description" type="RichTextLabel" parent="Extended"]
+offset_left = 5.0
+offset_top = 35.0
+offset_right = 335.0
+offset_bottom = 155.0
+bbcode_enabled = true
+text = "[color=BLACK]implementation of desintegration unexisting information for confirmation of button aplication[/color]
 "
+
+[node name="Assinment" type="RichTextLabel" parent="Extended"]
+offset_left = 5.0
+offset_top = 160.0
+offset_right = 335.0
+offset_bottom = 185.0
+bbcode_enabled = true
+text = "[color=BLACK]Assing to Name[/color]"
