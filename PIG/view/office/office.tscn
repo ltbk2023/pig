@@ -26,3 +26,5 @@ offset_bottom = -256.0
 bbcode_enabled = true
 text = "[font_size=25]Agile Pig, Inc.[/font_size]
 "
+
+[node name="Employees" type="Node2D" parent="Background"]
