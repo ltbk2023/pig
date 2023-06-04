@@ -11,12 +11,12 @@ func _process(delta):
 	pass
 
 #set issue positon to given pose
-#pose is calculated by multiplaying pose_number and issue_visual_separation
+#pose is calculated by multiplying pose_number and issue_visual_separation
 func set_issue_position(issue:Issue,pose_number:int):
 	issue.position = pose_number * issue_visual_separation
 
 
-#update position of all chldern of Issues node
+#update position of all chldren of Issues node
 #position is based on order in Issues node and issue_visual_separation
 func update_issues_position():
 	var i = 0
@@ -29,12 +29,12 @@ func add_issue(issue:Issue):
 	$Issues.add_child(issue)
 	set_issue_position(issue,$Issues.get_child_count()-1)
 
-#remove issue to the backlog and update position of the others issues
+#remove issue from the backlog and update position of the others issues
 func remove_issue(issue:Issue):
 	$Issues.remove_child(issue)
 	update_issues_position()
 	
-#get all issuees from Baclog 
+#get all issuees from Backlog 
 func get_issues():
 	$Issues.get_children()
 	

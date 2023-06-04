@@ -28,7 +28,7 @@ z_index = -1
 texture = SubResource("GradientTexture2D_r2p30")
 centered = false
 
-[node name="Sumary" type="RichTextLabel" parent="."]
+[node name="Summary" type="RichTextLabel" parent="."]
 offset_left = 5.0
 offset_right = 325.0
 offset_bottom = 25.0
