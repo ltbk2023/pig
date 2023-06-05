@@ -9,6 +9,9 @@ class_name Employee
 @export_category("Morale")
 @export var morale = 0
 
+# The vars below define the min and max values of the random speed modifier.
+@export var min_speed_modifier = -1
+@export var max_speed_modifier = 4
 
 var __base_quality
 var __base_speed
@@ -24,7 +27,22 @@ func _ready():
 	__base_morale = morale
 	
 	update_summary()
+	randomize()
 
 func update_summary():
 	$Summary.text = name + "\nQ "+ str(quality) + " / S " + str(speed) + " / T " + str(testing) + "\nM "+str(morale)
 	
+# Called by the game scene when the turn ends.
+# TODO: differentiate between testing and developing
+func execute_turn():
+	if $TaskHook.get_child_count() == 0:
+		return
+	var task = $TaskHook.get_child(0).get_origin()
+	
+	# Generate a random speed modifier for this turn
+	var speed_modifier = randi() % (max_speed_modifier + 1) 
+	+ min_speed_modifier 
+	
+	if task is Issue:
+		task.add_progress(speed + speed_modifier)
+		
