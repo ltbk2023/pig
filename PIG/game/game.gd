@@ -25,7 +25,6 @@ func _process(delta):
 # function execute turn and update current turn
 # on end of sprint call execute_end_of_sprint
 func execute_turn():
-
 	var employees = $Office/Background/Employees.get_children()
 	for employee in employees:
 		employee.execute_turn()
