@@ -1,23 +1,32 @@
 extends Node
 class_name Hook
 
+# if true hook will set origin to parent on ready
 @export var auto_connect = false
 
-var __origin:Node
+# origin that can be accessed via hook
+# null represent unset hook
+var __origin = null
 
 func _ready():
 	if auto_connect:
 		set_origin(get_parent())
 
+#set origin and change name to HookTo<<origin.name>>
+#if origin has been set before will print warning before setting
 func set_origin(origin:Node):
-	if __origin != self:
-		print("You shouldn't change origin")
+	# if origin is set print warning and proceed
+	if __origin != null:
+		print("Warning: You shouldn't change origin")
 	__origin = origin
-	#godot hadle identical name in one parent by adding number at end 
+	#godot handles identical name in one parent by adding number at end 
 	name = "HookTo"+origin.name
-		
+
+
+#return origin
+#if origing is not set will return null and print warning
 func get_origin():
-	if __origin == self:
-		return __origin
-	else:
-		print("Origin is not set")
+	#if orgin is not set print warning and return null
+	if __origin == null:
+		print("Warning: Origin is not set")
+	return __origin
