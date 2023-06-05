@@ -7,6 +7,14 @@ enum GameState {NOT_STARTED, IN_PROGRESS, FINISHED}
 
 @export var max_sprints : int = 2
 
+@export_category("Views Swichting")
+@export var speed_trigger = 40
+@export var angle_precision  = PI/3
+@export var office_to_backlog = Vector2(-1,0)
+@export var backlog_to_office = Vector2(1,0)
+var is_view_just_switched = false
+
+
 var __current_turn : int
 var __current_sprint : int
 var __state : GameState
@@ -43,7 +51,6 @@ func execute_end_of_sprint():
 # function that listens for the end button release and calls execute_turn()
 func _on_end_turn_button_button_up():
 	execute_turn()
-
 
 # check if movement is in the given direction with set precision 
 func is_in_direction(movement:Vector2,direction:Vector2) -> bool:
