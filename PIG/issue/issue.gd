@@ -44,7 +44,13 @@ func update_summary():
 	$Summary.text =  type_decription[type]+" [color=BLACK]"+name+"  D "+str(difficulty)+" / T "+str(time)+"[/color] " + \
 	state_desriptions[state] 
 
-
+# Called when progress is to be increased. If the progress exceeds the time,
+# IssueState is set to completed.
+func add_progress(progress):
+	self.__progress += progress
+	if self.__progress >= self.time:
+		self.state = IssueState.COMPLETED
+		
 # when button is realised toggle extended description visibility
 func _on_button_button_up():
 	set_visibility_od_exteded_desription(not $Extended.visible)
