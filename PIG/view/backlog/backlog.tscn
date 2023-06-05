@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://btvv1oojseb6c"]
+
+[ext_resource type="Script" path="res://view/backlog/backlog.gd" id="1_74h7j"]
+
+[sub_resource type="Gradient" id="Gradient_h388n"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q5yet"]
+gradient = SubResource("Gradient_h388n")
+
+[sub_resource type="Gradient" id="Gradient_lo430"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4ykdg"]
+gradient = SubResource("Gradient_lo430")
+width = 340
+height = 340
+
+[node name="Backlog" type="Node2D"]
+script = ExtResource("1_74h7j")
+
+[node name="BlackSprite" type="Sprite2D" parent="."]
+position = Vector2(180, 340)
+scale = Vector2(5.62499, 10.625)
+texture = SubResource("GradientTexture2D_q5yet")
+
+[node name="WhiteSprite" type="Sprite2D" parent="."]
+position = Vector2(180, 340)
+scale = Vector2(1, 1.949)
+texture = SubResource("GradientTexture2D_4ykdg")
+
+[node name="BacklogTitle" type="RichTextLabel" parent="WhiteSprite"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -75.0
+offset_top = -150.0
+offset_right = 89.0
+offset_bottom = -122.0
+bbcode_enabled = true
+text = "[font_size=20]Product Backlog[/font_size]"
+scroll_active = false
+
+[node name="Issues" type="Node2D" parent="."]
+position = Vector2(20, 120)
