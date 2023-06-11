@@ -25,3 +25,6 @@ func remove_employee(employee: Employee, delete_node: bool):
 		$Background/Employees.remove_child(employee)
 		
 	
+# Get a list of all Employees attached to the scene.
+func get_employees() -> Array[Node]:
+	return $Background/Employees.get_children()
