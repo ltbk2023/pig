@@ -38,7 +38,7 @@ func execute_turn():
 		employee.execute_turn()
 	
 	__current_turn += 1
-	if __current_sprint % turns_per_sprint == 0:
+	if __current_turn % turns_per_sprint == 0:
 		execute_end_of_sprint()
 
 
