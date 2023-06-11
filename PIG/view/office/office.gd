@@ -15,4 +15,13 @@ func _process(delta):
 # Add an employee to the scene. Should be called from the Game script.
 func add_employee(employee: Employee):
 	$Background/Employees.add_child(employee)
+
+# Remove an Employee from the Employees node. If delete_node is true, the Employee node will
+# also be deleted.
+func remove_employee(employee: Employee, delete_node: bool):
+	if delete_node:
+		employee.queue_free()
+	else:
+		$Background/Employees.remove_child(employee)
+		
 	
