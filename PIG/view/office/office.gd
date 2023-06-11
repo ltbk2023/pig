@@ -16,3 +16,6 @@ func _process(delta):
 func add_employee(employee: Employee):
 	$Background/Employees.add_child(employee)
 	
+# Get a list of all Employees attached to the scene.
+func get_employees() -> Array[Node]:
+	return $Background/Employees.get_children()
