@@ -1,15 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cd77i5nmo2jq3"]
+[gd_scene load_steps=6 format=3 uid="uid://cd77i5nmo2jq3"]
 
 [ext_resource type="Script" path="res://employee/employee.gd" id="1_ckk1p"]
-
-[sub_resource type="Gradient" id="Gradient_4hdsu"]
-offsets = PackedFloat32Array(0.0193548, 0.348387, 0.845161)
-colors = PackedColorArray(1, 0.815686, 0.603922, 1, 0.899837, 0.727187, 0.536169, 1, 0.238763, 0.143089, 0.0889986, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_5pn2c"]
-gradient = SubResource("Gradient_4hdsu")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
 
 [sub_resource type="Gradient" id="Gradient_vcdfr"]
 offsets = PackedFloat32Array(0.0129032, 1)
@@ -21,8 +12,14 @@ width = 96
 height = 32
 fill_from = Vector2(0, 0.646789)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4c0d"]
-size = Vector2(210, 100)
+[sub_resource type="Gradient" id="Gradient_4hdsu"]
+offsets = PackedFloat32Array(0.0193548, 0.348387, 0.845161)
+colors = PackedColorArray(1, 0.815686, 0.603922, 1, 0.899837, 0.727187, 0.536169, 1, 0.238763, 0.143089, 0.0889986, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5pn2c"]
+gradient = SubResource("Gradient_4hdsu")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
 
 [node name="Employee" type="Node2D"]
 position = Vector2(50, 50)
@@ -40,20 +37,6 @@ script = ExtResource("1_ckk1p")
 
 [node name="TaskHook" type="Node" parent="."]
 
-[node name="Body" type="Area2D" parent="."]
-
-[node name="Head" type="Sprite2D" parent="Body"]
-position = Vector2(0, -16)
-texture = SubResource("GradientTexture2D_5pn2c")
-
-[node name="Chest" type="Sprite2D" parent="Body"]
-position = Vector2(0, 32)
-texture = SubResource("GradientTexture2D_xt36r")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-position = Vector2(55, 0)
-shape = SubResource("RectangleShape2D_a4c0d")
-
 [node name="Summary" type="RichTextLabel" parent="."]
 offset_left = 52.0
 offset_top = -48.0
@@ -62,3 +45,21 @@ offset_bottom = 44.0
 text = "Name
 Q / S / T
 M"
+
+[node name="Chest" type="Sprite2D" parent="."]
+position = Vector2(0, 32)
+texture = SubResource("GradientTexture2D_xt36r")
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = SubResource("GradientTexture2D_5pn2c")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(210, 100)
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 160.0
+offset_bottom = 50.0
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
