@@ -47,7 +47,11 @@ func execute_turn():
 	if task is Issue:
 		task.add_progress(speed + speed_modifier)
 		
+# Set the visibility of Extended node to v.
+func set_visibility_of_extended_description(v):
+	$Extended.visible = v
 
-
+# Called when the button over the employee sprite is clicked. Toggles the
+# Extended node visibility on/off.
 func _on_button_button_up():
-	pass # Replace with function body.
+	set_visibility_of_extended_description(not $Extended.visible)
