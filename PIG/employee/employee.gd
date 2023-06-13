@@ -19,6 +19,9 @@ var __base_speed
 var __base_testing
 var __base_morale
 
+# Declares the intention to assign an issue to this employee
+signal assign(owner)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	__base_quality = quality
@@ -55,3 +58,7 @@ func set_visibility_of_extended_description(v):
 # Extended node visibility on/off.
 func _on_button_button_up():
 	set_visibility_of_extended_description(not $Extended.visible)
+
+
+func _on_assign_button_button_up():
+	emit_signal("assign", self)
