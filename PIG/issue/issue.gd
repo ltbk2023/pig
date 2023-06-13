@@ -1,5 +1,6 @@
 extends Node2D
 class_name Issue
+signal assign(owner)
 
 enum IssueType {FEATURE, BUG_ISSUE}
 # decription is used in Summary
@@ -54,3 +55,8 @@ func add_progress(progress):
 # when button is realised toggle extended description visibility
 func _on_button_button_up():
 	set_visibility_od_exteded_desription(not $Extended.visible)
+
+# sends issue assign signal to the higher part of the tree
+# final destination should be backlog
+func _on_assign_button_button_up():
+	emit_signal("assign", self) 
