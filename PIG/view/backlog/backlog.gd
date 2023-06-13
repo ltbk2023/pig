@@ -1,6 +1,9 @@
 extends Node2D
 class_name Backlog
 @export var issue_visual_separation:Vector2 = Vector2(0,40)
+# signal containing owner, which should be issue that is currently assigned to employee
+signal assign(owner)
+
 # Called when the node enters the scene tree for the first time.
 #set position of issue in Issue node
 func _ready():
@@ -24,10 +27,16 @@ func update_issues_position():
 		set_issue_position(child,i)
 		i += 1
 
-#add issue to the backlog and set it's position
+# add issue to the backlog and set it's position
+# connect assign signal to _on_assign for new issue
 func add_issue(issue:Issue):
 	$Issues.add_child(issue)
+	issue.assign.connect(_on_assign)
 	set_issue_position(issue,$Issues.get_child_count()-1)
+
+# sends signal with issue-owner to higher part of tree which should be Game
+func _on_assign(owner):
+	emit_signal("assign", owner)
 
 #remove issue from the backlog and update position of the others issues
 func remove_issue(issue:Issue):
