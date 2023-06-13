@@ -23,7 +23,12 @@ var  state_desriptions = {
 @export_range(1,3) var time = 1
 
 var __progress = 0
-	
+
+# Signal that will be emitted when the Extended node is being either shown or 
+# hidden.
+# extending - set to true if the Extended node is BEING set to visible
+signal extending(owner, extending)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_summary()
@@ -36,8 +41,9 @@ func get_progress():
 	return self.__progress
 
 # set visibility of extended description to v
-func set_visibility_od_exteded_desription(v):
+func set_visibility_on_exteded_desription(v):
 	$Extended.visible = v
+	emit_signal("extending", self, v)
 
 # update summary text
 #sumary include type, name, difficulty, time, state
@@ -54,7 +60,7 @@ func add_progress(progress):
 		
 # when button is realised toggle extended description visibility
 func _on_button_button_up():
-	set_visibility_od_exteded_desription(not $Extended.visible)
+	set_visibility_on_exteded_desription(not $Extended.visible)
 
 # sends issue assign signal to the higher part of the tree
 # final destination should be backlog

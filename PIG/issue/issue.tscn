@@ -41,6 +41,7 @@ offset_right = 339.0
 offset_bottom = 31.0
 
 [node name="Extended" type="Node2D" parent="."]
+visible = false
 z_index = 1
 
 [node name="Sprite2D2" type="Sprite2D" parent="Extended"]
