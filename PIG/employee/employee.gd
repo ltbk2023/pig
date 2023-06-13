@@ -9,7 +9,8 @@ class_name Employee
 @export_category("Morale")
 @export var morale = 0
 
-# The vars below define the min and max values of the random speed modifier.
+# The vars below define the min and max values of random modifiers.
+@export_category("Random modifiers")
 @export var min_speed_modifier = -1
 @export var max_speed_modifier = 4
 
