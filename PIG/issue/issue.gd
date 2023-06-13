@@ -60,3 +60,17 @@ func _on_button_button_up():
 # final destination should be backlog
 func _on_assign_button_button_up():
 	emit_signal("assign", self) 
+
+# Assigns employee to issue and returns true
+# returns false if not possible
+func assign_employee(hook: Hook):
+	if check_employee_can_be_assigned():
+		$EmployeeHook.add_child(hook)
+		return true
+	else:
+		return false
+	
+# checks number of tasks assigned already to the employee and returns false if there are any
+func check_employee_can_be_assigned():
+	return $EmployeeHook.get_child_count() == 0
+	

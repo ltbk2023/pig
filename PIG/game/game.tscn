@@ -22,12 +22,17 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "End Turn"
 
-
 [node name="Backlog" parent="." instance=ExtResource("2_1vjop")]
 visible = false
 
 [node name="Office" parent="." instance=ExtResource("3_17k77")]
 
+[node name="Hooks" type="Node" parent="."]
+
+[node name="IssueToAssign" type="Node" parent="Hooks"]
+
+[node name="EmployeeToAssign" type="Node" parent="Hooks"]
 
 [connection signal="button_up" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
-
+[connection signal="assign" from="Backlog" to="." method="_on_backlog_assign"]
+[connection signal="assign" from="Office" to="." method="_on_office_assign"]
