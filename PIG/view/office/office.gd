@@ -4,6 +4,8 @@ class_name Office
 ## This script handes operations on the Office scene, such as viewing details
 ## about the employees, scrolling the background, etc.
 
+@export var employee_visual_separation: Vector2 = Vector2(0, 100)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -15,7 +17,20 @@ func _process(delta):
 # Add an employee to the scene. Should be called from the Game script.
 func add_employee(employee: Employee):
 	$Background/Employees.add_child(employee)
-
+	set_employee_position(employee, $Background/Employees.get_child_count() - 1)
+	
+# Set the position of the Employee with respect to the Employees node.
+# position - position of the employee {0, 1, 2, ...}
+func set_employee_position(employee: Employee, position_number: int):
+	employee.position = position_number * employee_visual_separation
+	
+# Update the employees' position so that there are no free spaces between them
+func update_employee_positons():
+	var i = 0
+	for employee in $Background/Employees.get_children():
+		set_employee_position(employee, i)
+		i += 1
+		
 # Remove an Employee from the Employees node. If delete_node is true, the Employee node will
 # also be deleted.
 func remove_employee(employee: Employee, delete_node: bool):
@@ -23,6 +38,8 @@ func remove_employee(employee: Employee, delete_node: bool):
 		employee.queue_free()
 	else:
 		$Background/Employees.remove_child(employee)
+	update_employee_positons()
+		
 		
 	
 # Get a list of all Employees attached to the scene.
