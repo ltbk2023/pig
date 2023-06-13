@@ -47,3 +47,7 @@ func execute_turn():
 	if task is Issue:
 		task.add_progress(speed + speed_modifier)
 		
+
+
+func _on_button_button_up():
+	pass # Replace with function body.
