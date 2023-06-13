@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd77i5nmo2jq3"]
+[gd_scene load_steps=8 format=3 uid="uid://cd77i5nmo2jq3"]
 
 [ext_resource type="Script" path="res://employee/employee.gd" id="1_ckk1p"]
 
@@ -20,6 +20,15 @@ colors = PackedColorArray(1, 0.815686, 0.603922, 1, 0.899837, 0.727187, 0.536169
 gradient = SubResource("Gradient_4hdsu")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_blit4"]
+offsets = PackedFloat32Array(0.666667)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jpviw"]
+gradient = SubResource("Gradient_blit4")
+width = 330
+height = 150
 
 [node name="Employee" type="Node2D"]
 position = Vector2(50, 50)
@@ -61,5 +70,22 @@ offset_left = -50.0
 offset_top = -50.0
 offset_right = 160.0
 offset_bottom = 50.0
+
+[node name="Extended" type="Node2D" parent="."]
+visible = false
+position = Vector2(-50, 50)
+
+[node name="Background" type="Sprite2D" parent="Extended"]
+texture = SubResource("GradientTexture2D_jpviw")
+centered = false
+
+[node name="Description" type="RichTextLabel" parent="Extended"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 325.0
+offset_bottom = 105.0
+bbcode_enabled = true
+text = "[color=BLACK]implementation of desintegration unexisting information for confirmation of button aplication[/color]
+"
 
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
