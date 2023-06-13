@@ -88,4 +88,13 @@ bbcode_enabled = true
 text = "[color=BLACK]implementation of desintegration unexisting information for confirmation of button aplication[/color]
 "
 
+[node name="AssignButton" type="Button" parent="Extended"]
+offset_left = 267.0
+offset_top = 117.0
+offset_right = 327.0
+offset_bottom = 148.0
+text = "Assign
+"
+
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="Extended/AssignButton" to="." method="_on_assign_button_button_up"]
