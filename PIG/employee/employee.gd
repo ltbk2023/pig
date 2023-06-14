@@ -22,6 +22,11 @@ var __base_morale
 # Declares the intention to assign an issue to this employee
 signal assign(owner)
 
+# Signal that will be emitted when the Extended node is being either shown or 
+# hidden.
+# extending - set to true if the Extended node is BEING set to visible
+signal extending(owner, extending)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	__base_quality = quality
@@ -53,6 +58,7 @@ func execute_turn():
 # Set the visibility of Extended node to v.
 func set_visibility_of_extended_description(v):
 	$Extended.visible = v
+	emit_signal("extending", self, v)
 
 # Called when the button over the employee sprite is clicked. Toggles the
 # Extended node visibility on/off.
