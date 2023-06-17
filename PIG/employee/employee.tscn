@@ -73,6 +73,7 @@ offset_bottom = 50.0
 
 [node name="Extended" type="Node2D" parent="."]
 visible = false
+z_index = 1
 position = Vector2(-50, 50)
 
 [node name="Background" type="Sprite2D" parent="Extended"]
