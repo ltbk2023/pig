@@ -21,6 +21,7 @@ func _process(delta):
 func add_employee(employee: Employee):
 	$Background/Employees.add_child(employee)
 	employee.assign.connect(_on_assign)
+	employee.extending.connect(_on_extending)
 	set_employee_position(employee, $Background/Employees.get_child_count() - 1)
 	
 # Set the position of the Employee with respect to the Employees node.
@@ -53,3 +54,13 @@ func get_employees() -> Array[Node]:
 # sends signal with employee-owner to higher part of tree which should be Game
 func _on_assign(owner):
 	emit_signal("assign", owner)
+	
+# Called when the node has received an extending signal from one of the
+# employees. Hides the other employees' extended descriptions.
+func _on_extending(owner, extending):
+	if not extending:
+		return
+	for employee in $Background/Employees.get_children():
+		if employee != owner:
+			employee.set_visibility_of_extended_description(false)
+	
