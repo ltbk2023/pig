@@ -68,3 +68,16 @@ func _on_button_button_up():
 
 func _on_assign_button_button_up():
 	emit_signal("assign", self)
+
+# Assigns issue to an employee and returns true if successful	
+func assign_issue(hook: Hook):
+	if check_task_can_be_assigned_to_employee():
+		$TaskHook.add_child(hook)
+		return true
+	else:
+		return false
+	
+# Counts how many tasks an employee already has, and returns true if none
+func check_task_can_be_assigned_to_employee():
+	return $TaskHook.get_child_count() == 0
+	

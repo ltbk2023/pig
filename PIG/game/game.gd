@@ -14,7 +14,6 @@ enum GameState {NOT_STARTED, IN_PROGRESS, FINISHED}
 @export var backlog_to_office = Vector2(1,0)
 var is_view_just_switched = false
 
-
 var __current_turn : int
 var __current_sprint : int
 var __state : GameState
@@ -82,3 +81,62 @@ func _input(event):
 	if event is InputEventMouseButton:
 		is_view_just_switched = event.button_mask != MOUSE_BUTTON_LEFT
 			
+# Listen to assing reqest from backlog
+# Create hook to owner and place it in Hooks/IssueToAssign
+# After that call assing function
+# If owner can't be assign, do nothing
+# If Hooks/IssueToAssign contain hook, replace it with created
+func _on_backlog_assign(owner):
+	if not owner.check_employee_can_be_assigned():
+		return
+	if $Hooks/IssueToAssign.get_child_count() > 0:
+		$Hooks/IssueToAssign.get_child(0).queue_free()
+	var hook = Hook.new()
+	hook.set_origin(owner)
+	$Hooks/IssueToAssign.add_child(hook)
+	assign()
+
+# Listen to assing reqest from office
+# Create hook to owner and place it in Hooks/EmployeeToAssign
+# After that call assing function
+# If owner can't be assign, do nothing
+# If Hooks/EmployeeToAssign contain hook, replace it with created
+func _on_office_assign(owner):
+	if not owner.check_task_can_be_assigned_to_employee():
+		return
+	if $Hooks/EmployeeToAssign.get_child_count() > 0:
+		$Hooks/EmployeeToAssign.get_child(0).queue_free()
+	var hook = Hook.new()
+	hook.set_origin(owner)
+	$Hooks/EmployeeToAssign.add_child(hook)
+	assign()
+
+# Checks if hooks needed to assign exist
+func check_hooks_to_assign_existence():
+	return $Hooks/IssueToAssign.get_child_count() > 0 \
+		and $Hooks/EmployeeToAssign.get_child_count() > 0
+
+# Check if hooks needed to assign are valid
+# Asume that hooks exist
+func check_hooks_to_assign_validity():
+	return $Hooks/IssueToAssign.get_child(0).get_origin().check_employee_can_be_assigned() \
+		and $Hooks/EmployeeToAssign.get_child(0).get_origin().check_task_can_be_assigned_to_employee()
+	
+# Returns true upon succesful assignment of issue to employee.
+# Removes data remembered in IssueToAssign and EmployeeToAssign
+# If hooks exist but aren't valid destroy them
+func assign():
+	if check_hooks_to_assign_existence():
+		if check_hooks_to_assign_validity():
+			var employee_hook = $Hooks/EmployeeToAssign.get_child(0)
+			$Hooks/EmployeeToAssign.remove_child(employee_hook)
+			var issue_hook = $Hooks/IssueToAssign.get_child(0)
+			$Hooks/IssueToAssign.remove_child(issue_hook)
+			employee_hook.get_origin().assign_issue(issue_hook)
+			issue_hook.get_origin().assign_employee(employee_hook)
+			return true
+		else:
+			$Hooks/EmployeeToAssign.get_child(0).queue_free()
+			$Hooks/IssueToAssign.get_child(0).queue_free()
+	return false
+		
