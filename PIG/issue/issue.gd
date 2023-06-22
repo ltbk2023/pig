@@ -32,6 +32,7 @@ signal extending(owner, extending)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_summary()
+	update_extended()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -51,6 +52,15 @@ func update_summary():
 	$Summary.text =  type_decription[type]+" [color=BLACK]"+name+"  D "+str(difficulty)+" / T "+str(time)+"[/color] " + \
 	state_desriptions[state] 
 
+func update_extended():
+	if $EmployeeHook.get_child_count(0):
+		$Extended/Sprite2D2/AssignButton.disabled = true
+		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Assign to "+$TaskHook.get_child(0).get_origin().name
+	else:
+		$Extended/Sprite2D2/AssignButton.disabled = false
+		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Not assign"
+	
+
 # Called when progress is to be increased. If the progress exceeds the time,
 # IssueState is set to completed.
 func add_progress(progress):
@@ -69,9 +79,13 @@ func _on_assign_button_button_up():
 
 # Assigns employee to issue and returns true
 # returns false if not possible
+# update visual if needed
 func assign_employee(hook: Hook):
 	if check_employee_can_be_assigned():
 		$EmployeeHook.add_child(hook)
+		state = IssueState.IN_PROGRESS
+		update_summary()
+		update_extended()
 		return true
 	else:
 		return false

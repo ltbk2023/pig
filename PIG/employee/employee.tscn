@@ -72,7 +72,6 @@ offset_right = 160.0
 offset_bottom = 50.0
 
 [node name="Extended" type="Node2D" parent="."]
-visible = false
 z_index = 1
 position = Vector2(-50, 50)
 
@@ -88,6 +87,12 @@ offset_bottom = 105.0
 bbcode_enabled = true
 text = "[color=BLACK]implementation of desintegration unexisting information for confirmation of button aplication[/color]
 "
+
+[node name="Assignment" type="RichTextLabel" parent="Extended"]
+offset_top = 117.0
+offset_right = 250.0
+offset_bottom = 177.0
+bbcode_enabled = true
 
 [node name="AssignButton" type="Button" parent="Extended"]
 offset_left = 267.0

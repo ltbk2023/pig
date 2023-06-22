@@ -36,10 +36,24 @@ func _ready():
 	__base_morale = morale
 	
 	update_summary()
+	update_extended()
 	randomize()
 
 func update_summary():
-	$Summary.text = name + "\nQ "+ str(quality) + " / S " + str(speed) + " / T " + str(testing) + "\nM "+str(morale)
+	var text = name + \
+	"\nQ "+ str(quality) + " / S " + str(speed) + " / T " + str(testing)  + \
+	"\nM "+str(morale) 
+	if $TaskHook.get_child_count() > 0:
+		text += "\nA "+$TaskHook.get_child(0).get_origin().name
+	$Summary.text = text 
+	
+func update_extended():
+	if $TaskHook.get_child_count() > 0:
+		$Extended/AssignButton.disabled = true
+		$Extended/Assignment.text = "[color=BLACK]Assign to "+$TaskHook.get_child(0).get_origin().name
+	else:
+		$Extended/AssignButton.disabled = false
+		$Extended/Assignment.text = "[color=BLACK]Not assign"
 	
 # Called by the game scene when the turn ends.
 # TODO: differentiate between testing and developing
@@ -69,10 +83,13 @@ func _on_button_button_up():
 func _on_assign_button_button_up():
 	emit_signal("assign", self)
 
-# Assigns issue to an employee and returns true if successful	
+# Assigns issue to an employee and returns true if successful
+# update visual if needed
 func assign_issue(hook: Hook):
 	if check_task_can_be_assigned_to_employee():
 		$TaskHook.add_child(hook)
+		update_summary()
+		update_extended()
 		return true
 	else:
 		return false
