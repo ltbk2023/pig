@@ -32,6 +32,7 @@ func update_issues_position():
 func add_issue(issue:Issue):
 	$Issues.add_child(issue)
 	issue.assign.connect(_on_assign)
+	issue.extending.connect(_on_extending)
 	set_issue_position(issue,$Issues.get_child_count()-1)
 
 # sends signal with issue-owner to higher part of tree which should be Game
@@ -46,4 +47,11 @@ func remove_issue(issue:Issue):
 #get all issuees from Backlog 
 func get_issues():
 	$Issues.get_children()
+	
+func _on_extending(owner, extending):
+	if not extending:
+		return
+	for issue in $Issues.get_children():
+		if issue != owner:
+			issue.set_visibility_on_exteded_desription(false)
 	
