@@ -5,3 +5,5 @@
 
 [node name="Game" instance=ExtResource("1_ha1jg")]
 script = ExtResource("2_l5e7n")
+employee_number = 3
+issue_number = 6

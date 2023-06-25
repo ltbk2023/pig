@@ -6,7 +6,6 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_t4wkw")
-office_to_backlog = Vector2(1, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
