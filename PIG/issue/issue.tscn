@@ -23,6 +23,8 @@ height = 150
 [node name="Issue" type="Node2D"]
 script = ExtResource("1_dnevk")
 
+[node name="EmployeeHook" type="Node" parent="."]
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
 texture = SubResource("GradientTexture2D_r2p30")
@@ -49,21 +51,29 @@ position = Vector2(0, 35)
 texture = SubResource("GradientTexture2D_12x6g")
 centered = false
 
-[node name="Description" type="RichTextLabel" parent="Extended"]
+[node name="Assignment" type="RichTextLabel" parent="Extended/Sprite2D2"]
 offset_left = 5.0
-offset_top = 35.0
+offset_top = 120.0
+offset_right = 158.0
+offset_bottom = 150.0
+bbcode_enabled = true
+text = "[color=BLACK]Assigned to Name[/color]"
+
+[node name="Description" type="RichTextLabel" parent="Extended/Sprite2D2"]
+offset_left = 5.0
 offset_right = 325.0
-offset_bottom = 155.0
+offset_bottom = 120.0
 bbcode_enabled = true
 text = "[color=BLACK]implementation of desintegration unexisting information for confirmation of button aplication[/color]
 "
 
-[node name="Assinment" type="RichTextLabel" parent="Extended"]
-offset_left = 5.0
-offset_top = 160.0
+[node name="AssignButton" type="Button" parent="Extended/Sprite2D2"]
+offset_left = 175.0
+offset_top = 115.0
 offset_right = 325.0
-offset_bottom = 185.0
-bbcode_enabled = true
-text = "[color=BLACK]Assing to Name[/color]"
+offset_bottom = 146.0
+text = "Assign
+"
 
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="Extended/Sprite2D2/AssignButton" to="." method="_on_assign_button_button_up"]
