@@ -18,3 +18,13 @@ func add_cards(type:QualityType,amount:int)-> bool:
 	else:
 		cards[type] += amount
 		return true
+
+# remove given amount of cards of given type from deck
+# return false if amount cards in deck after removing will be negative
+# or type doesn't exist in cards dictionary
+func remove_card(type:QualityType,amount:int)->bool:
+	if type not in cards || cards[type] - amount < 0:
+		return false
+	else:
+		cards[type] -= amount
+		return true
