@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djxvqbwooew4i"]
+
+[ext_resource type="Script" path="res://quality_deck/QualityDeck.gd" id="1_eruvn"]
+
+[node name="QualityDeck" type="Node"]
+script = ExtResource("1_eruvn")
