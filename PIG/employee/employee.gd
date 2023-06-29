@@ -46,8 +46,18 @@ func execute_turn():
 	
 	if task is Issue:
 		task.add_progress(speed + speed_modifier)
+		if task.state == Issue.IssueState.COMPLETED:
+			unassign_issue()
 		
-
-
 func _on_button_button_up():
 	pass # Replace with function body.
+
+# Unassigns issue from the employee. Return bool indicating whether it was
+# successful
+func unassign_issue() -> bool:
+	if not check_task_can_be_assigned_to_employee():
+		$TaskHook.get_child(0).queue_free()
+		update_summary()
+		update_extended()
+		return true
+	return false

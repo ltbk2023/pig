@@ -50,7 +50,17 @@ func add_progress(progress):
 	self.__progress += progress
 	if self.__progress >= self.time:
 		self.state = IssueState.COMPLETED
+		unassign_employee()
 		
 # when button is realised toggle extended description visibility
 func _on_button_button_up():
 	set_visibility_od_exteded_desription(not $Extended.visible)
+	
+# Unassign employee from this issue. Return bool indicating whether successful
+func unassign_employee() -> bool:
+	if not check_employee_can_be_assigned():
+		$EmployeeHook.get_child(0).queue_free()
+		update_summary()
+		update_extended()
+		return true
+	return false
