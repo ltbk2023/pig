@@ -2,12 +2,28 @@ extends Node
 class_name QualityDeck
 
 enum QualityType{CLEAN,BUG}
+enum QualityPreset{LOW,HIGH}
 
 # dictionary that contains amounts of cards 
 @export var cards = {
 	QualityType.CLEAN:0,
 	QualityType.BUG:0
 	}
+
+# dictionary that defined presets
+# presets are dictionaries that contain propabilities of cards types
+# propabilies should add up to 1.0
+@export var presets_propabilities = {
+	QualityPreset.LOW :{
+		QualityType.BUG:0.75,
+		QualityType.CLEAN:0.25
+	},
+	QualityPreset.HIGH:{
+		QualityType.BUG:0.25,
+		QualityType.CLEAN:0.75
+	}
+	
+}
 
 func _ready():
 	randomize()
@@ -75,4 +91,22 @@ func check_cards(amount:int)->Dictionary:
 				else:
 					pose -= local[type]
 	return result
-	
+
+# add cards with defined propability of becoming bug or clean code
+# if amount is negative, return false
+func add_from_preset(preset:QualityPreset,amount:int) -> bool:
+	if amount < 0:
+		return false
+	var propabilities = presets_propabilities[preset]
+	for i in range(amount):
+		# get random value from <0.0,1.0> to define card type
+		var p = randf()
+		for type in propabilities:
+			# check if card is given type
+			if p <= propabilities[type]:
+				# add card to deck
+				cards[type] += 1
+				break
+			else:
+				p -= propabilities[type]
+	return true
