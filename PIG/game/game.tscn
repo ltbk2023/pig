@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca2p0ey2167pi"]
+[gd_scene load_steps=5 format=3 uid="uid://ca2p0ey2167pi"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_t4wkw"]
 [ext_resource type="PackedScene" uid="uid://btvv1oojseb6c" path="res://view/backlog/backlog.tscn" id="2_1vjop"]
 [ext_resource type="PackedScene" uid="uid://dom60ed6nbcjt" path="res://view/office/office.tscn" id="3_17k77"]
+[ext_resource type="PackedScene" uid="uid://2k4tpybmr0a4" path="res://view/testing/testing.tscn" id="4_mosmf"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_t4wkw")
@@ -25,6 +26,9 @@ text = "End Turn"
 visible = false
 
 [node name="Office" parent="." instance=ExtResource("3_17k77")]
+
+[node name="Testing" parent="." instance=ExtResource("4_mosmf")]
+visible = false
 
 [node name="Hooks" type="Node" parent="."]
 
