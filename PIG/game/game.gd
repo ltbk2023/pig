@@ -12,6 +12,8 @@ enum GameState {NOT_STARTED, IN_PROGRESS, FINISHED}
 @export var angle_precision  = PI/3
 @export var office_to_backlog = Vector2(-1,0)
 @export var backlog_to_office = Vector2(1,0)
+@export var office_to_testing = Vector2(1,0)
+@export var testing_to_office = Vector2(-1,0)
 var is_view_just_switched = false
 
 var __current_turn : int
@@ -69,12 +71,26 @@ func _input(event):
 					$Backlog.visible = true
 					#prevent switching multiple views in one go
 					is_view_just_switched = true
+				elif is_in_direction(movement, office_to_testing):
+					# set view to Testing
+					$Office.visible = false
+					$Testing.visible = true
+					#prevent switching multiple views in one go
+					is_view_just_switched = true
 
 			elif $Backlog.visible:
 				if is_in_direction(movement,backlog_to_office):
 					# set view to Office
 					$Office.visible = true
 					$Backlog.visible = false
+					#prevent switching multiple views in one go
+					is_view_just_switched = true
+					
+			elif $Testing.visible:
+				if is_in_direction(movement, testing_to_office):
+					# set view to Office
+					$Office.visible = true
+					$Testing.visible = false
 					#prevent switching multiple views in one go
 					is_view_just_switched = true
 					
