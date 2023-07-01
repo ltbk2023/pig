@@ -57,7 +57,7 @@ func update_summary():
 func update_extended():
 	if $EmployeeHook.get_child_count(0):
 		$Extended/Sprite2D2/AssignButton.disabled = true
-		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Assigned to "+$TaskHook.get_child(0).get_origin().name
+		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Assigned to " + $EmployeeHook.get_child(0).get_origin().name
 	else:
 		$Extended/Sprite2D2/AssignButton.disabled = false
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Not assigned"
