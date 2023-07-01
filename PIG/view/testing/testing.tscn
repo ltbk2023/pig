@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://2k4tpybmr0a4"]
+
+[ext_resource type="Script" path="res://view/testing/testing.gd" id="1_ila0p"]
+
+[sub_resource type="Gradient" id="Gradient_n3oit"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(4.52429e-06, 0.708037, 0.740149, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_onmfj"]
+gradient = SubResource("Gradient_n3oit")
+width = 340
+height = 340
+
+[node name="Testing" type="Node2D"]
+script = ExtResource("1_ila0p")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(180, 340)
+scale = Vector2(1.058, 2)
+texture = SubResource("GradientTexture2D_onmfj")
+
+[node name="SceneName" type="RichTextLabel" parent="Background"]
+offset_left = -43.0
+offset_top = -150.5
+offset_right = 44.0
+offset_bottom = -116.5
+bbcode_enabled = true
+text = "[font_size=20]Testing[/font_size]"
+
+[node name="QualityCardsNum" type="RichTextLabel" parent="Background"]
+offset_left = -83.1758
+offset_top = -74.5
+offset_right = 76.8242
+offset_bottom = -49.5
+bbcode_enabled = true
+text = "[font_size=15]Quality cards:[/font_size]"
+
+[node name="Result" type="RichTextLabel" parent="Background"]
+offset_left = -83.0
+offset_top = -10.5
+offset_right = 121.0
+offset_bottom = 94.5
+bbcode_enabled = true
+text = "[font_size=15]Result:[/font_size]"
+
+[node name="AssignButton" type="Button" parent="Background"]
+offset_left = -163.516
+offset_top = 145.0
+offset_right = -58.5161
+offset_bottom = 176.0
+scale = Vector2(0.75, 0.75)
+text = "Assign"
