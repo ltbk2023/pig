@@ -126,33 +126,63 @@ func _on_office_assign(owner):
 	hook.set_origin(owner)
 	$Hooks/EmployeeToAssign.add_child(hook)
 	assign()
-
+	
+# Listen to assing request from Testing
+# Create hook to owner and place it in Hooks/Testing
+# After that call assign function
+# If Hooks/Testing already contains hook, do nothing
+# If Hooks/IssueToAssign contains hook, replace it
+func _on_testing_assign():
+	if $Hooks/Testing.get_child_count() > 0:
+		return
+	if $Hooks/IssueToAssign.get_child_count() > 0:
+		$Hooks/IssueToAssign.get_child(0).queue_free()
+	var hook = Hook.new()
+	hook.set_origin($Testing)
+	$Hooks/Testing.add_child(hook)
+	assign()
+		
 # Checks if hooks needed to assign exist
 func check_hooks_to_assign_existence():
-	return $Hooks/IssueToAssign.get_child_count() > 0 \
-		and $Hooks/EmployeeToAssign.get_child_count() > 0
+	return $Hooks/EmployeeToAssign.get_child_count() > 0 \
+		and ($Hooks/IssueToAssign.get_child_count() > 0 \
+		or $Hooks/Testing.get_child_count() > 0)  
+	
 
 # Check if hooks needed to assign are valid
-# Asume that hooks exist
 func check_hooks_to_assign_validity():
-	return $Hooks/IssueToAssign.get_child(0).get_origin().check_employee_can_be_assigned() \
-		and $Hooks/EmployeeToAssign.get_child(0).get_origin().check_task_can_be_assigned_to_employee()
+	if $Hooks/IssueToAssign.get_child_count() > 0:
+		return $Hooks/IssueToAssign.get_child(0).get_origin().check_employee_can_be_assigned() \
+			and $Hooks/EmployeeToAssign.get_child(0).get_origin().check_task_can_be_assigned_to_employee()
+	elif $Hooks/Testing.get_child_count() > 0:
+		return $Hooks/EmployeeToAssign.get_child(0).get_origin().check_task_can_be_assigned_to_employee()
 	
-# Returns true upon succesful assignment of issue to employee.
-# Removes data remembered in IssueToAssign and EmployeeToAssign
+# Returns true upon succesful assignment of issue/testing to employee.
+# Removes data remembered in IssueToAssign/Testing and EmployeeToAssign
 # If hooks exist but aren't valid destroy them
 func assign():
 	if check_hooks_to_assign_existence():
 		if check_hooks_to_assign_validity():
 			var employee_hook = $Hooks/EmployeeToAssign.get_child(0)
 			$Hooks/EmployeeToAssign.remove_child(employee_hook)
-			var issue_hook = $Hooks/IssueToAssign.get_child(0)
-			$Hooks/IssueToAssign.remove_child(issue_hook)
-			employee_hook.get_origin().assign_issue(issue_hook)
-			issue_hook.get_origin().assign_employee(employee_hook)
+			# Assign issue
+			if $Hooks/IssueToAssign.get_child_count() > 0:
+				var issue_hook = $Hooks/IssueToAssign.get_child(0)
+				$Hooks/IssueToAssign.remove_child(issue_hook)
+				employee_hook.get_origin().assign_issue(issue_hook)
+				issue_hook.get_origin().assign_employee(employee_hook)
+			# Assign testing
+			elif $Hooks/Testing.get_child_count() > 0:
+				var testing_hook = $Hooks/Testing.get_child(0)
+				$Hooks/Testing.remove_child(testing_hook)
+				# This works for testing as well
+				employee_hook.get_origin().assign_issue(testing_hook)
+				$Testing.assign_employee(employee_hook)
 			return true
 		else:
 			$Hooks/EmployeeToAssign.get_child(0).queue_free()
-			$Hooks/IssueToAssign.get_child(0).queue_free()
+			if $Hooks/IssueToAssign.get_child_count() > 0:
+				$Hooks/IssueToAssign.get_child(0).queue_free()
+			elif $Hooks/Testing.get_child_count() > 0:
+				$Hooks/Testing.get_child(0).queue_free()
 	return false
-		
