@@ -25,7 +25,7 @@ func _ready():
 	__state = GameState.NOT_STARTED
 	__current_sprint = 0
 	__current_turn = 0
-
+	randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -156,3 +156,15 @@ func assign():
 			$Hooks/IssueToAssign.get_child(0).queue_free()
 	return false
 		
+
+
+func _on_bug_found():
+	var bug_issue = Issue.new()
+	bug_issue.type = Issue.IssueType.BUG_ISSUE
+	# THIS SHOULD BE DONE SOMEWHERE ELSE AUTOMATICALLY, MOST LIKELY IN ISSUE'S
+	# ready() METHOD! TODO: DISCUSS
+	bug_issue.state = Issue.IssueState.IN_BACKLOG
+	# The following limits should be constants/vars in the Issue script!
+	bug_issue.difficulty = randi_range(1, 4)
+	bug_issue.time = randi_range(1, 3)
+	$Backlog.add_issue(bug_issue)
