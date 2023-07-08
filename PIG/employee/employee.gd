@@ -73,6 +73,8 @@ func execute_turn():
 	
 	if task is Issue:
 		task.add_progress(speed + speed_modifier)
+		if task.state == Issue.IssueState.COMPLETED:
+			unassign_issue()
 		
 # Set the visibility of Extended node to v.
 func set_visibility_of_extended_description(v):
@@ -103,3 +105,12 @@ func assign_issue(hook: Hook):
 func check_task_can_be_assigned_to_employee():
 	return $TaskHook.get_child_count() == 0
 	
+# Unassigns issue from the employee. Return bool indicating whether it was
+# successful
+func unassign_issue() -> bool:
+	if not check_task_can_be_assigned_to_employee():
+		$TaskHook.get_child(0).queue_free()
+		update_summary()
+		update_extended()
+		return true
+	return false
