@@ -97,24 +97,19 @@ func _input(event):
 	if event is InputEventMouseButton:
 		is_view_just_switched = event.button_mask != MOUSE_BUTTON_LEFT
 			
-# Listen to assing reqest from backlog
-# Create hook to owner and place it in Hooks/IssueToAssign
-# After that call assing function
-# If owner can't be assign, do nothing
-# If Hooks/IssueToAssign contain hook, replace it with created
+# Listen to assign request from backlog
+# Call save_task_to_assign
 func _on_backlog_assign(owner):
-	if not owner.check_employee_can_be_assigned():
-		return
-	if $Hooks/IssueToAssign.get_child_count() > 0:
-		$Hooks/IssueToAssign.get_child(0).queue_free()
-	var hook = Hook.new()
-	hook.set_origin(owner)
-	$Hooks/IssueToAssign.add_child(hook)
-	assign()
+	save_task_to_assign(owner)
 
-# Listen to assing reqest from office
+# Listen to assign request from testing
+# Call save_task_to_assign
+func _on_testing_assign(owner):
+	save_task_to_assign(owner)
+	
+# Listen to assign request from office
 # Create hook to owner and place it in Hooks/EmployeeToAssign
-# After that call assing function
+# After that call assign function
 # If owner can't be assign, do nothing
 # If Hooks/EmployeeToAssign contain hook, replace it with created
 func _on_office_assign(owner):
@@ -127,32 +122,49 @@ func _on_office_assign(owner):
 	$Hooks/EmployeeToAssign.add_child(hook)
 	assign()
 
+# Create hook to task and place it in Hooks/TaskToAssign
+# After that call assign function
+# If task can't be assigned, do nothing
+# If Hooks/TaskToAssign contain hook, replace it with created
+func save_task_to_assign(task):
+	if not task.check_employee_can_be_assigned():
+		return
+	if $Hooks/TaskToAssign.get_child_count() > 0:
+		$Hooks/TaskToAssign.get_child(0).queue_free()
+	var hook = Hook.new()
+	hook.set_origin(task)
+	$Hooks/TaskToAssign.add_child(hook)
+	assign()
+
 # Checks if hooks needed to assign exist
 func check_hooks_to_assign_existence():
-	return $Hooks/IssueToAssign.get_child_count() > 0 \
-		and $Hooks/EmployeeToAssign.get_child_count() > 0
+	return $Hooks/EmployeeToAssign.get_child_count() > 0 \
+		and $Hooks/TaskToAssign.get_child_count() > 0
+	
 
 # Check if hooks needed to assign are valid
-# Asume that hooks exist
 func check_hooks_to_assign_validity():
-	return $Hooks/IssueToAssign.get_child(0).get_origin().check_employee_can_be_assigned() \
+	return $Hooks/TaskToAssign.get_child(0).get_origin().check_employee_can_be_assigned() \
 		and $Hooks/EmployeeToAssign.get_child(0).get_origin().check_task_can_be_assigned_to_employee()
 	
-# Returns true upon succesful assignment of issue to employee.
-# Removes data remembered in IssueToAssign and EmployeeToAssign
+# Returns true upon succesful assignment of issue/testing to employee.
+# Removes data remembered in IssueToAssign/Testing and EmployeeToAssign
 # If hooks exist but aren't valid destroy them
 func assign():
 	if check_hooks_to_assign_existence():
 		if check_hooks_to_assign_validity():
 			var employee_hook = $Hooks/EmployeeToAssign.get_child(0)
 			$Hooks/EmployeeToAssign.remove_child(employee_hook)
-			var issue_hook = $Hooks/IssueToAssign.get_child(0)
-			$Hooks/IssueToAssign.remove_child(issue_hook)
-			employee_hook.get_origin().assign_issue(issue_hook)
-			issue_hook.get_origin().assign_employee(employee_hook)
+			# Assign task
+			if $Hooks/TaskToAssign.get_child_count() > 0:
+				var task_hook = $Hooks/TaskToAssign.get_child(0)
+				$Hooks/TaskToAssign.remove_child(task_hook)
+				employee_hook.get_origin().assign_issue(task_hook)
+				task_hook.get_origin().assign_employee(employee_hook)
 			return true
 		else:
 			$Hooks/EmployeeToAssign.get_child(0).queue_free()
 			$Hooks/IssueToAssign.get_child(0).queue_free()
+
 	return false
-		
+	

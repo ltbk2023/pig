@@ -32,10 +32,11 @@ visible = false
 
 [node name="Hooks" type="Node" parent="."]
 
-[node name="IssueToAssign" type="Node" parent="Hooks"]
+[node name="TaskToAssign" type="Node" parent="Hooks"]
 
 [node name="EmployeeToAssign" type="Node" parent="Hooks"]
 
 [connection signal="button_up" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
 [connection signal="assign" from="Backlog" to="." method="_on_backlog_assign"]
 [connection signal="assign" from="Office" to="." method="_on_office_assign"]
+[connection signal="assign" from="Testing" to="." method="_on_testing_assign"]
