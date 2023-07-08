@@ -140,3 +140,8 @@ func assign():
 			$Hooks/IssueToAssign.get_child(0).queue_free()
 	return false
 		
+
+# Listen to "completed" signal emitted by Office. Add 2 quality cards to the
+# deck.
+func _on_office_completed(owner, issue, quality):
+	$Testing/QualityDeck.add_from_preset(quality, 2)
