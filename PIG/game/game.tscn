@@ -39,3 +39,4 @@ visible = false
 [connection signal="button_up" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
 [connection signal="assign" from="Backlog" to="." method="_on_backlog_assign"]
 [connection signal="assign" from="Office" to="." method="_on_office_assign"]
+[connection signal="bug_found" from="Testing" to="." method="_on_bug_found"]
