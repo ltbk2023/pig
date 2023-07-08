@@ -1,6 +1,7 @@
 extends Node2D
 class_name Testing
 
+
 # Signal that informs the tree that the player wants to assign an employee to
 # testing
 signal assign(owner)
@@ -26,6 +27,7 @@ func update_quality_cards_text():
 func update_result_text():
 	pass
 
+
 # Send the assign_testing signal up the tree. Should be received by Game.
 func _on_assign_button_button_up():
 	emit_signal("assign",self)
@@ -40,4 +42,5 @@ func assign_employee(hook: Hook):
 # or limit is set to -1
 func check_employee_can_be_assigned():
 	return testers_limit == -1 or $EmployeeHook.get_child_count() < testers_limit
+
 
