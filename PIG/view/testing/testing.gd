@@ -1,6 +1,7 @@
 extends Node2D
 class_name Testing
 
+
 # Sent up the tree when a bug is found by testing. Should be caught by Game
 # which will add a random bug issue to the Backlog
 signal bug_found()
