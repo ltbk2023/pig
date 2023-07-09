@@ -73,6 +73,8 @@ func execute_turn():
 	
 	if task is Issue:
 		task.add_progress(speed + speed_modifier)
+	elif task is Testing:
+		task.test(testing)
 		
 # Set the visibility of Extended node to v.
 func set_visibility_of_extended_description(v):
