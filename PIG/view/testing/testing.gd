@@ -10,6 +10,10 @@ signal assign(owner)
 # -1 represent infinity
 @export var testers_limit:int = -1
 
+# Sent up the tree when a bug is found by testing. Should be caught by Game
+# which will add a random bug issue to the Backlog
+signal bug_found()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_quality_cards_text()
@@ -24,9 +28,8 @@ func update_quality_cards_text():
 	pass
 	
 # Update Result text to show the result of testing
-func update_result_text():
-	pass
-
+func update_result_text(amount: int):
+	$Background/Result.text = "Result:\nBugs: " + str(amount)
 
 # Send the assign_testing signal up the tree. Should be received by Game.
 func _on_assign_button_button_up():
@@ -42,3 +45,14 @@ func assign_employee(hook: Hook):
 # or limit is set to -1
 func check_employee_can_be_assigned():
 	return testers_limit == -1 or $EmployeeHook.get_child_count() < testers_limit
+	
+# Test [amount] quality cards. Update result visuals
+func test(amount: int):
+	var cards = $QualityDeck.check_cards(amount)
+	var bugs = cards[QualityDeck.QualityType.BUG]
+	if not $QualityDeck.remove_card(QualityDeck.QualityType.BUG, bugs):
+		print("Removing non-extisting bugs. This shouldn't be possible.")
+		return
+	update_result_text(bugs)
+	for i in range(bugs):
+		emit_signal("bug_found")

@@ -40,3 +40,4 @@ visible = false
 [connection signal="assign" from="Backlog" to="." method="_on_backlog_assign"]
 [connection signal="assign" from="Office" to="." method="_on_office_assign"]
 [connection signal="assign" from="Testing" to="." method="_on_testing_assign"]
+[connection signal="bug_found" from="Testing" to="." method="_on_bug_found"]
