@@ -21,7 +21,9 @@ var  state_desriptions = {
 @export var state:IssueState
 @export_range(1,4) var difficulty = 1
 @export_range(1,3) var time = 1
-
+# This variable represents the importance of the issue to the client. It is
+# used to calculate the client's happiness after a sprint
+@export var importance_to_client: int = 0
 var __progress = 0
 
 # Signal that will be emitted when the Extended node is being either shown or 
