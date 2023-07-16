@@ -6,6 +6,10 @@ signal assign(owner)
 ## This script handes operations on the Office scene, such as viewing details
 ## about the employees, scrolling the background, etc.
 
+# Signal sent up the tree then an employee (owner) has completed an issue.
+# Should be caught by Game.
+signal completed(owner, issue, quality)
+
 @export var employee_visual_separation: Vector2 = Vector2(0, 100)
 
 # Called when the node enters the scene tree for the first time.
@@ -22,6 +26,7 @@ func add_employee(employee: Employee):
 	$Background/Employees.add_child(employee)
 	employee.assign.connect(_on_assign)
 	employee.extending.connect(_on_extending)
+	employee.completed.connect(_on_completed)
 	set_employee_position(employee, $Background/Employees.get_child_count() - 1)
 	
 # Set the position of the Employee with respect to the Employees node.
@@ -64,3 +69,7 @@ func _on_extending(owner, extending):
 		if employee != owner:
 			employee.set_visibility_of_extended_description(false)
 	
+# sends "completed" signal to the higher part of the tree without modifying
+# the parameters. Should be caught Game.
+func _on_completed(owner, issue, quality):
+	emit_signal("completed", owner, issue, quality)

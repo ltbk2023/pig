@@ -27,6 +27,11 @@ signal assign(owner)
 # extending - set to true if the Extended node is BEING set to visible
 signal extending(owner, extending)
 
+# Signal emitted when the employee has completed an issue. Quality param
+# indicates from which quality preset the quality cards should be added.
+# The signal should be caught by Office.
+signal completed(owner, issue, quality)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	__base_quality = quality
@@ -34,7 +39,6 @@ func _ready():
 	__base_testing = testing
 	
 	__base_morale = morale
-	
 	update_summary()
 	update_extended()
 	randomize()
@@ -61,7 +65,6 @@ func update_extended():
 		$Extended/Assignment.text = "[color=BLACK]Not assigned"
 	
 # Called by the game scene when the turn ends.
-# TODO: differentiate between testing and developing
 func execute_turn():
 	if $TaskHook.get_child_count() == 0:
 		return
@@ -73,6 +76,9 @@ func execute_turn():
 	
 	if task is Issue:
 		task.add_progress(speed + speed_modifier)
+		if task.state == Issue.IssueState.COMPLETED:
+			unassign_issue()
+			emit_signal("completed", self, task, check_quality_preset(task))
 	elif task is Testing:
 		task.test(testing)
 		
@@ -104,4 +110,21 @@ func assign_issue(hook: Hook):
 # Counts how many tasks an employee already has, and returns true if none
 func check_task_can_be_assigned_to_employee():
 	return $TaskHook.get_child_count() == 0
+	
+# Unassigns issue from the employee. Return bool indicating whether it was
+# successful
+func unassign_issue() -> bool:
+	if not check_task_can_be_assigned_to_employee():
+		$TaskHook.get_child(0).queue_free()
+		update_summary()
+		update_extended()
+		return true
+	return false
+
+# Checks which quality preset should be used after an issue is completed by the
+# Employee. Returns the quality preset type
+func check_quality_preset(issue: Issue):
+	if quality >= issue.difficulty:
+		return QualityDeck.QualityPreset.HIGH
+	return QualityDeck.QualityPreset.LOW
 	

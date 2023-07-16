@@ -168,6 +168,11 @@ func assign():
 
 	return false
 		
+# Listen to "completed" signal emitted by Office. Add 2 quality cards to the
+# deck.
+func _on_office_completed(owner, issue, quality):
+	$Testing/QualityDeck.add_from_preset(quality, 2)
+  
 func _on_bug_found():
 	var bug_issue = Issue.new()
 	bug_issue.type = Issue.IssueType.BUG_ISSUE
