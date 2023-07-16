@@ -79,6 +79,8 @@ func execute_turn():
 		if task.state == Issue.IssueState.COMPLETED:
 			unassign_issue()
 			emit_signal("completed", self, task, check_quality_preset(task))
+	elif task is Testing:
+		task.test(testing)
 		
 # Set the visibility of Extended node to v.
 func set_visibility_of_extended_description(v):
