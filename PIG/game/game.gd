@@ -20,16 +20,12 @@ var __current_turn : int
 var __current_sprint : int
 var __state : GameState
 
-# The total client importance points accumulated from issues.
-var __total_client_importance : int
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	__state = GameState.NOT_STARTED
 	__current_sprint = 0
 	__current_turn = 0
 	randomize()
-	__total_client_importance = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -176,7 +172,7 @@ func assign():
 # deck.
 func _on_office_completed(owner, issue, quality):
 	$Testing/QualityDeck.add_from_preset(quality, 2)
-	__total_client_importance += issue.importance_to_client
+	$SprintEnd.add_issue_importance(issue)
   
 func _on_bug_found():
 	var bug_issue = Issue.new()

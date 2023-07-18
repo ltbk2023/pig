@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv4enanlk8ty6"]
+
+[ext_resource type="Script" path="res://view/sprint_end/sprint_end.gd" id="1_8xcrn"]
+
+[sub_resource type="Gradient" id="Gradient_8hgae"]
+colors = PackedColorArray(0.601184, 0.0803232, 0.313415, 1, 0.0790396, 0.624546, 0.606119, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q2dte"]
+gradient = SubResource("Gradient_8hgae")
+width = 340
+height = 340
+
+[node name="SprintEnd" type="Node2D"]
+script = ExtResource("1_8xcrn")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(180, 340)
+scale = Vector2(1.1, 2)
+texture = SubResource("GradientTexture2D_q2dte")
+
+[node name="ClientImportance" type="RichTextLabel" parent="Background"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BugIssues" type="RichTextLabel" parent="Background"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BugsFound" type="RichTextLabel" parent="Background"]
+offset_right = 40.0
+offset_bottom = 40.0
