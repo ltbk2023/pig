@@ -49,7 +49,8 @@ func update_summary():
 	var text = name + \
 	"\nQ "+ str(quality) + " / S " + str(speed) + " / T " + str(testing)  + \
 	"\nM "+str(morale) 
-	if $TaskHook.get_child_count() > 0:
+	if $TaskHook.get_child_count() > 0 and not \
+	$TaskHook.get_child(0).is_queued_for_deletion():
 		text += "\nA "+$TaskHook.get_child(0).get_origin().name
 	$Summary.text = text 
 
@@ -57,7 +58,10 @@ func update_summary():
 # update extended text
 # update assigned to text and assign button
 func update_extended():
-	if $TaskHook.get_child_count() > 0:
+	# Check if there exists a hook that will not be deleted at the end of the
+	# current frame
+	if $TaskHook.get_child_count() > 0 and not \
+	$TaskHook.get_child(0).is_queued_for_deletion():
 		$Extended/AssignButton.disabled = true
 		$Extended/Assignment.text = "[color=BLACK]Assigned to "+$TaskHook.get_child(0).get_origin().name
 	else:
