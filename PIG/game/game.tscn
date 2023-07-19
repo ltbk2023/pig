@@ -44,3 +44,6 @@ visible = false
 [connection signal="assign" from="Office" to="." method="_on_office_assign"]
 [connection signal="assign" from="Testing" to="." method="_on_testing_assign"]
 [connection signal="bug_found" from="Testing" to="." method="_on_bug_found"]
+[connection signal="request_bug_issues" from="SprintEnd" to="." method="_on_sprint_end_request_bug_issues"]
+[connection signal="request_quality_cards" from="SprintEnd" to="." method="_on_sprint_end_request_quality_cards"]
+[connection signal="victory_points" from="SprintEnd" to="." method="_on_sprint_end_victory_points"]

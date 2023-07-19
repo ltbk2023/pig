@@ -20,11 +20,15 @@ var __current_turn : int
 var __current_sprint : int
 var __state : GameState
 
+# Total victory points
+var victory_points
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	__state = GameState.NOT_STARTED
 	__current_sprint = 0
 	__current_turn = 0
+	victory_points = 0
 	randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -172,7 +176,7 @@ func assign():
 # deck.
 func _on_office_completed(owner, issue, quality):
 	$Testing/QualityDeck.add_from_preset(quality, 2)
-	$SprintEnd.add_issue_importance(issue)
+	$SprintEnd.on_issue_complete(issue)
   
 func _on_bug_found():
 	var bug_issue = Issue.new()
@@ -184,3 +188,21 @@ func _on_bug_found():
 	bug_issue.difficulty = randi_range(1, 4)
 	bug_issue.time = randi_range(1, 3)
 	$Backlog.add_issue(bug_issue)
+
+# Check cards from the quality deck and return number of bugs to SprintEnd
+func _on_sprint_end_request_quality_cards(owner, amount):
+	var cards = $Testing/QualityDeck.check_cards(amount)
+	$SprintEnd.set_bugs_found(cards[QualityDeck.QualityType.BUG])
+
+# Check number of bug issues in Backlog and return it to SprintEnd
+func _on_sprint_end_request_bug_issues(owner):
+	var issues = $Backlog.get_issues()
+	var bug_issue_number = 0
+	for issue in issues:
+		if issue.type == Issue.IssueType.BUG_ISSUE:
+			bug_issue_number += 1
+	$SprintEnd.set_bug_issues(bug_issue_number)
+
+
+func _on_sprint_end_victory_points(owner, amount):
+	victory_points += amount	
