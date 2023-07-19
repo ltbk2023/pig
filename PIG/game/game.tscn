@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ca2p0ey2167pi"]
+[gd_scene load_steps=5 format=3 uid="uid://ca2p0ey2167pi"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_t4wkw"]
 [ext_resource type="PackedScene" uid="uid://btvv1oojseb6c" path="res://view/backlog/backlog.tscn" id="2_1vjop"]
 [ext_resource type="PackedScene" uid="uid://dom60ed6nbcjt" path="res://view/office/office.tscn" id="3_17k77"]
 [ext_resource type="PackedScene" uid="uid://2k4tpybmr0a4" path="res://view/testing/testing.tscn" id="4_mosmf"]
-[ext_resource type="PackedScene" uid="uid://bv4enanlk8ty6" path="res://view/sprint_end/sprint_end.tscn" id="5_3n3e3"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_t4wkw")
@@ -37,10 +36,9 @@ visible = false
 
 [node name="EmployeeToAssign" type="Node" parent="Hooks"]
 
-[node name="SprintEnd" parent="." instance=ExtResource("5_3n3e3")]
-
 [connection signal="button_up" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
 [connection signal="assign" from="Backlog" to="." method="_on_backlog_assign"]
 [connection signal="assign" from="Office" to="." method="_on_office_assign"]
+[connection signal="completed" from="Office" to="." method="_on_office_completed"]
 [connection signal="assign" from="Testing" to="." method="_on_testing_assign"]
 [connection signal="bug_found" from="Testing" to="." method="_on_bug_found"]

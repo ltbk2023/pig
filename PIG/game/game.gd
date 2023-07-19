@@ -20,11 +20,15 @@ var __current_turn : int
 var __current_sprint : int
 var __state : GameState
 
+# Total victory points
+var victory_points
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	__state = GameState.NOT_STARTED
 	__current_sprint = 0
 	__current_turn = 0
+	victory_points = 0
 	randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
