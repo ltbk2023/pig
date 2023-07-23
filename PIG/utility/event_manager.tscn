@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb4y74ji21y56"]
+
+[ext_resource type="Script" path="res://utility/event_manager.gd" id="1_05n65"]
+
+[node name="EventManager" type="Node" groups=["event_listners"]]
+script = ExtResource("1_05n65")
