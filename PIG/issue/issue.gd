@@ -47,7 +47,7 @@ func set_visibility_on_exteded_desription(v):
 	emit_signal("extending", self, v)
 
 # update summary text
-#sumary include type, name, difficulty, time, state
+# summary include type, name, difficulty, time, state
 func update_summary():
 	$Summary.text =  type_decription[type]+" [color=BLACK]"+name+"  D "+str(difficulty)+" / T "+str(time)+"[/color] " + \
 	state_desriptions[state] 

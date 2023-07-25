@@ -44,7 +44,7 @@ func _ready():
 	randomize()
 
 # update summary text
-#summary include name, stats, task's name employee is assigned to 
+# summary include name, stats, task's name employee is assigned to 
 func update_summary():
 	var text = name + \
 	"\nQ "+ str(quality) + " / S " + str(speed) + " / T " + str(testing)  + \

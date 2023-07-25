@@ -174,7 +174,7 @@ func _on_office_completed(owner, issue, quality):
 	$Testing/QualityDeck.add_from_preset(quality, 2)
   
 func _on_bug_found():
-	var bug_issue = Issue.new()
+	var bug_issue = preload("res://issue/issue.tscn").instantiate()
 	bug_issue.type = Issue.IssueType.BUG_ISSUE
 	# THIS SHOULD BE DONE SOMEWHERE ELSE AUTOMATICALLY, MOST LIKELY IN ISSUE'S
 	# ready() METHOD! TODO: DISCUSS
