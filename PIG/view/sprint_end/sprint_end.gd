@@ -3,6 +3,7 @@ class_name SprintEnd
 
 # Send the number of victory points obtained this sprint to Game
 signal victory_points(owner, amount)
+signal return_to_office_view(owner)
 
 @export var expected_score_multiplier = 10
 
@@ -25,6 +26,8 @@ var __total_client_importance : int
 var __issues_done_this_sprint: int
 # The number of present sprint
 var __current_sprint : int
+# Last gotten points
+var __last_victory_points: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,6 +42,7 @@ func _process(delta):
 # Execute the end of sprint.
 func execute_sprint_end(bugs_found: int, active_bug_issues: int):
 	__issues_done_this_sprint = 0
+	__last_victory_points = 0
 	__current_sprint += 1
 	var client_score = __total_client_importance
 	var expected_client_score = expected_score_multiplier * __current_sprint
@@ -54,10 +58,22 @@ func execute_sprint_end(bugs_found: int, active_bug_issues: int):
 	else:
 		sprint_victory_points = points_above_boundaries
 	emit_signal("victory_points", sprint_victory_points)
+	__last_victory_points = sprint_victory_points
 	
-		
 # Adds an issue's importance points to the total and increases the number of
 # issues done
 func add_issue_importance(issue: Issue):
 	__total_client_importance += issue.importance_to_client
 	__issues_done_this_sprint += 1
+
+# update view and text on SprintEnd scene
+func update_view(bugs_found: int, bug_issues: int):
+	$Background/Points.text = "Earned points: " + str(__last_victory_points)
+	$Background/NumberOfSprint.text = str(__current_sprint)
+	$Background/BugIssues.text = "Bugs in Backlog: " + str(bug_issues)
+	$Background/ClientImportance.text = "Client importance: " + str(__total_client_importance)
+	$Background/BugsFound.text = "Found Bugs: " + str(bugs_found)
+
+# when press the ok button, return to main view.
+func _on_ok_button_button_up():
+	emit_signal("return_to_office_view", self)
