@@ -48,9 +48,34 @@ func execute_turn():
 
 
 # function execute end of sprint and update current sprint
-
 func execute_end_of_sprint():
-	#TODO implement end of sprint
+	# get necessary resources
+	var issues = $Backlog.get_issues()
+	var completed_features : int = 0
+	var active_bug_issues : int = 0
+	for issue in issues:
+		if issue.type == Issue.IssueType.BUG_ISSUE and issue.state != Issue.IssueState.COMPLETED:
+			active_bug_issues += 1
+		elif issue.type == Issue.IssueType.FEATURE and issue.state == Issue.IssueState.COMPLETED:
+			completed_features += 1
+	
+	# draw cards
+	# TODO: this should be transferred to e.g. SprintEnd
+	var cards = $Testing/QualityDeck.check_cards(completed_features)
+	var bugs_found = cards[QualityDeck.QualityType.BUG]
+	
+	# calculate current sprint
+	$SprintEnd.execute_sprint_end(bugs_found, active_bug_issues)
+	
+	# update view of SprintEnd
+	$SprintEnd.update_view(bugs_found, active_bug_issues)
+	
+	# change view
+	$CanvasLayer.visible = false
+	$Office.visible = false
+	$Testing.visible = false
+	$SprintEnd.visible = true
+	$Backlog.visible = false
 	__current_sprint += 1
 
 # function that listens for the end button release and calls execute_turn()
@@ -188,3 +213,17 @@ func _on_bug_found():
 	bug_issue.difficulty = randi_range(1, 4)
 	bug_issue.time = randi_range(1, 3)
 	$Backlog.add_issue(bug_issue)
+
+# TODO: save this points somewhere or i don't know
+# I create this only to not forget about this signal 
+func _on_sprint_end_victory_points(owner, amount):
+	pass # Replace with function body.
+
+# Other view may want to return to main view of game
+# Owner can be useful in the future
+func _on_sprint_end_return_to_office_view(owner):
+	$CanvasLayer.visible = false
+	$Office.visible = true
+	$Testing.visible = false
+	$SprintEnd.visible = false
+	$Backlog.visible = false
