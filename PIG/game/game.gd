@@ -148,7 +148,7 @@ func check_hooks_to_assign_validity():
 		and $Hooks/EmployeeToAssign.get_child(0).get_origin().check_task_can_be_assigned_to_employee()
 	
 # Returns true upon succesful assignment of issue/testing to employee.
-# Removes data remembered in IssueToAssign/Testing and EmployeeToAssign
+# Removes data remembered in TaskToAssign and EmployeeToAssign
 # If hooks exist but aren't valid destroy them
 func assign():
 	if check_hooks_to_assign_existence():
@@ -164,7 +164,7 @@ func assign():
 			return true
 		else:
 			$Hooks/EmployeeToAssign.get_child(0).queue_free()
-			$Hooks/IssueToAssign.get_child(0).queue_free()
+			$Hooks/TaskToAssign.get_child(0).queue_free()
 
 	return false
 		
