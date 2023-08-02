@@ -57,7 +57,9 @@ func update_summary():
 # update extended text
 # update assigned to text and assign button
 func update_extended():
-	if $EmployeeHook.get_child_count(0):
+	if $EmployeeHook.get_child_count(0)  and not \
+	$EmployeeHook.get_child(0).is_queued_for_deletion() or \
+	state == IssueState.COMPLETED:
 		$Extended/Sprite2D2/AssignButton.disabled = true
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Assigned to " + $EmployeeHook.get_child(0).get_origin().name
 	else:
@@ -107,3 +109,8 @@ func unassign_employee() -> bool:
 		update_extended()
 		return true
 	return false
+	
+# Unassign issue from employee without completing it
+func cancel():
+	state = IssueState.IN_BACKLOG
+	unassign_employee()
