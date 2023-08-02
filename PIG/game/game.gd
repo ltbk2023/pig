@@ -100,11 +100,13 @@ func _input(event):
 # Listen to assign request from backlog
 # Call save_task_to_assign
 func _on_backlog_assign(owner):
+	$CanvasLayer/AssigningView.visible = true
 	save_task_to_assign(owner)
 
 # Listen to assign request from testing
 # Call save_task_to_assign
 func _on_testing_assign(owner):
+	$CanvasLayer/AssigningView.visible = true
 	save_task_to_assign(owner)
 	
 # Listen to assign request from office
@@ -120,6 +122,7 @@ func _on_office_assign(owner):
 	var hook = Hook.new()
 	hook.set_origin(owner)
 	$Hooks/EmployeeToAssign.add_child(hook)
+	$CanvasLayer/AssigningView.visible = true
 	assign()
 
 # Create hook to task and place it in Hooks/TaskToAssign
@@ -161,6 +164,7 @@ func assign():
 				$Hooks/TaskToAssign.remove_child(task_hook)
 				employee_hook.get_origin().assign_issue(task_hook)
 				task_hook.get_origin().assign_employee(employee_hook)
+			$CanvasLayer/AssigningView.visible = false
 			return true
 		else:
 			$Hooks/EmployeeToAssign.get_child(0).queue_free()

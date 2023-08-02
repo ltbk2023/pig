@@ -22,6 +22,25 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "End Turn"
 
+[node name="AssigningView" type="Node2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(180, 640)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/AssigningView"]
+offset_left = -40.0
+offset_right = 41.0
+offset_bottom = 27.0
+bbcode_enabled = true
+text = "[color=black]Assigning[/color]"
+
+[node name="Button" type="Button" parent="CanvasLayer/AssigningView"]
+offset_left = 30.0
+offset_top = -25.0
+offset_right = 60.0
+offset_bottom = 6.0
+text = "X
+"
+
 [node name="Backlog" parent="." instance=ExtResource("2_1vjop")]
 visible = false
 
