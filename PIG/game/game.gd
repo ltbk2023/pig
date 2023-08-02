@@ -183,3 +183,12 @@ func _on_bug_found():
 	bug_issue.difficulty = randi_range(1, 4)
 	bug_issue.time = randi_range(1, 3)
 	$Backlog.add_issue(bug_issue)
+
+# Start modifiers. They will be affect employees.
+func launch_modifiers():
+	for modifier in $Modifiers.get_children():
+		if modifier.is_active():
+			modifier.modify()
+		else:
+			# TODO: remove modifier from game and delete its hooks
+			pass
