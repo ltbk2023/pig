@@ -62,10 +62,10 @@ func update_extended():
 	# current frame
 	if $TaskHook.get_child_count() > 0 and not \
 	$TaskHook.get_child(0).is_queued_for_deletion():
-		$Extended/AssignButton.disabled = true
+		$Extended/AssignButton.text = "Cancel"
 		$Extended/Assignment.text = "[color=BLACK]Assigned to "+$TaskHook.get_child(0).get_origin().name
 	else:
-		$Extended/AssignButton.disabled = false
+		$Extended/AssignButton.text = "Assign"
 		$Extended/Assignment.text = "[color=BLACK]Not assigned"
 	
 # Called by the game scene when the turn ends.
@@ -98,7 +98,16 @@ func _on_button_button_up():
 
 
 func _on_assign_button_button_up():
-	emit_signal("assign", self)
+	if $TaskHook.get_child_count() == 0:
+		emit_signal("assign", self)
+	else:
+		# When the button is actually a cancel button
+		var task = $TaskHook.get_child(0).get_origin()
+		if task is Issue:
+			task.cancel()
+		elif task is Testing:
+			task.unassign_employee(self)
+		unassign_issue()
 
 # Assigns issue to an employee and returns true if successful
 # update visual if needed

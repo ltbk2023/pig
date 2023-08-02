@@ -56,3 +56,12 @@ func test(amount: int):
 	update_result_text(bugs)
 	for i in range(bugs):
 		emit_signal("bug_found")
+		
+# Unassign given employee from testing. Return bool indicating whether the
+# operation was successful
+func unassign_employee(employee: Employee) -> bool:
+	for hook in $EmployeeHook.get_children():
+		if hook.get_origin() == employee:
+			hook.queue_free()
+			return true
+	return false
