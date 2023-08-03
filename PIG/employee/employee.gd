@@ -132,3 +132,15 @@ func check_quality_preset(issue: Issue):
 		return QualityDeck.QualityPreset.HIGH
 	return QualityDeck.QualityPreset.LOW
 	
+# Add new modifier to employee
+func add_modifier(hook: Hook):
+	$ModifiersHooks.add_child(hook)
+
+# Remove modifier from employee
+# Return false if operation was unsuccessful
+func remove_modifier(modifier: Modifier) -> bool:
+	for modifier_hook in $ModifiersHooks.get_children():
+		if modifier_hook.get_origin() == modifier:
+			modifier_hook.queue_free()
+			return true
+	return false
