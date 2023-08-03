@@ -231,3 +231,18 @@ func _on_sprint_end_return_to_office_view(owner):
 	$Testing.visible = false
 	$SprintEnd.visible = false
 	$Backlog.visible = false
+
+# Deletes the hook from TaskToAssign if it exists.
+func cancel_task_to_assign():
+	if $Hooks/TaskToAssign.get_child_count() > 0:
+		$Hooks/TaskToAssign.get_child(0).queue_free()
+		
+# Deletes the from EmployeeToAssign if it exists.
+func cancel_employee_to_assign():
+	if $Hooks/EmployeeToAssign.get_child_count() > 0:
+		$Hooks/EmployeeToAssign.get_child(0).queue_free()
+
+func _on_cancel_assigning_button_up():
+	cancel_task_to_assign()
+	cancel_employee_to_assign()
+	$CanvasLayer/AssigningStatusView.visible = false

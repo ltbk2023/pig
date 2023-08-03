@@ -44,13 +44,12 @@ offset_bottom = 30.0
 bbcode_enabled = true
 text = "[color=black]Assigning[/color]"
 
-[node name="Button" type="Button" parent="CanvasLayer/AssigningStatusView"]
+[node name="CancelAssigning" type="Button" parent="CanvasLayer/AssigningStatusView"]
 layout_mode = 0
 offset_left = 80.0
 offset_right = 110.0
 offset_bottom = 31.0
-text = "X
-"
+text = "X"
 
 [node name="Backlog" parent="." instance=ExtResource("2_1vjop")]
 visible = false
@@ -70,6 +69,7 @@ visible = false
 [node name="EmployeeToAssign" type="Node" parent="Hooks"]
 
 [connection signal="button_up" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
+[connection signal="button_up" from="CanvasLayer/AssigningStatusView/CancelAssigning" to="." method="_on_cancel_assigning_button_up"]
 [connection signal="assign" from="Backlog" to="." method="_on_backlog_assign"]
 [connection signal="assign" from="Office" to="." method="_on_office_assign"]
 [connection signal="completed" from="Office" to="." method="_on_office_completed"]
