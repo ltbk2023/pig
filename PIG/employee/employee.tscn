@@ -34,16 +34,6 @@ height = 150
 position = Vector2(50, 50)
 script = ExtResource("1_ckk1p")
 
-[node name="StatHooks" type="Node" parent="."]
-
-[node name="Speed" type="Node" parent="StatHooks"]
-
-[node name="Quality" type="Node" parent="StatHooks"]
-
-[node name="Testing" type="Node" parent="StatHooks"]
-
-[node name="Morale" type="Node" parent="StatHooks"]
-
 [node name="TaskHook" type="Node" parent="."]
 
 [node name="Summary" type="RichTextLabel" parent="."]
