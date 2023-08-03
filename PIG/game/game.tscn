@@ -33,7 +33,7 @@ offset_bottom = 27.0
 bbcode_enabled = true
 text = "[color=black]Assigning[/color]"
 
-[node name="Button" type="Button" parent="CanvasLayer/AssigningView"]
+[node name="CancelAssigning" type="Button" parent="CanvasLayer/AssigningView"]
 offset_left = 30.0
 offset_top = -25.0
 offset_right = 60.0
@@ -56,6 +56,7 @@ visible = false
 [node name="EmployeeToAssign" type="Node" parent="Hooks"]
 
 [connection signal="button_up" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
+[connection signal="button_up" from="CanvasLayer/AssigningView/CancelAssigning" to="." method="_on_cancel_assigning_button_up"]
 [connection signal="assign" from="Backlog" to="." method="_on_backlog_assign"]
 [connection signal="assign" from="Office" to="." method="_on_office_assign"]
 [connection signal="completed" from="Office" to="." method="_on_office_completed"]

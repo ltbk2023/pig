@@ -187,3 +187,18 @@ func _on_bug_found():
 	bug_issue.difficulty = randi_range(1, 4)
 	bug_issue.time = randi_range(1, 3)
 	$Backlog.add_issue(bug_issue)
+
+# Deletes the hook from TaskToAssign if it exists.
+func cancel_task_to_assign():
+	if $Hooks/TaskToAssign.get_child_count() > 0:
+		$Hooks/TaskToAssign.get_child(0).queue_free()
+		
+# Deletes the from EmployeeToAssign if it exists.
+func cancel_employee_to_assign():
+	if $Hooks/EmployeeToAssign.get_child_count() > 0:
+		$Hooks/EmployeeToAssign.get_child(0).queue_free()
+
+func _on_cancel_assigning_button_up():
+	cancel_task_to_assign()
+	cancel_employee_to_assign()
+	$CanvasLayer/AssigningView.visible = false
