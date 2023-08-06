@@ -20,6 +20,11 @@ func is_active() -> bool:
 func modify():
 	print("Warning: It's Base Modifier.")
 
+# Called when the modifier is detached from the employee. Should call the right
+# employees
+func detach_modification():
+	print("Warning: It's Base Modifier.")
+
 # Contain information if employee can be attached to specific modifier.
 # Should check if employee doesn't have excluding modifiers.
 # Can be overridden in derived class.
@@ -53,3 +58,10 @@ func delete_all_hooks():
 		employee.get_origin().remove_modifier(self)
 		$EmployeesHooks.remove_child(employee)
 		employee.queue_free()
+
+# Return list of employees
+func get_employees():
+	var employees = []
+	for employee_hook in $EmployeesHooks.get_children():
+		employees.append(employee_hook.get_origin())
+	return employees
