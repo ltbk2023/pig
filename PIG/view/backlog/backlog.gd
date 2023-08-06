@@ -46,7 +46,7 @@ func remove_issue(issue:Issue):
 	
 #get all issuees from Backlog 
 func get_issues():
-	$Issues.get_children()
+	return $Issues.get_children()
 	
 func _on_extending(owner, extending):
 	if not extending:
