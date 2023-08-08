@@ -129,11 +129,13 @@ func _input(event):
 # Listen to assign request from backlog
 # Call save_task_to_assign
 func _on_backlog_assign(owner):
+	$CanvasLayer/AssigningStatusView.visible = true
 	save_task_to_assign(owner)
 
 # Listen to assign request from testing
 # Call save_task_to_assign
 func _on_testing_assign(owner):
+	$CanvasLayer/AssigningStatusView.visible = true
 	save_task_to_assign(owner)
 	
 # Listen to assign request from office
@@ -149,6 +151,7 @@ func _on_office_assign(owner):
 	var hook = Hook.new()
 	hook.set_origin(owner)
 	$Hooks/EmployeeToAssign.add_child(hook)
+	$CanvasLayer/AssigningStatusView.visible = true
 	assign()
 
 # Create hook to task and place it in Hooks/TaskToAssign
@@ -190,6 +193,7 @@ func assign():
 				$Hooks/TaskToAssign.remove_child(task_hook)
 				employee_hook.get_origin().assign_issue(task_hook)
 				task_hook.get_origin().assign_employee(employee_hook)
+			$CanvasLayer/AssigningStatusView.visible = false
 			return true
 		else:
 			$Hooks/EmployeeToAssign.get_child(0).queue_free()
@@ -227,3 +231,18 @@ func _on_sprint_end_return_to_office_view(owner):
 	$Testing.visible = false
 	$SprintEnd.visible = false
 	$Backlog.visible = false
+
+# Deletes the hook from TaskToAssign if it exists.
+func cancel_task_to_assign():
+	if $Hooks/TaskToAssign.get_child_count() > 0:
+		$Hooks/TaskToAssign.get_child(0).queue_free()
+		
+# Deletes the from EmployeeToAssign if it exists.
+func cancel_employee_to_assign():
+	if $Hooks/EmployeeToAssign.get_child_count() > 0:
+		$Hooks/EmployeeToAssign.get_child(0).queue_free()
+
+func _on_cancel_assigning_button_up():
+	cancel_task_to_assign()
+	cancel_employee_to_assign()
+	$CanvasLayer/AssigningStatusView.visible = false
