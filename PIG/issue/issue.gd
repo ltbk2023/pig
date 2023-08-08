@@ -57,13 +57,16 @@ func update_summary():
 # update extended text
 # update assigned to text and assign button
 func update_extended():
-	if $EmployeeHook.get_child_count(0)  and not \
-	$EmployeeHook.get_child(0).is_queued_for_deletion() or \
-	state == IssueState.COMPLETED:
+	if state == IssueState.COMPLETED:
+		$Extended/Sprite2D2/AssignButton.visible = false
 		$Extended/Sprite2D2/AssignButton.disabled = true
+		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Done"
+	elif $EmployeeHook.get_child_count(0)  and not \
+	$EmployeeHook.get_child(0).is_queued_for_deletion():
+		$Extended/Sprite2D2/AssignButton.text = "Cancel"
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Assigned to " + $EmployeeHook.get_child(0).get_origin().name
 	else:
-		$Extended/Sprite2D2/AssignButton.disabled = false
+		$Extended/Sprite2D2/AssignButton.text = "Assign"
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Not assigned"
 	
 
@@ -82,7 +85,14 @@ func _on_button_button_up():
 # sends issue assign signal to the higher part of the tree
 # final destination should be backlog
 func _on_assign_button_button_up():
-	emit_signal("assign", self) 
+	if $EmployeeHook.get_child_count() == 0:
+		emit_signal("assign", self)
+	else:
+		# When the button is actually a cancel button
+		var employee = $EmployeeHook.get_child(0).get_origin()
+		if not employee.unassign_issue():
+			print("Warning: Cannot unassign issue")
+		cancel()
 
 # Assigns employee to issue and returns true
 # returns false if not possible
