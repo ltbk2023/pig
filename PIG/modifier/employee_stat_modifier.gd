@@ -21,14 +21,31 @@ func _ready():
 
 
 # Override modify from Modifier class
-# TODO: call method, that causes modification of stat in Employee
 func modify():
-	match self.__stat_type:
-		STAT.QUALITY:
-			pass
-		STAT.SPEED:
-			pass
-		STAT.TESTING:
-			pass
-		STAT.MORALE:
-			pass
+	var employees : Array[Employee] = get_employees()
+	for employee in employees:
+		match self.__stat_type:
+			STAT.QUALITY:
+				employee.quality += __stat_value
+			STAT.SPEED:
+				employee.speed += __stat_value
+			STAT.TESTING:
+				employee.testing += __stat_value
+			STAT.MORALE:
+				employee.morale += __stat_value
+		employee.update_summary()
+
+# Override detach_modification method from Modifier class
+func detach_modification():
+	var employees : Array[Employee] = get_employees()
+	for employee in employees:
+		match self.__stat_type:
+			STAT.QUALITY:
+				employee.quality -= __stat_value
+			STAT.SPEED:
+				employee.speed -= __stat_value
+			STAT.TESTING:
+				employee.testing -= __stat_value
+			STAT.MORALE:
+				employee.morale -= __stat_value
+		employee.update_summary()
