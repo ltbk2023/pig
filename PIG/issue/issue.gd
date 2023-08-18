@@ -21,7 +21,9 @@ var  state_desriptions = {
 @export var state:IssueState
 @export_range(1,4) var difficulty = 1
 @export_range(1,3) var time = 1
-
+# This variable represents the importance of the issue to the client. It is
+# used to calculate the client's happiness after a sprint
+@export var importance_to_client: int = 0
 var __progress = 0
 
 # Signal that will be emitted when the Extended node is being either shown or 
@@ -55,11 +57,16 @@ func update_summary():
 # update extended text
 # update assigned to text and assign button
 func update_extended():
-	if $EmployeeHook.get_child_count(0):
+	if state == IssueState.COMPLETED:
+		$Extended/Sprite2D2/AssignButton.visible = false
 		$Extended/Sprite2D2/AssignButton.disabled = true
+		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Done"
+	elif $EmployeeHook.get_child_count(0)  and not \
+	$EmployeeHook.get_child(0).is_queued_for_deletion():
+		$Extended/Sprite2D2/AssignButton.text = "Cancel"
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Assigned to " + $EmployeeHook.get_child(0).get_origin().name
 	else:
-		$Extended/Sprite2D2/AssignButton.disabled = false
+		$Extended/Sprite2D2/AssignButton.text = "Assign"
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Not assigned"
 	
 
@@ -78,7 +85,14 @@ func _on_button_button_up():
 # sends issue assign signal to the higher part of the tree
 # final destination should be backlog
 func _on_assign_button_button_up():
-	emit_signal("assign", self) 
+	if $EmployeeHook.get_child_count() == 0:
+		emit_signal("assign", self)
+	else:
+		# When the button is actually a cancel button
+		var employee = $EmployeeHook.get_child(0).get_origin()
+		if not employee.unassign_issue():
+			print("Warning: Cannot unassign issue")
+		cancel()
 
 # Assigns employee to issue and returns true
 # returns false if not possible
@@ -105,3 +119,8 @@ func unassign_employee() -> bool:
 		update_extended()
 		return true
 	return false
+	
+# Unassign issue from employee without completing it
+func cancel():
+	state = IssueState.IN_BACKLOG
+	unassign_employee()

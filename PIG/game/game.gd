@@ -20,11 +20,15 @@ var __current_turn : int
 var __current_sprint : int
 var __state : GameState
 
+# Total victory points
+var victory_points
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	__state = GameState.NOT_STARTED
 	__current_sprint = 0
 	__current_turn = 0
+	victory_points = 0
 	randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,9 +48,34 @@ func execute_turn():
 
 
 # function execute end of sprint and update current sprint
-
 func execute_end_of_sprint():
-	#TODO implement end of sprint
+	# get necessary resources
+	var issues = $Backlog.get_issues()
+	var completed_features : int = 0
+	var active_bug_issues : int = 0
+	for issue in issues:
+		if issue.type == Issue.IssueType.BUG_ISSUE and issue.state != Issue.IssueState.COMPLETED:
+			active_bug_issues += 1
+		elif issue.type == Issue.IssueType.FEATURE and issue.state == Issue.IssueState.COMPLETED:
+			completed_features += 1
+	
+	# draw cards
+	# TODO: this should be transferred to e.g. SprintEnd
+	var cards = $Testing/QualityDeck.check_cards(completed_features)
+	var bugs_found = cards[QualityDeck.QualityType.BUG]
+	
+	# calculate current sprint
+	$SprintEnd.execute_sprint_end(bugs_found, active_bug_issues)
+	
+	# update view of SprintEnd
+	$SprintEnd.update_view(bugs_found, active_bug_issues)
+	
+	# change view
+	$CanvasLayer.visible = false
+	$Office.visible = false
+	$Testing.visible = false
+	$SprintEnd.visible = true
+	$Backlog.visible = false
 	__current_sprint += 1
 
 # function that listens for the end button release and calls execute_turn()
@@ -100,11 +129,13 @@ func _input(event):
 # Listen to assign request from backlog
 # Call save_task_to_assign
 func _on_backlog_assign(owner):
+	$CanvasLayer/AssigningStatusView.visible = true
 	save_task_to_assign(owner)
 
 # Listen to assign request from testing
 # Call save_task_to_assign
 func _on_testing_assign(owner):
+	$CanvasLayer/AssigningStatusView.visible = true
 	save_task_to_assign(owner)
 	
 # Listen to assign request from office
@@ -120,6 +151,7 @@ func _on_office_assign(owner):
 	var hook = Hook.new()
 	hook.set_origin(owner)
 	$Hooks/EmployeeToAssign.add_child(hook)
+	$CanvasLayer/AssigningStatusView.visible = true
 	assign()
 
 # Create hook to task and place it in Hooks/TaskToAssign
@@ -148,7 +180,7 @@ func check_hooks_to_assign_validity():
 		and $Hooks/EmployeeToAssign.get_child(0).get_origin().check_task_can_be_assigned_to_employee()
 	
 # Returns true upon succesful assignment of issue/testing to employee.
-# Removes data remembered in IssueToAssign/Testing and EmployeeToAssign
+# Removes data remembered in TaskToAssign and EmployeeToAssign
 # If hooks exist but aren't valid destroy them
 func assign():
 	if check_hooks_to_assign_existence():
@@ -161,10 +193,11 @@ func assign():
 				$Hooks/TaskToAssign.remove_child(task_hook)
 				employee_hook.get_origin().assign_issue(task_hook)
 				task_hook.get_origin().assign_employee(employee_hook)
+			$CanvasLayer/AssigningStatusView.visible = false
 			return true
 		else:
 			$Hooks/EmployeeToAssign.get_child(0).queue_free()
-			$Hooks/IssueToAssign.get_child(0).queue_free()
+			$Hooks/TaskToAssign.get_child(0).queue_free()
 
 	return false
 		
@@ -172,6 +205,7 @@ func assign():
 # deck.
 func _on_office_completed(owner, issue, quality):
 	$Testing/QualityDeck.add_from_preset(quality, 2)
+	$SprintEnd.add_issue_importance(issue)
   
 func _on_bug_found():
 	var bug_issue = preload("res://issue/issue.tscn").instantiate()
@@ -192,3 +226,33 @@ func launch_modifiers():
 		else:
 			modifier.delete_all_hooks()
 			modifier.queue_free()
+
+# TODO: save this points somewhere or i don't know
+# I create this only to not forget about this signal 
+func _on_sprint_end_victory_points(owner, amount):
+	pass # Replace with function body.
+
+# Other view may want to return to main view of game
+# Owner can be useful in the future
+func _on_sprint_end_return_to_office_view(owner):
+	$CanvasLayer.visible = true
+	$Office.visible = true
+	$Testing.visible = false
+	$SprintEnd.visible = false
+	$Backlog.visible = false
+
+# Deletes the hook from TaskToAssign if it exists.
+func cancel_task_to_assign():
+	if $Hooks/TaskToAssign.get_child_count() > 0:
+		$Hooks/TaskToAssign.get_child(0).queue_free()
+		
+# Deletes the from EmployeeToAssign if it exists.
+func cancel_employee_to_assign():
+	if $Hooks/EmployeeToAssign.get_child_count() > 0:
+		$Hooks/EmployeeToAssign.get_child(0).queue_free()
+
+func _on_cancel_assigning_button_up():
+	cancel_task_to_assign()
+	cancel_employee_to_assign()
+	$CanvasLayer/AssigningStatusView.visible = false
+
