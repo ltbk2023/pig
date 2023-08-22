@@ -9,7 +9,7 @@ var type_decription = {
 	IssueType.BUG_ISSUE:"[color=DARK_RED]BUG ISSUE[/color]"
 }
 
-enum IssueState {IN_BACKLOG, IN_PROGRESS, COMPLETED}
+enum IssueState {UNAVAILABLE, IN_BACKLOG, IN_PROGRESS, COMPLETED}
 # decription is used in Summary
 var  state_desriptions = {
 	IssueState.IN_BACKLOG:"[color=DARK_BLUE]in backlog[/color]",
@@ -26,6 +26,12 @@ var  state_desriptions = {
 @export var importance_to_client: int = 0
 var __progress = 0
 
+# Specifies how many of this node's parents in the issue tree have not been
+# finished yet
+var remaining_parents: int
+# An array containing this issue's children in the issue tree
+var child_issues: Array[Issue]
+
 # Signal that will be emitted when the Extended node is being either shown or 
 # hidden.
 # extending - set to true if the Extended node is BEING set to visible
@@ -35,6 +41,7 @@ signal extending(owner, extending)
 func _ready():
 	update_summary()
 	update_extended()
+	remaining_parents = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -71,12 +78,25 @@ func update_extended():
 	
 
 # Called when progress is to be increased. If the progress exceeds the time,
-# IssueState is set to completed.
+# complete() is called
 func add_progress(progress):
 	self.__progress += progress
 	if self.__progress >= self.time:
-		self.state = IssueState.COMPLETED
-		unassign_employee()
+		complete()
+		
+# This function handles the issue's completion
+func complete():
+	self.state = IssueState.COMPLETED
+	unassign_employee()
+	if type == IssueType.FEATURE:
+		for child in child_issues:
+			child.on_parent_completed()
+		
+# Called by the issue's tree parent when the parent is completed.
+func on_parent_completed():
+	remaining_parents -= 1
+	if remaining_parents == 0:
+		self.state = IssueState.IN_BACKLOG
 		
 # when button is realised toggle extended description visibility
 func _on_button_button_up():
