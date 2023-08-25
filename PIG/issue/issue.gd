@@ -4,14 +4,15 @@ signal assign(owner)
 
 enum IssueType {FEATURE, BUG_ISSUE}
 # decription is used in Summary
-var type_decription = {
+var type_description = {
 	IssueType.FEATURE:"[color=BLACK]FEATURE[/color]",
 	IssueType.BUG_ISSUE:"[color=DARK_RED]BUG ISSUE[/color]"
 }
 
 enum IssueState {UNAVAILABLE, IN_BACKLOG, IN_PROGRESS, COMPLETED}
 # decription is used in Summary
-var  state_desriptions = {
+var  state_descriptions = {
+	IssueState.UNAVAILABLE: "[color=DARK_RED]N/A[/color]",
 	IssueState.IN_BACKLOG:"[color=DARK_BLUE]in backlog[/color]",
 	IssueState.IN_PROGRESS: "[color=GOLD]in progres[/color]",
 	IssueState.COMPLETED: "[color=DARK_GREEN]completed[/color]",
@@ -58,16 +59,22 @@ func set_visibility_on_exteded_desription(v):
 # update summary text
 # summary include type, name, difficulty, time, state
 func update_summary():
-	$Summary.text =  type_decription[type]+" [color=BLACK]"+name+"  D "+str(difficulty)+" / T "+str(time)+"[/color] " + \
-	state_desriptions[state] 
+	$Summary.text =  type_description[type]+" [color=BLACK]"+name+"  D "\
+	+str(difficulty)+" / T "+str(time) + "[/color] " + \
+	state_descriptions[state] 
 
 # update extended text
 # update assigned to text and assign button
 func update_extended():
+	$Extended/Sprite2D2/Unlocks.visible = false
 	if state == IssueState.COMPLETED:
 		$Extended/Sprite2D2/AssignButton.visible = false
 		$Extended/Sprite2D2/AssignButton.disabled = true
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Done"
+	elif state == IssueState.UNAVAILABLE:
+		$Extended/Sprite2D2/AssignButton.visible = false
+		$Extended/Sprite2D2/AssignButton.disabled = true
+		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Unavailable"
 	elif $EmployeeHook.get_child_count(0)  and not \
 	$EmployeeHook.get_child(0).is_queued_for_deletion():
 		$Extended/Sprite2D2/AssignButton.text = "Cancel"
@@ -75,8 +82,13 @@ func update_extended():
 	else:
 		$Extended/Sprite2D2/AssignButton.text = "Assign"
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Not assigned"
-	
-
+	if child_issues:
+		$Extended/Sprite2D2/Unlocks.visible = true
+		$Extended/Sprite2D2/Unlocks.text = "[color=BLACK]Unlocks: "
+		for i in range(len(child_issues) -1):
+			$Extended/Sprite2D2/Unlocks.text += str(child_issues[i].name) + ", "
+		$Extended/Sprite2D2/Unlocks.text += str(child_issues[-1].name)
+		
 # Called when progress is to be increased. If the progress exceeds the time,
 # complete() is called
 func add_progress(progress):
@@ -97,6 +109,8 @@ func on_parent_completed():
 	remaining_parents -= 1
 	if remaining_parents == 0:
 		self.state = IssueState.IN_BACKLOG
+		update_summary()
+		update_extended()
 		
 # when button is realised toggle extended description visibility
 func _on_button_button_up():

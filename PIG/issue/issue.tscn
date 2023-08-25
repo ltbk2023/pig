@@ -62,7 +62,7 @@ text = "[color=BLACK]Assigned to Name[/color]"
 [node name="Description" type="RichTextLabel" parent="Extended/Sprite2D2"]
 offset_left = 5.0
 offset_right = 325.0
-offset_bottom = 120.0
+offset_bottom = 75.0
 bbcode_enabled = true
 text = "[color=BLACK]implementation of desintegration unexisting information for confirmation of button aplication[/color]
 "
@@ -73,6 +73,16 @@ offset_top = 115.0
 offset_right = 325.0
 offset_bottom = 146.0
 text = "Assign
+"
+
+[node name="Unlocks" type="RichTextLabel" parent="Extended/Sprite2D2"]
+offset_left = 7.0
+offset_top = 78.0
+offset_right = 327.0
+offset_bottom = 117.0
+bbcode_enabled = true
+text = "[color=BLACK]Unlocks:
+[/color]
 "
 
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
