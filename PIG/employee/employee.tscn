@@ -1,6 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://cd77i5nmo2jq3"]
+[gd_scene load_steps=21 format=3 uid="uid://bj2mq10s162ha"]
 
 [ext_resource type="Script" path="res://employee/employee.gd" id="1_ckk1p"]
+[ext_resource type="Script" path="res://employee/sprites/employee_sprite.gd" id="2_xssql"]
+[ext_resource type="Texture2D" uid="uid://cavje0scc84nr" path="res://employee/sprites/face_2_3_ud.png" id="3_mp4dg"]
+[ext_resource type="Texture2D" uid="uid://x5tm031yhyd3" path="res://employee/sprites/nose_4_2_ud.png" id="4_wo8dd"]
+[ext_resource type="Texture2D" uid="uid://bvo2p8exyuq55" path="res://employee/sprites/lips_2_2_s.png" id="5_ot28t"]
+[ext_resource type="Texture2D" uid="uid://bofqp0ok1pp66" path="res://employee/sprites/eyes_2_2_ud.png" id="6_y2dkq"]
+[ext_resource type="Texture2D" uid="uid://nb15geiyso05" path="res://employee/sprites/eyebrow_1_2.png" id="7_2818l"]
+[ext_resource type="Texture2D" uid="uid://dkbw016b30wd4" path="res://employee/sprites/front_hair_6_2_ud.png" id="8_nuimu"]
+[ext_resource type="Texture2D" uid="uid://cpnsp153h162j" path="res://employee/sprites/back_hair_4_2.png" id="9_4tijv"]
+[ext_resource type="Texture2D" uid="uid://m8e3guakmkyr" path="res://employee/sprites/beard_8_2_ud.png" id="10_80r4l"]
+[ext_resource type="Texture2D" uid="uid://cqgu6001yhlmq" path="res://employee/sprites/body_20_6_b.png" id="11_ald34"]
+[ext_resource type="Texture2D" uid="uid://kqn28pju235a" path="res://employee/sprites/detail_20_4_d.png" id="12_04nk5"]
+[ext_resource type="Texture2D" uid="uid://bebrcpmtepdwc" path="res://employee/sprites/desk_2_3.png" id="13_fr4it"]
+[ext_resource type="Texture2D" uid="uid://y5o81thje2sn" path="res://employee/sprites/laptop_4_2_ud.png" id="14_5itpj"]
 
 [sub_resource type="Gradient" id="Gradient_vcdfr"]
 offsets = PackedFloat32Array(0.0129032, 1)
@@ -48,10 +61,12 @@ Q / S / T
 M"
 
 [node name="Chest" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 32)
 texture = SubResource("GradientTexture2D_xt36r")
 
 [node name="Head" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -16)
 texture = SubResource("GradientTexture2D_5pn2c")
 
@@ -94,6 +109,325 @@ offset_right = 327.0
 offset_bottom = 148.0
 text = "Assign
 "
+
+[node name="Sprite" type="Node2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+script = ExtResource("2_xssql")
+skin_1 = Color(0.780392, 0.615686, 0.513726, 1)
+skin_2 = Color(0.929412, 0.741176, 0.623529, 1)
+skin_3 = Color(0.968627, 0.803922, 0.698039, 1)
+hair_1 = Color(0.431373, 0.282353, 0.0431373, 0.996078)
+hair_2 = Color(0.380392, 0.262745, 0.0705882, 1)
+lips_1 = Color(0.729412, 0.184314, 0.184314, 1)
+lips_2 = Color(0.768627, 0.231373, 0.231373, 1)
+eyeball = Color(1, 0.901961, 0.901961, 1)
+iris = Color(0.0431373, 0.0431373, 0.105882, 1)
+clothes1 = Color(0, 0.308, 0.66, 1)
+clothes2 = Color(0, 0.329412, 0.709804, 1)
+clothes3 = Color(0.0518, 0.37296, 0.74, 1)
+desk_1 = Color(0.631373, 0.388235, 0.176471, 1)
+desk_2 = Color(0.768627, 0.427451, 0.184314, 1)
+desk_3 = Color(0.788235, 0.52549, 0.309804, 1)
+laptop_1 = Color(0.282353, 0.282353, 0.282353, 1)
+laptop_2 = Color(1, 0, 0.4, 1)
+hair_front = 1
+beard = 1
+body = 2
+clothes = 3
+detail = 2
+
+[node name="FaceUD" type="Node2D" parent="Sprite"]
+z_index = 1
+
+[node name="Skin1" type="Sprite2D" parent="Sprite/FaceUD"]
+modulate = Color(0.780392, 0.615686, 0.513726, 1)
+texture = ExtResource("3_mp4dg")
+hframes = 3
+vframes = 2
+
+[node name="Skin2" type="Sprite2D" parent="Sprite/FaceUD"]
+modulate = Color(0.929412, 0.741176, 0.623529, 1)
+texture = ExtResource("3_mp4dg")
+hframes = 3
+vframes = 2
+frame = 1
+
+[node name="Skin3" type="Sprite2D" parent="Sprite/FaceUD"]
+modulate = Color(0.968627, 0.803922, 0.698039, 1)
+texture = ExtResource("3_mp4dg")
+hframes = 3
+vframes = 2
+frame = 2
+
+[node name="NoseUD" type="Node2D" parent="Sprite"]
+z_index = 1
+position = Vector2(0, 1)
+
+[node name="Skin1" type="Sprite2D" parent="Sprite/NoseUD"]
+modulate = Color(0.780392, 0.615686, 0.513726, 1)
+texture = ExtResource("4_wo8dd")
+hframes = 2
+vframes = 4
+
+[node name="Skin3" type="Sprite2D" parent="Sprite/NoseUD"]
+modulate = Color(0.968627, 0.803922, 0.698039, 1)
+texture = ExtResource("4_wo8dd")
+hframes = 2
+vframes = 4
+frame = 1
+
+[node name="Lips" type="Node2D" parent="Sprite"]
+z_index = 1
+position = Vector2(0, 4)
+
+[node name="Lips1" type="Sprite2D" parent="Sprite/Lips"]
+modulate = Color(0.729412, 0.184314, 0.184314, 1)
+texture = ExtResource("5_ot28t")
+hframes = 2
+vframes = 2
+
+[node name="Lips2" type="Sprite2D" parent="Sprite/Lips"]
+modulate = Color(0.768627, 0.231373, 0.231373, 1)
+texture = ExtResource("5_ot28t")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="EyeRigthUD" type="Node2D" parent="Sprite"]
+z_index = 1
+position = Vector2(-2.5, 0.5)
+
+[node name="EyeBall" type="Sprite2D" parent="Sprite/EyeRigthUD"]
+modulate = Color(1, 0.901961, 0.901961, 1)
+texture = ExtResource("6_y2dkq")
+hframes = 2
+vframes = 2
+
+[node name="Iris" type="Sprite2D" parent="Sprite/EyeRigthUD"]
+modulate = Color(0.0431373, 0.0431373, 0.105882, 1)
+texture = ExtResource("6_y2dkq")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="EyeLeftUD" type="Node2D" parent="Sprite"]
+z_index = 1
+position = Vector2(2.5, 0.5)
+
+[node name="EyeBall" type="Sprite2D" parent="Sprite/EyeLeftUD"]
+modulate = Color(1, 0.901961, 0.901961, 1)
+texture = ExtResource("6_y2dkq")
+hframes = 2
+vframes = 2
+
+[node name="Iris" type="Sprite2D" parent="Sprite/EyeLeftUD"]
+modulate = Color(0.0431373, 0.0431373, 0.105882, 1)
+position = Vector2(-1, 0)
+texture = ExtResource("6_y2dkq")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="EyeBrowRigth" type="Node2D" parent="Sprite"]
+z_index = 1
+position = Vector2(-2.5, -1)
+
+[node name="Hair1" type="Sprite2D" parent="Sprite/EyeBrowRigth"]
+modulate = Color(0.431373, 0.282353, 0.0431373, 0.996078)
+texture = ExtResource("7_2818l")
+hframes = 2
+
+[node name="Hair2" type="Sprite2D" parent="Sprite/EyeBrowRigth"]
+modulate = Color(0.380392, 0.262745, 0.0705882, 1)
+texture = ExtResource("7_2818l")
+hframes = 2
+frame = 1
+
+[node name="EyeBrowLeft" type="Node2D" parent="Sprite"]
+z_index = 1
+position = Vector2(2.5, -1)
+scale = Vector2(-1, 1)
+
+[node name="Hair1" type="Sprite2D" parent="Sprite/EyeBrowLeft"]
+modulate = Color(0.431373, 0.282353, 0.0431373, 0.996078)
+texture = ExtResource("7_2818l")
+hframes = 2
+
+[node name="Hair2" type="Sprite2D" parent="Sprite/EyeBrowLeft"]
+modulate = Color(0.380392, 0.262745, 0.0705882, 1)
+texture = ExtResource("7_2818l")
+hframes = 2
+frame = 1
+
+[node name="FrontHairUD" type="Node2D" parent="Sprite"]
+z_index = 1
+
+[node name="Hair1" type="Sprite2D" parent="Sprite/FrontHairUD"]
+modulate = Color(0.431373, 0.282353, 0.0431373, 0.996078)
+position = Vector2(0, -4.5)
+texture = ExtResource("8_nuimu")
+hframes = 2
+vframes = 6
+frame = 4
+
+[node name="Hair2" type="Sprite2D" parent="Sprite/FrontHairUD"]
+modulate = Color(0.380392, 0.262745, 0.0705882, 1)
+position = Vector2(0, -4.5)
+texture = ExtResource("8_nuimu")
+hframes = 2
+vframes = 6
+frame = 5
+
+[node name="BackHair" type="Node2D" parent="Sprite"]
+position = Vector2(0, 0.5)
+
+[node name="Hair1" type="Sprite2D" parent="Sprite/BackHair"]
+modulate = Color(0.431373, 0.282353, 0.0431373, 0.996078)
+texture = ExtResource("9_4tijv")
+hframes = 2
+vframes = 4
+
+[node name="Hair2" type="Sprite2D" parent="Sprite/BackHair"]
+modulate = Color(0.380392, 0.262745, 0.0705882, 1)
+texture = ExtResource("9_4tijv")
+hframes = 2
+vframes = 4
+frame = 1
+
+[node name="BeardUD" type="Node2D" parent="Sprite"]
+z_index = 1
+position = Vector2(0, 6)
+
+[node name="Hair1" type="Sprite2D" parent="Sprite/BeardUD"]
+modulate = Color(0.431373, 0.282353, 0.0431373, 0.996078)
+texture = ExtResource("10_80r4l")
+hframes = 2
+vframes = 8
+frame = 4
+
+[node name="Hair2" type="Sprite2D" parent="Sprite/BeardUD"]
+modulate = Color(0.380392, 0.262745, 0.0705882, 1)
+texture = ExtResource("10_80r4l")
+hframes = 2
+vframes = 8
+frame = 5
+
+[node name="Body" type="Node2D" parent="Sprite"]
+position = Vector2(0, 10.5)
+
+[node name="Clothes1" type="Sprite2D" parent="Sprite/Body"]
+modulate = Color(0, 0.308, 0.66, 1)
+texture = ExtResource("11_ald34")
+hframes = 6
+vframes = 20
+frame = 84
+
+[node name="Clothes2" type="Sprite2D" parent="Sprite/Body"]
+modulate = Color(0, 0.329412, 0.709804, 1)
+texture = ExtResource("11_ald34")
+hframes = 6
+vframes = 20
+frame = 85
+
+[node name="Clothes3" type="Sprite2D" parent="Sprite/Body"]
+modulate = Color(0.0518, 0.37296, 0.74, 1)
+texture = ExtResource("11_ald34")
+hframes = 6
+vframes = 20
+frame = 86
+
+[node name="Skin1" type="Sprite2D" parent="Sprite/Body"]
+modulate = Color(0.780392, 0.615686, 0.513726, 1)
+texture = ExtResource("11_ald34")
+hframes = 6
+vframes = 20
+frame = 87
+
+[node name="Skin2" type="Sprite2D" parent="Sprite/Body"]
+modulate = Color(0.929412, 0.741176, 0.623529, 1)
+texture = ExtResource("11_ald34")
+hframes = 6
+vframes = 20
+frame = 88
+
+[node name="Skin3" type="Sprite2D" parent="Sprite/Body"]
+modulate = Color(0.968627, 0.803922, 0.698039, 1)
+texture = ExtResource("11_ald34")
+hframes = 6
+vframes = 20
+frame = 89
+
+[node name="Detail" type="Node2D" parent="Sprite"]
+position = Vector2(0, 10.5)
+
+[node name="Clothes1" type="Sprite2D" parent="Sprite/Detail"]
+modulate = Color(0, 0.308, 0.66, 1)
+texture = ExtResource("12_04nk5")
+hframes = 4
+vframes = 20
+frame = 56
+
+[node name="Clothes3" type="Sprite2D" parent="Sprite/Detail"]
+modulate = Color(0.0518, 0.37296, 0.74, 1)
+texture = ExtResource("12_04nk5")
+hframes = 4
+vframes = 20
+frame = 57
+
+[node name="Skin1" type="Sprite2D" parent="Sprite/Detail"]
+modulate = Color(0.780392, 0.615686, 0.513726, 1)
+texture = ExtResource("12_04nk5")
+hframes = 4
+vframes = 20
+frame = 59
+
+[node name="Skin3" type="Sprite2D" parent="Sprite/Detail"]
+modulate = Color(0.968627, 0.803922, 0.698039, 1)
+texture = ExtResource("12_04nk5")
+hframes = 4
+vframes = 20
+frame = 58
+
+[node name="Desk" type="Node2D" parent="Sprite"]
+position = Vector2(7, 20)
+
+[node name="Desk1" type="Sprite2D" parent="Sprite/Desk"]
+modulate = Color(0.631373, 0.388235, 0.176471, 1)
+texture = ExtResource("13_fr4it")
+hframes = 3
+vframes = 2
+
+[node name="Desk2" type="Sprite2D" parent="Sprite/Desk"]
+modulate = Color(0.768627, 0.427451, 0.184314, 1)
+texture = ExtResource("13_fr4it")
+hframes = 3
+vframes = 2
+frame = 1
+
+[node name="Desk3" type="Sprite2D" parent="Sprite/Desk"]
+modulate = Color(0.788235, 0.52549, 0.309804, 1)
+texture = ExtResource("13_fr4it")
+hframes = 3
+vframes = 2
+frame = 2
+
+[node name="Laptop" type="Node2D" parent="Sprite"]
+z_index = 1
+position = Vector2(0, 8.5)
+
+[node name="Laptop1" type="Sprite2D" parent="Sprite/Laptop"]
+modulate = Color(0.282353, 0.282353, 0.282353, 1)
+texture = ExtResource("14_5itpj")
+hframes = 2
+vframes = 4
+
+[node name="Laptop2" type="Sprite2D" parent="Sprite/Laptop"]
+modulate = Color(1, 0, 0.4, 1)
+texture = ExtResource("14_5itpj")
+hframes = 2
+vframes = 4
+frame = 1
 
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
 [connection signal="button_up" from="Extended/AssignButton" to="." method="_on_assign_button_button_up"]
