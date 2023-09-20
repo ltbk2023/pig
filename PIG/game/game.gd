@@ -246,3 +246,17 @@ func _on_cancel_assigning_button_up():
 	cancel_task_to_assign()
 	cancel_employee_to_assign()
 	$CanvasLayer/AssigningStatusView.visible = false
+
+# Return a JSON string representing this object in its current state
+func to_json():
+	var dictionary = {
+		"class": "Game",
+		"name": name,
+		"turns per sprint": turns_per_sprint,
+		"max sprints": max_sprints,
+		"current turn": __current_turn,
+		"current sprint": __current_sprint,
+		"victory points": victory_points
+	}
+	var json_string = JSON.stringify(dictionary, "\t")
+	return json_string

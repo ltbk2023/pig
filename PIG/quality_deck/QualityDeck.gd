@@ -110,3 +110,13 @@ func add_from_preset(preset:QualityPreset,amount:int) -> bool:
 			else:
 				p -= propabilities[type]
 	return true
+	
+# Return a JSON string representing this object in its current state
+func to_json():
+	var dictionary = {
+		"class": "QualityDeck",
+		"name": name,
+		"cards": cards
+	}
+	var json_string = JSON.stringify(dictionary, "\t")
+	return json_string

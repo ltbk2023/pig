@@ -124,3 +124,20 @@ func unassign_employee() -> bool:
 func cancel():
 	state = IssueState.IN_BACKLOG
 	unassign_employee()
+
+func to_json():
+	var dictionary = {
+		"class": "Issue",
+		"name": name,
+		"remaining parents": remaining_parents,
+		"child_issues": child_issues,
+		"description": $Extended/Sprite2D2/Description.text,
+		"difficulty": difficulty,
+		"time": time,
+		"state": state,
+		"importance to client": importance_to_client,
+		"progress": __progress,
+		"type": type
+	}
+	var json_string = JSON.stringify(dictionary, "\t")
+	return json_string
