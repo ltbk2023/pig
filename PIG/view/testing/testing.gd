@@ -65,3 +65,13 @@ func unassign_employee(employee: Employee) -> bool:
 			hook.queue_free()
 			return true
 	return false
+	
+# Return a JSON string representing this object in its current state
+func to_json():
+	var dictionary = {
+		"class": "Testing",
+		"name": name,
+		"testers limit": testers_limit
+	}
+	var json_string = JSON.stringify(dictionary, "\t")
+	return json_string
