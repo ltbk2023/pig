@@ -27,8 +27,6 @@ var  state_descriptions = {
 @export var importance_to_client: int = 0
 var __progress = 0
 
-# This is a unique ID used by the tree parser to identify this issue.
-var id : int
 # Specifies how many of this node's parents in the issue tree have not been
 # finished yet
 var remaining_parents: int
@@ -62,7 +60,7 @@ func set_visibility_on_exteded_desription(v):
 # summary include type, name, difficulty, time, state
 func update_summary():
 	$Summary.text =  type_description[type]+" [color=BLACK]"+name+"  D "\
-	+str(difficulty)+" / T "+str(time)+ "/ ID " + str(id) + "[/color] " + \
+	+str(difficulty)+" / T "+str(time) + "[/color] " + \
 	state_descriptions[state] 
 
 # update extended text
@@ -84,8 +82,8 @@ func update_extended():
 		$Extended/Sprite2D2/Unlocks.visible = true
 		$Extended/Sprite2D2/Unlocks.text = "[color=BLACK]Unlocks: "
 		for i in range(len(child_issues) -1):
-			$Extended/Sprite2D2/Unlocks.text += str(child_issues[i].id) + ", "
-		$Extended/Sprite2D2/Unlocks.text += str(child_issues[-1].id)
+			$Extended/Sprite2D2/Unlocks.text += str(child_issues[i].name) + ", "
+		$Extended/Sprite2D2/Unlocks.text += str(child_issues[-1].name)
 		
 # Called when progress is to be increased. If the progress exceeds the time,
 # complete() is called
