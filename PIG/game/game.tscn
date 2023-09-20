@@ -68,8 +68,6 @@ visible = false
 
 [node name="EmployeeToAssign" type="Node" parent="Hooks"]
 
-[node name="Modifiers" type="Node" parent="."]
-
 [connection signal="button_up" from="CanvasLayer/EndTurnButton" to="." method="_on_end_turn_button_button_up"]
 [connection signal="button_up" from="CanvasLayer/AssigningStatusView/CancelAssigning" to="." method="_on_cancel_assigning_button_up"]
 [connection signal="assign" from="Backlog" to="." method="_on_backlog_assign"]

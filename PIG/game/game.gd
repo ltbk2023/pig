@@ -218,15 +218,6 @@ func _on_bug_found():
 	bug_issue.time = randi_range(1, 3)
 	$Backlog.add_issue(bug_issue)
 
-# Start modifiers. They will affect employees.
-func launch_modifiers():
-	for modifier in $Modifiers.get_children():
-		if modifier.is_active():
-			modifier.modify()
-		else:
-			modifier.delete_all_hooks()
-			modifier.queue_free()
-
 # TODO: save this points somewhere or i don't know
 # I create this only to not forget about this signal 
 func _on_sprint_end_victory_points(owner, amount):
@@ -255,4 +246,3 @@ func _on_cancel_assigning_button_up():
 	cancel_task_to_assign()
 	cancel_employee_to_assign()
 	$CanvasLayer/AssigningStatusView.visible = false
-
