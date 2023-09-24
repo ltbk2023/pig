@@ -46,8 +46,7 @@ func update_employee_positons():
 func remove_employee(employee: Employee, delete_node: bool):
 	if delete_node:
 		employee.queue_free()
-	else:
-		$Background/Employees.remove_child(employee)
+	$Background/Employees.remove_child(employee)
 	update_employee_positons()
 		
 		

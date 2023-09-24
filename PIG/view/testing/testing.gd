@@ -74,3 +74,11 @@ func to_json():
 		"testers limit": testers_limit
 	}
 	return dictionary
+
+# Basic configuration of Testing, use to load scenario
+func configure_testing(dict: Dictionary) -> bool:
+	if dict["class"] == "Testing":
+		Utility.delete_children($EmployeeHook)
+		testers_limit = dict["testers limit"]
+		return true
+	return false
