@@ -160,11 +160,14 @@ func cancel():
 	unassign_employee()
 
 func to_json():
+	var child_issues_names = []
+	for child_issue in child_issues:
+		child_issues_names.append(child_issue.name)
 	var dictionary = {
 		"class": "Issue",
 		"name": name,
 		"remaining parents": remaining_parents,
-		"child_issues": child_issues,
+		"child_issues": child_issues_names,
 		"description": $Extended/Sprite2D2/Description.text,
 		"difficulty": difficulty,
 		"time": time,
@@ -174,3 +177,21 @@ func to_json():
 		"type": type
 	}
 	return dictionary
+
+func configure_issue(dict: Dictionary) -> bool:
+	if dict["class"] == "Issue":
+		remaining_parents = dict["remaining parents"]
+		$Extended/Sprite2D2/Description.text = dict["description"]
+		difficulty = dict["difficulty"]
+		name = dict["name"]
+		time = dict["time"]
+		state = dict["state"]
+		importance_to_client = dict["importance to client"]
+		__progress = dict["progress"]
+		type = dict["type"]
+		return true
+	return false
+	
+func add_child_issue(issue: Issue):
+	if not child_issues.has(issue):
+		child_issues.append(issue)
