@@ -256,7 +256,7 @@ func _on_cancel_assigning_button_up():
 	cancel_employee_to_assign()
 	$CanvasLayer/AssigningStatusView.visible = false
 
-# Return a JSON string representing this object in its current state
+# Return a JSON dictionary representing this object in its current state
 func to_json():
 	var dictionary = {
 		"class": "Game",
@@ -267,5 +267,26 @@ func to_json():
 		"current sprint": __current_sprint,
 		"victory points": victory_points
 	}
-	var json_string = JSON.stringify(dictionary, "\t")
-	return json_string
+	return dictionary
+
+# save state of whole game to JSON file
+func save_to_file(file_name):
+	var dictionary = {}
+	var issues = []
+	var employees = []
+	dictionary["Game"] = self.to_json()
+	dictionary["QualityDeck"] = $Testing/QualityDeck.to_json()
+	dictionary["Testing"] = $Testing.to_json()
+	dictionary["SprintEnd"] = $SprintEnd.to_json()
+	for issue in $Backlog.get_issues():
+		issues.append(issue.to_json())
+	dictionary["Issues"] = issues
+	for employee in $Office.get_employees():
+		employees.append(employee.to_json())
+	dictionary["Employees"] = employees
+	
+	var data = JSON.stringify(dictionary, "\t")
+	
+	var file = FileAccess.open(file_name, FileAccess.WRITE)
+	file.store_string(data)
+	file.close()

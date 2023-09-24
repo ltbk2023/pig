@@ -154,7 +154,7 @@ func remove_modifier(modifier: Modifier) -> bool:
 			return true
 	return false
 
-# Return a JSON string representing this object in its current state
+# Return a JSON dictionary representing this object in its current state
 func to_json():
 	var assigned_task_name = "" if $TaskHook.get_child_count() == 0 else \
 	$TaskHook.get_child(0).get_origin().name
@@ -169,5 +169,4 @@ func to_json():
 		"assigned to": assigned_task_name,
 		"description": $Extended/Description.text
 	}
-	var json_string = JSON.stringify(dictionary, "\t")
-	return json_string
+	return dictionary

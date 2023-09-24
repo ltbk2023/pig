@@ -173,5 +173,4 @@ func to_json():
 		"progress": __progress,
 		"type": type
 	}
-	var json_string = JSON.stringify(dictionary, "\t")
-	return json_string
+	return dictionary
