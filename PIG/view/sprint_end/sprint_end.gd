@@ -78,7 +78,7 @@ func update_view(bugs_found: int, bug_issues: int):
 func _on_ok_button_button_up():
 	emit_signal("return_to_office_view", self)
 	
-# Return a JSON string representing this object in its current state
+# Return a JSON dictionary representing this object in its current state
 func to_json():
 	var dictionary = {
 		"class": "SprintEnd",
@@ -88,5 +88,4 @@ func to_json():
 		"last_victory_points": __last_victory_points,
 		"current sprint": __current_sprint
 	}
-	var json_string = JSON.stringify(dictionary, "\t")
-	return json_string
+	return dictionary

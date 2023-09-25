@@ -66,12 +66,11 @@ func unassign_employee(employee: Employee) -> bool:
 			return true
 	return false
 	
-# Return a JSON string representing this object in its current state
+# Return a JSON dictionary representing this object in its current state
 func to_json():
 	var dictionary = {
 		"class": "Testing",
 		"name": name,
 		"testers limit": testers_limit
 	}
-	var json_string = JSON.stringify(dictionary, "\t")
-	return json_string
+	return dictionary
