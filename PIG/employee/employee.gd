@@ -75,7 +75,7 @@ func execute_turn():
 	var task = $TaskHook.get_child(0).get_origin()
 	
 	# Generate a random speed modifier for this turn
-	var speed_modifier = randi() % (max_speed_modifier + 1) 
+	var speed_modifier = randi() % (max_speed_modifier + 1) \
 	+ min_speed_modifier 
 	
 	if task is Issue:
