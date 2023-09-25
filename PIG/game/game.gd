@@ -204,7 +204,12 @@ func assign():
 # Listen to "completed" signal emitted by Office. Add 2 quality cards to the
 # deck.
 func _on_office_completed(owner, issue, quality):
-	$Testing/QualityDeck.add_from_preset(quality, 2)
+	if issue.type == Issue.IssueType.BUG_ISSUE:
+		$Testing/QualityDeck.add_from_preset(quality, 1)
+	elif issue.type == Issue.IssueType.FEATURE:
+		$Testing/QualityDeck.add_from_preset(quality, 2)
+	else:
+		print("Warning: Unknown type of issue")
 	$SprintEnd.add_issue_importance(issue)
   
 func _on_bug_found():
