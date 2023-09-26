@@ -19,6 +19,7 @@ func _ready():
 		var issue = preload("res://issue/issue.tscn").instantiate()
 		issue.difficulty = (i % 4) + 1
 		issue.time = (i % 3) + 1
+		issue.state = Issue.IssueState.IN_BACKLOG
 		$Backlog.add_issue(issue)
 
 
