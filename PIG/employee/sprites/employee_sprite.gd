@@ -10,6 +10,11 @@ extends Node2D
 		up = u
 		if is_inside_tree():
 			update_up_down()
+@export var laptop_open=true:
+	set(l):
+		laptop_open = l
+		if is_inside_tree():
+			update_laptop()
 # control angry, unhappy look 
 @export var angry = false:
 	set(a):
@@ -29,6 +34,17 @@ extends Node2D
 		if is_inside_tree():
 			update_sitting()
 			
+@export_range(-1,1) var eye_pose = 0:
+	set(e):
+		eye_pose = e
+		if is_inside_tree():
+			$EyeLeftUD/Iris.position.x = max(-1,eye_pose-1)
+			$EyeRigthUD/Iris.position.x = min(0,eye_pose)
+@export var bubble = false:
+	set(b):
+		bubble = b
+		if is_inside_tree():
+			$Bubble.visible = b
 # group of variables that modify colors of the employee
 # variables are in tematic subgroups
 @export_group("Color")
@@ -227,25 +243,35 @@ extends Node2D
 	set(y):
 		laptop = y
 		if is_inside_tree():
-			for ch in $Laptop.get_children():
-				ch.frame_coords.y = get_up_down_coord(y)
-				
+			update_laptop()
+			
 # return offset that depends on up variable
 func get_up_down_offset():
 	if up:
 		return 0
 	else:
 		return 1
+
 # return coord modify by up down state
 func get_up_down_coord(base):
 	return 2*base+get_up_down_offset()
+
 # return coord that depends on body and coords states
 func get_body_clothes_coord():
 	return 4*clothes+body
+
 # return coord that depends on detail and coords states
 func get_detail_clothes_coord():
 	return 4*clothes+detail
-	
+
+func update_laptop():
+	var mod = 0
+	if laptop_open:
+		mod = 1
+	var cord=  2*laptop+mod
+	$Laptop/Laptop1.frame_coords.y = cord
+	$Laptop/Laptop2.frame_coords.y = cord
+
 # realize change of up down state
 func update_up_down():
 	# update sprites frames
@@ -272,10 +298,6 @@ func update_up_down():
 	$BeardUD/Hair1.frame_coords.y = cord
 	$BeardUD/Hair2.frame_coords.y = cord
 	
-	cord=  get_up_down_coord(laptop)
-	$Laptop/Laptop1.frame_coords.y = cord
-	$Laptop/Laptop2.frame_coords.y = cord
-	
 	# update sprites position
 	if up:
 		$Lips.position.y = 4
@@ -297,6 +319,7 @@ func update_up_down():
 		$FrontHairUD.position.y = 3
 		$BackHair.position.y = 2.5
 		$BeardUD.position.y = 7
+
 # realize change of angry state
 func update_angry():
 	var mode = 0
@@ -305,6 +328,7 @@ func update_angry():
 	# update sprites position
 	$EyeBrowLeft/Hair2.position.y = mode
 	$EyeBrowRigth/Hair2.position.y = mode
+
 # realize change of smile state
 func update_smile():
 	var mod = 0
@@ -316,7 +340,33 @@ func update_smile():
 	# update sprites position
 	$Lips/Lips2.position.y = -mod
 # realize change of sitting state
+
 func update_sitting():
 	# update visibility of Laptop and Desk
 	$Laptop.visible = sitting
 	$Desk.visible = sitting
+
+# transform linear speed to exponential animation speed
+func get_anim_speed(speed):
+	var s = pow(1.5,speed-2)
+	print(s)
+	return s
+
+# play animation of employee not working
+func display_idle():
+	$MainAnimationPlayer.stop()
+	$SupportAnimationPlayer.stop()
+	$MainAnimationPlayer.play("idle")
+
+# play animation of coding
+func display_issue_coding(speed:int,too_hard:bool):
+	$MainAnimationPlayer.stop()
+	$SupportAnimationPlayer.stop()
+	if too_hard:
+		$MainAnimationPlayer.play("coding_too_hard",-1,get_anim_speed(speed))
+	else:
+		$MainAnimationPlayer.play("coding_normal",-1,get_anim_speed(speed))
+
+#play animation of testing 
+func display_testing(speed:int):
+	$MainAnimationPlayer.play("testing",-1,get_anim_speed(speed))

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nb15geiyso05"
-path="res://.godot/imported/eyebrow_1_2.png-3f88ec60d8fb2d72725da4d354e67ffc.ctex"
+uid="uid://m8e3guakmkyr"
+path="res://.godot/imported/beard_8_2_ud.png-ee2c9c05adb12ed54ff2e3472ea7db0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://employee/sprites/eyebrow_1_2.png"
-dest_files=["res://.godot/imported/eyebrow_1_2.png-3f88ec60d8fb2d72725da4d354e67ffc.ctex"]
+source_file="res://employee/sprites/body/beard_8_2_ud.png"
+dest_files=["res://.godot/imported/beard_8_2_ud.png-ee2c9c05adb12ed54ff2e3472ea7db0e.ctex"]
 
 [params]
 
