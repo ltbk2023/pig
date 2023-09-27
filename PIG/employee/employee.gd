@@ -39,9 +39,11 @@ func _ready():
 	__base_testing = testing
 	
 	__base_morale = morale
+	randomize()
 	update_summary()
 	update_extended()
-	randomize()
+	
+	update_task_display()
 
 # update summary text
 # summary include name, stats, task's name employee is assigned to 
@@ -116,6 +118,7 @@ func assign_issue(hook: Hook):
 		$TaskHook.add_child(hook)
 		update_summary()
 		update_extended()
+		update_task_display()
 		return true
 	else:
 		return false
@@ -131,6 +134,7 @@ func unassign_issue() -> bool:
 		$TaskHook.get_child(0).queue_free()
 		update_summary()
 		update_extended()
+		update_task_display()
 		return true
 	return false
 
@@ -140,4 +144,16 @@ func check_quality_preset(issue: Issue):
 	if quality >= issue.difficulty:
 		return QualityDeck.QualityPreset.HIGH
 	return QualityDeck.QualityPreset.LOW
-	
+
+# check type of task given to employee and call appropriate $Sprite function
+func update_task_display():
+	if$TaskHook.get_child_count() > 0 and not \
+	$TaskHook.get_child(0).is_queued_for_deletion():
+		var task = $TaskHook.get_child(0).get_origin()
+		if task is Issue:
+			$Sprite.display_issue_coding(speed,quality<task.difficulty)
+			return
+		elif task is Testing:
+			$Sprite.display_testing(testing)
+			return
+	$Sprite.display_idle()

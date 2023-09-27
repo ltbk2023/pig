@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://x5tm031yhyd3"
-path="res://.godot/imported/nose_4_2_ud.png-47a71dba1988458494dc22e0fb36cbd6.ctex"
+path="res://.godot/imported/nose_4_2_ud.png-74b04f044a97210d4487f180097cd5fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://employee/sprites/nose_4_2_ud.png"
-dest_files=["res://.godot/imported/nose_4_2_ud.png-47a71dba1988458494dc22e0fb36cbd6.ctex"]
+source_file="res://employee/sprites/body/nose_4_2_ud.png"
+dest_files=["res://.godot/imported/nose_4_2_ud.png-74b04f044a97210d4487f180097cd5fd.ctex"]
 
 [params]
 
