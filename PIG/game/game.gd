@@ -269,43 +269,6 @@ func to_json():
 	}
 	return dictionary
 
-# save state of whole game to JSON file
-func save_to_file(file_name):
-	var dictionary = {}
-	var issues = []
-	var employees = []
-	dictionary["Game"] = self.to_json()
-	dictionary["QualityDeck"] = $Testing/QualityDeck.to_json()
-	dictionary["Testing"] = $Testing.to_json()
-	dictionary["SprintEnd"] = $SprintEnd.to_json()
-	for issue in $Backlog.get_issues():
-		issues.append(issue.to_json())
-	dictionary["Issues"] = issues
-	for employee in $Office.get_employees():
-		employees.append(employee.to_json())
-	dictionary["Employees"] = employees
-	
-	var data = JSON.stringify(dictionary, "\t")
-	
-	var file = FileAccess.open(file_name, FileAccess.WRITE)
-	file.store_string(data)
-	file.close()
-
-# load JSON state of whole game from file
-func load_from_file(file_name: String) -> Dictionary:
-	var file = FileAccess.open(file_name, FileAccess.READ)
-	var content = file.get_as_text()
-	var json = JSON.new()
-	var error = json.parse(content)
-	if error == OK:
-		var data_received = json.data
-		data_received["error"] = null
-		return data_received
-	else:
-		print("JSON Parse Error: ", json.get_error_message(), " in ", content, \
-		" at line ", json.get_error_line())
-		return {"error": "JSON Parse Error"}
-
 # Basic configuration of Game, use to load scenario
 func configure_game(dict: Dictionary) -> bool:
 	if dict["class"] == "Game":
@@ -316,51 +279,3 @@ func configure_game(dict: Dictionary) -> bool:
 		victory_points = dict["victory points"]
 		return true
 	return false
-
-# configure whole game based on JSON
-func configure_scenario(dict: Dictionary):
-	configure_game(dict["Game"])
-	$Testing.configure_testing(dict["Testing"])
-	$Testing/QualityDeck.configure_quality_deck(dict["QualityDeck"])
-	$SprintEnd.configure_sprint_end(dict["SprintEnd"])
-	
-	# remove current issues
-	for issue in $Backlog.get_issues():
-		$Backlog.remove_issue(issue)
-		issue.queue_free()
-	
-	# load issues
-	var issues = {}
-	for issue_json in dict["Issues"]:
-		var issue = preload("res://issue/issue.tscn").instantiate()
-		issue.configure_issue(issue_json)
-		issues[issue.name] = issue
-		$Backlog.add_issue(issue)
-	
-	# load child_issues
-	for issue_json in dict["Issues"]:
-		if issue_json["child_issues"].is_empty():
-			continue
-		for name_issue in issue_json["child_issues"]:
-			issues[issue_json["name"]].add_child_issue(issues[name_issue])
-	
-	# remove current employees
-	for employee in $Office.get_employees():
-		$Office.remove_employee(employee, true)
-	
-	# load employees
-	for employee_json in dict["Employees"]:
-		var employee = preload("res://employee/employee.tscn").instantiate()
-		employee.configure_employee(employee_json)
-		$Office.add_employee(employee)
-		if not employee_json["assigned to"] == "":
-			var employee_hook = Hook.new()
-			employee_hook.set_origin(employee)
-			if employee_json["assigned to"] == "Testing":
-				$Testing.assign_employee(employee_hook)
-			else:
-				var issue: Issue = issues[employee_json["assigned to"]]
-				var issue_hook = Hook.new()
-				issue_hook.set_origin(issue)
-				employee.assign_issue(issue_hook)
-				issue.assign_employee(employee_hook)
