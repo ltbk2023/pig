@@ -89,3 +89,13 @@ func to_json():
 		"current sprint": __current_sprint
 	}
 	return dictionary
+
+# Basic configuration of Sprint End, use to load scenario
+func configure_sprint_end(dict: Dictionary) -> bool:
+	if dict["class"] == "SprintEnd":
+		__current_sprint = dict["current sprint"]
+		__last_victory_points = dict["last_victory_points"]
+		__issues_done_this_sprint = dict["issues done this sprint"]
+		__total_client_importance = dict["total client importance"]
+		return true
+	return false

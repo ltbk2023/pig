@@ -305,3 +305,62 @@ func load_from_file(file_name: String) -> Dictionary:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", content, \
 		" at line ", json.get_error_line())
 		return {"error": "JSON Parse Error"}
+
+# Basic configuration of Game, use to load scenario
+func configure_game(dict: Dictionary) -> bool:
+	if dict["class"] == "Game":
+		turns_per_sprint = dict["turns per sprint"]
+		max_sprints = dict["max sprints"]
+		__current_turn = dict["current turn"]
+		__current_sprint = dict["current sprint"]
+		victory_points = dict["victory points"]
+		return true
+	return false
+
+# configure whole game based on JSON
+func configure_scenario(dict: Dictionary):
+	configure_game(dict["Game"])
+	$Testing.configure_testing(dict["Testing"])
+	$Testing/QualityDeck.configure_quality_deck(dict["QualityDeck"])
+	$SprintEnd.configure_sprint_end(dict["SprintEnd"])
+	
+	# remove current issues
+	for issue in $Backlog.get_issues():
+		$Backlog.remove_issue(issue)
+		issue.queue_free()
+	
+	# load issues
+	var issues = {}
+	for issue_json in dict["Issues"]:
+		var issue = preload("res://issue/issue.tscn").instantiate()
+		issue.configure_issue(issue_json)
+		issues[issue.name] = issue
+		$Backlog.add_issue(issue)
+	
+	# load child_issues
+	for issue_json in dict["Issues"]:
+		if issue_json["child_issues"].is_empty():
+			continue
+		for name_issue in issue_json["child_issues"]:
+			issues[issue_json["name"]].add_child_issue(issues[name_issue])
+	
+	# remove current employees
+	for employee in $Office.get_employees():
+		$Office.remove_employee(employee, true)
+	
+	# load employees
+	for employee_json in dict["Employees"]:
+		var employee = preload("res://employee/employee.tscn").instantiate()
+		employee.configure_employee(employee_json)
+		$Office.add_employee(employee)
+		if not employee_json["assigned to"] == "":
+			var employee_hook = Hook.new()
+			employee_hook.set_origin(employee)
+			if employee_json["assigned to"] == "Testing":
+				$Testing.assign_employee(employee_hook)
+			else:
+				var issue: Issue = issues[employee_json["assigned to"]]
+				var issue_hook = Hook.new()
+				issue_hook.set_origin(issue)
+				employee.assign_issue(issue_hook)
+				issue.assign_employee(employee_hook)

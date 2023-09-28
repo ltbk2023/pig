@@ -170,3 +170,14 @@ func to_json():
 		"description": $Extended/Description.text
 	}
 	return dictionary
+	
+func configure_employee(dict: Dictionary) -> bool:
+	if dict["class"] == "Employee":
+		__base_speed = dict["base speed"]
+		__base_quality = dict["base quality"]
+		__base_testing = dict["base testing"]
+		__base_morale = dict["base morale"]
+		name = dict["name"]
+		$Extended/Description.text = dict["description"]
+		return true
+	return false
