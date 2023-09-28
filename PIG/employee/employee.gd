@@ -153,3 +153,31 @@ func remove_modifier(modifier: Modifier) -> bool:
 			modifier_hook.queue_free()
 			return true
 	return false
+
+# Return a JSON dictionary representing this object in its current state
+func to_json():
+	var assigned_task_name = "" if $TaskHook.get_child_count() == 0 else \
+	$TaskHook.get_child(0).get_origin().name
+	
+	var dictionary = {
+		"class": "Employee",
+		"name": name,
+		"base speed": __base_speed,
+		"base quality": __base_quality,
+		"base testing": __base_testing,
+		"base morale": __base_morale,
+		"assigned to": assigned_task_name,
+		"description": $Extended/Description.text
+	}
+	return dictionary
+	
+func configure_employee(dict: Dictionary) -> bool:
+	if dict["class"] == "Employee":
+		__base_speed = dict["base speed"]
+		__base_quality = dict["base quality"]
+		__base_testing = dict["base testing"]
+		__base_morale = dict["base morale"]
+		name = dict["name"]
+		$Extended/Description.text = dict["description"]
+		return true
+	return false

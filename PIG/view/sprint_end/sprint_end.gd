@@ -77,3 +77,25 @@ func update_view(bugs_found: int, bug_issues: int):
 # when press the ok button, return to main view.
 func _on_ok_button_button_up():
 	emit_signal("return_to_office_view", self)
+	
+# Return a JSON dictionary representing this object in its current state
+func to_json():
+	var dictionary = {
+		"class": "SprintEnd",
+		"name": name,
+		"total client importance": __total_client_importance,
+		"issues done this sprint": __issues_done_this_sprint,
+		"last_victory_points": __last_victory_points,
+		"current sprint": __current_sprint
+	}
+	return dictionary
+
+# Basic configuration of Sprint End, use to load scenario
+func configure_sprint_end(dict: Dictionary) -> bool:
+	if dict["class"] == "SprintEnd":
+		__current_sprint = dict["current sprint"]
+		__last_victory_points = dict["last_victory_points"]
+		__issues_done_this_sprint = dict["issues done this sprint"]
+		__total_client_importance = dict["total client importance"]
+		return true
+	return false

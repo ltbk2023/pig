@@ -110,3 +110,19 @@ func add_from_preset(preset:QualityPreset,amount:int) -> bool:
 			else:
 				p -= propabilities[type]
 	return true
+	
+# Return a JSON dictionary representing this object in its current state
+func to_json():
+	var dictionary = {
+		"class": "QualityDeck",
+		"name": name,
+		"cards": cards
+	}
+	return dictionary
+
+# Basic configuration of Quality Deck, use to load scenario	
+func configure_quality_deck(dict: Dictionary) -> bool:
+	if dict["class"] == "QualityDeck":
+		cards = dict["cards"]
+		return true
+	return false

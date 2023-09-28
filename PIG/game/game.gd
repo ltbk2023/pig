@@ -261,3 +261,26 @@ func _on_cancel_assigning_button_up():
 	cancel_employee_to_assign()
 	$CanvasLayer/AssigningStatusView.visible = false
 
+# Return a JSON dictionary representing this object in its current state
+func to_json():
+	var dictionary = {
+		"class": "Game",
+		"name": name,
+		"turns per sprint": turns_per_sprint,
+		"max sprints": max_sprints,
+		"current turn": __current_turn,
+		"current sprint": __current_sprint,
+		"victory points": victory_points
+	}
+	return dictionary
+
+# Basic configuration of Game, use to load scenario
+func configure_game(dict: Dictionary) -> bool:
+	if dict["class"] == "Game":
+		turns_per_sprint = dict["turns per sprint"]
+		max_sprints = dict["max sprints"]
+		__current_turn = dict["current turn"]
+		__current_sprint = dict["current sprint"]
+		victory_points = dict["victory points"]
+		return true
+	return false

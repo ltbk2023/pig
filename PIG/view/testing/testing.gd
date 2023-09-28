@@ -65,3 +65,20 @@ func unassign_employee(employee: Employee) -> bool:
 			hook.queue_free()
 			return true
 	return false
+	
+# Return a JSON dictionary representing this object in its current state
+func to_json():
+	var dictionary = {
+		"class": "Testing",
+		"name": name,
+		"testers limit": testers_limit
+	}
+	return dictionary
+
+# Basic configuration of Testing, use to load scenario
+func configure_testing(dict: Dictionary) -> bool:
+	if dict["class"] == "Testing":
+		Utility.delete_children($EmployeeHook)
+		testers_limit = dict["testers limit"]
+		return true
+	return false
