@@ -128,7 +128,7 @@ func start_level(file: String):
 
 # Called when "Level1" button is released. Load first level
 func _on_level_1_button_up():
-	print("Warning: First Level not implemented")
+	start_level("level/basic_scenario.json")
 
 # Called when "Level2" button is released. Load second level
 func _on_level_2_button_up():
