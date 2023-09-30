@@ -57,7 +57,7 @@ func execute_sprint_end(bugs_found: int, active_bug_issues: int):
 		sprint_victory_points = points_between_boundaries
 	else:
 		sprint_victory_points = points_above_boundaries
-	emit_signal("victory_points", sprint_victory_points)
+	emit_signal("victory_points", self, sprint_victory_points)
 	__last_victory_points = sprint_victory_points
 	
 # Adds an issue's importance points to the total and increases the number of
