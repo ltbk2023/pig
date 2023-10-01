@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://m8e3guakmkyr"
-path="res://.godot/imported/beard_8_2_ud.png-1b2680d87b84532fc5b363645e5c4e7a.ctex"
+uid="uid://c1ahpyp5apm1n"
+path="res://.godot/imported/main_text.png-591f1bd42b6f5d6a02d39dc9dcd30d61.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://employee/sprites/beard_8_2_ud.png"
-dest_files=["res://.godot/imported/beard_8_2_ud.png-1b2680d87b84532fc5b363645e5c4e7a.ctex"]
+source_file="res://employee/sprites/bubble/main_text.png"
+dest_files=["res://.godot/imported/main_text.png-591f1bd42b6f5d6a02d39dc9dcd30d61.ctex"]
 
 [params]
 
