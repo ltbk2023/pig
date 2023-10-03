@@ -59,14 +59,18 @@ func get_employees() -> Array[Node]:
 func _on_assign(owner):
 	emit_signal("assign", owner)
 	
-# Called when the node has received an extending signal from one of the
-# employees. Hides the other employees' extended descriptions.
+# Called when the node has received an extending signal from one of the employees.
+# Hides the other employees
+# On extending equal true owner is moved to (0,0)
+# Otherwise update_employee_positons is called to restore normal positions
 func _on_extending(owner, extending):
-	if not extending:
-		return
 	for employee in $Background/Employees.get_children():
-		if employee != owner:
-			employee.set_visibility_of_extended_description(false)
+			employee.visible = employee == owner or not extending 
+	if extending:
+		owner.position = Vector2(0,0)
+	else:
+		update_employee_positons()
+
 	
 # sends "completed" signal to the higher part of the tree without modifying
 # the parameters. Should be caught Game.
