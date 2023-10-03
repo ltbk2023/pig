@@ -1,6 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://c7rm05y0sfaof"]
+[gd_scene load_steps=38 format=3 uid="uid://c7rm05y0sfaof"]
 
 [ext_resource type="Script" path="res://employee/employee.gd" id="1_ckk1p"]
+[ext_resource type="Texture2D" uid="uid://nrs7vxh7hx5e" path="res://employee/sprites/extended/background.png" id="2_5js4y"]
 [ext_resource type="Script" path="res://employee/sprites/employee_sprite.gd" id="2_xssql"]
 [ext_resource type="Texture2D" uid="uid://cavje0scc84nr" path="res://employee/sprites/body/face_2_3_ud.png" id="3_yvunq"]
 [ext_resource type="Texture2D" uid="uid://x5tm031yhyd3" path="res://employee/sprites/body/nose_4_2_ud.png" id="4_v3aus"]
@@ -37,26 +38,75 @@ gradient = SubResource("Gradient_4hdsu")
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
-[sub_resource type="Gradient" id="Gradient_blit4"]
-offsets = PackedFloat32Array(0.666667)
-colors = PackedColorArray(1, 1, 1, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0p6ld"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jpviw"]
-gradient = SubResource("Gradient_blit4")
-width = 330
-height = 150
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_udh30"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ut585"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a7xy1"]
 
 [sub_resource type="Animation" id="Animation_xeewk"]
 length = 0.001
-tracks/0/type = "animation"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../SupportAnimationPlayer")
+tracks/0/path = NodePath("..:up")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"clips": PackedStringArray("eyes_slide_slow"),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:laptop_open")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:eye_pose")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("..:bubble")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..:sitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_dwwxe"]
@@ -369,10 +419,22 @@ tracks/25/path = NodePath("..:bubble")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
-"times": PackedFloat32Array(0, 6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.0001, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [true, true, false]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("..:sitting")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_kq1jc"]
@@ -681,6 +743,18 @@ tracks/24/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("..:sitting")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_kijxa"]
 resource_name = "idle"
@@ -744,6 +818,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("..:sitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_33cjf"]
@@ -1031,6 +1117,18 @@ tracks/22/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("..:sitting")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7lxnb"]
 _data = {
@@ -1200,7 +1298,6 @@ _data = {
 }
 
 [node name="Employee" type="Node2D"]
-position = Vector2(50, 50)
 script = ExtResource("1_ckk1p")
 
 [node name="TaskHook" type="Node" parent="."]
@@ -1229,47 +1326,121 @@ modulate = Color(1, 1, 1, 0)
 offset_left = -40.0
 offset_top = -35.0
 offset_right = 97.0
-offset_bottom = 85.0
+offset_bottom = 65.0
 
 [node name="Extended" type="Node2D" parent="."]
 visible = false
 z_index = 3
-position = Vector2(-50, 50)
+position = Vector2(-80, -95)
 
 [node name="Background" type="Sprite2D" parent="Extended"]
-texture = SubResource("GradientTexture2D_jpviw")
+z_index = -3
+texture_filter = 1
+scale = Vector2(10, 10)
+texture = ExtResource("2_5js4y")
 centered = false
 
 [node name="Description" type="RichTextLabel" parent="Extended"]
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 325.0
-offset_bottom = 105.0
+offset_left = 15.0
+offset_top = 325.0
+offset_right = 345.0
+offset_bottom = 460.0
 bbcode_enabled = true
 text = "[color=BLACK]implementation of desintegration unexisting information for confirmation of button aplication[/color]
 "
 
-[node name="Assignment" type="RichTextLabel" parent="Extended"]
-offset_top = 117.0
-offset_right = 250.0
-offset_bottom = 177.0
-bbcode_enabled = true
+[node name="Assignment" type="Button" parent="Extended"]
+offset_left = 15.0
+offset_top = 270.0
+offset_right = 225.0
+offset_bottom = 301.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0p6ld")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_udh30")
+text = "Task: Unassinged"
+flat = true
 
 [node name="AssignButton" type="Button" parent="Extended"]
-offset_left = 267.0
-offset_top = 117.0
-offset_right = 327.0
-offset_bottom = 148.0
+offset_left = 245.0
+offset_top = 270.0
+offset_right = 345.0
+offset_bottom = 301.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ut585")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a7xy1")
 text = "Assign
 "
+flat = true
+
+[node name="Name" type="RichTextLabel" parent="Extended"]
+offset_left = 185.0
+offset_top = 15.0
+offset_right = 345.0
+offset_bottom = 50.0
+bbcode_enabled = true
+text = "[font_size=24][color=BLACK][b]Ziemowit[/b][/color][/font_size]"
+scroll_active = false
+
+[node name="Quality" type="RichTextLabel" parent="Extended"]
+offset_left = 185.0
+offset_top = 75.0
+offset_right = 345.0
+offset_bottom = 105.0
+bbcode_enabled = true
+text = "[color=BLACK]Quality: [b]1[/b][/color]"
+scroll_active = false
+
+[node name="Speed" type="RichTextLabel" parent="Extended"]
+offset_left = 185.0
+offset_top = 125.0
+offset_right = 345.0
+offset_bottom = 155.0
+bbcode_enabled = true
+text = "[color=BLACK]Speed: [b]1[/b][/color]"
+scroll_active = false
+
+[node name="Testing" type="RichTextLabel" parent="Extended"]
+offset_left = 185.0
+offset_top = 175.0
+offset_right = 345.0
+offset_bottom = 205.0
+bbcode_enabled = true
+text = "[color=BLACK]Testing: [b]1[/b][/color]"
+scroll_active = false
+
+[node name="Morale" type="RichTextLabel" parent="Extended"]
+offset_left = 185.0
+offset_top = 225.0
+offset_right = 345.0
+offset_bottom = 255.0
+bbcode_enabled = true
+text = "[color=BLACK]Morale: [b]+1[/b][/color]"
+scroll_active = false
+
+[node name="Hide" type="Button" parent="Extended"]
+offset_top = -200.0
+offset_right = 360.0
+flat = true
+
+[node name="Hide2" type="Button" parent="Extended"]
+offset_top = 480.0
+offset_right = 360.0
+offset_bottom = 680.0
+flat = true
 
 [node name="Sprite" type="Node2D" parent="."]
 texture_filter = 1
+position = Vector2(10, 0)
 scale = Vector2(4, 4)
 script = ExtResource("2_xssql")
-up = false
-eye_pose = -1
-bubble = true
+laptop_open = false
 skin_1 = Color(0.780392, 0.615686, 0.513726, 1)
 skin_2 = Color(0.929412, 0.741176, 0.623529, 1)
 skin_3 = Color(0.968627, 0.803922, 0.698039, 1)
@@ -1292,6 +1463,7 @@ beard = 1
 clothes = 3
 detail = 2
 laptop = 1
+metadata/_edit_group_ = true
 
 [node name="FaceUD" type="Node2D" parent="Sprite"]
 z_index = 1
@@ -1301,43 +1473,41 @@ modulate = Color(0.780392, 0.615686, 0.513726, 1)
 texture = ExtResource("3_yvunq")
 hframes = 3
 vframes = 2
-frame = 3
 
 [node name="Skin2" type="Sprite2D" parent="Sprite/FaceUD"]
 modulate = Color(0.929412, 0.741176, 0.623529, 1)
 texture = ExtResource("3_yvunq")
 hframes = 3
 vframes = 2
-frame = 4
+frame = 1
 
 [node name="Skin3" type="Sprite2D" parent="Sprite/FaceUD"]
 modulate = Color(0.968627, 0.803922, 0.698039, 1)
 texture = ExtResource("3_yvunq")
 hframes = 3
 vframes = 2
-frame = 5
+frame = 2
 
 [node name="NoseUD" type="Node2D" parent="Sprite"]
 z_index = 1
-position = Vector2(0, 3)
+position = Vector2(0, 1)
 
 [node name="Skin1" type="Sprite2D" parent="Sprite/NoseUD"]
 modulate = Color(0.780392, 0.615686, 0.513726, 1)
 texture = ExtResource("4_v3aus")
 hframes = 2
 vframes = 4
-frame = 2
 
 [node name="Skin3" type="Sprite2D" parent="Sprite/NoseUD"]
 modulate = Color(0.968627, 0.803922, 0.698039, 1)
 texture = ExtResource("4_v3aus")
 hframes = 2
 vframes = 4
-frame = 3
+frame = 1
 
 [node name="Lips" type="Node2D" parent="Sprite"]
 z_index = 1
-position = Vector2(0, 5)
+position = Vector2(0, 4)
 
 [node name="Lips1" type="Sprite2D" parent="Sprite/Lips"]
 modulate = Color(0.729412, 0.184314, 0.184314, 1)
@@ -1354,33 +1524,30 @@ frame = 1
 
 [node name="EyeRigthUD" type="Node2D" parent="Sprite"]
 z_index = 1
-position = Vector2(-2.5, 2.5)
+position = Vector2(-2.5, 0.5)
 
 [node name="EyeBall" type="Sprite2D" parent="Sprite/EyeRigthUD"]
 modulate = Color(1, 0.901961, 0.901961, 1)
 texture = ExtResource("6_vnmu4")
 hframes = 2
 vframes = 2
-frame = 2
 
 [node name="Iris" type="Sprite2D" parent="Sprite/EyeRigthUD"]
 modulate = Color(0.0431373, 0.0431373, 0.105882, 1)
-position = Vector2(-1, 0)
 texture = ExtResource("6_vnmu4")
 hframes = 2
 vframes = 2
-frame = 3
+frame = 1
 
 [node name="EyeLeftUD" type="Node2D" parent="Sprite"]
 z_index = 1
-position = Vector2(2.5, 2.5)
+position = Vector2(2.5, 0.5)
 
 [node name="EyeBall" type="Sprite2D" parent="Sprite/EyeLeftUD"]
 modulate = Color(1, 0.901961, 0.901961, 1)
 texture = ExtResource("6_vnmu4")
 hframes = 2
 vframes = 2
-frame = 2
 
 [node name="Iris" type="Sprite2D" parent="Sprite/EyeLeftUD"]
 modulate = Color(0.0431373, 0.0431373, 0.105882, 1)
@@ -1388,11 +1555,11 @@ position = Vector2(-1, 0)
 texture = ExtResource("6_vnmu4")
 hframes = 2
 vframes = 2
-frame = 3
+frame = 1
 
 [node name="EyeBrowRigth" type="Node2D" parent="Sprite"]
 z_index = 1
-position = Vector2(-2.5, 2)
+position = Vector2(-2.5, -1)
 
 [node name="Hair1" type="Sprite2D" parent="Sprite/EyeBrowRigth"]
 modulate = Color(0.431373, 0.282353, 0.0431373, 0.996078)
@@ -1407,7 +1574,7 @@ frame = 1
 
 [node name="EyeBrowLeft" type="Node2D" parent="Sprite"]
 z_index = 1
-position = Vector2(2.5, 2)
+position = Vector2(2.5, -1)
 scale = Vector2(-1, 1)
 
 [node name="Hair1" type="Sprite2D" parent="Sprite/EyeBrowLeft"]
@@ -1423,7 +1590,6 @@ frame = 1
 
 [node name="FrontHairUD" type="Node2D" parent="Sprite"]
 z_index = 1
-position = Vector2(0, 3)
 
 [node name="Hair1" type="Sprite2D" parent="Sprite/FrontHairUD"]
 modulate = Color(0.431373, 0.282353, 0.0431373, 0.996078)
@@ -1431,7 +1597,7 @@ position = Vector2(0, -4.5)
 texture = ExtResource("8_n4ksk")
 hframes = 2
 vframes = 6
-frame = 6
+frame = 4
 
 [node name="Hair2" type="Sprite2D" parent="Sprite/FrontHairUD"]
 modulate = Color(0.380392, 0.262745, 0.0705882, 1)
@@ -1439,10 +1605,10 @@ position = Vector2(0, -4.5)
 texture = ExtResource("8_n4ksk")
 hframes = 2
 vframes = 6
-frame = 7
+frame = 5
 
 [node name="BackHair" type="Node2D" parent="Sprite"]
-position = Vector2(0, 2.5)
+position = Vector2(0, 0.5)
 
 [node name="Hair1" type="Sprite2D" parent="Sprite/BackHair"]
 modulate = Color(0.431373, 0.282353, 0.0431373, 0.996078)
@@ -1459,21 +1625,21 @@ frame = 1
 
 [node name="BeardUD" type="Node2D" parent="Sprite"]
 z_index = 1
-position = Vector2(0, 7)
+position = Vector2(0, 6)
 
 [node name="Hair1" type="Sprite2D" parent="Sprite/BeardUD"]
 modulate = Color(0.431373, 0.282353, 0.0431373, 0.996078)
 texture = ExtResource("10_v2cfx")
 hframes = 2
 vframes = 8
-frame = 6
+frame = 4
 
 [node name="Hair2" type="Sprite2D" parent="Sprite/BeardUD"]
 modulate = Color(0.380392, 0.262745, 0.0705882, 1)
 texture = ExtResource("10_v2cfx")
 hframes = 2
 vframes = 8
-frame = 7
+frame = 5
 
 [node name="Body" type="Node2D" parent="Sprite"]
 position = Vector2(0, 10.5)
@@ -1583,16 +1749,17 @@ modulate = Color(0.392157, 0.392157, 0.392157, 1)
 texture = ExtResource("14_bmdiw")
 hframes = 2
 vframes = 4
-frame = 6
+frame = 4
 
 [node name="Laptop2" type="Sprite2D" parent="Sprite/Laptop"]
 modulate = Color(1, 0, 0.4, 1)
 texture = ExtResource("14_bmdiw")
 hframes = 2
 vframes = 4
-frame = 7
+frame = 5
 
 [node name="Bubble" type="Node2D" parent="Sprite"]
+visible = false
 position = Vector2(15, -2)
 script = ExtResource("15_21xou")
 
@@ -1603,30 +1770,45 @@ texture = ExtResource("16_j3gct")
 position = Vector2(-5, 0)
 
 [node name="Line1" parent="Sprite/Bubble/Text" instance=ExtResource("18_e66ni")]
+visible = false
 modulate = Color(0, 0, 0, 1)
 position = Vector2(0, -2)
+dot = true
+tab = true
+
+[node name="Dot" parent="Sprite/Bubble/Text/Line1" index="0"]
+visible = true
 
 [node name="MainText" parent="Sprite/Bubble/Text/Line1" index="1"]
-visible = false
+position = Vector2(3, 0)
 
 [node name="Line2" parent="Sprite/Bubble/Text" instance=ExtResource("18_e66ni")]
+visible = false
 modulate = Color(0, 0, 0, 1)
+dot = true
+tab = true
+
+[node name="Dot" parent="Sprite/Bubble/Text/Line2" index="0"]
+visible = true
 
 [node name="MainText" parent="Sprite/Bubble/Text/Line2" index="1"]
-visible = false
 position = Vector2(3, 0)
 
 [node name="Line3" parent="Sprite/Bubble/Text" instance=ExtResource("18_e66ni")]
+visible = false
 modulate = Color(0, 0, 0, 1)
 position = Vector2(0, 2)
+dot = true
+tab = true
+
+[node name="Dot" parent="Sprite/Bubble/Text/Line3" index="0"]
+visible = true
 
 [node name="MainText" parent="Sprite/Bubble/Text/Line3" index="1"]
-visible = false
 position = Vector2(3, 0)
 
 [node name="MainAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 root_node = NodePath("../EyeLeftUD")
-autoplay = "testing"
 libraries = {
 "": SubResource("AnimationLibrary_7lxnb")
 }
@@ -1638,6 +1820,8 @@ libraries = {
 
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
 [connection signal="button_up" from="Extended/AssignButton" to="." method="_on_assign_button_button_up"]
+[connection signal="button_up" from="Extended/Hide" to="." method="_on_hide_button_up"]
+[connection signal="button_up" from="Extended/Hide2" to="." method="_on_hide_button_up"]
 
 [editable path="Sprite/Bubble/Text/Line1"]
 [editable path="Sprite/Bubble/Text/Line2"]
