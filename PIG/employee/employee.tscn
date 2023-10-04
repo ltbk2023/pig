@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://c7rm05y0sfaof"]
+[gd_scene load_steps=39 format=3 uid="uid://c7rm05y0sfaof"]
 
 [ext_resource type="Script" path="res://employee/employee.gd" id="1_ckk1p"]
 [ext_resource type="Texture2D" uid="uid://nrs7vxh7hx5e" path="res://employee/sprites/extended/background.png" id="2_5js4y"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://employee/sprites/employee_bubble.gd" id="15_21xou"]
 [ext_resource type="Texture2D" uid="uid://2kol674ndhxl" path="res://employee/sprites/bubble/bubble.png" id="16_j3gct"]
 [ext_resource type="PackedScene" uid="uid://cr0etp4xghivg" path="res://employee/sprites/line.tscn" id="18_e66ni"]
+[ext_resource type="Texture2D" uid="uid://b0hqfeilm3wpc" path="res://employee/sprites/body/badge.png" id="19_bee1k"]
 
 [sub_resource type="Gradient" id="Gradient_vcdfr"]
 offsets = PackedFloat32Array(0.0129032, 1)
@@ -1305,13 +1306,14 @@ script = ExtResource("1_ckk1p")
 [node name="ModifiersHooks" type="Node" parent="."]
 
 [node name="Summary" type="RichTextLabel" parent="."]
-offset_left = 52.0
-offset_top = -48.0
-offset_right = 157.0
-offset_bottom = 44.0
-text = "Name
-Q / S / T
-M"
+z_index = 2
+offset_left = 44.0
+offset_top = 28.0
+offset_right = 126.0
+offset_bottom = 53.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Amadeusz"
+scroll_active = false
 
 [node name="Chest" type="Sprite2D" parent="."]
 visible = false
@@ -1438,6 +1440,7 @@ offset_bottom = 680.0
 flat = true
 
 [node name="Sprite" type="Node2D" parent="."]
+z_index = 1
 texture_filter = 1
 position = Vector2(10, 0)
 scale = Vector2(4, 4)
@@ -1720,7 +1723,7 @@ vframes = 20
 frame = 58
 
 [node name="Desk" type="Node2D" parent="Sprite"]
-position = Vector2(7, 20)
+position = Vector2(11, 20)
 
 [node name="Desk1" type="Sprite2D" parent="Sprite/Desk"]
 modulate = Color(0.631373, 0.388235, 0.176471, 1)
@@ -1762,7 +1765,7 @@ frame = 5
 
 [node name="Bubble" type="Node2D" parent="Sprite"]
 visible = false
-position = Vector2(15, -2)
+position = Vector2(18, -2)
 script = ExtResource("15_21xou")
 
 [node name="Bubble" type="Sprite2D" parent="Sprite/Bubble"]
@@ -1775,8 +1778,6 @@ position = Vector2(-5, 0)
 visible = false
 modulate = Color(0, 0, 0, 1)
 position = Vector2(0, -2)
-dot = true
-tab = true
 
 [node name="Dot" parent="Sprite/Bubble/Text/Line1" index="0"]
 visible = true
@@ -1787,8 +1788,6 @@ position = Vector2(3, 0)
 [node name="Line2" parent="Sprite/Bubble/Text" instance=ExtResource("18_e66ni")]
 visible = false
 modulate = Color(0, 0, 0, 1)
-dot = true
-tab = true
 
 [node name="Dot" parent="Sprite/Bubble/Text/Line2" index="0"]
 visible = true
@@ -1800,14 +1799,18 @@ position = Vector2(3, 0)
 visible = false
 modulate = Color(0, 0, 0, 1)
 position = Vector2(0, 2)
-dot = true
-tab = true
 
 [node name="Dot" parent="Sprite/Bubble/Text/Line3" index="0"]
 visible = true
 
 [node name="MainText" parent="Sprite/Bubble/Text/Line3" index="1"]
 position = Vector2(3, 0)
+
+[node name="Badge" type="Sprite2D" parent="Sprite"]
+modulate = Color(0.94902, 0.94902, 0.94902, 1)
+z_index = -1
+position = Vector2(18.5, 10.5)
+texture = ExtResource("19_bee1k")
 
 [node name="MainAnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 root_node = NodePath("../EyeLeftUD")

@@ -345,6 +345,7 @@ func update_sitting():
 	# update visibility of Laptop and Desk
 	$Laptop.visible = sitting
 	$Desk.visible = sitting
+	$Badge.visible = sitting
 
 # transform linear speed to exponential animation speed
 func get_anim_speed(speed):
