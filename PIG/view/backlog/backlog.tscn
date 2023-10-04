@@ -20,6 +20,7 @@ height = 340
 
 [node name="Backlog" type="Node2D"]
 script = ExtResource("1_74h7j")
+issue_visual_separation = Vector2(0, 60)
 
 [node name="BlackSprite" type="Sprite2D" parent="."]
 position = Vector2(180, 340)
@@ -42,4 +43,4 @@ text = "[font_size=20]Product Backlog[/font_size]"
 scroll_active = false
 
 [node name="Issues" type="Node2D" parent="."]
-position = Vector2(20, 120)
+position = Vector2(0, 120)

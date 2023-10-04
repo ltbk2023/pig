@@ -46,15 +46,8 @@ func _ready():
 	update_task_display()
 
 # update summary text
-# summary include name, stats, task's name employee is assigned to 
 func update_summary():
-	var text = name + \
-	"\nQ "+ str(quality) + " / S " + str(speed) + " / T " + str(testing)  + \
-	"\nM "+str(morale) 
-	if $TaskHook.get_child_count() > 0 and not \
-	$TaskHook.get_child(0).is_queued_for_deletion():
-		text += "\nA "+$TaskHook.get_child(0).get_origin().name
-	$Summary.text = text 
+	$Summary.text = name
 
 
 # update extended text
@@ -105,6 +98,7 @@ func execute_turn():
 func set_visibility_of_extended_description(v):
 	$Extended.visible = v
 	$Button.disabled = v
+	$Summary.visible = not v
 	if v:
 		$Sprite.scale = Vector2(10,10)
 	else:
