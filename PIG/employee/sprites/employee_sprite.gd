@@ -369,4 +369,17 @@ func display_issue_coding(speed:int,too_hard:bool):
 
 #play animation of testing 
 func display_testing(speed:int):
+	$MainAnimationPlayer.stop()
+	$SupportAnimationPlayer.stop()
 	$MainAnimationPlayer.play("testing",-1,get_anim_speed(speed))
+
+# prepare sprite to extention view
+func display_extended_view():
+	$MainAnimationPlayer.stop()
+	$SupportAnimationPlayer.stop()
+	eye_pose = 0
+	sitting = false
+	up = true
+	laptop_open = false
+	bubble = false
+

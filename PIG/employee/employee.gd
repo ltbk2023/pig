@@ -58,18 +58,28 @@ func update_summary():
 
 
 # update extended text
+# update stats visualization
 # update assigned to text and assign button
 func update_extended():
+	$Extended/Name.text = "[font_size=24][color=BLACK][b]"+name+"[/b][/color][/font_size]"
+	$Extended/Quality.text = "[color=BLACK]Quality: [b]"+str(quality)+"[/b][/color]"
+	$Extended/Speed.text = "[color=BLACK]Speed: [b]"+str(speed)+"[/b][/color]"
+	$Extended/Testing.text = "[color=BLACK]Testing: [b]"+str(testing)+"[/b][/color]"
+	if morale > 0:
+		$Extended/Morale.text = "[color=BLACK]Morale: [b]+"+str(morale)+"[/b][/color]"
+	else:
+		$Extended/Morale.text = "[color=BLACK]Morale: [b]"+str(morale)+"[/b][/color]"
 	# Check if there exists a hook that will not be deleted at the end of the
 	# current frame
 	if $TaskHook.get_child_count() > 0 and not \
 	$TaskHook.get_child(0).is_queued_for_deletion():
 		$Extended/AssignButton.text = "Cancel"
-		$Extended/Assignment.text = "[color=BLACK]Assigned to "+$TaskHook.get_child(0).get_origin().name
+		$Extended/Assignment.text = "Task: "+$TaskHook.get_child(0).get_origin().name
+		$Extended/Assignment.disabled = false
 	else:
 		$Extended/AssignButton.text = "Assign"
-		$Extended/Assignment.text = "[color=BLACK]Not assigned"
-	
+		$Extended/Assignment.text = "Task: Not assigned"
+		$Extended/Assignment.disabled = true
 # Called by the game scene when the turn ends.
 func execute_turn():
 	if $TaskHook.get_child_count() == 0:
@@ -89,14 +99,24 @@ func execute_turn():
 		task.test(testing)
 		
 # Set the visibility of Extended node to v.
+# set sprite scale
+# disable/enable button
+# calls update_task_display to adapt animation
 func set_visibility_of_extended_description(v):
 	$Extended.visible = v
+	$Button.disabled = v
+	if v:
+		$Sprite.scale = Vector2(10,10)
+	else:
+		$Sprite.scale = Vector2(4,4)
+	update_task_display()
 	emit_signal("extending", self, v)
 
 # Called when the button over the employee sprite is clicked. Toggles the
 # Extended node visibility on/off.
 func _on_button_button_up():
-	set_visibility_of_extended_description(not $Extended.visible)
+	set_visibility_of_extended_description(true)
+	
 
 
 func _on_assign_button_button_up():
@@ -146,7 +166,11 @@ func check_quality_preset(issue: Issue):
 	return QualityDeck.QualityPreset.LOW
 
 # check type of task given to employee and call appropriate $Sprite function
+# if extended is visible task is ignored and display_extended_view is colled
 func update_task_display():
+	if $Extended.visible:
+		$Sprite.display_extended_view()
+		return
 	if$TaskHook.get_child_count() > 0 and not \
 	$TaskHook.get_child(0).is_queued_for_deletion():
 		var task = $TaskHook.get_child(0).get_origin()
@@ -157,3 +181,7 @@ func update_task_display():
 			$Sprite.display_testing(testing)
 			return
 	$Sprite.display_idle()
+
+
+func _on_hide_button_up():
+	set_visibility_of_extended_description(false)
