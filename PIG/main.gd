@@ -1,6 +1,9 @@
 extends Node2D
 class_name Main
 
+var __nr_of_levels : int = 2
+var __nr_of_current_levels : int = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -9,18 +12,27 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+func create_entry_to_level(dict: Dictionary):
+	pass
+	
 
 # Called when "Play" button is released. Hides menu and adds game scene to Main node.
 func _on_play_button_up():
-	var game = load("res://game/game.tscn").instantiate()
-	add_child(game)
-	$Background.visible = false
-	$CanvasLayer.visible = false
+	$CanvasLayer/VBoxContainer.visible = false
+	$CanvasLayer/GridContainer.visible = true
+	$CanvasLayer/Back.visible = true
 
 #TODO: implement check if game is saved before quitting the game.
 # Called when "Quit" button is released. Closes application.
 func _on_quit_button_up():
 	get_tree().quit()
+
+# Called when "Back" button is released. Return to main menu
+func _on_back_button_up():
+	$CanvasLayer/VBoxContainer.visible = true
+	$CanvasLayer/GridContainer.visible = false
+	$CanvasLayer/Back.visible = false
 
 # save state of whole game to JSON file
 func save_to_file(file_name):
@@ -106,3 +118,34 @@ func configure_scenario(dict: Dictionary):
 				issue_hook.set_origin(issue)
 				employee.assign_issue(issue_hook)
 				issue.assign_employee(employee_hook)
+
+func start_level(file: String):
+	var game = load("res://game/game.tscn").instantiate()
+	add_child(game)
+	configure_scenario(load_from_file(file))
+	$CanvasLayer.visible = false
+	$Background.visible = false
+
+# Called when "Level1" button is released. Load first level
+func _on_level_1_button_up():
+	start_level("level/basic_scenario.json")
+
+# Called when "Level2" button is released. Load second level
+func _on_level_2_button_up():
+	print("Warning: Second Level not implemented")
+
+# Called when "Level3" button is released. Load third level
+func _on_level_3_button_up():
+	print("Warning: Third Level not implemented")
+
+# Called when "Level4" button is released. Load fourth level
+func _on_level_4_button_up():
+	print("Warning: Fourth Level not implemented")
+
+# Called when "Level5" button is released. Load fifth level
+func _on_level_5_button_up():
+	print("Warning: Fifth Level not implemented")
+
+# Called when "Level6" button is released. Load sixth level
+func _on_level_6_button_up():
+	print("Warning: Sixth Level not implemented")

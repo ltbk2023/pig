@@ -123,6 +123,7 @@ func to_json():
 # Basic configuration of Quality Deck, use to load scenario	
 func configure_quality_deck(dict: Dictionary) -> bool:
 	if dict["class"] == "QualityDeck":
-		cards = dict["cards"]
+		cards[QualityType.CLEAN] = dict["cards"]["0"]
+		cards[QualityType.BUG] = dict["cards"]["1"]
 		return true
 	return false
