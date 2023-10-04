@@ -1,30 +1,78 @@
+@tool
 extends Node2D
 class_name Issue
 signal assign(owner)
 
 enum IssueType {FEATURE, BUG_ISSUE}
-# decription is used in Summary
-var type_description = {
-	IssueType.FEATURE:"[color=BLACK]FEATURE[/color]",
-	IssueType.BUG_ISSUE:"[color=DARK_RED]BUG ISSUE[/color]"
+# tags used in Summary that depend on type
+var type_start = {
+	IssueType.FEATURE:"[color=BLACK]",
+	IssueType.BUG_ISSUE:"[color=DARK_RED][b]"
 }
-
-enum IssueState {UNAVAILABLE, IN_BACKLOG, IN_PROGRESS, COMPLETED}
-# decription is used in Summary
-var  state_descriptions = {
-	IssueState.UNAVAILABLE: "[color=DARK_RED]N/A[/color]",
-	IssueState.IN_BACKLOG:"[color=DARK_BLUE]in backlog[/color]",
-	IssueState.IN_PROGRESS: "[color=GOLD]in progres[/color]",
-	IssueState.COMPLETED: "[color=DARK_GREEN]completed[/color]",
+var type_end = {
+	IssueType.FEATURE:"[/color]",
+	IssueType.BUG_ISSUE:"[/b][/color]"
 }
+# represents state of issue
+# number represents corresponding frame in state sprite
+enum IssueState {UNAVAILABLE=0, IN_BACKLOG=1, IN_PROGRESS=2, COMPLETED=3}
 
-@export var type:IssueType
+@export var type:IssueType:
+	set(t):
+		type =t
+		$Sprite/Importance.visible = t == IssueType.FEATURE
+		update_colors()
 @export var state:IssueState
 @export_range(1,4) var difficulty = 1
 @export_range(1,3) var time = 1
 # This variable represents the importance of the issue to the client. It is
 # used to calculate the client's happiness after a sprint
-@export var importance_to_client: int = 0
+@export var importance_to_client: int = 0:
+	set(i):
+		importance_to_client = i 
+		update_importance()
+
+@export_group("Visualization")
+# subgroup represent high/low levels of importance
+@export_subgroup("importance")
+@export var low_importance = 2:
+	set(i):
+		low_importance = i
+		update_importance()
+@export var high_importance = 4:
+	set(i):
+		high_importance = i
+		update_importance()
+# subgroup represent colors of feature's background
+@export_subgroup("feature")
+@export var feature_1=Color8(240,255,255):
+	set(c):
+		feature_1 = c
+		update_colors()
+@export var feature_2=Color8(220,255,255):
+	set(c):
+		feature_2 = c
+		update_colors()
+@export var feature_3=Color8(180,255,255):
+	set(c):
+		feature_3 = c
+		update_colors()
+# subgroup represent colors of bug's background
+@export_subgroup("bug")
+@export var bug_1=Color8(255,245,245):
+	set(c):
+		bug_1 = c
+		update_colors()
+@export var bug_2=Color8(255,235,235):
+	set(c):
+		bug_2 = c
+		update_colors()
+@export var bug_3=Color8(255,215,215):
+	set(c):
+		bug_3 = c
+		update_colors()
+
+
 var __progress = 0
 
 # Specifies how many of this node's parents in the issue tree have not been
@@ -42,7 +90,8 @@ signal extending(owner, extending)
 func _ready():
 	update_summary()
 	update_extended()
-	remaining_parents = 0
+	update_colors()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -57,30 +106,30 @@ func set_visibility_on_exteded_desription(v):
 	emit_signal("extending", self, v)
 
 # update summary text
-# summary include type, name, difficulty, time, state
+# summary include type, name, state
 func update_summary():
-	$Summary.text =  type_description[type]+" [color=BLACK]"+name+"  D "\
-	+str(difficulty)+" / T "+str(time) + "[/color] " + \
-	state_descriptions[state] 
-
+	$Summary.text =  type_start[type]+name+type_end[type]
+	$Sprite/State.frame = state
+	update_importance()
+	update_colors()
 # update extended text
 # update assigned to text and assign button
 func update_extended():
 	$Extended/Sprite2D2/Unlocks.visible = false
 	if state == IssueState.COMPLETED:
 		$Extended/Sprite2D2/AssignButton.visible = false
-		$Extended/Sprite2D2/AssignButton.disabled = true
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Done"
 	elif state == IssueState.UNAVAILABLE:
 		$Extended/Sprite2D2/AssignButton.visible = false
-		$Extended/Sprite2D2/AssignButton.disabled = true
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Unavailable"
 	elif $EmployeeHook.get_child_count(0)  and not \
 	$EmployeeHook.get_child(0).is_queued_for_deletion():
 		$Extended/Sprite2D2/AssignButton.text = "Cancel"
+		$Extended/Sprite2D2/AssignButton.visible = true
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Assigned to " + $EmployeeHook.get_child(0).get_origin().name
 	else:
 		$Extended/Sprite2D2/AssignButton.text = "Assign"
+		$Extended/Sprite2D2/AssignButton.visible = true
 		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Not assigned"
 	if child_issues:
 		$Extended/Sprite2D2/Unlocks.visible = true
@@ -195,3 +244,23 @@ func configure_issue(dict: Dictionary) -> bool:
 func add_child_issue(issue: Issue):
 	if not child_issues.has(issue):
 		child_issues.append(issue)
+
+# set sprite to represent correct importance level
+func update_importance():
+	if importance_to_client <= low_importance:
+		$Sprite/Importance.frame = 0
+	elif importance_to_client <high_importance:
+		$Sprite/Importance.frame = 1
+	else:
+		$Sprite/Importance.frame = 2
+		
+# update colors of the background
+func update_colors():
+	if type == IssueType.FEATURE:
+		$Sprite/ShortBackground/Back1.modulate = feature_1
+		$Sprite/ShortBackground/Back2.modulate = feature_2
+		$Sprite/ShortBackground/Back3.modulate = feature_3
+	elif type == IssueType.BUG_ISSUE:
+		$Sprite/ShortBackground/Back1.modulate = bug_1
+		$Sprite/ShortBackground/Back2.modulate = bug_2
+		$Sprite/ShortBackground/Back3.modulate = bug_3
