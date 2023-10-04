@@ -235,7 +235,7 @@ func launch_modifiers():
 # TODO: save this points somewhere or i don't know
 # I create this only to not forget about this signal 
 func _on_sprint_end_victory_points(owner, amount):
-	pass # Replace with function body.
+	print("Warning: _on_sprint_end_victory_points not complete")
 
 # Other view may want to return to main view of game
 # Owner can be useful in the future
