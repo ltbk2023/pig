@@ -20,8 +20,10 @@ func _ready():
 		issue.difficulty = (i % 4) + 1
 		issue.time = (i % 3) + 1
 		issue.importance_to_client = (2*i%5) + 1
-		issue.state = Issue.IssueState.IN_BACKLOG
 		issue.name = "PIG-"+str(i)+": "+"test ".repeat(i)
+		issue.remaining_parents = issue_number-i-1
+		for j in range(i):
+			issue.add_child_issue($Backlog/Issues.get_child(j))
 		$Backlog.add_issue(issue)
 
 
