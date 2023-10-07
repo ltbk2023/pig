@@ -7,6 +7,8 @@ enum GameState {NOT_STARTED, IN_PROGRESS, FINISHED}
 
 @export var max_sprints : int = 2
 
+signal show_menu()
+
 @export_category("Views Swichting")
 @export var speed_trigger = 40
 @export var angle_precision  = PI/3
@@ -14,6 +16,9 @@ enum GameState {NOT_STARTED, IN_PROGRESS, FINISHED}
 @export var backlog_to_office = Vector2(1,0)
 @export var office_to_testing = Vector2(1,0)
 @export var testing_to_office = Vector2(-1,0)
+
+@export var show_days_left = true
+
 var is_view_just_switched = false
 
 var __current_turn : int
@@ -29,6 +34,7 @@ func _ready():
 	__current_sprint = 0
 	__current_turn = 0
 	victory_points = 0
+	display_date()
 	randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,6 +51,7 @@ func execute_turn():
 	__current_turn += 1
 	if __current_turn % turns_per_sprint == 0:
 		execute_end_of_sprint()
+	display_date()
 
 
 # function execute end of sprint and update current sprint
@@ -80,7 +87,13 @@ func execute_end_of_sprint():
 
 # function that listens for the end button release and calls execute_turn()
 func _on_end_turn_button_button_up():
-	execute_turn()
+	if $Hooks/EmployeeToAssign.get_child_count() == 0 and \
+		$Hooks/TaskToAssign.get_child_count() == 0:
+			execute_turn()
+	else:
+		cancel_task_to_assign()
+		cancel_employee_to_assign()
+		display_date()
 
 # check if movement is in the given direction with set precision 
 func is_in_direction(movement:Vector2,direction:Vector2) -> bool:
@@ -129,14 +142,14 @@ func _input(event):
 # Listen to assign request from backlog
 # Call save_task_to_assign
 func _on_backlog_assign(owner):
-	$CanvasLayer/AssigningStatusView.visible = true
 	save_task_to_assign(owner)
+	
 
 # Listen to assign request from testing
 # Call save_task_to_assign
 func _on_testing_assign(owner):
-	$CanvasLayer/AssigningStatusView.visible = true
 	save_task_to_assign(owner)
+	
 	
 # Listen to assign request from office
 # Create hook to owner and place it in Hooks/EmployeeToAssign
@@ -151,7 +164,7 @@ func _on_office_assign(owner):
 	var hook = Hook.new()
 	hook.set_origin(owner)
 	$Hooks/EmployeeToAssign.add_child(hook)
-	$CanvasLayer/AssigningStatusView.visible = true
+	display_assign(false)
 	assign()
 
 # Create hook to task and place it in Hooks/TaskToAssign
@@ -166,6 +179,7 @@ func save_task_to_assign(task):
 	var hook = Hook.new()
 	hook.set_origin(task)
 	$Hooks/TaskToAssign.add_child(hook)
+	display_assign(true)
 	assign()
 
 # Checks if hooks needed to assign exist
@@ -193,7 +207,7 @@ func assign():
 				$Hooks/TaskToAssign.remove_child(task_hook)
 				employee_hook.get_origin().assign_issue(task_hook)
 				task_hook.get_origin().assign_employee(employee_hook)
-			$CanvasLayer/AssigningStatusView.visible = false
+				display_date()
 			return true
 		else:
 			$Hooks/EmployeeToAssign.get_child(0).queue_free()
@@ -245,21 +259,17 @@ func _on_sprint_end_return_to_office_view(owner):
 	$Testing.visible = false
 	$SprintEnd.visible = false
 	$Backlog.visible = false
+	display_date()
 
 # Deletes the hook from TaskToAssign if it exists.
 func cancel_task_to_assign():
 	if $Hooks/TaskToAssign.get_child_count() > 0:
 		$Hooks/TaskToAssign.get_child(0).queue_free()
-		
 # Deletes the from EmployeeToAssign if it exists.
 func cancel_employee_to_assign():
 	if $Hooks/EmployeeToAssign.get_child_count() > 0:
 		$Hooks/EmployeeToAssign.get_child(0).queue_free()
-
-func _on_cancel_assigning_button_up():
-	cancel_task_to_assign()
-	cancel_employee_to_assign()
-	$CanvasLayer/AssigningStatusView.visible = false
+		
 
 # Return a JSON dictionary representing this object in its current state
 func to_json():
@@ -284,3 +294,47 @@ func configure_game(dict: Dictionary) -> bool:
 		victory_points = dict["victory points"]
 		return true
 	return false
+
+# set status bar to day of the week and sprint number
+# set button to "End Day"
+func display_date():
+	var day_of_the_week=["Monday","Tuesday","Wednesday","Thursday","Friday"]
+	
+	var days_left = turns_per_sprint-__current_turn%turns_per_sprint
+	
+	var text =day_of_the_week[ __current_turn%5]
+	if show_days_left:
+		if days_left == 1:
+			text += "[b] last day[/b]"
+		else:
+			text += " [b]"+str(days_left)+"[/b] days left"
+	text +="\nSprint: [b]"+\
+		str(__current_sprint+1)+"[/b] out of [b]"+\
+		str(max_sprints)+'[/b]'
+	$CanvasLayer/Status.text = text
+	$CanvasLayer/Button.text = "End Day"
+
+# set status bar to Assigning and name of task or employee
+# set button to "Cancel"
+func display_assign(task):
+	var text = "Assigning:\n"
+	if task:
+		text += $Hooks/TaskToAssign.get_child(0).get_origin().name
+	else:
+		text += $Hooks/EmployeeToAssign.get_child(0).get_origin().name
+	$CanvasLayer/Status.text = text
+	$CanvasLayer/Button.text = "Cancel"
+	
+
+# emit show menu request
+func _on_menu_button_button_up():
+	show_menu.emit()
+
+# hide message
+func _on_exit_button_button_up():
+	$CanvasLayer/Message.visible = false
+
+# TODO
+# implement reaction to show message request 
+func _on_message_button_up():
+	pass
