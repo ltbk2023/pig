@@ -1367,6 +1367,7 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_0p6ld")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_udh30")
 text = "Task: Unassinged"
 flat = true
+text_overrun_behavior = 2
 
 [node name="AssignButton" type="Button" parent="Extended"]
 offset_left = 245.0
