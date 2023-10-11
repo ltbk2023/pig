@@ -7,3 +7,17 @@
 script = ExtResource("2_l5e7n")
 employee_number = 3
 issue_number = 6
+show_days_left = false
+
+[node name="Status" parent="CanvasLayer" index="1"]
+offset_right = -95.0
+
+[node name="Message" parent="CanvasLayer" index="3"]
+visible = false
+
+[node name="Message" parent="CanvasLayer/Message" index="1"]
+offset_top = 0.0
+
+[connection signal="button_up" from="CanvasLayer/Message/Message" to="." method="_on_message_button_up"]
+[connection signal="button_up" from="CanvasLayer/Message/ExitButton" to="." method="_on_exit_button_button_up"]
+[connection signal="button_up" from="CanvasLayer/MenuButton" to="." method="_on_menu_button_button_up"]
