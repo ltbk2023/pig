@@ -1,38 +1,125 @@
+@tool
 extends Node2D
 class_name Issue
 signal assign(owner)
 
 enum IssueType {FEATURE, BUG_ISSUE}
-# decription is used in Summary
-var type_description = {
-	IssueType.FEATURE:"[color=BLACK]FEATURE[/color]",
-	IssueType.BUG_ISSUE:"[color=DARK_RED]BUG ISSUE[/color]"
+# name of type used in visualisation
+var type_name = {
+	IssueType.FEATURE:"FEATURE",
+	IssueType.BUG_ISSUE:"BUG ISSUE"
+}
+# tags used in name that depend on type
+var type_start = {
+	IssueType.FEATURE:"[color=BLACK]",
+	IssueType.BUG_ISSUE:"[color=DARK_RED][b]"
+}
+var type_end = {
+	IssueType.FEATURE:"[/color]",
+	IssueType.BUG_ISSUE:"[/b][/color]"
 }
 
-enum IssueState {UNAVAILABLE, IN_BACKLOG, IN_PROGRESS, COMPLETED}
-# decription is used in Summary
-var  state_descriptions = {
-	IssueState.UNAVAILABLE: "[color=DARK_RED]N/A[/color]",
-	IssueState.IN_BACKLOG:"[color=DARK_BLUE]in backlog[/color]",
-	IssueState.IN_PROGRESS: "[color=GOLD]in progres[/color]",
-	IssueState.COMPLETED: "[color=DARK_GREEN]completed[/color]",
+
+# represents state of issue
+# number represents corresponding frame in state sprite
+enum IssueState {UNAVAILABLE=0, IN_BACKLOG=1, IN_PROGRESS=2, COMPLETED=3}
+# name of state used in visualisation
+var state_name={
+	IssueState.UNAVAILABLE:"Blocked",
+	IssueState.IN_BACKLOG:"In Backlog",
+	IssueState.IN_PROGRESS:"In Progres",
+	IssueState.COMPLETED:"Completed"
+}
+# message in assignment that depends on state
+var state_assigned_message={
+	IssueState.UNAVAILABLE:"Unlock task before assigning",
+	IssueState.IN_BACKLOG:"Not assigned",
+	IssueState.COMPLETED:"Already completed"
 }
 
-@export var type:IssueType
+@export var type:IssueType:
+	set(t):
+		type =t
+		if is_inside_tree():
+			update_summary()
+			update_colors()
 @export var state:IssueState
 @export_range(1,4) var difficulty = 1
 @export_range(1,3) var time = 1
 # This variable represents the importance of the issue to the client. It is
 # used to calculate the client's happiness after a sprint
-@export var importance_to_client: int = 0
+@export var importance_to_client: int = 0:
+	set(i):
+		importance_to_client = i 
+		update_importance()
+
+@export_group("Visualization")
+# subgroup represents high/low levels of importance
+@export_subgroup("importance")
+@export var low_importance = 2:
+	set(i):
+		low_importance = i
+		update_importance()
+@export var high_importance = 4:
+	set(i):
+		high_importance = i
+		update_importance()
+# subgroup represents colors of feature's background
+@export_subgroup("feature")
+@export var feature_1=Color8(225,235,255):
+	set(c):
+		feature_1 = c
+		update_colors()
+@export var feature_2=Color8(205,215,255):
+	set(c):
+		feature_2 = c
+		update_colors()
+@export var feature_3=Color8(165,175,255):
+	set(c):
+		feature_3 = c
+		update_colors()
+# subgroup represents colors of bug's background
+@export_subgroup("bug")
+@export var bug_1=Color8(255,235,235):
+	set(c):
+		bug_1 = c
+		update_colors()
+@export var bug_2=Color8(255,215,215):
+	set(c):
+		bug_2 = c
+		update_colors()
+@export var bug_3=Color8(255,175,175):
+	set(c):
+		bug_3 = c
+		update_colors()
+@export_subgroup("Extended")
+#set visible tab and move according button
+@export_range(0,2) var tab = 0:
+	set(t):
+		# move buttons
+		$Extended/Bottom/Tabs/Buttons.get_child(tab).position.y = 10
+		$Extended/Bottom/Tabs/Buttons.get_child(t).position.y = 20
+		# switch visible tab
+		$Extended/Bottom/Tabs/Content.get_child(tab).visible=false
+		$Extended/Bottom/Tabs/Content.get_child(t).visible=true
+		
+		tab = t
+		# set visible background
+		$Extended/Bottom/Back1.frame_coords.y = t
+		$Extended/Bottom/Back2.frame_coords.y = t
+		$Extended/Bottom/Back3.frame_coords.y = t
+		
+
 var __progress = 0
 
 # Specifies how many of this node's parents in the issue tree have not been
 # finished yet
 var remaining_parents: int
 # An array containing this issue's children in the issue tree
-var child_issues: Array[Issue]
-
+var child_issues: Array[Issue] = []
+# An array containing this issue's parents in the issue tree. 
+# Used only in Extended View
+var parent_issues: Array[Issue] = []
 # Signal that will be emitted when the Extended node is being either shown or 
 # hidden.
 # extending - set to true if the Extended node is BEING set to visible
@@ -42,7 +129,11 @@ signal extending(owner, extending)
 func _ready():
 	update_summary()
 	update_extended()
-	remaining_parents = 0
+	update_colors()
+	# it prevents changing state to IN_BACKLOG when Scene is loaded to editor
+	if not Engine.is_editor_hint():
+		check_unlock()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -52,48 +143,85 @@ func get_progress():
 	return self.__progress
 
 # set visibility of extended description to v
-func set_visibility_on_exteded_desription(v):
+func set_visibility_on_exteded_description(v):
 	$Extended.visible = v
+	$Sprite.visible = not v
+	$Summary.visible = not v
 	emit_signal("extending", self, v)
 
 # update summary text
-# summary include type, name, difficulty, time, state
+# summary includes type, name, state
 func update_summary():
-	$Summary.text =  type_description[type]+" [color=BLACK]"+name+"  D "\
-	+str(difficulty)+" / T "+str(time) + "[/color] " + \
-	state_descriptions[state] 
-
-# update extended text
-# update assigned to text and assign button
+	$Summary.text =  type_start[type]+name+type_end[type]
+	$Sprite/State.frame = state
+	$Sprite/Importance.visible = type == IssueType.FEATURE
+	update_importance()
+	update_colors()
+# update extended
+# update name,difficulty,importance
+# update 
 func update_extended():
-	$Extended/Sprite2D2/Unlocks.visible = false
-	if state == IssueState.COMPLETED:
-		$Extended/Sprite2D2/AssignButton.visible = false
-		$Extended/Sprite2D2/AssignButton.disabled = true
-		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Done"
-	elif state == IssueState.UNAVAILABLE:
-		$Extended/Sprite2D2/AssignButton.visible = false
-		$Extended/Sprite2D2/AssignButton.disabled = true
-		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Unavailable"
-	elif $EmployeeHook.get_child_count(0)  and not \
-	$EmployeeHook.get_child(0).is_queued_for_deletion():
-		$Extended/Sprite2D2/AssignButton.text = "Cancel"
-		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Assigned to " + $EmployeeHook.get_child(0).get_origin().name
+	# update that depends on name
+	$Extended/Name.text = type_start[type]+name+type_end[type]
+	# update that depends on difficulty
+	$Extended/Difficulty.text = "Difficulty: [b]"+str(difficulty)+"[/b]"
+	# update that depends on importance
+	if type == IssueType.FEATURE:
+		$Extended/Importance.text = "Importance: [b]"+str(importance_to_client)+"[/b]"
 	else:
-		$Extended/Sprite2D2/AssignButton.text = "Assign"
-		$Extended/Sprite2D2/Assignment.text = "[color=BLACK]Not assigned"
-	if child_issues:
-		$Extended/Sprite2D2/Unlocks.visible = true
-		$Extended/Sprite2D2/Unlocks.text = "[color=BLACK]Unlocks: "
-		for i in range(len(child_issues) -1):
-			$Extended/Sprite2D2/Unlocks.text += str(child_issues[i].name) + ", "
-		$Extended/Sprite2D2/Unlocks.text += str(child_issues[-1].name)
+		$Extended/Importance.text = "Importance:"+type_start[type]+"BUG"+type_end[type]
+	
+	# update that depends on type
+	$Extended/Type.text = "Type: "+type_name[type]
+	# hide bottom in bug isssue
+	$Extended/Bottom.visible = type == IssueType.FEATURE
+	if type == IssueType.FEATURE:
+		$Extended/HideButton2.position = Vector2(0,490)
+	else:
+		$Extended/HideButton2.position = Vector2(0,250)
+	
+	#update that depends on state
+	$Extended/State.text = "State: "+state_name[state]
+	$Extended/Assignment.disabled = not state == IssueState.IN_PROGRESS
+	
+	if state == IssueState.IN_PROGRESS:
+		$Extended/Assignment.text = "Assigned to " + $EmployeeHook.get_child(0).get_origin().name
+		$Extended/AssignButton.text = "Cancel"
+	else:
+		$Extended/Assignment.text = state_assigned_message[state]
+		$Extended/AssignButton.text = "Assign"
+		
+	$Extended/Progres.text="Progress: "
+	if state == IssueState.UNAVAILABLE:
+		# only singular number in english is 1. 0 is plural
+		if remaining_parents == 1:
+			$Extended/Progres.text += "[b]"+str(remaining_parents)+"[/b] task blocks this task"
+		else:
+			$Extended/Progres.text += "[b]"+str(remaining_parents)+"[/b] tasks block this task"
+	else:
+		$Extended/Progres.text += "[b]"+str(__progress)+"[/b] out of [b]"+str(time)+"[/b]"
+		# only singular number in english is 1. 0 is plural
+		if time == 1:
+			$Extended/Progres.text += " subtask finished"
+		else:
+			$Extended/Progres.text += " subtasks finished"
+	# assined button visible only in IN_BACKLOG and IN_BACKLOG state
+	$Extended/AssignButton.visible = IssueState.IN_BACKLOG == state or IssueState.IN_BACKLOG == state
+	# update blocks tab 
+	$Extended/Bottom/Tabs/Content/Tab3.clear()
+	for child in child_issues:
+		$Extended/Bottom/Tabs/Content/Tab3.add_item(child.name)
+	# update is blocked by tab
+	$Extended/Bottom/Tabs/Content/Tab2.clear()
+	for issue in parent_issues:
+		$Extended/Bottom/Tabs/Content/Tab2.add_item(issue.name)
 		
 # Called when progress is to be increased. If the progress exceeds the time,
 # complete() is called
 func add_progress(progress):
 	self.__progress += progress
 	if self.__progress >= self.time:
+		self.__progress = self.time
 		complete()
 		
 # This function handles the issue's completion
@@ -107,14 +235,16 @@ func complete():
 # Called by the issue's tree parent when the parent is completed.
 func on_parent_completed():
 	remaining_parents -= 1
+	check_unlock()
+# check and unlock task
+func check_unlock():
 	if remaining_parents == 0:
 		self.state = IssueState.IN_BACKLOG
 		update_summary()
 		update_extended()
-		
 # when button is realised toggle extended description visibility
 func _on_button_button_up():
-	set_visibility_on_exteded_desription(not $Extended.visible)
+	set_visibility_on_exteded_description(true)
 
 # sends issue assign signal to the higher part of the tree
 # final destination should be backlog
@@ -168,7 +298,7 @@ func to_json():
 		"name": name,
 		"remaining parents": remaining_parents,
 		"child_issues": child_issues_names,
-		"description": $Extended/Sprite2D2/Description.text,
+		"description": $Extended/Bottom/Tabs/Content/Tab1.text,
 		"difficulty": difficulty,
 		"time": time,
 		"state": state,
@@ -181,7 +311,7 @@ func to_json():
 func configure_issue(dict: Dictionary) -> bool:
 	if dict["class"] == "Issue":
 		remaining_parents = dict["remaining parents"]
-		$Extended/Sprite2D2/Description.text = dict["description"]
+		$Extended/Bottom/Tabs/Content/Tab1.text = dict["description"]
 		difficulty = dict["difficulty"]
 		name = dict["name"]
 		time = dict["time"]
@@ -195,3 +325,56 @@ func configure_issue(dict: Dictionary) -> bool:
 func add_child_issue(issue: Issue):
 	if not child_issues.has(issue):
 		child_issues.append(issue)
+		issue.__add_parent_issue(self)
+		update_extended()
+
+func __add_parent_issue(issue:Issue):
+	if not parent_issues.has(issue):
+		parent_issues.append(issue)
+		update_extended()
+
+# set sprite to represent correct importance level
+func update_importance():
+	if importance_to_client <= low_importance:
+		$Sprite/Importance.frame = 0
+	elif importance_to_client < high_importance:
+		$Sprite/Importance.frame = 1
+	else:
+		$Sprite/Importance.frame = 2
+	
+		
+# update colors of the background
+func update_colors():
+	var color_1 = bug_1
+	var color_2 = bug_2
+	var color_3 = bug_3
+	if type == IssueType.FEATURE:
+		color_1 = feature_1
+		color_2 = feature_2
+		color_3 = feature_3
+	$Sprite/ShortBackground/Back1.modulate = color_1
+	$Extended/Bottom/Back1.modulate = color_1
+	$Extended/Top/Back1.modulate = color_1
+	
+	$Sprite/ShortBackground/Back2.modulate = color_2
+	$Extended/Bottom/Back2.modulate = color_2
+	$Extended/Top/Back2.modulate = color_2
+	
+	$Sprite/ShortBackground/Back3.modulate = color_3
+	$Extended/Bottom/Back3.modulate = color_3
+	$Extended/Top/Back3.modulate = color_3
+	
+# group of functions that receive switch tab requests
+func _on_tab_1_button_up():
+	tab = 0
+
+func _on_tab_2_button_up():
+	tab = 1
+
+func _on_tab_3_button_up():
+	tab = 2
+
+func _on_hide_button_button_up():
+	set_visibility_on_exteded_description(false)
+
+

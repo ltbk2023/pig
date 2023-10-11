@@ -49,9 +49,9 @@ func get_issues():
 	return $Issues.get_children()
 	
 func _on_extending(owner, extending):
-	if not extending:
-		return
-	for issue in $Issues.get_children():
-		if issue != owner:
-			issue.set_visibility_on_exteded_desription(false)
-	
+	for task in $Issues.get_children():
+		task.visible = task == owner or not extending 
+	if extending:
+		owner.position = -$Issues.position
+	else:
+		update_issues_position()

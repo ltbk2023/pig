@@ -1,89 +1,405 @@
-[gd_scene load_steps=6 format=3 uid="uid://dd083tmt7puk4"]
+[gd_scene load_steps=38 format=3 uid="uid://cmbmbht6ekb55"]
 
 [ext_resource type="Script" path="res://issue/issue.gd" id="1_dnevk"]
+[ext_resource type="Texture2D" uid="uid://bbddsukh6c4vi" path="res://issue/sprites/short_background.png" id="2_q1q1c"]
+[ext_resource type="Texture2D" uid="uid://b3ptltq3sdyeb" path="res://issue/sprites/state.png" id="3_5edvk"]
+[ext_resource type="Texture2D" uid="uid://ba1eyx161j6sf" path="res://issue/sprites/importance.png" id="4_2jm8c"]
+[ext_resource type="Texture2D" uid="uid://4ibbofpwr63y" path="res://issue/sprites/extended_top.png" id="5_f14va"]
+[ext_resource type="Texture2D" uid="uid://d1gb08muhmu50" path="res://issue/sprites/extended_bottom.png" id="6_16obf"]
 
-[sub_resource type="Gradient" id="Gradient_dqevm"]
-offsets = PackedFloat32Array(0.666667)
-colors = PackedColorArray(0.720467, 0.720468, 0.720467, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_856d1"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_r2p30"]
-gradient = SubResource("Gradient_dqevm")
-width = 330
-height = 25
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c000p"]
 
-[sub_resource type="Gradient" id="Gradient_blit4"]
-offsets = PackedFloat32Array(0.666667)
-colors = PackedColorArray(1, 1, 1, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ivjo"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_12x6g"]
-gradient = SubResource("Gradient_blit4")
-width = 330
-height = 150
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lttsr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kud2i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jtiff"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2m1e3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f2o7e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hkoh3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qebhb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m06cu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wr60r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dus2q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4i62o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbrcb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5xhii"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2jkqw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_74mkh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mkl4s"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wjufn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d8q2u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_je4yq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_obwc1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qscdn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ccnc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ue6sp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tk5y2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v3rbb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pudga"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vbdr2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57m0a"]
 
 [node name="Issue" type="Node2D"]
 script = ExtResource("1_dnevk")
 
 [node name="EmployeeHook" type="Node" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
-texture = SubResource("GradientTexture2D_r2p30")
+[node name="Sprite" type="Node2D" parent="."]
+texture_filter = 1
+scale = Vector2(10, 10)
+
+[node name="ShortBackground" type="Node2D" parent="Sprite"]
+texture_filter = 1
+position = Vector2(-1, 0)
+
+[node name="Back2" type="Sprite2D" parent="Sprite/ShortBackground"]
+modulate = Color(0.803922, 0.843137, 1, 1)
+texture = ExtResource("2_q1q1c")
 centered = false
+hframes = 3
+frame = 1
+
+[node name="Back1" type="Sprite2D" parent="Sprite/ShortBackground"]
+modulate = Color(0.882353, 0.921569, 1, 1)
+texture = ExtResource("2_q1q1c")
+centered = false
+hframes = 3
+
+[node name="Back3" type="Sprite2D" parent="Sprite/ShortBackground"]
+modulate = Color(0.647059, 0.686275, 1, 1)
+texture = ExtResource("2_q1q1c")
+centered = false
+hframes = 3
+frame = 2
+
+[node name="State" type="Sprite2D" parent="Sprite"]
+position = Vector2(1, 0)
+texture = ExtResource("3_5edvk")
+centered = false
+vframes = 4
+frame = 1
+
+[node name="Importance" type="Sprite2D" parent="Sprite"]
+position = Vector2(30, 0)
+texture = ExtResource("4_2jm8c")
+centered = false
+vframes = 3
 
 [node name="Summary" type="RichTextLabel" parent="."]
-offset_left = 5.0
-offset_right = 325.0
-offset_bottom = 25.0
+offset_left = 80.0
+offset_top = 20.0
+offset_right = 300.0
+offset_bottom = 50.0
 bbcode_enabled = true
-text = "[color=BLACK]FEATURE name D 0 / T 0 in backlog [/color]"
+text = "[color=BLACK]Issue[/color]"
+scroll_active = false
 
 [node name="Button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
-offset_right = 339.0
-offset_bottom = 31.0
+offset_left = 10.0
+offset_right = 350.0
+offset_bottom = 60.0
 
 [node name="Extended" type="Node2D" parent="."]
 visible = false
 z_index = 1
+texture_filter = 1
+position = Vector2(0, 100)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Extended"]
-position = Vector2(0, 35)
-texture = SubResource("GradientTexture2D_12x6g")
+[node name="Top" type="Node2D" parent="Extended"]
+
+[node name="Back1" type="Sprite2D" parent="Extended/Top"]
+modulate = Color(0.882353, 0.921569, 1, 1)
+scale = Vector2(10, 10)
+texture = ExtResource("5_f14va")
 centered = false
+hframes = 3
 
-[node name="Assignment" type="RichTextLabel" parent="Extended/Sprite2D2"]
-offset_left = 5.0
-offset_top = 120.0
-offset_right = 158.0
-offset_bottom = 150.0
+[node name="Back2" type="Sprite2D" parent="Extended/Top"]
+modulate = Color(0.803922, 0.843137, 1, 1)
+position = Vector2(1, 0)
+scale = Vector2(10, 10)
+texture = ExtResource("5_f14va")
+centered = false
+hframes = 3
+frame = 1
+
+[node name="Back3" type="Sprite2D" parent="Extended/Top"]
+modulate = Color(0.647059, 0.686275, 1, 1)
+scale = Vector2(10, 10)
+texture = ExtResource("5_f14va")
+centered = false
+hframes = 3
+frame = 2
+
+[node name="Name" type="RichTextLabel" parent="Extended"]
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 345.0
+offset_bottom = 46.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "[color=BLACK]Assigned to Name[/color]"
+text = "[color=BLACK]Issue[/color]"
+scroll_active = false
 
-[node name="Description" type="RichTextLabel" parent="Extended/Sprite2D2"]
-offset_left = 5.0
-offset_right = 325.0
-offset_bottom = 75.0
+[node name="Type" type="RichTextLabel" parent="Extended"]
+offset_left = 15.0
+offset_top = 65.0
+offset_right = 165.0
+offset_bottom = 96.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Type: FEATURE"
+scroll_active = false
+
+[node name="State" type="RichTextLabel" parent="Extended"]
+offset_left = 195.0
+offset_top = 65.0
+offset_right = 345.0
+offset_bottom = 96.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "State: In Backlog"
+scroll_active = false
+
+[node name="Difficulty" type="RichTextLabel" parent="Extended"]
+offset_left = 15.0
+offset_top = 115.0
+offset_right = 165.0
+offset_bottom = 146.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Difficulty: [b]1[/b]"
+scroll_active = false
+
+[node name="Importance" type="RichTextLabel" parent="Extended"]
+offset_left = 195.0
+offset_top = 115.0
+offset_right = 345.0
+offset_bottom = 146.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Importance: [b]0[/b]"
+scroll_active = false
+
+[node name="Progres" type="RichTextLabel" parent="Extended"]
+offset_left = 15.0
+offset_top = 165.0
+offset_right = 345.0
+offset_bottom = 196.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Progres: [b]0[/b] out of [b]1[/b] subtask finished"
+scroll_active = false
+
+[node name="Assignment" type="Button" parent="Extended"]
+offset_left = 15.0
+offset_top = 210.0
+offset_right = 235.0
+offset_bottom = 239.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.231373, 0.231373, 0.231373, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_856d1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_c000p")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6ivjo")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_lttsr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kud2i")
+disabled = true
+text = "Not assigned"
+flat = true
+
+[node name="AssignButton" type="Button" parent="Extended"]
+offset_left = 255.0
+offset_top = 210.0
+offset_right = 345.0
+offset_bottom = 241.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.152941, 0.152941, 0.152941, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jtiff")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2m1e3")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_f2o7e")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hkoh3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qebhb")
+text = "Assign"
+flat = true
+
+[node name="Bottom" type="Node2D" parent="Extended"]
+position = Vector2(0, 250)
+
+[node name="Back1" type="Sprite2D" parent="Extended/Bottom"]
+modulate = Color(0.882353, 0.921569, 1, 1)
+scale = Vector2(10, 10)
+texture = ExtResource("6_16obf")
+centered = false
+hframes = 3
+vframes = 3
+
+[node name="Back2" type="Sprite2D" parent="Extended/Bottom"]
+modulate = Color(0.803922, 0.843137, 1, 1)
+scale = Vector2(10, 10)
+texture = ExtResource("6_16obf")
+centered = false
+hframes = 3
+vframes = 3
+frame = 1
+
+[node name="Back3" type="Sprite2D" parent="Extended/Bottom"]
+modulate = Color(0.647059, 0.686275, 1, 1)
+scale = Vector2(10, 10)
+texture = ExtResource("6_16obf")
+centered = false
+hframes = 3
+vframes = 3
+frame = 2
+
+[node name="Tabs" type="Node2D" parent="Extended/Bottom"]
+
+[node name="Buttons" type="Node2D" parent="Extended/Bottom/Tabs"]
+
+[node name="Tab1Button" type="Button" parent="Extended/Bottom/Tabs/Buttons"]
+offset_left = 10.0
+offset_top = 20.0
+offset_right = 110.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_m06cu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wr60r")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dus2q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4i62o")
+text = "Description"
+flat = true
+
+[node name="Tab2Button" type="Button" parent="Extended/Bottom/Tabs/Buttons"]
+offset_left = 130.0
+offset_top = 10.0
+offset_right = 239.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_gbrcb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5xhii")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2jkqw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_74mkh")
+text = "Is blocked by"
+flat = true
+
+[node name="Tab3Button" type="Button" parent="Extended/Bottom/Tabs/Buttons"]
+offset_left = 250.0
+offset_top = 10.0
+offset_right = 350.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mkl4s")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_wjufn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_d8q2u")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_je4yq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_obwc1")
+text = "Blocks"
+flat = true
+
+[node name="Content" type="Node2D" parent="Extended/Bottom/Tabs"]
+
+[node name="Tab1" type="RichTextLabel" parent="Extended/Bottom/Tabs/Content"]
+offset_left = 15.0
+offset_top = 55.0
+offset_right = 345.0
+offset_bottom = 225.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 text = "[color=BLACK]implementation of desintegration unexisting information for confirmation of button aplication[/color]
 "
 
-[node name="AssignButton" type="Button" parent="Extended/Sprite2D2"]
-offset_left = 175.0
-offset_top = 115.0
-offset_right = 325.0
-offset_bottom = 146.0
-text = "Assign
-"
+[node name="Tab2" type="ItemList" parent="Extended/Bottom/Tabs/Content"]
+visible = false
+offset_left = 15.0
+offset_top = 55.0
+offset_right = 345.0
+offset_bottom = 225.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/guide_color = Color(0, 0, 0, 0)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qscdn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ccnc")
+theme_override_styles/selected = SubResource("StyleBoxEmpty_ue6sp")
+theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_tk5y2")
 
-[node name="Unlocks" type="RichTextLabel" parent="Extended/Sprite2D2"]
-offset_left = 7.0
-offset_top = 78.0
-offset_right = 327.0
-offset_bottom = 117.0
-bbcode_enabled = true
-text = "[color=BLACK]Unlocks:
-[/color]
-"
+[node name="Tab3" type="ItemList" parent="Extended/Bottom/Tabs/Content"]
+visible = false
+offset_left = 15.0
+offset_top = 55.0
+offset_right = 345.0
+offset_bottom = 225.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/guide_color = Color(0, 0, 0, 0)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_v3rbb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pudga")
+theme_override_styles/selected = SubResource("StyleBoxEmpty_vbdr2")
+theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_57m0a")
+
+[node name="HideButton" type="Button" parent="Extended"]
+offset_top = -200.0
+offset_right = 360.0
+flat = true
+
+[node name="HideButton2" type="Button" parent="Extended"]
+offset_top = 490.0
+offset_right = 360.0
+offset_bottom = 1190.0
+flat = true
 
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
-[connection signal="button_up" from="Extended/Sprite2D2/AssignButton" to="." method="_on_assign_button_button_up"]
+[connection signal="button_up" from="Extended/AssignButton" to="." method="_on_assign_button_button_up"]
+[connection signal="button_up" from="Extended/Bottom/Tabs/Buttons/Tab1Button" to="." method="_on_tab_1_button_up"]
+[connection signal="button_up" from="Extended/Bottom/Tabs/Buttons/Tab2Button" to="." method="_on_tab_2_button_up"]
+[connection signal="button_up" from="Extended/Bottom/Tabs/Buttons/Tab3Button" to="." method="_on_tab_3_button_up"]
+[connection signal="button_up" from="Extended/HideButton" to="." method="_on_hide_button_button_up"]
+[connection signal="button_up" from="Extended/HideButton2" to="." method="_on_hide_button_button_up"]
