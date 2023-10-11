@@ -30,8 +30,8 @@ var state_name={
 	IssueState.IN_PROGRESS:"In Progres",
 	IssueState.COMPLETED:"Completed"
 }
-# message in assignment that depend on state
-var state_assinged_message={
+# message in assignment that depends on state
+var state_assigned_message={
 	IssueState.UNAVAILABLE:"Unlock task before assigning",
 	IssueState.IN_BACKLOG:"Not assigned",
 	IssueState.COMPLETED:"Already completed"
@@ -54,7 +54,7 @@ var state_assinged_message={
 		update_importance()
 
 @export_group("Visualization")
-# subgroup represent high/low levels of importance
+# subgroup represents high/low levels of importance
 @export_subgroup("importance")
 @export var low_importance = 2:
 	set(i):
@@ -64,7 +64,7 @@ var state_assinged_message={
 	set(i):
 		high_importance = i
 		update_importance()
-# subgroup represent colors of feature's background
+# subgroup represents colors of feature's background
 @export_subgroup("feature")
 @export var feature_1=Color8(225,235,255):
 	set(c):
@@ -78,7 +78,7 @@ var state_assinged_message={
 	set(c):
 		feature_3 = c
 		update_colors()
-# subgroup represent colors of bug's background
+# subgroup represents colors of bug's background
 @export_subgroup("bug")
 @export var bug_1=Color8(255,235,235):
 	set(c):
@@ -130,7 +130,9 @@ func _ready():
 	update_summary()
 	update_extended()
 	update_colors()
-	check_unlock()
+	# it prevents changing state to IN_BACKLOG when Scene is loaded to editor
+	if not Engine.is_editor_hint():
+		check_unlock()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -141,14 +143,14 @@ func get_progress():
 	return self.__progress
 
 # set visibility of extended description to v
-func set_visibility_on_exteded_desription(v):
+func set_visibility_on_exteded_description(v):
 	$Extended.visible = v
 	$Sprite.visible = not v
 	$Summary.visible = not v
 	emit_signal("extending", self, v)
 
 # update summary text
-# summary include type, name, state
+# summary includes type, name, state
 func update_summary():
 	$Summary.text =  type_start[type]+name+type_end[type]
 	$Sprite/State.frame = state
@@ -159,17 +161,17 @@ func update_summary():
 # update name,difficulty,importance
 # update 
 func update_extended():
-	# update that depend on name
+	# update that depends on name
 	$Extended/Name.text = type_start[type]+name+type_end[type]
-	# update that depend on difficulty
+	# update that depends on difficulty
 	$Extended/Difficulty.text = "Difficulty: [b]"+str(difficulty)+"[/b]"
-	# update that depend on importance
+	# update that depends on importance
 	if type == IssueType.FEATURE:
 		$Extended/Importance.text = "Importance: [b]"+str(importance_to_client)+"[/b]"
 	else:
 		$Extended/Importance.text = "Importance:"+type_start[type]+"BUG"+type_end[type]
 	
-	# update that depend on type
+	# update that depends on type
 	$Extended/Type.text = "Type: "+type_name[type]
 	# hide bottom in bug isssue
 	$Extended/Bottom.visible = type == IssueType.FEATURE
@@ -178,7 +180,7 @@ func update_extended():
 	else:
 		$Extended/HideButton2.position = Vector2(0,250)
 	
-	#update that depend on state
+	#update that depends on state
 	$Extended/State.text = "State: "+state_name[state]
 	$Extended/Assignment.disabled = not state == IssueState.IN_PROGRESS
 	
@@ -186,10 +188,10 @@ func update_extended():
 		$Extended/Assignment.text = "Assigned to " + $EmployeeHook.get_child(0).get_origin().name
 		$Extended/AssignButton.text = "Cancel"
 	else:
-		$Extended/Assignment.text = state_assinged_message[state]
+		$Extended/Assignment.text = state_assigned_message[state]
 		$Extended/AssignButton.text = "Assign"
 		
-	$Extended/Progres.text="Progres: "
+	$Extended/Progres.text="Progress: "
 	if state == IssueState.UNAVAILABLE:
 		# only singular number in english is 1. 0 is plural
 		if remaining_parents == 1:
@@ -242,7 +244,7 @@ func check_unlock():
 		update_extended()
 # when button is realised toggle extended description visibility
 func _on_button_button_up():
-	set_visibility_on_exteded_desription(true)
+	set_visibility_on_exteded_description(true)
 
 # sends issue assign signal to the higher part of the tree
 # final destination should be backlog
@@ -335,7 +337,7 @@ func __add_parent_issue(issue:Issue):
 func update_importance():
 	if importance_to_client <= low_importance:
 		$Sprite/Importance.frame = 0
-	elif importance_to_client <high_importance:
+	elif importance_to_client < high_importance:
 		$Sprite/Importance.frame = 1
 	else:
 		$Sprite/Importance.frame = 2
@@ -373,6 +375,6 @@ func _on_tab_3_button_up():
 	tab = 2
 
 func _on_hide_button_button_up():
-	set_visibility_on_exteded_desription(false)
+	set_visibility_on_exteded_description(false)
 
 
