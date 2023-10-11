@@ -206,7 +206,7 @@ func update_extended():
 		else:
 			$Extended/Progres.text += " subtasks finished"
 	# assined button visible only in IN_BACKLOG and IN_BACKLOG state
-	$Extended/AssignButton.visible = IssueState.IN_BACKLOG == state or IssueState.IN_BACKLOG == state
+	$Extended/AssignButton.visible = IssueState.IN_BACKLOG == state or IssueState.IN_PROGRESS == state
 	# update blocks tab 
 	$Extended/Bottom/Tabs/Content/Tab3.clear()
 	for child in child_issues:
@@ -223,6 +223,8 @@ func add_progress(progress):
 	if self.__progress >= self.time:
 		self.__progress = self.time
 		complete()
+	update_extended()
+	update_summary()
 		
 # This function handles the issue's completion
 func complete():
