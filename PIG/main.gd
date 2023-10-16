@@ -56,25 +56,6 @@ func save_to_file(file_name):
 	file.store_string(data)
 	file.close()
 
-# load JSON state of whole game from file in host file system
-func load_from_file(file_name: String) -> Dictionary:
-	var file = FileAccess.open(file_name, FileAccess.READ)
-	var content = file.get_as_text()
-	var json = JSON.new()
-	var error = json.parse(content)
-	if error == OK:
-		var data_received = json.data
-		data_received["error"] = null
-		return data_received
-	else:
-		print("JSON Parse Error: ", json.get_error_message(), " in ", content, \
-		" at line ", json.get_error_line())
-		return {"error": "JSON Parse Error"}
-
-# load JSON state of whole game from resource in internal file system
-func load_from_resource(name:String) -> Dictionary:
-	return load(name).data
-	
 # configure whole game based on JSON
 func configure_scenario(dict: Dictionary):
 	$Game.configure_game(dict["Game"])
@@ -128,9 +109,9 @@ func start_level(file: String,internal:bool):
 	add_child(game)
 	var data
 	if internal:
-		data = load_from_resource(file)
+		data = Utility.load_from_resource(file)
 	else:
-		data = load_from_file(file)
+		data = Utility.load_from_file(file)
 	configure_scenario(data)
 	$CanvasLayer.visible = false
 	$Background.visible = false
