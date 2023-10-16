@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4xojh4ktss71"]
+
+[ext_resource type="Script" path="res://card/deck_master.gd" id="1_572jy"]
+[ext_resource type="Script" path="res://card/card_generator.gd" id="2_hu4cs"]
+
+[node name="DeckMaster" type="Node2D"]
+script = ExtResource("1_572jy")
+
+[node name="CardGenerator" type="Node2D" parent="."]
+script = ExtResource("2_hu4cs")
