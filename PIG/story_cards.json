@@ -1,0 +1,54 @@
+{
+	"0": 
+	{
+	"text": "${E1}.name punched ${E2}.name. What do you do?",
+	"option1": 
+	{
+		"text": "Yell at ${E1}",
+		"effects":
+		[
+		{
+			"type": "stat_modifier",
+			"args": [["${E1}", "morale", -1], ["${E2}", "morale", 1]]
+		}
+		]
+	},
+	"option2":
+	{
+		"text": "Do nothing",
+		"effects":
+		[
+		{
+			"type": "stat_modifier_single",
+			"args": [["${E2}", "morale", -3]]
+		}
+		]
+	}
+	},
+	"1":
+	{
+	"text": "${E1}.name punched ${E2}.name. What do you do?",
+	"option1": 
+	{
+		"text": "Yell at ${E1}",
+		"effects":
+		[
+		{
+			"type": "stat_modifier",
+			"args": [["${E1}", "morale", -1], ["${E2}", "morale", 1]]
+		}
+		]
+	},
+	"option2":
+	{
+		"text": "Do nothing",
+		"effects":
+		[
+		{
+			"type": "stat_modifier_single",
+			"args": [["${E2}", "morale", -3]]
+		}
+		]
+	}
+	}
+}
