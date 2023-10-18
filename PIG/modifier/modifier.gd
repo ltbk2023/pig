@@ -32,7 +32,9 @@ func _can_be_attached(employee_hook: Hook) -> bool:
 	return true
 
 # Attach employee to modifier. Return false if action fail.
-func attach_employee(employee_hook: Hook) -> bool:
+func attach_employee(employee: Employee) -> bool:
+	var employee_hook = Hook.new()
+	employee_hook.set_origin(employee)
 	if self._can_be_attached(employee_hook):
 		var hook = Hook.new()
 		hook.set_origin(self)
@@ -47,6 +49,7 @@ func attach_employee(employee_hook: Hook) -> bool:
 func remove_employee(employee: Employee) -> bool:
 	for employee_hook in $EmployeesHooks.get_children():
 		if employee_hook.get_origin() == employee:
+			employee.remove_modifier(self)
 			employee_hook.queue_free()
 			return true
 	return false

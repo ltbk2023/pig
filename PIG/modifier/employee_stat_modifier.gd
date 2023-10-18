@@ -49,3 +49,4 @@ func detach_modification():
 			STAT.MORALE:
 				employee.morale -= __stat_value
 		employee.update_summary()
+		remove_employee(employee)
