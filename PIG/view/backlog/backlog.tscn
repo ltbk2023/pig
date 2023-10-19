@@ -44,3 +44,5 @@ scroll_active = false
 
 [node name="Issues" type="Node2D" parent="."]
 position = Vector2(0, 120)
+
+[connection signal="hidden" from="." to="." method="_on_hidden"]

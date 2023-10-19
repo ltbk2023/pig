@@ -4,6 +4,7 @@ class_name Backlog
 # signal containing owner, which should be issue that is currently assigned to employee
 signal assign(owner)
 
+var extended = null
 # Called when the node enters the scene tree for the first time.
 #set position of issue in Issue node
 func _ready():
@@ -47,11 +48,26 @@ func remove_issue(issue:Issue):
 #get all issuees from Backlog 
 func get_issues():
 	return $Issues.get_children()
-	
+
 func _on_extending(owner, extending):
+	# when issue is extending hide every issue except of owner
+	# if not show all
 	for task in $Issues.get_children():
 		task.visible = task == owner or not extending 
 	if extending:
-		owner.position = -$Issues.position
+		# if backlog is visible move Issue to appear at the center of screen
+		if visible:
+			owner.position = -$Issues.position
+			extended = owner
+		# if not force issue to hide extension
+		else:
+			owner.set_visibility_on_exteded_description(false)
 	else:
+		# move all issue to correct positions
 		update_issues_position()
+		extended = null
+	
+# hide extended issue view when backlog became hidden
+func _on_hidden():
+	if not extended == null:
+		extended.set_visibility_on_exteded_description(false)

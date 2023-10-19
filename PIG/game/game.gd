@@ -9,17 +9,21 @@ enum GameState {NOT_STARTED, IN_PROGRESS, FINISHED}
 
 signal show_menu()
 
-@export_category("Views Swichting")
-@export var speed_trigger = 40
-@export var angle_precision  = PI/3
-@export var office_to_backlog = Vector2(-1,0)
-@export var backlog_to_office = Vector2(1,0)
-@export var office_to_testing = Vector2(1,0)
-@export var testing_to_office = Vector2(-1,0)
+@export_group("Views Switching")
+@export var movement_trigger = 40
 
+
+@export_group("Visualization")
 @export var show_days_left = true
 
+@export_group("Transition")
+@export var target_view_scale = 0.9
+@export var second_view_scale = 0.8
+
 var is_view_just_switched = false
+var movement =Vector2.ZERO
+var transition_from:Node2D
+var transition_to:Node2D
 
 var __current_turn : int
 var __current_sprint : int
@@ -95,50 +99,95 @@ func _on_end_turn_button_button_up():
 		cancel_employee_to_assign()
 		display_date()
 
-# check if movement is in the given direction with set precision 
-func is_in_direction(movement:Vector2,direction:Vector2) -> bool:
-	return abs(movement.angle_to(direction)) < angle_precision
+# check if game is in transition
+func is_in_transition():
+	return not transition_to == null
 
+# check if view should be changed after transition
+func is_transition_triggering_switch():
+	return abs(movement.x) >= get_viewport_rect().size.x/2
+
+# update transition effect to match movement
+func transition_update():
+	var size = get_viewport_rect().size.x
+	var m = max(min(movement.x,size),-size)
+	# show what view would be selected after given movement
+	# view that would be selected is bigger
+	if is_transition_triggering_switch():
+		transition_to.scale = target_view_scale*Vector2(1,1)
+		transition_from.scale = second_view_scale*Vector2(1,1)
+	else:
+		transition_to.scale = second_view_scale*Vector2(1,1)
+		transition_from.scale = target_view_scale*Vector2(1,1)
+	# move views to follow movement
+	transition_from.position.x = m
+	# move view in set distance to from view
+	transition_to.position.x = m-sign(m)*size
+	# ensure that both view are visible
+	transition_to.visible = true
+	transition_from.visible = true
+
+# end transition and return to default state
+# this function doesn't reset movement
+func resolve_transition():
+	if is_transition_triggering_switch():
+		transition_to.scale = Vector2(1,1)
+		transition_to.position = Vector2.ZERO
+		transition_from.visible = false
+	else:
+		transition_from.scale = Vector2(1,1)
+		transition_from.position = Vector2.ZERO
+		transition_to.visible = false
+	transition_to = null
+# check what movement should be played 
+func movement_intepretation():
+	# cache for transition flag
+	var tran =  is_in_transition() 
+	if tran or abs(movement.x)>abs(movement.y):
+		# from Office it is possible to go both ways 
+		# so it is necessary to check
+		# if the player didn't change direction of movement during transition
+		if (tran and transition_from == $Office) or (not tran and $Office.visible):
+			transition_from = $Office
+			if movement.x < 0:
+				transition_to = $Backlog
+			else:
+				transition_to = $Testing
+		# Backlog and $Testing can be visible during transition
+		# so to prevent errors we must check if we aren't in transition
+		elif not tran and $Backlog.visible:
+			transition_from = $Backlog
+			if movement.x > 0:
+				transition_to = $Office
+		
+		elif not tran and $Testing.visible:
+			transition_from = $Testing
+			if movement.x < 0:
+				transition_to = $Office
+	# transition status may change so is in transition must be called again
+		if is_in_transition():
+			transition_update()
+	else:
+		#TODO Implement scrolling
+		pass
+		
 func _input(event):
 	if event is InputEventMouseMotion:
-		#distance travelled in one frame
-		var movement = event.relative
-		#if left button is pressed and mouse has travelled more than trigger check for views change
-		if not is_view_just_switched and event.button_mask == MOUSE_BUTTON_LEFT and movement.length() > speed_trigger:
-			
-			if $Office.visible:
-				if is_in_direction(movement,office_to_backlog):
-					# set view to Backlog
-					$Office.visible = false
-					$Backlog.visible = true
-					#prevent switching multiple views in one go
-					is_view_just_switched = true
-				elif is_in_direction(movement, office_to_testing):
-					# set view to Testing
-					$Office.visible = false
-					$Testing.visible = true
-					#prevent switching multiple views in one go
-					is_view_just_switched = true
+		# if left button is pressed current move add to movement variable
+		# check if move triggers change
+		if event.button_mask == MOUSE_BUTTON_LEFT:
+			movement += event.relative
+			if is_in_transition() or movement.length() > movement_trigger:
+				movement_intepretation()
+		else:
+			movement = Vector2.ZERO
 
-			elif $Backlog.visible:
-				if is_in_direction(movement,backlog_to_office):
-					# set view to Office
-					$Office.visible = true
-					$Backlog.visible = false
-					#prevent switching multiple views in one go
-					is_view_just_switched = true
-					
-			elif $Testing.visible:
-				if is_in_direction(movement, testing_to_office):
-					# set view to Office
-					$Office.visible = true
-					$Testing.visible = false
-					#prevent switching multiple views in one go
-					is_view_just_switched = true
-					
 	if event is InputEventMouseButton:
-		is_view_just_switched = event.button_mask != MOUSE_BUTTON_LEFT
-			
+		# if letf button is relised end movement
+		if event.button_mask != MOUSE_BUTTON_LEFT:
+			if is_in_transition():
+				resolve_transition()
+		movement = Vector2.ZERO
 # Listen to assign request from backlog
 # Call save_task_to_assign
 func _on_backlog_assign(owner):
