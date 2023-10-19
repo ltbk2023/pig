@@ -56,7 +56,7 @@ func save_to_file(file_name):
 	file.store_string(data)
 	file.close()
 
-# load JSON state of whole game from file
+# load JSON state of whole game from file in host file system
 func load_from_file(file_name: String) -> Dictionary:
 	var file = FileAccess.open(file_name, FileAccess.READ)
 	var content = file.get_as_text()
@@ -71,6 +71,10 @@ func load_from_file(file_name: String) -> Dictionary:
 		" at line ", json.get_error_line())
 		return {"error": "JSON Parse Error"}
 
+# load JSON state of whole game from resource in internal file system
+func load_from_resource(name:String) -> Dictionary:
+	return load(name).data
+	
 # configure whole game based on JSON
 func configure_scenario(dict: Dictionary):
 	$Game.configure_game(dict["Game"])
@@ -119,16 +123,21 @@ func configure_scenario(dict: Dictionary):
 				employee.assign_issue(issue_hook)
 				issue.assign_employee(employee_hook)
 
-func start_level(file: String):
+func start_level(file: String,internal:bool):
 	var game = load("res://game/game.tscn").instantiate()
 	add_child(game)
-	configure_scenario(load_from_file(file))
+	var data
+	if internal:
+		data = load_from_resource(file)
+	else:
+		data = load_from_file(file)
+	configure_scenario(data)
 	$CanvasLayer.visible = false
 	$Background.visible = false
 
 # Called when "Level1" button is released. Load first level
 func _on_level_1_button_up():
-	start_level("level/basic_scenario.json")
+	start_level("level/basic_scenario.json",true)
 
 # Called when "Level2" button is released. Load second level
 func _on_level_2_button_up():
