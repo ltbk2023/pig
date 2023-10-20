@@ -305,6 +305,8 @@ func _on_sprint_end_victory_points(owner, amount):
 func _on_sprint_end_return_to_office_view(owner):
 	$CanvasLayer.visible = true
 	$Office.visible = true
+	$Office.position = Vector2(0,0)
+	$Office.scale = Vector2(1,1)
 	$Testing.visible = false
 	$SprintEnd.visible = false
 	$Backlog.visible = false

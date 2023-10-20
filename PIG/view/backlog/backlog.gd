@@ -35,6 +35,7 @@ func add_issue(issue:Issue):
 	issue.assign.connect(_on_assign)
 	issue.extending.connect(_on_extending)
 	set_issue_position(issue,$Issues.get_child_count()-1)
+	issue.visible = extended == null
 
 # sends signal with issue-owner to higher part of tree which should be Game
 func _on_assign(owner):
