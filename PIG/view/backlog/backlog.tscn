@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://btvv1oojseb6c"]
+[gd_scene load_steps=9 format=3 uid="uid://btvv1oojseb6c"]
 
 [ext_resource type="Script" path="res://view/backlog/backlog.gd" id="1_74h7j"]
+[ext_resource type="Theme" uid="uid://bms0e4llb3yhp" path="res://view/backlog/baclog_theme.tres" id="2_x3265"]
 
 [sub_resource type="Gradient" id="Gradient_h388n"]
 offsets = PackedFloat32Array(0)
@@ -17,6 +18,29 @@ colors = PackedColorArray(1, 1, 1, 1)
 gradient = SubResource("Gradient_lo430")
 width = 340
 height = 340
+
+[sub_resource type="Animation" id="Animation_0aqmv"]
+resource_name = "update_cycle"
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"__update_form_anim"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3xt3b"]
+_data = {
+"update_cycle": SubResource("Animation_0aqmv")
+}
 
 [node name="Backlog" type="Node2D"]
 script = ExtResource("1_74h7j")
@@ -35,14 +59,65 @@ texture = SubResource("GradientTexture2D_4ykdg")
 [node name="BacklogTitle" type="RichTextLabel" parent="WhiteSprite"]
 modulate = Color(0, 0, 0, 1)
 offset_left = -75.0
-offset_top = -150.0
+offset_top = -155.0
 offset_right = 89.0
-offset_bottom = -122.0
+offset_bottom = -127.0
 bbcode_enabled = true
 text = "[font_size=20]Product Backlog[/font_size]"
 scroll_active = false
 
 [node name="Issues" type="Node2D" parent="."]
-position = Vector2(0, 120)
+position = Vector2(0, 180)
+
+[node name="Filter" type="OptionButton" parent="."]
+offset_left = 70.0
+offset_top = 100.0
+offset_right = 340.0
+offset_bottom = 131.0
+theme = ExtResource("2_x3265")
+item_count = 2
+selected = 0
+popup/item_0/text = "Default"
+popup/item_0/id = 0
+popup/item_1/text = "State"
+popup/item_1/id = 1
+
+[node name="Label" type="Label" parent="Filter"]
+layout_mode = 0
+offset_left = -48.0
+offset_top = 4.0
+offset_right = 2.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Filter:"
+
+[node name="Sort" type="OptionButton" parent="."]
+offset_left = 70.0
+offset_top = 140.0
+offset_right = 340.0
+offset_bottom = 171.0
+theme = ExtResource("2_x3265")
+item_count = 2
+selected = 0
+popup/item_0/text = "Default"
+popup/item_0/id = 0
+popup/item_1/text = "State"
+popup/item_1/id = 1
+
+[node name="Label" type="Label" parent="Sort"]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 4.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Sort:"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "update_cycle"
+libraries = {
+"": SubResource("AnimationLibrary_3xt3b")
+}
 
 [connection signal="hidden" from="." to="." method="_on_hidden"]
+[connection signal="item_selected" from="Filter" to="." method="_on_filter_item_selected"]
+[connection signal="item_selected" from="Sort" to="." method="_on_sort_item_selected"]
