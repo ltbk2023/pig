@@ -35,7 +35,7 @@ func _can_be_attached(employee_hook: Hook) -> bool:
 func attach_employee(employee_hook: Hook) -> bool:
 	if self._can_be_attached(employee_hook):
 		var hook = Hook.new()
-		hook.set_origin(owner)
+		hook.set_origin(self)
 		$EmployeesHooks.add_child(employee_hook)
 		employee_hook.get_origin().add_modifier(hook)
 		return true
