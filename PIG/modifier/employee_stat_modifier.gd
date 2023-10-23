@@ -10,7 +10,7 @@ var __stat_type: STAT
 # Type defines what statistic is changed by modifier
 # Value is the amount of points which modifier changes the statistic
 # Turn counter decides how many turns the modifier will live
-func _init(type: STAT, value: int, turn_counter: int):
+func initialize(type: STAT, value: int, turn_counter: int):
 	self.__stat_type = type
 	self.__stat_value = value
 	self.__turn_counter = turn_counter
