@@ -21,7 +21,9 @@ signal show_menu()
 @export var second_view_scale = 0.8
 
 var is_view_just_switched = false
+
 var movement =Vector2.ZERO
+var movement_direction = 1
 var transition_from:Node2D
 var transition_to:Node2D
 
@@ -110,7 +112,11 @@ func is_transition_triggering_switch():
 # update transition effect to match movement
 func transition_update():
 	var size = get_viewport_rect().size.x
-	var m = max(min(movement.x,size),-size)
+	# ensure that movement doesn't go beyond it's limit
+	# if movement is to the right range is <0,size/2>
+	# if movement is to the left range is <-size/2,0>
+	var m = min(movement.x,(1+movement_direction)/2*size)
+	m = max(m,(movement_direction-1)/2*size)
 	# show what view would be selected after given movement
 	# view that would be selected is bigger
 	if is_transition_triggering_switch():
@@ -122,7 +128,14 @@ func transition_update():
 	# move views to follow movement
 	transition_from.position.x = m
 	# move view in set distance to from view
-	transition_to.position.x = m-sign(m)*size
+	transition_to.position.x = m-sign(movement_direction)*size
+	
+	# ensure that unnessesary views are hidden
+	# additionally switching visibility off/on prevent button's activation for this frame 
+	$Office.visible = false
+	$Backlog.visible = false
+	$Testing.visible = false
+	
 	# ensure that both view are visible
 	transition_to.visible = true
 	transition_from.visible = true
@@ -153,17 +166,20 @@ func movement_intepretation():
 				transition_to = $Backlog
 			else:
 				transition_to = $Testing
+			movement_direction = sign(movement.x)
 		# Backlog and $Testing can be visible during transition
 		# so to prevent errors we must check if we aren't in transition
 		elif not tran and $Backlog.visible:
 			transition_from = $Backlog
 			if movement.x > 0:
 				transition_to = $Office
+				movement_direction = 1
 		
 		elif not tran and $Testing.visible:
 			transition_from = $Testing
 			if movement.x < 0:
 				transition_to = $Office
+				movement_direction = -1
 	# transition status may change so is in transition must be called again
 		if is_in_transition():
 			transition_update()
