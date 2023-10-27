@@ -50,6 +50,12 @@ func _process(delta):
 # function execute turn and update current turn
 # on end of sprint call execute_end_of_sprint
 func execute_turn():
+	var modifiers = $Modifiers.get_children()
+	for modifier in modifiers:
+		modifier.decrease_counter()
+		if not modifier.is_active():
+			modifier.detach_modification()
+			modifier.queue_free()
 	var employees = $Office.get_employees()
 	for employee in employees:
 		employee.execute_turn()
@@ -57,8 +63,8 @@ func execute_turn():
 	__current_turn += 1
 	if __current_turn % turns_per_sprint == 0:
 		execute_end_of_sprint()
+	draw_story_card()
 	display_date()
-
 
 # function execute end of sprint and update current sprint
 func execute_end_of_sprint():
@@ -95,6 +101,7 @@ func execute_end_of_sprint():
 func _on_end_turn_button_button_up():
 	if $Hooks/EmployeeToAssign.get_child_count() == 0 and \
 		$Hooks/TaskToAssign.get_child_count() == 0:
+			## TODO
 			execute_turn()
 	else:
 		cancel_task_to_assign()
@@ -380,7 +387,8 @@ func display_date():
 		str(max_sprints)+'[/b]'
 	$CanvasLayer/Status.text = text
 	$CanvasLayer/Button.text = "End Day"
-
+	$CanvasLayer/Button.visible = not $DeckMaster.has_card()
+	
 # set status bar to Assigning and name of task or employee
 # set button to "Cancel"
 func display_assign(task):
@@ -391,6 +399,7 @@ func display_assign(task):
 		text += $Hooks/EmployeeToAssign.get_child(0).get_origin().name
 	$CanvasLayer/Status.text = text
 	$CanvasLayer/Button.text = "Cancel"
+	$CanvasLayer/Button.visible = true
 	
 
 # emit show menu request
@@ -404,4 +413,20 @@ func _on_exit_button_button_up():
 # TODO
 # implement reaction to show message request 
 func _on_message_button_up():
-	pass
+	$DeckMaster/StoryCard.visible = true
+	$Office.visible = false
+	$Testing.visible = false
+	$SprintEnd.visible = false
+	$Backlog.visible = false
+
+# Called at the beginning of each day. Fetch a story card from the Deck Master
+func draw_story_card():
+	if __current_turn == 1:
+		$DeckMaster.employees = $Office.get_employees()
+	var card = $DeckMaster.get_card()
+	$CanvasLayer/Message.visible = true
+
+func _on_deck_master_done(owner):
+	_on_sprint_end_return_to_office_view(owner)
+	$CanvasLayer/Message.visible = false
+	$CanvasLayer/Button.visible = true

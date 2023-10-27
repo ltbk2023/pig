@@ -8,12 +8,11 @@ func _ready():
 	pass # Replace with function body.
 
 # Inform if the modifier is still active
-func is_active() -> bool:
-	if __turn_counter == 0:
-		return false
-	else:
-		__turn_counter -= 1
-		return true
+func is_active() -> bool:	
+	return not __turn_counter == 0
+	
+func decrease_counter():
+	__turn_counter -= 1
 
 # Main function of modification. Will be overridden in derived class
 # Should call out right employees.
@@ -40,6 +39,7 @@ func attach_employee(employee: Employee) -> bool:
 		hook.set_origin(self)
 		$EmployeesHooks.add_child(employee_hook)
 		employee_hook.get_origin().add_modifier(hook)
+		modify()
 		return true
 	else:
 		return false

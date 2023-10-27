@@ -1,8 +1,15 @@
 extends Node2D
 class_name DeckMaster
 
+# Signal emitted when the scene catches the signal from Story Card. Should be
+# caught by Game, which will then destroy this object.
+signal done(owner)
+
+# signal emitted when card is hidden
+signal card_hidden(owner)
+
 # Stores all employees present in the game
-var employees : Array[Employee]
+var employees
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,10 +30,13 @@ func get_card() -> StoryCard:
 	card.story_text = card_dictionary["text"]
 	card.options = [card_dictionary["option1"], card_dictionary["option2"]]
 	card.update_view()
+	add_child(card)
+	card.done.connect(_on_card_done)
+	card.hidden.connect(_on_card_hidden)
 	return card
 	
 # Pick random employees that will take part in the story
-func choose_employees(number: int, card_dictionary: Dictionary) -> Array[Employee]:
+func choose_employees(number: int, card_dictionary: Dictionary) -> Array:
 	var possible_e = possible_employees(card_dictionary)
 	possible_e.shuffle()
 	var chosen_employees =  possible_e.slice(0, number)
@@ -35,13 +45,13 @@ func choose_employees(number: int, card_dictionary: Dictionary) -> Array[Employe
 # Return an array of employees that can take part in the story
 # The conditions may be defined in the JSON file.
 # TO BE IMPLEMENTED
-func possible_employees(card_dictionary: Dictionary) -> Array[Employee]:
+func possible_employees(card_dictionary: Dictionary) -> Array:
 	return employees.duplicate()
 	
 # Fill out the card dictionary with the chosen employees and return the modified
 # dictionary
 func fill_employees(card_dictionary: Dictionary, 
-	chosen_employees: Array[Employee]) -> Dictionary:
+	chosen_employees: Array) -> Dictionary:
 	var story_text : String = card_dictionary["text"]
 	var options: Array[Dictionary] = [card_dictionary["option1"],
 	card_dictionary["option2"]]
@@ -62,8 +72,8 @@ func fill_employees(card_dictionary: Dictionary,
 	return card_dictionary
 	
 # Insert employee name in string
-func insert_employee_name(i: int, str: String, employee: Employee) -> String:
-	return str.replace("${E" + str(i + 1) + "}.name", employee.name)
+func insert_employee_name(i: int, string: String, employee: Employee) -> String:
+	return string.replace("${E" + str(i + 1) + "}.name", employee.name)
 
 # Insert reference to employee in the args array
 func insert_employee_ref(i: int, args: Array, employee: Employee) -> Array:
@@ -73,3 +83,13 @@ func insert_employee_ref(i: int, args: Array, employee: Employee) -> Array:
 				arg_set[index] = employee
 				index = arg_set.find("${E" + str(i + 1) + "}")
 		return args
+
+func _on_card_done(owner):
+	emit_signal("done", self)
+	owner.queue_free()
+	
+func _on_card_hidden():
+	card_hidden.emit(self)
+	
+func has_card() -> bool:
+	return get_child_count() > 1

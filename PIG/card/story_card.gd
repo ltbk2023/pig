@@ -1,8 +1,8 @@
 extends Node2D
 class_name StoryCard
 
-# Signal emitted when the player has picked an option. Should be caught by Game,
-# which will then destroy this object.
+# Signal emitted when the player has picked an option. Should be caught by
+# Deck Master which will transfer the signal to Game.
 signal done(owner)
 
 var id: int
@@ -47,19 +47,19 @@ duration: int):
 	var modifier =\
 	preload("res://modifier/employee_stat_modifier.tscn").instantiate()
 	modifier.initialize(stat, value, duration)
-	#EmployeeStatModifier.new(stat, value, duration)
 	modifier.attach_employee(employee)
-	
+	get_tree().call_group("ModifierHandlers", "handle", modifier)
 
 # Execute the consequences of an option
 func execute_option(option: int):
 	for effect in options[option]["effects"]:
 		for args_set in effect["args"]:
 			action_types[effect["type"]].callv(args_set)
-			print("Executing " + str(action_types[effect["type"]])\
-			+ " with args: " + str(args_set))
 	emit_signal("done", self)
-			
+
+func _on_hide_button_up():
+	self.visible = false
+
 func _on_option_1_button_up():
 	execute_option(0)
 

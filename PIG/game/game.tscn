@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ca2p0ey2167pi"]
+[gd_scene load_steps=31 format=3 uid="uid://ca2p0ey2167pi"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_t4wkw"]
 [ext_resource type="PackedScene" uid="uid://btvv1oojseb6c" path="res://view/backlog/backlog.tscn" id="2_1vjop"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://cfsparx3fehr6" path="res://game/exit.png" id="5_8gdxh"]
 [ext_resource type="PackedScene" uid="uid://bv4enanlk8ty6" path="res://view/sprint_end/sprint_end.tscn" id="5_mb2m2"]
 [ext_resource type="Texture2D" uid="uid://pd73wjq1goi2" path="res://game/menu_button.png" id="5_v0jtd"]
+[ext_resource type="PackedScene" uid="uid://c4xojh4ktss71" path="res://card/deck_master.tscn" id="11_gwi3w"]
+[ext_resource type="Script" path="res://game/modifier_handler.gd" id="12_00uqt"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hfvvy"]
 content_margin_bottom = 6.0
@@ -119,6 +121,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_sb1u4")
 text = "End  Day"
 
 [node name="Message" type="Control" parent="CanvasLayer"]
+visible = false
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
@@ -158,6 +161,7 @@ text = "Message"
 flat = true
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/Message"]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 1
@@ -193,13 +197,17 @@ visible = false
 [node name="SprintEnd" parent="." instance=ExtResource("5_mb2m2")]
 visible = false
 
+[node name="DeckMaster" parent="." instance=ExtResource("11_gwi3w")]
+z_index = 2
+
 [node name="Hooks" type="Node" parent="."]
 
 [node name="TaskToAssign" type="Node" parent="Hooks"]
 
 [node name="EmployeeToAssign" type="Node" parent="Hooks"]
 
-[node name="Modifiers" type="Node" parent="."]
+[node name="Modifiers" type="Node" parent="." groups=["ModifierHandlers"]]
+script = ExtResource("12_00uqt")
 
 [connection signal="button_up" from="CanvasLayer/Button" to="." method="_on_end_turn_button_button_up"]
 [connection signal="button_up" from="CanvasLayer/Message/Message" to="." method="_on_message_button_up"]
@@ -212,3 +220,5 @@ visible = false
 [connection signal="bug_found" from="Testing" to="." method="_on_bug_found"]
 [connection signal="return_to_office_view" from="SprintEnd" to="." method="_on_sprint_end_return_to_office_view"]
 [connection signal="victory_points" from="SprintEnd" to="." method="_on_sprint_end_victory_points"]
+[connection signal="card_hidden" from="DeckMaster" to="." method="_on_sprint_end_return_to_office_view"]
+[connection signal="done" from="DeckMaster" to="." method="_on_deck_master_done"]

@@ -11,7 +11,7 @@
 			[
 			{
 				"type": "modify_stat",
-				"args": [["${E1}", "morale", -2, -1], ["${E2}", "morale", 1, -1]]
+				"args": [["${E1}", "morale", -2, 1], ["${E2}", "morale", 1, 1]]
 			}
 			]
 		},

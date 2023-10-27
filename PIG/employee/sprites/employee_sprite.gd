@@ -350,7 +350,6 @@ func update_sitting():
 # transform linear speed to exponential animation speed
 func get_anim_speed(speed):
 	var s = pow(1.5,speed-2)
-	print(s)
 	return s
 
 # play animation of employee not working

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://djaf27npxyqxx"]
+[gd_scene load_steps=8 format=3 uid="uid://nfgaijnpjkrh"]
 
 [ext_resource type="Script" path="res://card/story_card.gd" id="1_sqpxi"]
 
@@ -11,7 +11,16 @@ gradient = SubResource("Gradient_uju8s")
 width = 250
 height = 380
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h1crq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n7fof"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_leiid"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7mtg"]
+
 [node name="StoryCard" type="Node2D"]
+visible = false
 script = ExtResource("1_sqpxi")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -50,6 +59,7 @@ offset_top = 88.0
 offset_right = 119.0
 offset_bottom = 119.0
 text = "Option 1"
+text_overrun_behavior = 2
 
 [node name="Option2" type="Button" parent="Sprite"]
 offset_left = -120.0
@@ -58,6 +68,47 @@ offset_right = 119.0
 offset_bottom = 161.0
 text = "Option 2
 "
+text_overrun_behavior = 2
+
+[node name="HideButton" type="Button" parent="."]
+visibility_layer = 2
+offset_left = -9.0
+offset_top = -7.0
+offset_right = 368.0
+offset_bottom = 149.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h1crq")
+flat = true
+
+[node name="HideButton2" type="Button" parent="."]
+visibility_layer = 2
+offset_left = -5.0
+offset_top = 529.0
+offset_right = 372.0
+offset_bottom = 681.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n7fof")
+flat = true
+
+[node name="HideButton3" type="Button" parent="."]
+visibility_layer = 2
+offset_left = 303.0
+offset_top = 150.0
+offset_right = 373.0
+offset_bottom = 531.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_leiid")
+flat = true
+
+[node name="HideButton4" type="Button" parent="."]
+visibility_layer = 2
+offset_left = -12.0
+offset_top = 151.0
+offset_right = 58.0
+offset_bottom = 530.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f7mtg")
+flat = true
 
 [connection signal="button_up" from="Sprite/Option1" to="." method="_on_option_1_button_up"]
 [connection signal="button_up" from="Sprite/Option2" to="." method="_on_option_2_button_up"]
+[connection signal="button_up" from="HideButton" to="." method="_on_hide_button_up"]
+[connection signal="button_up" from="HideButton2" to="." method="_on_hide_button_up"]
+[connection signal="button_up" from="HideButton3" to="." method="_on_hide_button_up"]
+[connection signal="button_up" from="HideButton4" to="." method="_on_hide_button_up"]
