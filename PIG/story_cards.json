@@ -3,11 +3,11 @@
 		"employee_number": 2,
 		"employee_filter": null,
 		"title": "Fight",
-		"text": "${E1}.name punched ${E2}.name in face for being to loud. What do you do?",
+		"text": "${E1}.name punched ${E2}.name in face for being too loud. What do you do?",
 		"options":
 		[
 			{
-				"text": "Yell at ${E1}.name for hitting ${E1}.name",
+				"text": "Yell at ${E1}.name for hitting ${E2}.name",
 				"effects":
 				{
 					 "modify_stat": 
@@ -18,7 +18,7 @@
 				}
 			},
 			{
-				"text": "Yell at ${E2}.name for being to loud",
+				"text": "Yell at ${E2}.name for being too loud",
 				"effects":
 				{
 					 "modify_stat": 

@@ -37,7 +37,6 @@ func update_view():
 		var button:Button = $Sprite.add_option(options[i].text)
 		button.button_up.connect(_on_option_selected.bind(i))
 
-
 # Execute the consequences of an option
 func execute_option(option: int):
 	var op = options[option]
@@ -45,6 +44,7 @@ func execute_option(option: int):
 		for effect in op.effects[type]:
 			var modifier =effect.create_modifier()
 			get_tree().call_group("ModifierHandlers", "handle", modifier)
+			modifier.attach_employee(effect.employee)
 
 	emit_signal("done", self)
 
