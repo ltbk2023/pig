@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=3 uid="uid://nfgaijnpjkrh"]
+
+[ext_resource type="Script" path="res://card/story_card.gd" id="1_sqpxi"]
+
+[sub_resource type="Gradient" id="Gradient_uju8s"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xf1sa"]
+gradient = SubResource("Gradient_uju8s")
+width = 250
+height = 380
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h1crq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n7fof"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_leiid"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7mtg"]
+
+[node name="StoryCard" type="Node2D"]
+visible = false
+script = ExtResource("1_sqpxi")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(180, 340)
+texture = SubResource("GradientTexture2D_xf1sa")
+
+[node name="Title" type="RichTextLabel" parent="Sprite"]
+offset_left = -25.0
+offset_top = -180.0
+offset_right = 186.0
+offset_bottom = -141.0
+bbcode_enabled = true
+text = "[color=RED][font_size=20]Title[/font_size][/color]
+"
+
+[node name="Story" type="RichTextLabel" parent="Sprite"]
+offset_left = -116.0
+offset_top = -90.0
+offset_right = 115.0
+offset_bottom = 108.0
+bbcode_enabled = true
+text = "[color=BLACK][font_size=15]This is an example story. A lot of things are happening here and you need to make a decision right now. What do you do?[/font_size][/color]"
+
+[node name="ID" type="RichTextLabel" parent="Sprite"]
+offset_left = -120.0
+offset_top = -190.0
+offset_right = -80.0
+offset_bottom = -150.0
+bbcode_enabled = true
+text = "[color=RED][font_size=20]99[/font_size][/color]
+"
+
+[node name="Option1" type="Button" parent="Sprite"]
+offset_left = -120.0
+offset_top = 88.0
+offset_right = 119.0
+offset_bottom = 119.0
+text = "Option 1"
+text_overrun_behavior = 2
+
+[node name="Option2" type="Button" parent="Sprite"]
+offset_left = -120.0
+offset_top = 130.0
+offset_right = 119.0
+offset_bottom = 161.0
+text = "Option 2
+"
+text_overrun_behavior = 2
+
+[node name="HideButton" type="Button" parent="."]
+visibility_layer = 2
+offset_left = -9.0
+offset_top = -7.0
+offset_right = 368.0
+offset_bottom = 149.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h1crq")
+flat = true
+
+[node name="HideButton2" type="Button" parent="."]
+visibility_layer = 2
+offset_left = -5.0
+offset_top = 529.0
+offset_right = 372.0
+offset_bottom = 681.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n7fof")
+flat = true
+
+[node name="HideButton3" type="Button" parent="."]
+visibility_layer = 2
+offset_left = 303.0
+offset_top = 150.0
+offset_right = 373.0
+offset_bottom = 531.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_leiid")
+flat = true
+
+[node name="HideButton4" type="Button" parent="."]
+visibility_layer = 2
+offset_left = -12.0
+offset_top = 151.0
+offset_right = 58.0
+offset_bottom = 530.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f7mtg")
+flat = true
+
+[connection signal="button_up" from="Sprite/Option1" to="." method="_on_option_1_button_up"]
+[connection signal="button_up" from="Sprite/Option2" to="." method="_on_option_2_button_up"]
+[connection signal="button_up" from="HideButton" to="." method="_on_hide_button_up"]
+[connection signal="button_up" from="HideButton2" to="." method="_on_hide_button_up"]
+[connection signal="button_up" from="HideButton3" to="." method="_on_hide_button_up"]
+[connection signal="button_up" from="HideButton4" to="." method="_on_hide_button_up"]

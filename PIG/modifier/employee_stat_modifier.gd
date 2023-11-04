@@ -22,7 +22,7 @@ func _ready():
 
 # Override modify from Modifier class
 func modify():
-	var employees : Array[Employee] = get_employees()
+	var employees = get_employees()
 	for employee in employees:
 		match self.__stat_type:
 			STAT.QUALITY:
@@ -34,10 +34,11 @@ func modify():
 			STAT.MORALE:
 				employee.morale += __stat_value
 		employee.update_summary()
+		employee.update_extended()
 
 # Override detach_modification method from Modifier class
 func detach_modification():
-	var employees : Array[Employee] = get_employees()
+	var employees = get_employees()
 	for employee in employees:
 		match self.__stat_type:
 			STAT.QUALITY:
@@ -49,3 +50,5 @@ func detach_modification():
 			STAT.MORALE:
 				employee.morale -= __stat_value
 		employee.update_summary()
+		employee.update_extended()
+		remove_employee(employee)
