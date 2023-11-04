@@ -40,16 +40,29 @@ static func get_filter_functions():
 	]
 
 #sort functions
-static func state_sort(issueA:Issue,issueB:Issue):
+static func state_sort(issueA:Issue,issueB:Issue) -> bool:
 	return issueA.state < issueB.state
 
-static func rev_state_sort(issueA:Issue,issueB:Issue):
+static func rev_state_sort(issueA:Issue,issueB:Issue) -> bool:
 	return not state_sort(issueA,issueB)
 
+static func client_importance_sort(issueA: Issue, issueB: Issue) -> bool:
+	return issueA.importance_to_client > issueB.importance_to_client
+	
+static func time_sort(issueA: Issue, issueB: Issue) -> bool:
+	return issueA.time > issueB.time
+	
+static func difficulty_sort(issueA: Issue, issueB: Issue) -> bool:
+	return issueA.difficulty > issueB.difficulty
+	
 #static var workaround
 static func get_sort_functions():
 	return [
 		["Default",null],
 		["State",Callable(BacklogUtils,"state_sort")],
-		["Reverse State",Callable(BacklogUtils,"rev_state_sort")]
+		["Reverse State",Callable(BacklogUtils,"rev_state_sort")],
+		["Importance to client", Callable(BacklogUtils,
+		"client_importance_sort")],
+		["Time", Callable(BacklogUtils, "time_sort")],
+		["Difficulty", Callable(BacklogUtils, "difficulty_sort")]
 	]
