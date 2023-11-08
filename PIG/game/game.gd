@@ -111,6 +111,9 @@ func _on_end_turn_button_button_up():
 # check if game is in transition
 func is_in_transition():
 	return not transition_to == null
+	
+func is_in_scroll():
+	return $Backlog.is_in_scroll()
 
 # check if view should be changed after transition
 func is_transition_triggering_switch():
@@ -191,8 +194,9 @@ func movement_intepretation():
 		if is_in_transition():
 			transition_update()
 	else:
-		#TODO Implement scrolling
-		pass
+		if $Backlog.visible:
+			$Backlog.add_scroll(movement.y)
+		
 		
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -200,7 +204,7 @@ func _input(event):
 		# check if move triggers change
 		if event.button_mask == MOUSE_BUTTON_LEFT:
 			movement += event.relative
-			if is_in_transition() or movement.length() > movement_trigger:
+			if is_in_transition() or is_in_scroll() or movement.length() > movement_trigger:
 				movement_intepretation()
 		else:
 			movement = Vector2.ZERO
@@ -210,7 +214,9 @@ func _input(event):
 		if event.button_mask != MOUSE_BUTTON_LEFT:
 			if is_in_transition():
 				resolve_transition()
-		movement = Vector2.ZERO
+			if $Backlog.is_in_scroll():
+				$Backlog.end_scroll()
+			movement = Vector2.ZERO
 # Listen to assign request from backlog
 # Call save_task_to_assign
 func _on_backlog_assign(owner):

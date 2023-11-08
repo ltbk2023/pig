@@ -378,5 +378,3 @@ func _on_tab_3_button_up():
 
 func _on_hide_button_button_up():
 	set_visibility_on_exteded_description(false)
-
-

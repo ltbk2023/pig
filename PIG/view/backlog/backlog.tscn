@@ -1,14 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://btvv1oojseb6c"]
+[gd_scene load_steps=8 format=3 uid="uid://btvv1oojseb6c"]
 
 [ext_resource type="Script" path="res://view/backlog/backlog.gd" id="1_74h7j"]
 [ext_resource type="Theme" uid="uid://bms0e4llb3yhp" path="res://view/backlog/baclog_theme.tres" id="2_x3265"]
-
-[sub_resource type="Gradient" id="Gradient_h388n"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_q5yet"]
-gradient = SubResource("Gradient_h388n")
 
 [sub_resource type="Gradient" id="Gradient_lo430"]
 offsets = PackedFloat32Array(0)
@@ -16,8 +9,13 @@ colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4ykdg"]
 gradient = SubResource("Gradient_lo430")
-width = 340
-height = 340
+width = 360
+height = 680
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qrwyl"]
+gradient = SubResource("Gradient_lo430")
+width = 360
+height = 180
 
 [sub_resource type="Animation" id="Animation_0aqmv"]
 resource_name = "update_cycle"
@@ -46,22 +44,22 @@ _data = {
 script = ExtResource("1_74h7j")
 issue_visual_separation = Vector2(0, 60)
 
-[node name="BlackSprite" type="Sprite2D" parent="."]
+[node name="Background" type="Sprite2D" parent="."]
 position = Vector2(180, 340)
-scale = Vector2(5.62499, 10.625)
-texture = SubResource("GradientTexture2D_q5yet")
-
-[node name="WhiteSprite" type="Sprite2D" parent="."]
-position = Vector2(180, 340)
-scale = Vector2(1, 1.949)
 texture = SubResource("GradientTexture2D_4ykdg")
 
-[node name="BacklogTitle" type="RichTextLabel" parent="WhiteSprite"]
+[node name="HideIssueBackground" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(180, 90)
+texture = SubResource("GradientTexture2D_qrwyl")
+
+[node name="BacklogTitle" type="RichTextLabel" parent="HideIssueBackground"]
 modulate = Color(0, 0, 0, 1)
+z_index = 1
 offset_left = -75.0
-offset_top = -155.0
+offset_top = -40.0
 offset_right = 89.0
-offset_bottom = -127.0
+offset_bottom = -12.0
 bbcode_enabled = true
 text = "[font_size=20]Product Backlog[/font_size]"
 scroll_active = false
@@ -70,6 +68,7 @@ scroll_active = false
 position = Vector2(0, 180)
 
 [node name="Filter" type="OptionButton" parent="."]
+z_index = 1
 offset_left = 70.0
 offset_top = 100.0
 offset_right = 340.0
@@ -92,6 +91,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Filter:"
 
 [node name="Sort" type="OptionButton" parent="."]
+z_index = 1
 offset_left = 70.0
 offset_top = 140.0
 offset_right = 340.0
