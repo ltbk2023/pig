@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://nfgaijnpjkrh"]
+[gd_scene load_steps=19 format=3 uid="uid://nfgaijnpjkrh"]
 
 [ext_resource type="Script" path="res://card/story_card.gd" id="1_sqpxi"]
+[ext_resource type="Script" path="res://card/story_card_visual.gd" id="2_vvp2q"]
 
 [sub_resource type="Gradient" id="Gradient_uju8s"]
 offsets = PackedFloat32Array(1)
@@ -8,107 +9,122 @@ colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_xf1sa"]
 gradient = SubResource("Gradient_uju8s")
-width = 250
-height = 380
+width = 360
+height = 480
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r3fgv"]
+
+[sub_resource type="Gradient" id="Gradient_7x4oa"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.75)
+colors = PackedColorArray(0.827451, 0.827451, 0.827451, 1, 0.662745, 0.662745, 0.662745, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0j21w"]
+gradient = SubResource("Gradient_7x4oa")
+width = 1
+height = 4
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cslj5"]
+texture = SubResource("GradientTexture2D_0j21w")
+
+[sub_resource type="Theme" id="Theme_o6fdy"]
+RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_r3fgv")
+RichTextLabel/styles/normal = SubResource("StyleBoxTexture_cslj5")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_28hji"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8r41p"]
+
+[sub_resource type="Theme" id="Theme_vjs8m"]
+RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_28hji")
+RichTextLabel/styles/normal = SubResource("StyleBoxFlat_8r41p")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5b0u"]
+bg_color = Color(0.898039, 0.898039, 0.898039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2d3v"]
+bg_color = Color(0.827451, 0.827451, 0.827451, 1)
+
+[sub_resource type="Gradient" id="Gradient_7qck3"]
+offsets = PackedFloat32Array(0.413115)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jpkhg"]
+gradient = SubResource("Gradient_7qck3")
+width = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h1crq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n7fof"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_leiid"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7mtg"]
-
 [node name="StoryCard" type="Node2D"]
-visible = false
+texture_filter = 1
+position = Vector2(0, 100)
 script = ExtResource("1_sqpxi")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-position = Vector2(180, 340)
+[node name="Sprite" type="Node2D" parent="."]
+position = Vector2(180, 240)
+script = ExtResource("2_vvp2q")
+
+[node name="Sprite" type="Sprite2D" parent="Sprite"]
 texture = SubResource("GradientTexture2D_xf1sa")
 
 [node name="Title" type="RichTextLabel" parent="Sprite"]
-offset_left = -25.0
-offset_top = -180.0
-offset_right = 186.0
-offset_bottom = -141.0
+texture_filter = 1
+offset_left = -170.0
+offset_top = -230.0
+offset_right = 170.0
+offset_bottom = -180.0
+theme = SubResource("Theme_o6fdy")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
-text = "[color=RED][font_size=20]Title[/font_size][/color]
+text = "[color=RED]Title[/color]
 "
+scroll_active = false
 
 [node name="Story" type="RichTextLabel" parent="Sprite"]
-offset_left = -116.0
-offset_top = -90.0
-offset_right = 115.0
-offset_bottom = 108.0
+offset_left = -170.0
+offset_top = -170.0
+offset_right = 170.0
+offset_bottom = 220.0
+theme = SubResource("Theme_vjs8m")
+theme_override_styles/focus = SubResource("StyleBoxFlat_t5b0u")
+theme_override_styles/normal = SubResource("StyleBoxFlat_t2d3v")
 bbcode_enabled = true
 text = "[color=BLACK][font_size=15]This is an example story. A lot of things are happening here and you need to make a decision right now. What do you do?[/font_size][/color]"
 
-[node name="ID" type="RichTextLabel" parent="Sprite"]
-offset_left = -120.0
-offset_top = -190.0
-offset_right = -80.0
-offset_bottom = -150.0
-bbcode_enabled = true
-text = "[color=RED][font_size=20]99[/font_size][/color]
-"
+[node name="Bar" type="Sprite2D" parent="Sprite"]
+modulate = Color(0.662745, 0.662745, 0.662745, 1)
+position = Vector2(-170, 220)
+scale = Vector2(340, 10)
+texture = SubResource("GradientTexture1D_jpkhg")
+centered = false
 
-[node name="Option1" type="Button" parent="Sprite"]
-offset_left = -120.0
-offset_top = 88.0
-offset_right = 119.0
-offset_bottom = 119.0
-text = "Option 1"
-text_overrun_behavior = 2
-
-[node name="Option2" type="Button" parent="Sprite"]
-offset_left = -120.0
-offset_top = 130.0
-offset_right = 119.0
-offset_bottom = 161.0
-text = "Option 2
-"
-text_overrun_behavior = 2
+[node name="Options" type="Control" parent="Sprite"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = -180.0
+offset_top = 190.0
+offset_right = -140.0
+offset_bottom = 240.0
 
 [node name="HideButton" type="Button" parent="."]
 visibility_layer = 2
-offset_left = -9.0
-offset_top = -7.0
-offset_right = 368.0
-offset_bottom = 149.0
+offset_top = -200.0
+offset_right = 360.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_h1crq")
 flat = true
 
 [node name="HideButton2" type="Button" parent="."]
 visibility_layer = 2
-offset_left = -5.0
-offset_top = 529.0
-offset_right = 372.0
-offset_bottom = 681.0
+offset_top = 480.0
+offset_right = 360.0
+offset_bottom = 680.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_n7fof")
 flat = true
 
-[node name="HideButton3" type="Button" parent="."]
-visibility_layer = 2
-offset_left = 303.0
-offset_top = 150.0
-offset_right = 373.0
-offset_bottom = 531.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_leiid")
-flat = true
-
-[node name="HideButton4" type="Button" parent="."]
-visibility_layer = 2
-offset_left = -12.0
-offset_top = 151.0
-offset_right = 58.0
-offset_bottom = 530.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_f7mtg")
-flat = true
-
-[connection signal="button_up" from="Sprite/Option1" to="." method="_on_option_1_button_up"]
-[connection signal="button_up" from="Sprite/Option2" to="." method="_on_option_2_button_up"]
 [connection signal="button_up" from="HideButton" to="." method="_on_hide_button_up"]
 [connection signal="button_up" from="HideButton2" to="." method="_on_hide_button_up"]
-[connection signal="button_up" from="HideButton3" to="." method="_on_hide_button_up"]
-[connection signal="button_up" from="HideButton4" to="." method="_on_hide_button_up"]
