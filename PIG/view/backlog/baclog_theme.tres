@@ -1,4 +1,8 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bms0e4llb3yhp"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bms0e4llb3yhp"]
+
+[ext_resource type="Texture2D" uid="uid://d4c120sj3vgsi" path="res://view/backlog/arrow.png" id="1_c74tu"]
+[ext_resource type="Texture2D" uid="uid://c02dpqr22d2cj" path="res://view/backlog/full.png" id="1_egn84"]
+[ext_resource type="Texture2D" uid="uid://bdrtm6g4gn5fa" path="res://view/backlog/empty.png" id="3_er54o"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05vpu"]
 
@@ -23,6 +27,7 @@ OptionButton/colors/font_hover_color = Color(0, 0, 0, 1)
 OptionButton/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
 OptionButton/colors/font_outline_color = Color(0, 0, 0, 0)
 OptionButton/colors/font_pressed_color = Color(0, 0, 0, 0)
+OptionButton/icons/arrow = ExtResource("1_c74tu")
 OptionButton/styles/focus = SubResource("StyleBoxEmpty_05vpu")
 OptionButton/styles/hover = SubResource("StyleBoxFlat_kkoeb")
 OptionButton/styles/normal = SubResource("StyleBoxFlat_e60xw")
@@ -30,5 +35,13 @@ OptionButton/styles/pressed = SubResource("StyleBoxFlat_d8g4a")
 PopupMenu/colors/font_color = Color(0, 0, 0, 1)
 PopupMenu/colors/font_hover_color = Color(0, 0, 0, 1)
 PopupMenu/colors/font_outline_color = Color(0, 0, 0, 1)
+PopupMenu/icons/checked = ExtResource("1_egn84")
+PopupMenu/icons/checked_disabled = ExtResource("1_egn84")
+PopupMenu/icons/radio_checked = ExtResource("1_egn84")
+PopupMenu/icons/radio_checked_disabled = ExtResource("1_egn84")
+PopupMenu/icons/radio_unchecked = ExtResource("3_er54o")
+PopupMenu/icons/radio_unchecked_disabled = ExtResource("3_er54o")
+PopupMenu/icons/unchecked = ExtResource("3_er54o")
+PopupMenu/icons/unchecked_disabled = ExtResource("3_er54o")
 PopupMenu/styles/hover = SubResource("StyleBoxEmpty_dfxcl")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_vaci3")
