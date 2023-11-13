@@ -383,3 +383,179 @@ func display_extended_view():
 	laptop_open = false
 	bubble = false
 
+var skin_color_key = "skin_color"
+var hair_color_key = "hair_color"
+var lips_color_key = "lips_color"
+var eyeball_color_key = "eyeball_color"
+var iris_color_key = "iris_color"
+var clothes_color_key = "clothes_color"
+var desk_color_key = "desk_color"
+var laptop_color_key = "laptop_color"
+
+var nose_model_key = "nose_model"
+var hair_front_model_key = "hair_front_model"
+var hair_back_model_key = "hair_back_model"
+var beard_model_key = "beard_model"
+var body_model_key = "body_model"
+var clothes_model_key = "clothes_model"
+var detail_model_key = "detail_model"
+var desk_model_key = "desk_model"
+var laptop_model_key = "laptop_model"
+
+func __make_key(key:String,number:int):
+	return key+"_"+str(number)
+
+func __get_if_contain(dict:Dictionary,key:String,number:int=-1):
+	if number >-1:
+		key = __make_key(key,number)
+	return dict.get(key)
+
+# load visualization from dictionary
+# if key is not present in the dictionary value will be skiped
+func configure_visuals(dict:Dictionary):
+	var value = __get_if_contain(dict,skin_color_key,1)
+	if value != null:
+		skin_1 = Color.from_string(value,skin_1)
+	value = __get_if_contain(dict,skin_color_key,2)
+	if value != null:
+		skin_2 = Color.from_string(value,skin_2)
+	value = __get_if_contain(dict,skin_color_key,3)
+	if value != null:
+		skin_3 = Color.from_string(value,skin_3)
+	
+	value = __get_if_contain(dict,hair_color_key,1)
+	if value != null:
+		hair_1 = Color.from_string(value,hair_1)
+	value = __get_if_contain(dict,hair_color_key,2)
+	if value != null:
+		hair_2 = Color.from_string(value,hair_2)
+	
+	value = __get_if_contain(dict,lips_color_key,1)
+	if value != null:
+		lips_1 = Color.from_string(value,lips_1)
+	value = __get_if_contain(dict,lips_color_key,2)
+	if value != null:
+		lips_2 = Color.from_string(value,lips_2)
+	
+	value = __get_if_contain(dict,clothes_color_key,1)
+	if value != null:
+		clothes1 = Color.from_string(value,clothes1)
+	value = __get_if_contain(dict,clothes_color_key,2)
+	if value != null:
+		clothes2 = Color.from_string(value,clothes2)
+	value = __get_if_contain(dict,clothes_color_key,3)
+	if value != null:
+		clothes3 = Color.from_string(value,clothes3)
+		
+	value = __get_if_contain(dict,desk_color_key,1)
+	if value != null:
+		desk_1 = Color.from_string(value,desk_1)
+	value = __get_if_contain(dict,desk_color_key,2)
+	if value != null:
+		desk_2 = Color.from_string(value,desk_2)
+	value = __get_if_contain(dict,desk_color_key,3)
+	if value != null:
+		desk_3 = Color.from_string(value,desk_3)
+		
+	value = __get_if_contain(dict,laptop_color_key,1)
+	if value != null:
+		laptop_1 = Color.from_string(value,laptop_1)
+	value = __get_if_contain(dict,laptop_color_key,2)
+	if value != null:
+		laptop_2 = Color.from_string(value,laptop_2)
+		
+	value = dict.get(eyeball_color_key)
+	if value != null:
+		eyeball = Color.from_string(value,eyeball)
+	value = dict.get(iris_color_key)
+	if value != null:
+		iris = Color.from_string(value,iris)
+	
+	value = dict.get(nose_model_key)
+	if value != null:
+		nose = value
+	
+	value = dict.get(hair_front_model_key)
+	if value != null:
+		hair_front = value
+	value = dict.get(hair_back_model_key)
+	if value != null:
+		hair_back = value
+	value = dict.get(beard_model_key)
+	if value != null:
+		beard = value
+	value = dict.get(body_model_key)
+	if value != null:
+		body = value
+	value = dict.get(clothes_model_key)
+	if value != null:
+		clothes = value
+	value = dict.get(detail_model_key)
+	if value != null:
+		detail = value
+	value = dict.get(desk_model_key)
+	if value != null:
+		desk = value
+	value = dict.get(laptop_model_key)
+	if value != null:
+		laptop = value
+		
+# configure visuals besed on given dictionary of presets
+# key represents resource it is loaded from
+# value number of the preset 
+# if value is null or out of range preset is randomly selected
+# dictionary can contain may key-value pairs
+# if preset contains overlaping values 
+# final values are selected in not determinstic way
+func configure_from_presets(dict:Dictionary):
+	var new_dict = Dictionary()
+	
+	for p in dict:
+		var preset:Array = load(p).data
+		var value = dict[p]
+		if (not value is int) or value < 0 or value >=preset.size():
+			value = randi_range(0,preset.size()-1)
+		new_dict.merge(preset[value])
+	
+	configure_visuals(new_dict)
+	
+# save visualization to dictionary
+# visualization can be loaded via configure_visuals()
+func to_json():
+	var dict = Dictionary()
+	
+	dict[__make_key(skin_color_key,1)] = skin_1.to_html()
+	dict[__make_key(skin_color_key,2)] = skin_2.to_html()
+	dict[__make_key(skin_color_key,3)] = skin_3.to_html()
+	
+	dict[__make_key(hair_color_key,1)] = hair_1.to_html()
+	dict[__make_key(hair_color_key,2)] = hair_2.to_html()
+	
+	dict[__make_key(lips_color_key,1)] = lips_1.to_html()
+	dict[__make_key(lips_color_key,2)] = lips_2.to_html()
+	
+	dict[__make_key(clothes_color_key,1)] = clothes1.to_html()
+	dict[__make_key(clothes_color_key,2)] = clothes2.to_html()
+	dict[__make_key(clothes_color_key,3)] = clothes3.to_html()
+	
+	dict[__make_key(desk_color_key,1)] = desk_1.to_html()
+	dict[__make_key(desk_color_key,2)] = desk_2.to_html()
+	dict[__make_key(desk_color_key,3)] = desk_3.to_html()
+		
+	dict[__make_key(laptop_color_key,1)] = laptop_1.to_html()
+	dict[__make_key(laptop_color_key,2)] = laptop_2.to_html()
+		
+	dict[eyeball_color_key] = eyeball.to_html()
+	dict[iris_color_key] = iris.to_html()
+	
+	dict[nose_model_key] = nose
+	dict[hair_front_model_key] = hair_front
+	dict[hair_back_model_key] = hair_back
+	dict[beard_model_key] = beard
+	dict[body_model_key] = body
+	dict[clothes_model_key] = clothes
+	dict[detail_model_key] = detail
+	dict[desk_model_key] = desk
+	dict[laptop_model_key] = laptop
+	
+	return dict

@@ -1465,7 +1465,6 @@ desk_3 = Color(0.788235, 0.52549, 0.309804, 1)
 laptop_1 = Color(0.392157, 0.392157, 0.392157, 1)
 laptop_2 = Color(1, 0, 0.4, 1)
 hair_front = 1
-beard = 1
 clothes = 3
 detail = 2
 laptop = 1
@@ -1638,14 +1637,13 @@ modulate = Color(0.431373, 0.282353, 0.0431373, 0.996078)
 texture = ExtResource("10_v2cfx")
 hframes = 2
 vframes = 8
-frame = 4
 
 [node name="Hair2" type="Sprite2D" parent="Sprite/BeardUD"]
 modulate = Color(0.380392, 0.262745, 0.0705882, 1)
 texture = ExtResource("10_v2cfx")
 hframes = 2
 vframes = 8
-frame = 5
+frame = 1
 
 [node name="Body" type="Node2D" parent="Sprite"]
 position = Vector2(0, 10.5)
