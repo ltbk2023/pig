@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://2k4tpybmr0a4"]
 
 [ext_resource type="Script" path="res://view/testing/testing.gd" id="1_ila0p"]
-[ext_resource type="PackedScene" path="res://quality_deck/QualityDeck.tscn" id="2_jk66l"]
+[ext_resource type="PackedScene" uid="uid://djxvqbwooew4i" path="res://quality_deck/QualityDeck.tscn" id="2_jk66l"]
 
 [sub_resource type="Gradient" id="Gradient_n3oit"]
 offsets = PackedFloat32Array(0)

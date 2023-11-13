@@ -16,18 +16,12 @@ var title: String
 var story_text: String
 
 # An of possible options (dictionaries)
-var options : Array[Dictionary]
+var options : Array[OptionDTO]
 
-# A dictionary that maps strings received from the Deck Master to Callable
-# objects
-var action_types = \
-{
-	"modify_stat": Callable(self, "modify_stat")
-}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	update_view()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -35,33 +29,27 @@ func _process(delta):
 
 # Update the view after receiving data from the Deck Master
 func update_view():
-	$Sprite/Title.text = "[color=RED]" + title + "[/color]"
-	$Sprite/Story.text = "[color=BLACK]" + story_text + "[/color]"
-	$Sprite/Option1.text = options[0]["text"]
-	$Sprite/Option2.text = options[1]["text"]
+	$Sprite/Title.text = "[center][color=BLACK][b]" + title + "[/b][/color][/center]"
+	$Sprite/Story.text = "[center][color=BLACK]" + story_text + "[/color][/center]"
 	
-# Modify the stat of an employee 
-func modify_stat(employee: Employee, stat_string: String, value: int,
-duration: int):
-	var stat = Utility.str_to_stat(stat_string)
-	var modifier =\
-	preload("res://modifier/employee_stat_modifier.tscn").instantiate()
-	modifier.initialize(stat, value, duration)
-	modifier.attach_employee(employee)
-	get_tree().call_group("ModifierHandlers", "handle", modifier)
+	$Sprite.reset_options()
+	for i in range(options.size()):
+		var button:Button = $Sprite.add_option(options[i].text)
+		button.button_up.connect(_on_option_selected.bind(i))
+
 
 # Execute the consequences of an option
 func execute_option(option: int):
-	for effect in options[option]["effects"]:
-		for args_set in effect["args"]:
-			action_types[effect["type"]].callv(args_set)
+	var op = options[option]
+	for type in op.effects:
+		for effect in op.effects[type]:
+			var modifier =effect.create_modifier()
+			get_tree().call_group("ModifierHandlers", "handle", modifier)
+
 	emit_signal("done", self)
 
 func _on_hide_button_up():
 	self.visible = false
 
-func _on_option_1_button_up():
-	execute_option(0)
-
-func _on_option_2_button_up():
-	execute_option(1)
+func _on_option_selected(option:int):
+	execute_option(option)

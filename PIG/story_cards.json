@@ -1,58 +1,71 @@
-{
-	"0": 
+[
 	{
 		"employee_number": 2,
+		"employee_filter": null,
 		"title": "Fight",
-		"text": "${E1}.name punched ${E2}.name. What do you do?",
-		"option1": 
-		{
-			"text": "Yell at ${E1}.name",
-			"effects":
-			[
+		"text": "${E1}.name punched ${E2}.name in face for being to loud. What do you do?",
+		"options":
+		[
 			{
-				"type": "modify_stat",
-				"args": [["${E1}", "morale", -2, 1], ["${E2}", "morale", 1, 1]]
-			}
-			]
-		},
-		"option2":
-		{
-			"text": "Do nothing",
-			"effects":
-			[
+				"text": "Yell at ${E1}.name for hitting ${E1}.name",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E1}", "morale", -2, 1],
+						["${E2}", "morale", 1, 1]
+					]
+				}
+			},
 			{
-				"type": "modify_stat",
-				"args": [["${E2}", "morale", -3, -1]]
+				"text": "Yell at ${E2}.name for being to loud",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E1}", "morale", 1, 1],
+						["${E2}", "morale", -4, 1]
+					]
+				}
+			},
+			{
+				"text": "Do nothing",
+				"effects":
+				{
+					 "modify_stat": [
+						["${E2}", "morale", -3, -1]
+					]
+				}
 			}
-			]
-		}
+		]
 	},
-	"1":
 	{
 		"employee_number": 1,
+		"employee_filter": null,
 		"title": "Sad day",
 		"text": "${E1}.name is sad. What do you do?",
-		"option1": 
-		{
-			"text": "Buy ${E1}.name a cupcake",
-			"effects":
-			[
+		"options": 
+		[
 			{
-				"type": "modify_stat",
-				"args": [["${E1}", "morale", 2, 2]]
-			}
-			]
-		},
-		"option2":
-		{
-			"text": "Do nothing",
-			"effects":
-			[
+				"text": "Buy ${E1}.name a cupcake",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 2, 2]
+					]
+				}
+			},
 			{
-				"type": "modify_stat",
-				"args": [["${E1}", "morale", -1, 1]]
+				"text": "Do nothing",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -1, 1]
+					]
+				}
 			}
-			]
-		}
+		]
 	}
-}
+]

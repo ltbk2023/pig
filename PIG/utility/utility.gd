@@ -30,7 +30,7 @@ static func load_from_file(file_name: String) -> Dictionary:
 		return {"error": "JSON Parse Error"}
 
 # load JSON state of whole game from resource in internal file system
-static func load_from_resource(name:String) -> Dictionary:
+static func load_from_resource(name:String):
 	return load(name).data
 		
 # Returns an employee stat value corresponding to stat_string (case insensitive)

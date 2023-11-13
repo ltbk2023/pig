@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b3pdlf4ndfwdx"]
+
+[ext_resource type="StyleBox" uid="uid://d4nxxtrx34ttv" path="res://card/sprite/button_gradient1.tres" id="1_jsrxx"]
+[ext_resource type="StyleBox" uid="uid://w6mhi0jguviq" path="res://card/sprite/button_gradient2.tres" id="2_20fx7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lbwpn"]
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.87451, 0.87451, 0.87451, 0)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0.227451, 0.227451, 0.227451, 1)
+Button/colors/icon_focus_color = Color(1, 1, 1, 0)
+Button/styles/disabled = ExtResource("1_jsrxx")
+Button/styles/focus = SubResource("StyleBoxEmpty_lbwpn")
+Button/styles/hover = ExtResource("1_jsrxx")
+Button/styles/normal = ExtResource("1_jsrxx")
+Button/styles/pressed = ExtResource("2_20fx7")

@@ -1,10 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://ca2p0ey2167pi"]
+[gd_scene load_steps=31 format=3 uid="uid://dfec03noydegb"]
 
 [ext_resource type="Script" path="res://game/game.gd" id="1_t4wkw"]
 [ext_resource type="PackedScene" uid="uid://btvv1oojseb6c" path="res://view/backlog/backlog.tscn" id="2_1vjop"]
 [ext_resource type="Texture2D" uid="uid://e1l0lcq8mbnb" path="res://game/back.png" id="2_vshih"]
-[ext_resource type="Texture2D" uid="uid://c8jyaa2m5guir" path="res://game/button.png" id="2_xkol5"]
-[ext_resource type="Texture2D" uid="uid://bkd4dvne7xlyk" path="res://game/button2.png" id="3_2uro6"]
+[ext_resource type="Texture2D" uid="uid://c8jyaa2m5guir" path="res://utility/button.png" id="2_xkol5"]
+[ext_resource type="Texture2D" uid="uid://bkd4dvne7xlyk" path="res://utility/button2.png" id="3_2uro6"]
 [ext_resource type="PackedScene" uid="uid://dom60ed6nbcjt" path="res://view/office/office.tscn" id="3_17k77"]
 [ext_resource type="PackedScene" uid="uid://2k4tpybmr0a4" path="res://view/testing/testing.tscn" id="4_mosmf"]
 [ext_resource type="Texture2D" uid="uid://cfsparx3fehr6" path="res://game/exit.png" id="5_8gdxh"]
