@@ -41,9 +41,9 @@ func get_card() -> StoryCard:
 
 	card.update_view()
 	add_child(card)
+	card.visible = false
 	card.done.connect(_on_card_done)
 	card.hidden.connect(_on_card_hidden)
-	card.visible = false
 	return card
 	
 # Pick random employees that will take part in the story
