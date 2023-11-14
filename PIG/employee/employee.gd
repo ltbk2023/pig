@@ -185,7 +185,8 @@ func to_json():
 		"base testing": __base_testing,
 		"base morale": __base_morale,
 		"assigned to": assigned_task_name,
-		"description": $Extended/Description.text
+		"description": $Extended/Description.text,
+		"visuals": $Sprite.to_json()
 	}
 	return dictionary
 	
@@ -197,6 +198,12 @@ func configure_employee(dict: Dictionary) -> bool:
 		__base_morale = dict["base morale"]
 		name = dict["name"]
 		$Extended/Description.text = dict["description"]
+		
+		# every value from visuals will overwrite it's counterpart from presets
+		if dict.has("presets"):
+			$Sprite.configure_from_presets(dict["presets"])
+		if dict.has("visuals"):
+			$Sprite.configure_visuals(dict["visuals"])
 		return true
 	return false
 
