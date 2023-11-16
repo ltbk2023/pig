@@ -1,0 +1,147 @@
+[gd_scene load_steps=3 format=3 uid="uid://6nje6dtrmikh"]
+
+[ext_resource type="Script" path="res://employee/editor/employee_sprite_preset_editor.gd" id="1_y48hs"]
+[ext_resource type="PackedScene" uid="uid://cyl4kohdffyoc" path="res://employee/sprites/employee_sprite.tscn" id="2_t315j"]
+
+[node name="EmployeeSpritePresetEditor" type="Node2D"]
+script = ExtResource("1_y48hs")
+
+[node name="Sprite" parent="." instance=ExtResource("2_t315j")]
+position = Vector2(0, 0)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite2" parent="." instance=ExtResource("2_t315j")]
+position = Vector2(200, 0)
+hair_1 = Color(0.121569, 0.0666667, 0.00392157, 0.996078)
+hair_2 = Color(0.101961, 0.0588235, 0.00784314, 1)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite3" parent="." instance=ExtResource("2_t315j")]
+position = Vector2(400, 0)
+skin_1 = Color(0.835294, 0.690196, 0.603922, 1)
+skin_2 = Color(0.945098, 0.784314, 0.690196, 1)
+skin_3 = Color(0.976471, 0.854902, 0.776471, 1)
+hair_1 = Color(0.819608, 0.313726, 0.172549, 0.996078)
+hair_2 = Color(0.701961, 0.301961, 0.145098, 0.996078)
+lips_1 = Color(0.729412, 0.27451, 0.184314, 1)
+lips_2 = Color(0.768627, 0.321569, 0.231373, 1)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite4" parent="." instance=ExtResource("2_t315j")]
+position = Vector2(600, 0)
+hair_1 = Color(0.0745098, 0.705882, 0.741176, 0.996078)
+hair_2 = Color(0, 0.635294, 0.721569, 1)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite5" parent="." instance=ExtResource("2_t315j")]
+position = Vector2(0, 150)
+skin_1 = Color(0.458824, 0.168627, 0.00392157, 1)
+skin_2 = Color(0.588235, 0.231373, 0.00392157, 1)
+skin_3 = Color(0.678431, 0.282353, 0.00392157, 1)
+hair_1 = Color(0.188235, 0.117647, 0.00784314, 0.996078)
+hair_2 = Color(0.141176, 0.0823529, 0, 0.996078)
+lips_1 = Color(0.411765, 0.105882, 0.0313726, 1)
+lips_2 = Color(0.447059, 0.133333, 0.0352941, 1)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite6" parent="." instance=ExtResource("2_t315j")]
+position = Vector2(200, 150)
+skin_1 = Color(0.458824, 0.168627, 0.00392157, 1)
+skin_2 = Color(0.588235, 0.231373, 0.00392157, 1)
+skin_3 = Color(0.678431, 0.282353, 0.00392157, 1)
+hair_1 = Color(0.431373, 0, 0.396078, 0.996078)
+hair_2 = Color(0.341176, 0, 0.270588, 0.996078)
+lips_1 = Color(0.411765, 0.105882, 0.0313726, 1)
+lips_2 = Color(0.447059, 0.133333, 0.0352941, 1)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite7" parent="." instance=ExtResource("2_t315j")]
+position = Vector2(400, 150)
+smile = true
+skin_1 = Color(0.141176, 0.0823529, 0.0470588, 1)
+skin_2 = Color(0.168627, 0.105882, 0.0627451, 1)
+skin_3 = Color(0.211765, 0.12549, 0.105882, 1)
+hair_1 = Color(0.0784314, 0.0392157, 0.00392157, 0.996078)
+hair_2 = Color(0, 0, 0, 1)
+lips_1 = Color(0.129412, 0.0588235, 0.027451, 1)
+lips_2 = Color(0.160784, 0.0588235, 0.0392157, 1)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite8" parent="." instance=ExtResource("2_t315j")]
+position = Vector2(600, 150)
+skin_1 = Color(0.141176, 0.0823529, 0.0470588, 1)
+skin_2 = Color(0.168627, 0.105882, 0.0627451, 1)
+skin_3 = Color(0.211765, 0.12549, 0.105882, 1)
+hair_1 = Color(0.431373, 0, 0.0431373, 0.996078)
+hair_2 = Color(0.305882, 0, 0.0196078, 0.996078)
+lips_1 = Color(0.129412, 0.0431373, 0.027451, 1)
+lips_2 = Color(0.160784, 0.0588235, 0.0392157, 1)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite9" parent="." instance=ExtResource("2_t315j")]
+position = Vector2(0, 300)
+skin_1 = Color(0.811765, 0.709804, 0.533333, 1)
+skin_2 = Color(0.94902, 0.792157, 0.615686, 1)
+skin_3 = Color(0.968627, 0.866667, 0.756863, 1)
+hair_1 = Color(0.129412, 0.129412, 0.129412, 0.996078)
+hair_2 = Color(0.0313726, 0.0156863, 0, 1)
+lips_1 = Color(0.729412, 0.227451, 0.184314, 1)
+lips_2 = Color(0.768627, 0.27451, 0.231373, 1)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite10" parent="." instance=ExtResource("2_t315j")]
+position = Vector2(200, 300)
+skin_1 = Color(0.811765, 0.709804, 0.533333, 1)
+skin_2 = Color(0.94902, 0.792157, 0.615686, 1)
+skin_3 = Color(0.968627, 0.866667, 0.756863, 1)
+hair_1 = Color(0.34902, 0.819608, 0.0313726, 0.996078)
+hair_2 = Color(0.345098, 0.709804, 0.0666667, 1)
+lips_1 = Color(0.729412, 0.227451, 0.184314, 1)
+lips_2 = Color(0.768627, 0.27451, 0.231373, 1)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite11" parent="." instance=ExtResource("2_t315j")]
+visible = false
+position = Vector2(400, 300)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite12" parent="." instance=ExtResource("2_t315j")]
+visible = false
+position = Vector2(600, 300)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite13" parent="." instance=ExtResource("2_t315j")]
+visible = false
+position = Vector2(0, 450)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite14" parent="." instance=ExtResource("2_t315j")]
+visible = false
+position = Vector2(200, 450)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite15" parent="." instance=ExtResource("2_t315j")]
+visible = false
+position = Vector2(400, 450)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
+
+[node name="Sprite16" parent="." instance=ExtResource("2_t315j")]
+visible = false
+position = Vector2(600, 450)
+clothes1 = Color(0, 0.309804, 0.658824, 1)
+clothes3 = Color(0.0509804, 0.372549, 0.741176, 1)
