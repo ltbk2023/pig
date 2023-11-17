@@ -402,12 +402,12 @@ var detail_model_key = "detail_model"
 var desk_model_key = "desk_model"
 var laptop_model_key = "laptop_model"
 
-func __make_key(key:String,number:int):
+func make_key(key:String,number:int):
 	return key+"_"+str(number)
 
 func __get_if_contain(dict:Dictionary,key:String,number:int=-1):
 	if number >-1:
-		key = __make_key(key,number)
+		key = make_key(key,number)
 	return dict.get(key)
 
 # load visualization from dictionary
@@ -524,26 +524,26 @@ func configure_from_presets(dict:Dictionary):
 func to_json():
 	var dict = Dictionary()
 	
-	dict[__make_key(skin_color_key,1)] = skin_1.to_html()
-	dict[__make_key(skin_color_key,2)] = skin_2.to_html()
-	dict[__make_key(skin_color_key,3)] = skin_3.to_html()
+	dict[make_key(skin_color_key,1)] = skin_1.to_html()
+	dict[make_key(skin_color_key,2)] = skin_2.to_html()
+	dict[make_key(skin_color_key,3)] = skin_3.to_html()
 	
-	dict[__make_key(hair_color_key,1)] = hair_1.to_html()
-	dict[__make_key(hair_color_key,2)] = hair_2.to_html()
+	dict[make_key(hair_color_key,1)] = hair_1.to_html()
+	dict[make_key(hair_color_key,2)] = hair_2.to_html()
 	
-	dict[__make_key(lips_color_key,1)] = lips_1.to_html()
-	dict[__make_key(lips_color_key,2)] = lips_2.to_html()
+	dict[make_key(lips_color_key,1)] = lips_1.to_html()
+	dict[make_key(lips_color_key,2)] = lips_2.to_html()
 	
-	dict[__make_key(clothes_color_key,1)] = clothes1.to_html()
-	dict[__make_key(clothes_color_key,2)] = clothes2.to_html()
-	dict[__make_key(clothes_color_key,3)] = clothes3.to_html()
+	dict[make_key(clothes_color_key,1)] = clothes1.to_html()
+	dict[make_key(clothes_color_key,2)] = clothes2.to_html()
+	dict[make_key(clothes_color_key,3)] = clothes3.to_html()
 	
-	dict[__make_key(desk_color_key,1)] = desk_1.to_html()
-	dict[__make_key(desk_color_key,2)] = desk_2.to_html()
-	dict[__make_key(desk_color_key,3)] = desk_3.to_html()
+	dict[make_key(desk_color_key,1)] = desk_1.to_html()
+	dict[make_key(desk_color_key,2)] = desk_2.to_html()
+	dict[make_key(desk_color_key,3)] = desk_3.to_html()
 		
-	dict[__make_key(laptop_color_key,1)] = laptop_1.to_html()
-	dict[__make_key(laptop_color_key,2)] = laptop_2.to_html()
+	dict[make_key(laptop_color_key,1)] = laptop_1.to_html()
+	dict[make_key(laptop_color_key,2)] = laptop_2.to_html()
 		
 	dict[eyeball_color_key] = eyeball.to_html()
 	dict[iris_color_key] = iris.to_html()

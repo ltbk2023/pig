@@ -15,14 +15,15 @@ static func delete_children(node: Node):
 		n.queue_free()
 
 # load JSON state of whole game from file in host file system
-static func load_from_file(file_name: String) -> Dictionary:
+static func load_from_file(file_name: String):
 	var file = FileAccess.open(file_name, FileAccess.READ)
 	var content = file.get_as_text()
 	var json = JSON.new()
 	var error = json.parse(content)
 	if error == OK:
 		var data_received = json.data
-		data_received["error"] = null
+		if data_received is Dictionary:
+			data_received["error"] = null
 		return data_received
 	else:
 		print("JSON Parse Error: ", json.get_error_message(), " in ", content, \
