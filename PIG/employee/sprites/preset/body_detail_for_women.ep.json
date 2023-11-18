@@ -1,0 +1,50 @@
+[
+	{
+		"body_model": 1,
+		"detail_model": 0
+	},
+	{
+		"body_model": 1,
+		"detail_model": 1
+	},
+	{
+		"body_model": 1,
+		"detail_model": 2
+	},
+	{
+		"body_model": 1,
+		"detail_model": 3
+	},
+	{
+		"body_model": 2,
+		"detail_model": 0
+	},
+	{
+		"body_model": 2,
+		"detail_model": 1
+	},
+	{
+		"body_model": 2,
+		"detail_model": 2
+	},
+	{
+		"body_model": 2,
+		"detail_model": 3
+	},
+	{
+		"body_model": 3,
+		"detail_model": 0
+	},
+	{
+		"body_model": 3,
+		"detail_model": 1
+	},
+	{
+		"body_model": 3,
+		"detail_model": 2
+	},
+	{
+		"body_model": 3,
+		"detail_model": 3
+	}
+]

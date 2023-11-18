@@ -1,0 +1,67 @@
+[
+	{
+		"beard_model": 0,
+		"hair_back_model": 0,
+		"hair_front_model": 1
+	},
+	{
+		"beard_model": 1,
+		"hair_back_model": 0,
+		"hair_front_model": 1
+	},
+	{
+		"beard_model": 2,
+		"hair_back_model": 0,
+		"hair_front_model": 1
+	},
+	{
+		"beard_model": 3,
+		"hair_back_model": 0,
+		"hair_front_model": 1
+	},
+	{
+		"beard_model": 0,
+		"hair_back_model": 0,
+		"hair_front_model": 2
+	},
+	{
+		"beard_model": 1,
+		"hair_back_model": 0,
+		"hair_front_model": 2
+	},
+	{
+		"beard_model": 2,
+		"hair_back_model": 0,
+		"hair_front_model": 2
+	},
+	{
+		"beard_model": 3,
+		"hair_back_model": 0,
+		"hair_front_model": 2
+	},
+	{
+		"beard_model": 1,
+		"hair_back_model": 0,
+		"hair_front_model": 0
+	},
+	{
+		"beard_model": 2,
+		"hair_back_model": 0,
+		"hair_front_model": 0
+	},
+	{
+		"beard_model": 3,
+		"hair_back_model": 0,
+		"hair_front_model": 0
+	},
+	{
+		"beard_model": 1,
+		"hair_back_model": 1,
+		"hair_front_model": 1
+	},
+	{
+		"beard_model": 1,
+		"hair_back_model": 2,
+		"hair_front_model": 2
+	}
+]

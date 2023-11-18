@@ -6,6 +6,22 @@ var json:Array = []
 # path to preset with vanila look
 var reset_path= "res://employee/editor/reset.ep.json"
 
+@export var sitting =true:
+	set(s):
+		sitting = s
+		for child in get_children():
+			child.sitting = s
+@export var up =true:
+	set(s):
+		up = s
+		for child in get_children():
+			child.up = s
+@export var laptop_open =true:
+	set(s):
+		laptop_open = s
+		for child in get_children():
+			child.laptop_open = s
+
 # path to file with presets
 # path can't be reset_path
 @export_file("*.json","*.ep.json") var presets="":

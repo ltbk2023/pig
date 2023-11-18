@@ -8,7 +8,18 @@
 			"base testing": 1,
 			"class": "Employee",
 			"description": "[color=BLACK]A developer with experience from many projects. A master of coffee maker, he makes the best and doesn't reveal his secrets to anyone. He has been trying to complete his pioneering project written on Arduino for years.[/color]\n",
-			"name": "Ziemowit"
+			"name": "Ziemowit",
+			"presets":
+			{
+				"res://employee/sprites/preset/skin_hair_lips_color.ep.json":null,
+				"res://employee/sprites/preset/nose.ep.json":null,
+				"res://employee/sprites/preset/desk.ep.json":null,	
+				"res://employee/sprites/preset/laptop.ep.json":null,		
+
+				"res://employee/sprites/preset/clothes_for_men.ep.json":null,
+				"res://employee/sprites/preset/body_detail_for_men.ep.json":null,
+				"res://employee/sprites/preset/hair_beard_for_men.ep.json":null
+			}
 		},
 		{
 			"assigned to": "",
@@ -18,7 +29,18 @@
 			"base testing": 3,
 			"class": "Employee",
 			"description": "[color=BLACK]Never a creative soul. Before this job, he once was a Chief Nuclear Reactor Tester. His head tells the story - now he's saving for a hair transplant in Turkey.[/color]\n",
-			"name": "Hubert"
+			"name": "Juliet",
+			"presets":
+			{
+				"res://employee/sprites/preset/skin_hair_lips_color.ep.json":null,
+				"res://employee/sprites/preset/nose.ep.json":null,
+				"res://employee/sprites/preset/desk.ep.json":null,	
+				"res://employee/sprites/preset/laptop.ep.json":null,		
+
+				"res://employee/sprites/preset/clothes_for_women.ep.json":null,
+				"res://employee/sprites/preset/body_detail_for_women.ep.json":null,
+				"res://employee/sprites/preset/hair_beard_for_women.ep.json":null
+			}
 		},
 		{
 			"assigned to": "",
@@ -28,7 +50,18 @@
 			"base testing": 1,
 			"class": "Employee",
 			"description": "[color=BLACK]Brilliant senior - in a computer science high school. Enjoys playing games on his mobile and reigns as the foosball champion in the relaxation area. His style is heavily influenced by Tuxedo Mask from Sailor Moon.[/color]\n",
-			"name": "Gustaw"
+			"name": "Gustaw",
+			"presets":
+			{
+				"res://employee/sprites/preset/skin_hair_lips_color.ep.json":null,
+				"res://employee/sprites/preset/nose.ep.json":null,
+				"res://employee/sprites/preset/desk.ep.json":null,	
+				"res://employee/sprites/preset/laptop.ep.json":null,		
+
+				"res://employee/sprites/preset/clothes_for_men.ep.json":null,
+				"res://employee/sprites/preset/body_detail_for_men.ep.json":null,
+				"res://employee/sprites/preset/hair_beard_for_men.ep.json":null
+			}
 		}
 	],
 	"Game": {

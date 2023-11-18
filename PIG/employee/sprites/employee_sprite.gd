@@ -2,6 +2,14 @@
 # Changes in code will have effects only after saving scene
 @tool
 extends Node2D
+
+# configuration when not inside three may have no effect
+# so in case of that configuration is set again in _ready()
+var config = null
+func _ready():
+	if config != null:
+		configure_visuals(config)
+		config = null
 # group of variables that modify visible state of employee
 @export_group("State")
 # control if employee look straight or down 
@@ -413,6 +421,9 @@ func __get_if_contain(dict:Dictionary,key:String,number:int=-1):
 # load visualization from dictionary
 # if key is not present in the dictionary value will be skiped
 func configure_visuals(dict:Dictionary):
+	# save config in case node is not in three
+	if not is_inside_tree():
+		config = dict.duplicate(true)
 	var value = __get_if_contain(dict,skin_color_key,1)
 	if value != null:
 		skin_1 = Color.from_string(value,skin_1)
@@ -509,6 +520,7 @@ func configure_visuals(dict:Dictionary):
 # final values are selected in not determinstic way
 func configure_from_presets(dict:Dictionary):
 	var new_dict = Dictionary()
+	randomize()
 	
 	for p in dict:
 		var preset:Array = load(p).data
@@ -516,7 +528,7 @@ func configure_from_presets(dict:Dictionary):
 		if (not value is int) or value < 0 or value >=preset.size():
 			value = randi_range(0,preset.size()-1)
 		new_dict.merge(preset[value])
-	
+	print(JSON.stringify(new_dict,"\t"))
 	configure_visuals(new_dict)
 	
 # save visualization to dictionary
