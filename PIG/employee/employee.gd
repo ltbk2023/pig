@@ -19,6 +19,13 @@ var __base_speed
 var __base_testing
 var __base_morale
 
+# Modified stats are directly acted upon by modificators. If a stat has a low
+# limit of 0, then the actual stat will never go below that value, even if
+# the following variables are negative.
+var __modified_quality
+var __modified_speed
+var __modified_testing
+
 # Declares the intention to assign an issue to this employee
 signal assign(owner)
 
@@ -37,8 +44,10 @@ func _ready():
 	__base_quality = quality
 	__base_speed = speed
 	__base_testing = testing
-	
 	__base_morale = morale
+	__modified_quality = quality
+	__modified_speed = speed
+	__modified_testing = testing
 	randomize()
 	update_summary()
 	update_extended()
@@ -224,6 +233,21 @@ func update_task_display():
 			return
 	$Sprite.display_idle()
 
-
 func _on_hide_button_up():
 	set_visibility_of_extended_description(false)
+
+func modify_stat(stat: EmployeeStatModifier.STAT, value: int):
+	match stat:
+		EmployeeStatModifier.STAT.QUALITY:
+			__modified_quality += value
+			quality = __modified_quality if __modified_quality >= 0 else 0
+		EmployeeStatModifier.STAT.SPEED:
+			__modified_speed += value
+			speed = __modified_speed if __modified_speed >= 0 else 0
+		EmployeeStatModifier.STAT.TESTING:
+			__modified_testing += value
+			testing = __modified_testing if __modified_testing >= 0 else 0
+		EmployeeStatModifier.STAT.MORALE:
+			morale += value
+	update_summary()
+	update_extended()

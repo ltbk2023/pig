@@ -21,34 +21,21 @@ func _ready():
 
 
 # Override modify from Modifier class
+# IMPORTANT: This is called by the attach_employee function. You must make sure
+# to add the modifier to the tree before calling attach_employee.
+# Use ModifierHanlder.handle
 func modify():
 	var employees = get_employees()
 	for employee in employees:
-		match self.__stat_type:
-			STAT.QUALITY:
-				employee.quality += __stat_value
-			STAT.SPEED:
-				employee.speed += __stat_value
-			STAT.TESTING:
-				employee.testing += __stat_value
-			STAT.MORALE:
-				employee.morale += __stat_value
-		employee.update_summary()
-		employee.update_extended()
+		employee.modify_stat(__stat_type, __stat_value)
+		# If morale is modified, then its consequence should take place
+		# immediately instead of watiting for the next turn
+		if __stat_type == STAT.MORALE:
+			get_tree().call_group("ModifierHandlers", "morale_modify_stats", employee)
 
 # Override detach_modification method from Modifier class
 func detach_modification():
 	var employees = get_employees()
 	for employee in employees:
-		match self.__stat_type:
-			STAT.QUALITY:
-				employee.quality -= __stat_value
-			STAT.SPEED:
-				employee.speed -= __stat_value
-			STAT.TESTING:
-				employee.testing -= __stat_value
-			STAT.MORALE:
-				employee.morale -= __stat_value
-		employee.update_summary()
-		employee.update_extended()
+		employee.modify_stat(__stat_type, -__stat_value)
 		remove_employee(employee)

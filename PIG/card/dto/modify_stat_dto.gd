@@ -25,5 +25,4 @@ func create_modifier():
 	var s = Utility.str_to_stat(stat)
 	var modifier = preload("res://modifier/employee_stat_modifier.tscn").instantiate()
 	modifier.initialize(s, stat_value, duration)
-	modifier.attach_employee(employee)
 	return modifier

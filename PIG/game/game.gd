@@ -58,6 +58,8 @@ func execute_turn():
 			modifier.queue_free()
 	var employees = $Office.get_employees()
 	for employee in employees:
+		$Modifiers.morale_modify_stats(employee)
+	for employee in employees:
 		employee.execute_turn()
 	
 	__current_turn += 1
