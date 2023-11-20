@@ -28,27 +28,40 @@ var __issues_done_this_sprint: int
 var __current_sprint : int
 # Last gotten points
 var __last_victory_points: int = 0
+# last score
+var __last_score: int = 0
+# influence of bugs issues on last score
+var __last_bug_issues:int = 0
+# influence of presentations on last score
+var __last_presentation_bugs:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	__total_client_importance = 0
 	__issues_done_this_sprint = 0
 	__current_sprint = 0
+	__last_score = 0
+	
+	$Background/Sprite.sitting = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
+func __expected_score():
+	return expected_score_multiplier * __current_sprint
 # Execute the end of sprint.
 func execute_sprint_end(bugs_found: int, active_bug_issues: int):
 	__issues_done_this_sprint = 0
 	__last_victory_points = 0
 	__current_sprint += 1
+	__last_score = 0
+	__last_bug_issues = active_bug_issues*bug_issue_multiplier
+	__last_presentation_bugs = bugs_found*bugs_found_multiplier
 	var client_score = __total_client_importance
-	var expected_client_score = expected_score_multiplier * __current_sprint
+	var expected_client_score = __expected_score()
 		
-	client_score -= bug_issue_multiplier * active_bug_issues + \
-	bugs_found_multiplier * bugs_found
+	client_score -= __last_bug_issues + __last_presentation_bugs
 	
 	var sprint_victory_points : int
 	if client_score - expected_client_score < score_low_boundary:
@@ -59,6 +72,7 @@ func execute_sprint_end(bugs_found: int, active_bug_issues: int):
 		sprint_victory_points = points_above_boundaries
 	emit_signal("victory_points", self, sprint_victory_points)
 	__last_victory_points = sprint_victory_points
+	__last_score = client_score
 	
 # Adds an issue's importance points to the total and increases the number of
 # issues done
@@ -68,12 +82,18 @@ func add_issue_importance(issue: Issue):
 
 # update view and text on SprintEnd scene
 func update_view(bugs_found: int, bug_issues: int):
-	$Background/Points.text = "Earned points: " + str(__last_victory_points)
-	$Background/NumberOfSprint.text = str(__current_sprint)
-	$Background/BugIssues.text = "Bugs in Backlog: " + str(bug_issues)
-	$Background/ClientImportance.text = "Client importance: " + str(__total_client_importance)
-	$Background/BugsFound.text = "Found Bugs: " + str(bugs_found)
+	$Background/NameOfScene/NumberOfSprint.text = str(__current_sprint)
+	
+	$Background/Info/Points.text = "Earned points: [b]" + str(__last_victory_points)+"[/b]"
+	
+	$Background/Info/BugIssues.text = "Bug Issues in Backlog: [b]" + str(bug_issues)+"[/b]"
+	$Background/Info/BugsFound.text = "Errors During Presentation: [b]" + str(bugs_found)+"[/b]"
+	
+	$Background/Info/ClientImportance.text = "Importance of Done Features: [b]" + str(__total_client_importance)+"[/b]"
+	$Background/Info/ExpectedImportance.text = "Expected Evaluation: [b]"+ str(__expected_score())+"[/b]"
+	$Background/Info/ActualImportance.text = "Actual Evaluation: [b]"+ str(__last_score)+"[/b]"
 
+	$Background/CommentBubble.update_comment(__last_victory_points,__last_bug_issues,__last_presentation_bugs)
 # when press the ok button, return to main view.
 func _on_ok_button_button_up():
 	emit_signal("return_to_office_view", self)

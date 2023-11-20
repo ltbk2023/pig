@@ -1,65 +1,229 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv4enanlk8ty6"]
+[gd_scene load_steps=19 format=3 uid="uid://doou0enb1wuc1"]
 
 [ext_resource type="Script" path="res://view/sprint_end/sprint_end.gd" id="1_8xcrn"]
+[ext_resource type="Script" path="res://view/sprint_end/progress_bar.gd" id="2_56oyk"]
+[ext_resource type="Theme" path="res://utility/gray_button.tres" id="2_eo74c"]
+[ext_resource type="PackedScene" uid="uid://cyl4kohdffyoc" path="res://employee/sprites/employee_sprite.tscn" id="2_hdhfd"]
+[ext_resource type="Texture2D" uid="uid://cd7c5t1fisjus" path="res://view/sprint_end/bouble.png" id="3_3y8oe"]
+[ext_resource type="Script" path="res://view/sprint_end/comment_bubble.gd" id="4_sqd0f"]
 
 [sub_resource type="Gradient" id="Gradient_8hgae"]
-colors = PackedColorArray(0.601184, 0.0803232, 0.313415, 1, 0.0790396, 0.624546, 0.606119, 1)
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0.521569, 0.733333, 0.839216, 1, 0.0784314, 0.623529, 0.607843, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_q2dte"]
 gradient = SubResource("Gradient_8hgae")
-width = 340
-height = 340
+width = 360
+height = 680
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_okw60"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.501502)
+colors = PackedColorArray(0.34, 0.384, 1, 1, 0.2808, 0.243, 0.81, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2p4mm"]
+gradient = SubResource("Gradient_okw60")
+width = 1
+height = 2
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_otrxm"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0.86, 0.86, 0.86, 1, 0.75, 0.75, 0.75, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_42c6e"]
+gradient = SubResource("Gradient_otrxm")
+width = 1
+height = 2
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_rwcxw"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0.41, 1, 0.41, 1, 0.352941, 0.858824, 0.352941, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rykod"]
+gradient = SubResource("Gradient_rwcxw")
+width = 1
+height = 2
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_pjx5q"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(1, 0.67451, 0.34902, 1, 0.85098, 0.576471, 0.298039, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2bvfk"]
+gradient = SubResource("Gradient_pjx5q")
+width = 1
+height = 2
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_bkehq"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.501502)
+colors = PackedColorArray(1, 0.34, 0.34, 1, 0.85, 0.255, 0.255, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i76vj"]
+gradient = SubResource("Gradient_bkehq")
+width = 1
+height = 2
+fill_to = Vector2(0, 1)
 
 [node name="SprintEnd" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_8xcrn")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(180, 340)
-scale = Vector2(1.1, 2)
 texture = SubResource("GradientTexture2D_q2dte")
 
-[node name="ClientImportance" type="RichTextLabel" parent="Background"]
-offset_left = -80.0
-offset_top = 30.0
-offset_right = 120.0
-offset_bottom = 70.0
+[node name="Info" type="Control" parent="Background"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -140.0
+offset_top = 70.0
+offset_right = 140.0
+offset_bottom = 110.0
 
-[node name="BugIssues" type="RichTextLabel" parent="Background"]
-offset_left = -80.0
-offset_top = -10.0
-offset_right = 120.0
+[node name="ClientImportance" type="RichTextLabel" parent="Background/Info"]
+layout_mode = 2
+offset_right = 280.0
 offset_bottom = 30.0
+bbcode_enabled = true
+text = "\"Importance of Done Feateures: [b]000
+"
 
-[node name="BugsFound" type="RichTextLabel" parent="Background"]
-offset_left = -80.0
-offset_top = -50.0
-offset_right = 120.0
-offset_bottom = -10.0
+[node name="BugIssues" type="RichTextLabel" parent="Background/Info"]
+layout_mode = 2
+offset_top = 30.0
+offset_right = 280.0
+offset_bottom = 60.0
+bbcode_enabled = true
+text = "Bug Issues in Backlog: [b]00
+"
+
+[node name="BugsFound" type="RichTextLabel" parent="Background/Info"]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 280.0
+offset_bottom = 90.0
+bbcode_enabled = true
+text = "Errors During Presentation: [b]00[/b]"
+
+[node name="ExpectedImportance" type="RichTextLabel" parent="Background/Info"]
+layout_mode = 2
+offset_top = 100.0
+offset_right = 280.0
+offset_bottom = 132.0
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "Expected Evaluation: [b]000[/b]"
+
+[node name="ActualImportance" type="RichTextLabel" parent="Background/Info"]
+layout_mode = 2
+offset_top = 132.0
+offset_right = 280.0
+offset_bottom = 164.0
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "Actual Evaluation: [b]000[/b]"
+
+[node name="Points" type="RichTextLabel" parent="Background/Info"]
+layout_mode = 0
+offset_top = 164.0
+offset_right = 280.0
+offset_bottom = 196.0
+theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "Earned points: [b]0[/b]"
+
+[node name="ProgressBar" type="Node2D" parent="Background/Info"]
+position = Vector2(-30, -50)
+script = ExtResource("2_56oyk")
+
+[node name="Target" type="Sprite2D" parent="Background/Info/ProgressBar"]
+position = Vector2(30, -10)
+scale = Vector2(10, 20)
+texture = SubResource("GradientTexture2D_2p4mm")
+centered = false
+
+[node name="Gray" type="Sprite2D" parent="Background/Info/ProgressBar"]
+scale = Vector2(340, 10)
+texture = SubResource("GradientTexture2D_42c6e")
+centered = false
+
+[node name="Green" type="Sprite2D" parent="Background/Info/ProgressBar"]
+scale = Vector2(10, 10)
+texture = SubResource("GradientTexture2D_rykod")
+centered = false
+
+[node name="Orange" type="Sprite2D" parent="Background/Info/ProgressBar"]
+position = Vector2(10, 0)
+scale = Vector2(10, 10)
+texture = SubResource("GradientTexture2D_2bvfk")
+centered = false
+
+[node name="Red" type="Sprite2D" parent="Background/Info/ProgressBar"]
+position = Vector2(20, 0)
+scale = Vector2(10, 10)
+texture = SubResource("GradientTexture2D_i76vj")
+centered = false
 
 [node name="NameOfScene" type="RichTextLabel" parent="Background"]
-offset_left = -50.0
-offset_top = -150.0
-offset_right = 100.0
-offset_bottom = -120.0
+offset_left = -140.0
+offset_top = -320.0
+offset_right = 140.0
+offset_bottom = -270.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
 text = "END OF SPRINT"
 
-[node name="NumberOfSprint" type="RichTextLabel" parent="Background"]
-offset_left = 80.0
-offset_top = -150.0
-offset_right = 120.0
-offset_bottom = -110.0
+[node name="NumberOfSprint" type="RichTextLabel" parent="Background/NameOfScene"]
+layout_mode = 0
+offset_left = 230.0
+offset_right = 290.0
+offset_bottom = 50.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+text = "0"
 
-[node name="Points" type="RichTextLabel" parent="Background"]
-offset_left = -80.0
-offset_top = -90.0
-offset_right = 120.0
-offset_bottom = -50.0
+[node name="Sprite" parent="Background" instance=ExtResource("2_hdhfd")]
+position = Vector2(-100, -155)
+scale = Vector2(10, 10)
+
+[node name="CommentBubble" type="Node2D" parent="Background"]
+position = Vector2(60, -110)
+script = ExtResource("4_sqd0f")
+
+[node name="Bubble" type="Sprite2D" parent="Background/CommentBubble"]
+scale = Vector2(10, 10)
+texture = ExtResource("3_3y8oe")
+
+[node name="BubbleText" type="RichTextLabel" parent="Background/CommentBubble"]
+offset_left = -50.0
+offset_top = -140.0
+offset_right = 100.0
+offset_bottom = 90.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[center]Coment to action and call for reaction to that action"
 
 [node name="OkButton" type="Button" parent="Background"]
-offset_left = -25.0
-offset_top = 55.0
-offset_right = 25.0
-offset_bottom = 86.0
+offset_left = -170.0
+offset_top = 280.0
+offset_right = 170.0
+offset_bottom = 320.0
+theme = ExtResource("2_eo74c")
 text = "OK"
 
 [connection signal="button_up" from="Background/OkButton" to="." method="_on_ok_button_button_up"]
