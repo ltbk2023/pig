@@ -1,0 +1,82 @@
+[
+	{
+		"laptop_color_1": "979797ff",
+		"laptop_color_2": "bfbfbfff",
+		"laptop_model": 1
+	},
+	{
+		"laptop_color_1": "b19a47ff",
+		"laptop_color_2": "cfb65dff",
+		"laptop_model": 1
+	},
+	{
+		"laptop_color_1": "64b464ff",
+		"laptop_color_2": "aacc60ff",
+		"laptop_model": 1
+	},
+	{
+		"laptop_color_1": "402828ff",
+		"laptop_color_2": "32000eff",
+		"laptop_model": 1
+	},
+	{
+		"laptop_color_1": "ceb1b1ff",
+		"laptop_color_2": "cf8081ff",
+		"laptop_model": 1
+	},
+	{
+		"laptop_color_1": "2f2730ff",
+		"laptop_color_2": "430099ff",
+		"laptop_model": 1
+	},
+	{
+		"laptop_color_1": "3b143bff",
+		"laptop_color_2": "5e0066ff",
+		"laptop_model": 1
+	},
+	{
+		"laptop_color_1": "122422ff",
+		"laptop_color_2": "9d9c00ff",
+		"laptop_model": 1
+	},
+	{
+		"laptop_color_1": "646464ff",
+		"laptop_color_2": "ff0066ff",
+		"laptop_model": 0
+	},
+	{
+		"laptop_color_1": "646464ff",
+		"laptop_color_2": "00cc66ff",
+		"laptop_model": 0
+	},
+	{
+		"laptop_color_1": "646464ff",
+		"laptop_color_2": "ffe838ff",
+		"laptop_model": 0
+	},
+	{
+		"laptop_color_1": "00002cff",
+		"laptop_color_2": "ff0066ff",
+		"laptop_model": 0
+	},
+	{
+		"laptop_color_1": "00002cff",
+		"laptop_color_2": "002fffff",
+		"laptop_model": 0
+	},
+	{
+		"laptop_color_1": "00002cff",
+		"laptop_color_2": "47ff69ff",
+		"laptop_model": 0
+	},
+	{
+		"laptop_color_1": "d19600ff",
+		"laptop_color_2": "ae00ffff",
+		"laptop_model": 0
+	},
+	{
+		"laptop_color_1": "8f008fff",
+		"laptop_color_2": "de9f00ff",
+		"laptop_model": 0
+	}
+]
