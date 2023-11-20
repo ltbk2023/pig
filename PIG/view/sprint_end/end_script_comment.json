@@ -1,0 +1,20 @@
+{
+	"good":{
+		"progress":"#REPLACE WITH FIRST PERSON SPEECH\n client is entusiastic",
+		"bug_issues":"#REPLACE WITH FIRST PERSON SPEECH\n client is entusiastic but ask about bugs in backlog",
+		"presentation":"#REPLACE WITH FIRST PERSON SPEECH\n client is entusiastic but ask about don't working features",
+		"both":"#REPLACE WITH FIRST PERSON SPEECH\n client asks you about bugs"
+	},
+	"mixed":{
+		"progress":"#REPLACE WITH FIRST PERSON SPEECH\n client is happy",
+		"bug_issues":"#REPLACE WITH FIRST PERSON SPEECH\n client is happy but woried about bugs in backlog",
+		"presentation":"#REPLACE WITH FIRST PERSON SPEECH\n client is  happy but woried about don't working features",
+		"both":"#REPLACE WITH FIRST PERSON SPEECH\n client woried about bugs"
+	},
+	"bad":{
+		"progress":"#REPLACE WITH FIRST PERSON SPEECH\n client complains about slow progress",
+		"bug_issues":"#REPLACE WITH FIRST PERSON SPEECH\n client complains about bugs in backlog",
+		"presentation":"#REPLACE WITH FIRST PERSON SPEECH\n client complains about don't working features",
+		"both":"#REPLACE WITH FIRST PERSON SPEECH\n client irritated with bugs"
+	}
+}
