@@ -1,52 +1,62 @@
 [
 	{
-		"laptop_color_1": "646464ff",
-		"laptop_color_2": "ff0066ff",
-		"laptop_model": 1
+		"clothes_color_1": "004fa8ff",
+		"clothes_color_2": "0054b5ff",
+		"clothes_color_3": "0d5fbdff",
+		"clothes_model": 3
 	},
 	{
-		"laptop_color_1": "646464ff",
-		"laptop_color_2": "ff0066ff",
-		"laptop_model": 1
+		"clothes_color_1": "9c252eff",
+		"clothes_color_2": "a62832ff",
+		"clothes_color_3": "b52d38ff",
+		"clothes_model": 3
 	},
 	{
-		"laptop_color_1": "646464ff",
-		"laptop_color_2": "ff0066ff",
-		"laptop_model": 1
+		"clothes_color_1": "004e2aff",
+		"clothes_color_2": "00542dff",
+		"clothes_color_3": "006034ff",
+		"clothes_model": 3
 	},
 	{
-		"laptop_color_1": "646464ff",
-		"laptop_color_2": "ff0066ff",
-		"laptop_model": 1
+		"clothes_color_1": "bb5928ff",
+		"clothes_color_2": "cf6633ff",
+		"clothes_color_3": "db6e3bff",
+		"clothes_model": 3
 	},
 	{
-		"laptop_color_1": "646464ff",
-		"laptop_color_2": "ff0066ff",
-		"laptop_model": 1
+		"clothes_color_1": "262626ff",
+		"clothes_color_2": "303030ff",
+		"clothes_color_3": "414141ff",
+		"clothes_model": 1
 	},
 	{
-		"laptop_color_1": "646464ff",
-		"laptop_color_2": "ff0066ff",
-		"laptop_model": 1
+		"clothes_color_1": "7b6b50ff",
+		"clothes_color_2": "998768ff",
+		"clothes_color_3": "af9c7cff",
+		"clothes_model": 1
 	},
 	{
-		"laptop_color_1": "646464ff",
-		"laptop_color_2": "ff0066ff",
-		"laptop_model": 1
+		"clothes_color_1": "6fadbbff",
+		"clothes_color_2": "9ed2deff",
+		"clothes_color_3": "bfe3ebff",
+		"clothes_model": 1
 	},
 	{
-		"laptop_color_1": "646464ff",
-		"laptop_color_2": "ff0066ff",
-		"laptop_model": 1
+		"clothes_color_1": "004fa8ff",
+		"clothes_color_2": "0054b5ff",
+		"clothes_color_3": "0d5fbdff",
+		"clothes_model": 4
 	},
 	{
-		"laptop_color_1": "646464ff",
-		"laptop_color_2": "ff0066ff",
-		"laptop_model": 1
+		"clothes_color_1": "a81c00ff",
+		"clothes_color_2": "bd2100ff",
+		"clothes_color_3": "dc2800ff",
+		"clothes_model": 4
 	},
 	{
-		"laptop_color_1": "646464ff",
-		"laptop_color_2": "ff0066ff",
-		"laptop_model": 1
+		"clothes_color_1": "b78e00ff",
+		"clothes_color_2": "e8b500ff",
+		"clothes_color_3": "f8c200ff",
+		"clothes_model": 4
 	}
 ]
