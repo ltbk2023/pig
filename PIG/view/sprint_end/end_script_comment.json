@@ -1,20 +1,20 @@
 {
 	"good":{
-		"progress":"#REPLACE WITH FIRST PERSON SPEECH\n client is entusiastic",
-		"bug_issues":"#REPLACE WITH FIRST PERSON SPEECH\n client is entusiastic but ask about bugs in backlog",
-		"presentation":"#REPLACE WITH FIRST PERSON SPEECH\n client is entusiastic but ask about don't working features",
-		"both":"#REPLACE WITH FIRST PERSON SPEECH\n client asks you about bugs"
+		"progress":"WOW, the progress is truly impressive! I can't wait to see further advancements.",
+		"bug_issues":"This looks really great! Although I noticed a few bugs in the backlog. I hope it won't disrupt anything.",
+		"presentation":"It looks great, although I noticed a few shortcomings. I'm sure you'll fix it.",
+		"both":"It's great that we're moving forward, but shouldn't we focus on refining code?"
 	},
 	"mixed":{
-		"progress":"#REPLACE WITH FIRST PERSON SPEECH\n client is happy",
-		"bug_issues":"#REPLACE WITH FIRST PERSON SPEECH\n client is happy but woried about bugs in backlog",
-		"presentation":"#REPLACE WITH FIRST PERSON SPEECH\n client is  happy but woried about don't working features",
-		"both":"#REPLACE WITH FIRST PERSON SPEECH\n client woried about bugs"
+		"progress":"Things are going well, everything is working correctly. We're sticking to the plan. Let's see each other next time.",
+		"bug_issues":"It's good that we're sticking to the plan, but are the bugs in the backlog really harmless?",
+		"presentation":"It looks nice, but why isn't that button working? Can you do something with it?",
+		"both":"Hmm, it's good that we're moving forward, but please fix that."
 	},
 	"bad":{
-		"progress":"#REPLACE WITH FIRST PERSON SPEECH\n client complains about slow progress",
-		"bug_issues":"#REPLACE WITH FIRST PERSON SPEECH\n client complains about bugs in backlog",
-		"presentation":"#REPLACE WITH FIRST PERSON SPEECH\n client complains about don't working features",
-		"both":"#REPLACE WITH FIRST PERSON SPEECH\n client irritated with bugs"
+		"progress":"You can't keep postponing the work all the time. Is there any way to speed it up?",
+		"bug_issues":"Do you even look at the backlog? Where are all these bugs coming from?",
+		"presentation":"I understand that you want to add some features, but could they at least work?",
+		"both":"Why are you showing me something like this? Fix those bugs first."
 	}
 }
