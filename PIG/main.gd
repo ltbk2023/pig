@@ -58,6 +58,7 @@ func save_to_file(file_name):
 
 # configure whole game based on JSON
 func configure_scenario(dict: Dictionary):
+	var max_client_importance : int = 0
 	$Game.configure_game(dict["Game"])
 	$Game/Testing.configure_testing(dict["Testing"])
 	$Game/Testing/QualityDeck.configure_quality_deck(dict["QualityDeck"])
@@ -75,6 +76,7 @@ func configure_scenario(dict: Dictionary):
 		issue.configure_issue(issue_json)
 		issues[issue.name] = issue
 		$Game/Backlog.add_issue(issue)
+		max_client_importance += issue.importance_to_client
 	
 	# load child_issues
 	for issue_json in dict["Issues"]:
@@ -103,6 +105,9 @@ func configure_scenario(dict: Dictionary):
 				issue_hook.set_origin(issue)
 				employee.assign_issue(issue_hook)
 				issue.assign_employee(employee_hook)
+	
+	# add max importance to sprint_end
+	$Game/SprintEnd.set_max_client_importance(max_client_importance)
 
 func start_level(file: String,internal:bool):
 	var game = load("res://game/game.tscn").instantiate()
