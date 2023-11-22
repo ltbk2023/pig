@@ -44,26 +44,29 @@ tooltip_text = "
 [node name="Description" type="RichTextLabel" parent="CanvasLayer/ControlAbout"]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 184.0
+offset_top = 190.0
 offset_right = 355.0
-offset_bottom = 527.0
+offset_bottom = 533.0
 bbcode_enabled = true
-text = "This game was created as part of engineering diploma project. Our focus was on developing an educational game centered around project management.
+text = "[fill]This game was created as part of engineering diploma project. Our focus was on developing an educational game centered around project management.[/fill]
+
 [center][b]Authors:[/b]
 Krzysztof Kuchta
 Stanisław Biegowski
 Paweł Langowski
 Błażej Tez
+
 [b]Tutor:[/b]
 Jakub Miler"
 scroll_active = false
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/ControlAbout"]
+texture_filter = 2
 layout_mode = 0
 offset_left = -39.0
-offset_top = -25.0
+offset_top = -10.0
 offset_right = 4321.0
-offset_bottom = 2965.0
+offset_bottom = 2980.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_jkhpd")
 
