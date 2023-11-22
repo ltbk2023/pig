@@ -85,8 +85,11 @@ func execute_end_of_sprint():
 	var cards = $Testing/QualityDeck.check_cards(completed_features)
 	var bugs_found = cards[QualityDeck.QualityType.BUG]
 	
+	# increase curent sprint
+	__current_sprint += 1
+	
 	# calculate current sprint
-	$SprintEnd.execute_sprint_end(bugs_found, active_bug_issues)
+	$SprintEnd.execute_sprint_end(bugs_found, active_bug_issues, __current_sprint >= max_sprints)
 	
 	# update view of SprintEnd
 	$SprintEnd.update_view(bugs_found, active_bug_issues)
@@ -97,7 +100,6 @@ func execute_end_of_sprint():
 	$Testing.visible = false
 	$SprintEnd.visible = true
 	$Backlog.visible = false
-	__current_sprint += 1
 
 # function that listens for the end button release and calls execute_turn()
 func _on_end_turn_button_button_up():
@@ -326,10 +328,9 @@ func launch_modifiers():
 			modifier.delete_all_hooks()
 			modifier.queue_free()
 
-# TODO: save this points somewhere or i don't know
-# I create this only to not forget about this signal 
+# Save victory_points
 func _on_sprint_end_victory_points(owner, amount):
-	print("Warning: _on_sprint_end_victory_points not complete")
+	victory_points += amount
 
 # Other view may want to return to main view of game
 # Owner can be useful in the future
@@ -438,3 +439,8 @@ func _on_deck_master_done(owner):
 	_on_sprint_end_return_to_office_view(owner)
 	$CanvasLayer/Message.visible = false
 	$CanvasLayer/Button.visible = true
+
+# Called when sprint end inform about finishing level
+func _on_sprint_end_finish_level(owner, win):
+	print("Warning: Finish Level is not implemented", win )
+	_on_sprint_end_return_to_office_view(owner)

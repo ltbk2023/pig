@@ -16,5 +16,11 @@
 		"bug_issues":"Do you even look at the backlog? Where are all these bugs coming from?",
 		"presentation":"I understand that you want to add some features, but could they at least work?",
 		"both":"Why are you showing me something like this? Fix those bugs first."
+	},
+	"very_bad":{
+		"progress":"I'm not sure if we should collaborate. Maybe I'll find another team.",
+		"bug_issues":"This project is a disaster. I feel like there are more bugs than features in this backlog. And it's your fault!",
+		"presentation":"I feel like I'm working with a bunch of incompetents! Nothing is working at all. You're not fit for this job!",
+		"both":"What have you done with this project?! Nothing is working here. If things continue like this, I'll make sure you lose this job!"
 	}
 }

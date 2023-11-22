@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://doou0enb1wuc1"]
+[gd_scene load_steps=21 format=3 uid="uid://doou0enb1wuc1"]
 
 [ext_resource type="Script" path="res://view/sprint_end/sprint_end.gd" id="1_8xcrn"]
 [ext_resource type="Script" path="res://view/sprint_end/progress_bar.gd" id="2_56oyk"]
@@ -16,6 +16,16 @@ colors = PackedColorArray(0.521569, 0.733333, 0.839216, 1, 0.0784314, 0.623529, 
 gradient = SubResource("Gradient_8hgae")
 width = 360
 height = 680
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_jco2q"]
+offsets = PackedFloat32Array(0, 0.522124)
+colors = PackedColorArray(0.273873, 0.273873, 0.273873, 1, 0.212305, 0.212305, 0.212305, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yco1p"]
+gradient = SubResource("Gradient_jco2q")
+width = 1
+height = 2
 fill_to = Vector2(0, 1)
 
 [sub_resource type="Gradient" id="Gradient_okw60"]
@@ -147,6 +157,12 @@ text = "Earned points: [b]0[/b]"
 [node name="ProgressBar" type="Node2D" parent="Background/Info"]
 position = Vector2(-30, -50)
 script = ExtResource("2_56oyk")
+
+[node name="Fail" type="Sprite2D" parent="Background/Info/ProgressBar"]
+position = Vector2(0, -10)
+scale = Vector2(10, 20)
+texture = SubResource("GradientTexture2D_yco1p")
+centered = false
 
 [node name="Target" type="Sprite2D" parent="Background/Info/ProgressBar"]
 position = Vector2(0, -10)
