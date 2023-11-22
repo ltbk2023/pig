@@ -1,0 +1,146 @@
+[
+	{
+		"accessories_color_1": "ffd498ff",
+		"accessories_color_2": "ffcc86ff",
+		"accessories_color_3": "ffb849ff",
+		"clothes_color_1": "262626ff",
+		"clothes_color_2": "303030ff",
+		"clothes_color_3": "414141ff",
+		"clothes_model": 1
+	},
+	{
+		"accessories_color_1": "ffd498ff",
+		"accessories_color_2": "ffcc86ff",
+		"accessories_color_3": "ffb849ff",
+		"clothes_color_1": "7b6b50ff",
+		"clothes_color_2": "998768ff",
+		"clothes_color_3": "af9c7cff",
+		"clothes_model": 1
+	},
+	{
+		"accessories_color_1": "ffd498ff",
+		"accessories_color_2": "ffcc86ff",
+		"accessories_color_3": "ffb849ff",
+		"clothes_color_1": "6fadbbff",
+		"clothes_color_2": "9ed2deff",
+		"clothes_color_3": "bfe3ebff",
+		"clothes_model": 1
+	},
+	{
+		"accessories_color_1": "ffd498ff",
+		"accessories_color_2": "ffcc86ff",
+		"accessories_color_3": "ffb849ff",
+		"clothes_color_1": "eb8150ff",
+		"clothes_color_2": "f08e62ff",
+		"clothes_color_3": "f59f7aff",
+		"clothes_model": 1
+	},
+	{
+		"accessories_color_1": "ffd498ff",
+		"accessories_color_2": "ffcc86ff",
+		"accessories_color_3": "ffb849ff",
+		"clothes_color_1": "c76767ff",
+		"clothes_color_2": "d8807fff",
+		"clothes_color_3": "e29492ff",
+		"clothes_model": 1
+	},
+	{
+		"accessories_color_1": "ffd498ff",
+		"accessories_color_2": "ffcc86ff",
+		"accessories_color_3": "ffb849ff",
+		"clothes_color_1": "d1c166ff",
+		"clothes_color_2": "e2d481ff",
+		"clothes_color_3": "ebe09cff",
+		"clothes_model": 1
+	},
+	{
+		"accessories_color_1": "d2dbf8ff",
+		"accessories_color_2": "b7c4f3ff",
+		"accessories_color_3": "abb9f0ff",
+		"clothes_color_1": "0c0e33ff",
+		"clothes_color_2": "141747ff",
+		"clothes_color_3": "1d215eff",
+		"clothes_model": 0
+	},
+	{
+		"accessories_color_1": "ffffffff",
+		"accessories_color_2": "edededff",
+		"accessories_color_3": "dadadaff",
+		"clothes_color_1": "000000ff",
+		"clothes_color_2": "0c0c0cff",
+		"clothes_color_3": "1b1b1bff",
+		"clothes_model": 0
+	},
+	{
+		"accessories_color_1": "ffd498ff",
+		"accessories_color_2": "ffcc86ff",
+		"accessories_color_3": "ffb849ff",
+		"clothes_color_1": "530900ff",
+		"clothes_color_2": "7b1200ff",
+		"clothes_color_3": "981800ff",
+		"clothes_model": 0
+	},
+	{
+		"accessories_color_1": "e2d4fdff",
+		"accessories_color_2": "dac7fdff",
+		"accessories_color_3": "d0b7fcff",
+		"clothes_color_1": "6b2000ff",
+		"clothes_color_2": "832900ff",
+		"clothes_color_3": "973100ff",
+		"clothes_model": 0
+	},
+	{
+		"accessories_color_1": "ffffffff",
+		"accessories_color_2": "dbdbdbff",
+		"accessories_color_3": "bdbdbdff",
+		"clothes_color_1": "292929ff",
+		"clothes_color_2": "363636ff",
+		"clothes_color_3": "3f3f3fff",
+		"clothes_model": 0
+	},
+	{
+		"accessories_color_1": "171717ff",
+		"accessories_color_2": "0a0a0aff",
+		"accessories_color_3": "000000ff",
+		"clothes_color_1": "9e9e9eff",
+		"clothes_color_2": "c9c9c9ff",
+		"clothes_color_3": "e3e3e3ff",
+		"clothes_model": 0
+	},
+	{
+		"accessories_color_1": "ff87b9ff",
+		"accessories_color_2": "ff6badff",
+		"accessories_color_3": "ff60a9ff",
+		"clothes_color_1": "6d9637ff",
+		"clothes_color_2": "84b646ff",
+		"clothes_color_3": "aae466ff",
+		"clothes_model": 0
+	},
+	{
+		"accessories_color_1": "ffd498ff",
+		"accessories_color_2": "ffcc86ff",
+		"accessories_color_3": "ffb849ff",
+		"clothes_color_1": "000000ff",
+		"clothes_color_2": "0f0f0fff",
+		"clothes_color_3": "1a1a1aff",
+		"clothes_model": 0
+	},
+	{
+		"accessories_color_1": "ff7575ff",
+		"accessories_color_2": "ff6064ff",
+		"accessories_color_3": "ff4c56ff",
+		"clothes_color_1": "0f0f0fff",
+		"clothes_color_2": "161616ff",
+		"clothes_color_3": "1a1a1aff",
+		"clothes_model": 0
+	},
+	{
+		"accessories_color_1": "ffffffff",
+		"accessories_color_2": "eeeeeeff",
+		"accessories_color_3": "e2e2e2ff",
+		"clothes_color_1": "001329ff",
+		"clothes_color_2": "001b3bff",
+		"clothes_color_3": "05274dff",
+		"clothes_model": 0
+	}
+]

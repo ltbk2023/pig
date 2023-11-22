@@ -149,7 +149,26 @@ func _ready():
 		if is_inside_tree():
 			$Body/Clothes3.modulate = c
 			$Detail/Clothes3.modulate = c
-			
+@export_subgroup("Accessories")
+@export var accessories1 = Color.WHITE:
+	set(c):
+		accessories1 =c
+		if is_inside_tree():
+			$Body/Accessories1.modulate = c
+			$Detail/Accessories1.modulate = c
+
+@export var accessories2 = Color.WHITE:
+	set(c):
+		accessories2 =c
+		if is_inside_tree():
+			$Body/Accessories2.modulate = c
+
+@export var accessories3 = Color.WHITE:
+	set(c):
+		accessories3 =c
+		if is_inside_tree():
+			$Body/Accessories3.modulate = c
+			$Detail/Accessories3.modulate = c
 @export_subgroup("Desk")
 @export var desk_1=Color.WHITE:
 	set(c):
@@ -399,6 +418,7 @@ var iris_color_key = "iris_color"
 var clothes_color_key = "clothes_color"
 var desk_color_key = "desk_color"
 var laptop_color_key = "laptop_color"
+var accessories_color_key = "accessories_color"
 
 var nose_model_key = "nose_model"
 var hair_front_model_key = "hair_front_model"
@@ -457,7 +477,17 @@ func configure_visuals(dict:Dictionary):
 	value = __get_if_contain(dict,clothes_color_key,3)
 	if value != null:
 		clothes3 = Color.from_string(value,clothes3)
-		
+	
+	value = __get_if_contain(dict,accessories_color_key,1)
+	if value != null:
+		accessories1 = Color.from_string(value,accessories1)
+	value = __get_if_contain(dict,accessories_color_key,2)
+	if value != null:
+		accessories2 = Color.from_string(value,accessories2)
+	value = __get_if_contain(dict,accessories_color_key,3)
+	if value != null:
+		accessories3 = Color.from_string(value,accessories3)
+	
 	value = __get_if_contain(dict,desk_color_key,1)
 	if value != null:
 		desk_1 = Color.from_string(value,desk_1)
@@ -548,6 +578,10 @@ func to_json():
 	dict[make_key(clothes_color_key,1)] = clothes1.to_html()
 	dict[make_key(clothes_color_key,2)] = clothes2.to_html()
 	dict[make_key(clothes_color_key,3)] = clothes3.to_html()
+	print(accessories1)
+	dict[make_key(accessories_color_key,1)] = accessories1.to_html()
+	dict[make_key(accessories_color_key,2)] = accessories2.to_html()
+	dict[make_key(accessories_color_key,3)] = accessories3.to_html()
 	
 	dict[make_key(desk_color_key,1)] = desk_1.to_html()
 	dict[make_key(desk_color_key,2)] = desk_2.to_html()
