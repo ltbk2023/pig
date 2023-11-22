@@ -149,7 +149,7 @@ position = Vector2(-30, -50)
 script = ExtResource("2_56oyk")
 
 [node name="Target" type="Sprite2D" parent="Background/Info/ProgressBar"]
-position = Vector2(30, -10)
+position = Vector2(0, -10)
 scale = Vector2(10, 20)
 texture = SubResource("GradientTexture2D_2p4mm")
 centered = false
@@ -165,13 +165,11 @@ texture = SubResource("GradientTexture2D_rykod")
 centered = false
 
 [node name="Orange" type="Sprite2D" parent="Background/Info/ProgressBar"]
-position = Vector2(10, 0)
 scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_2bvfk")
 centered = false
 
 [node name="Red" type="Sprite2D" parent="Background/Info/ProgressBar"]
-position = Vector2(20, 0)
 scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_i76vj")
 centered = false

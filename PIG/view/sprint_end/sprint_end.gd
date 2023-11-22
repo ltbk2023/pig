@@ -34,6 +34,8 @@ var __last_score: int = 0
 var __last_bug_issues:int = 0
 # influence of presentations on last score
 var __last_presentation_bugs:int = 0
+# max client imporatance to get from issues
+var __max_client_importance:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,6 +45,7 @@ func _ready():
 	__last_score = 0
 	
 	$Background/Sprite.sitting = false
+	$Background/Info/ProgressBar.update_boundry(score_low_boundary, score_high_boundary)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -94,6 +97,9 @@ func update_view(bugs_found: int, bug_issues: int):
 	$Background/Info/ActualImportance.text = "Actual Evaluation: [b]"+ str(__last_score)+"[/b]"
 
 	$Background/CommentBubble.update_comment(__last_victory_points,__last_bug_issues,__last_presentation_bugs)
+	
+	$Background/Info/ProgressBar.update_view(__total_client_importance, __last_bug_issues, \
+											__last_presentation_bugs, __expected_score())
 # when press the ok button, return to main view.
 func _on_ok_button_button_up():
 	emit_signal("return_to_office_view", self)
@@ -119,3 +125,8 @@ func configure_sprint_end(dict: Dictionary) -> bool:
 		__total_client_importance = dict["total client importance"]
 		return true
 	return false
+
+# set max importance to get from issues
+func set_max_client_importance(importance: int) -> void:
+	__max_client_importance = importance
+	$Background/Info/ProgressBar.total = importance
