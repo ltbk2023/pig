@@ -35,7 +35,7 @@ func update_view(green: int, orange: int, red: int, blue: int):
 	else:
 		$Orange.position.x = 0
 	if orange < green:
-		$Orange.scale.x = __rescale(orange)
+		$Orange.scale.x = __rescale(green) - $Orange.position.x
 	else:
 		$Orange.scale.x = __rescale(green)
 		
@@ -44,7 +44,7 @@ func update_view(green: int, orange: int, red: int, blue: int):
 	else:
 		$Red.position.x = 0
 	if red < green:
-		$Red.scale.x = __rescale(red)
+		$Red.scale.x = __rescale(green) - $Red.position.x
 	else:
 		$Red.scale.x = __rescale(green)
 	$Target.position.x = __rescale(blue + __low_boundry)
