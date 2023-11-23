@@ -33,6 +33,7 @@ func _on_back_button_up():
 	$CanvasLayer/VBoxContainer.visible = true
 	$CanvasLayer/GridContainer.visible = false
 	$CanvasLayer/Back.visible = false
+	$CanvasLayer/ControlAbout.visible = false
 
 # save state of whole game to JSON file
 func save_to_file(file_name):
@@ -144,3 +145,8 @@ func _on_level_5_button_up():
 # Called when "Level6" button is released. Load sixth level
 func _on_level_6_button_up():
 	print("Warning: Sixth Level not implemented")
+
+func _on_about_button_up():
+	$CanvasLayer/VBoxContainer.visible = false
+	$CanvasLayer/Back.visible = true
+	$CanvasLayer/ControlAbout.visible = true
