@@ -107,6 +107,13 @@ func load_preset(path:String):
 @export var clothes2 = false
 @export var clothes3 = false
 
+
+@export_subgroup("Accessories")
+@export var accessories1 = false
+@export var accessories2 = false
+@export var accessories3 = false
+
+
 @export_subgroup("Desk")
 @export var desk_1=false
 @export var desk_2=false
@@ -156,6 +163,13 @@ func to_json():
 			dict.erase(child.make_key(child.clothes_color_key,2))
 		if not clothes3:
 			dict.erase(child.make_key(child.clothes_color_key,3))
+		
+		if not accessories1:
+			dict.erase(child.make_key(child.accessories_color_key,1))
+		if not accessories2:
+			dict.erase(child.make_key(child.accessories_color_key,2))
+		if not accessories3:
+			dict.erase(child.make_key(child.accessories_color_key,3))
 		
 		if not desk_1:
 			dict.erase(child.make_key(child.desk_color_key,1))

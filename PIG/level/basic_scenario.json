@@ -216,7 +216,18 @@
 		"issues done this sprint": 0,
 		"last_victory_points": 0,
 		"name": "SprintEnd",
-		"total client importance": 0
+		"total client importance": 0,
+		"clients_presets":
+			{
+				"res://employee/sprites/preset/skin_hair_lips_color_for_elderly.ep.json":null,
+				"res://employee/sprites/preset/nose.ep.json":null,
+				"res://employee/sprites/preset/desk.ep.json":null,	
+				"res://employee/sprites/preset/laptop.ep.json":null,		
+
+				"res://employee/sprites/preset/clothes_for_elegant_people.ep.json":null,
+				"res://employee/sprites/preset/body_detail_for_men.ep.json":null,
+				"res://employee/sprites/preset/hair_beard_for_men.ep.json":null
+			}
 	},
 	"QualityDeck": {
 		"cards": {

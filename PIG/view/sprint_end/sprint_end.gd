@@ -112,7 +112,8 @@ func to_json():
 		"total client importance": __total_client_importance,
 		"issues done this sprint": __issues_done_this_sprint,
 		"last_victory_points": __last_victory_points,
-		"current sprint": __current_sprint
+		"current sprint": __current_sprint,
+		"clients_visauls":$Background/Sprite.to_json()
 	}
 	return dictionary
 
@@ -123,6 +124,10 @@ func configure_sprint_end(dict: Dictionary) -> bool:
 		__last_victory_points = dict["last_victory_points"]
 		__issues_done_this_sprint = dict["issues done this sprint"]
 		__total_client_importance = dict["total client importance"]
+		if dict.has("clients_presets"):
+			$Background/Sprite.configure_from_presets(dict["clients_presets"])
+		if dict.has("clients_visuals"):
+			$Background/Sprite.configure_visuals(dict["clients_visuals"])
 		return true
 	return false
 
