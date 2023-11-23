@@ -4,8 +4,9 @@ extends Node2D
 var good_key = "good"
 var mixed_key = "mixed"
 var bad_key = "bad"
+var very_bad_key = "very_bad"
 
-var earned_point_to_type={-1:bad_key,1:mixed_key,2:good_key}
+var earned_point_to_type={-2:very_bad_key,-1:bad_key,1:mixed_key,2:good_key}
 
 # secondary keys
 var bug_issues_key = "bug_issues"
