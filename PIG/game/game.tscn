@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dom60ed6nbcjt" path="res://view/office/office.tscn" id="3_17k77"]
 [ext_resource type="PackedScene" uid="uid://2k4tpybmr0a4" path="res://view/testing/testing.tscn" id="4_mosmf"]
 [ext_resource type="Texture2D" uid="uid://cfsparx3fehr6" path="res://game/exit.png" id="5_8gdxh"]
-[ext_resource type="PackedScene" uid="uid://bv4enanlk8ty6" path="res://view/sprint_end/sprint_end.tscn" id="5_mb2m2"]
+[ext_resource type="PackedScene" uid="uid://doou0enb1wuc1" path="res://view/sprint_end/sprint_end.tscn" id="5_mb2m2"]
 [ext_resource type="Texture2D" uid="uid://pd73wjq1goi2" path="res://game/menu_button.png" id="5_v0jtd"]
 [ext_resource type="PackedScene" uid="uid://c4xojh4ktss71" path="res://card/deck_master.tscn" id="11_gwi3w"]
 [ext_resource type="Script" path="res://game/modifier_handler.gd" id="12_00uqt"]
