@@ -208,11 +208,21 @@ func configure_employee(dict: Dictionary) -> bool:
 		name = dict["name"]
 		$Extended/Description.text = dict["description"]
 		
+		speed = __base_speed
+		quality = __base_quality
+		testing = __base_testing
+		morale = __base_morale
+		__modified_speed = __base_speed
+		__modified_quality = __base_quality
+		__modified_testing == __base_testing
+		
 		# every value from visuals will overwrite it's counterpart from presets
 		if dict.has("presets"):
 			$Sprite.configure_from_presets(dict["presets"])
 		if dict.has("visuals"):
 			$Sprite.configure_visuals(dict["visuals"])
+		update_summary()
+		update_extended()
 		return true
 	return false
 

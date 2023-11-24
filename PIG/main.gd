@@ -93,8 +93,8 @@ func configure_scenario(dict: Dictionary):
 	# load employees
 	for employee_json in dict["Employees"]:
 		var employee = preload("res://employee/employee.tscn").instantiate()
-		employee.configure_employee(employee_json)
 		$Game/Office.add_employee(employee)
+		employee.configure_employee(employee_json)
 		if not employee_json["assigned to"] == "":
 			var employee_hook = Hook.new()
 			employee_hook.set_origin(employee)
