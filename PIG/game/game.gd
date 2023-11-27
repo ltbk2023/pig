@@ -8,6 +8,7 @@ enum GameState {NOT_STARTED, IN_PROGRESS, FINISHED}
 @export var max_sprints : int = 2
 
 signal show_menu()
+signal end_game()
 
 @export_group("Views Switching")
 @export var movement_trigger = 40
@@ -440,7 +441,22 @@ func _on_deck_master_done(owner):
 	$CanvasLayer/Message.visible = false
 	$CanvasLayer/Button.visible = true
 
-# Called when sprint end inform about finishing level
-func _on_sprint_end_finish_level(owner, win):
-	print("Warning: Finish Level is not implemented", win )
-	_on_sprint_end_return_to_office_view(owner)
+func _on_sprint_end_go_to_epilog(owner, win):
+	$SprintEnd.visible= false
+	
+	var bugs= $Testing._get_quality_deck().cards[QualityDeck.QualityType.BUG]
+	
+	var clean =$Testing._get_quality_deck().cards[QualityDeck.QualityType.CLEAN]
+	
+	for issue in $Backlog.get_issues():
+		if issue.type == Issue.IssueType.BUG_ISSUE and issue.state != Issue.IssueState.COMPLETED:
+			bugs += 1
+
+	
+	$Epilog.show_epilog(not win,bugs/(bugs+clean))
+	$Epilog.visible = true
+	
+
+
+func _on_epilog_end_game():
+	end_game.emit()

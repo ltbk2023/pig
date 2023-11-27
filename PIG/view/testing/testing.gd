@@ -82,3 +82,6 @@ func configure_testing(dict: Dictionary) -> bool:
 		testers_limit = dict["testers limit"]
 		return true
 	return false
+
+func _get_quality_deck():
+	return $QualityDeck

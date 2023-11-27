@@ -5,7 +5,7 @@ class_name SprintEnd
 signal victory_points(owner, amount)
 signal return_to_office_view(owner)
 # signal to inform about finishing level
-signal finish_level(owner, win)
+signal go_to_epilog(owner, win)
 
 @export var expected_score_multiplier = 10
 
@@ -118,10 +118,10 @@ func update_view(bugs_found: int, bug_issues: int):
 func _on_ok_button_button_up():
 	if __last_score - __expected_score() <= score_boundary_of_fail:
 		# change view to finish level when player failed
-		emit_signal("finish_level", self, false)
+		emit_signal("go_to_epilog", self, false)
 	elif __last_sprint:
 		# change view to finish level when player won
-		emit_signal("finish_level", self, true)
+		emit_signal("go_to_epilog", self, true)
 	else:	
 		emit_signal("return_to_office_view", self)
 	
