@@ -5,8 +5,15 @@ var good_key = "good"
 var mixed_key = "mixed"
 var bad_key = "bad"
 var very_bad_key = "very_bad"
+var failure = "failure"
+var poor_win = "poor_win"
+var win = "win"
+var excellent_win = "excellent_win"
 
-var earned_point_to_type={-2:very_bad_key,-1:bad_key,1:mixed_key,2:good_key}
+var earned_point_to_type={-2:very_bad_key,-1:bad_key,1:mixed_key,2:good_key,\
+-3:failure,0:poor_win,3:win,4:excellent_win}
+
+var contentment_to_type=[]
 
 # secondary keys
 var bug_issues_key = "bug_issues"
@@ -36,4 +43,3 @@ func update_comment(earned_point,bug_issues,presentation):
 		text = dict[presentation_key]
 	
 	$BubbleText.text = "[center]"+text+ "[/center]"
-	

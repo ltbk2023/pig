@@ -64,6 +64,7 @@ func configure_scenario(dict: Dictionary):
 	$Game/Testing.configure_testing(dict["Testing"])
 	$Game/Testing/QualityDeck.configure_quality_deck(dict["QualityDeck"])
 	$Game/SprintEnd.configure_sprint_end(dict["SprintEnd"])
+	$Game/SprintEnd.all_victory_points = $Game.victory_points
 	
 	# remove current issues
 	for issue in $Game/Backlog.get_issues():
