@@ -58,19 +58,54 @@ func _ready():
 func update_summary():
 	$Summary.text = name
 
+func _get_additional_text(stat: String, diff: int) -> String:
+	if diff == 0:
+		return ""
+	var color_substring = "[color=DARK_GREEN] + " if diff > 0 else "[color=RED] - "
+	diff = abs(diff)
+	var base_stat_str = ""
+	match stat:
+		"quality":
+			base_stat_str = str(__base_quality)
+		"speed":
+			base_stat_str = str(__base_speed)
+		"testing":
+			base_stat_str = str(__base_testing)
+		"morale":
+			base_stat_str = str(__base_morale)
+	return " [color=BLACK](" + base_stat_str + \
+		"[/color]" + color_substring + str(diff) + "[/color][color=BLACK])[/color]"
 
 # update extended text
 # update stats visualization
 # update assigned to text and assign button
 func update_extended():
 	$Extended/Name.text = "[font_size=24][color=BLACK][b]"+name+"[/b][/color][/font_size]"
-	$Extended/Quality.text = "[color=BLACK]Quality: [b]"+str(quality)+"[/b][/color]"
-	$Extended/Speed.text = "[color=BLACK]Speed: [b]"+str(speed)+"[/b][/color]"
-	$Extended/Testing.text = "[color=BLACK]Testing: [b]"+str(testing)+"[/b][/color]"
+	
+	var quality_diff = quality - __base_quality
+	var speed_diff = speed - __base_speed
+	var testing_diff = testing - __base_testing
+	var morale_diff = morale - __base_morale
+	
+	var additional_text = _get_additional_text("quality", quality_diff)
+	$Extended/Quality.text = "[color=BLACK]Quality: [b]"+str(quality)+"[/b][/color]" \
+	+ additional_text
+	
+	additional_text = _get_additional_text("speed", speed_diff)
+	$Extended/Speed.text = "[color=BLACK]Speed: [b]"+str(speed)+"[/b][/color]" \
+	+ additional_text
+	
+	additional_text = _get_additional_text("testing", testing_diff)
+	$Extended/Testing.text = "[color=BLACK]Testing: [b]"+str(testing)+"[/b][/color]" \
+	+ additional_text
+	
+	additional_text = _get_additional_text("morale", morale_diff)
 	if morale > 0:
 		$Extended/Morale.text = "[color=BLACK]Morale: [b]+"+str(morale)+"[/b][/color]"
 	else:
 		$Extended/Morale.text = "[color=BLACK]Morale: [b]"+str(morale)+"[/b][/color]"
+	$Extended/Morale.text += additional_text
+	
 	# Check if there exists a hook that will not be deleted at the end of the
 	# current frame
 	if $TaskHook.get_child_count() > 0 and not \
@@ -82,6 +117,7 @@ func update_extended():
 		$Extended/AssignButton.text = "Assign"
 		$Extended/Assignment.text = "Task: Not assigned"
 		$Extended/Assignment.disabled = true
+		
 # Called by the game scene when the turn ends.
 func execute_turn():
 	if $TaskHook.get_child_count() == 0:
