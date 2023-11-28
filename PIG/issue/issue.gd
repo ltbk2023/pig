@@ -120,6 +120,12 @@ var child_issues: Array[Issue] = []
 # An array containing this issue's parents in the issue tree. 
 # Used only in Extended View
 var parent_issues: Array[Issue] = []
+
+# If the player assigned the issue to an employee and decides to cancel the
+# assignment before the new assignee has made any progress,
+# no progress will be subtracted
+var was_assigned_this_round: bool
+
 # Signal that will be emitted when the Extended node is being either shown or 
 # hidden.
 # extending - set to true if the Extended node is BEING set to visible
@@ -133,6 +139,8 @@ func _ready():
 	# it prevents changing state to IN_BACKLOG when Scene is loaded to editor
 	if not Engine.is_editor_hint():
 		check_unlock()
+	was_assigned_this_round = false
+	randomize()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -219,6 +227,7 @@ func update_extended():
 # Called when progress is to be increased. If the progress exceeds the time,
 # complete() is called
 func add_progress(progress):
+	was_assigned_this_round = false
 	self.__progress += progress
 	if self.__progress >= self.time:
 		self.__progress = self.time
@@ -267,6 +276,7 @@ func assign_employee(hook: Hook):
 	if check_employee_can_be_assigned():
 		$EmployeeHook.add_child(hook)
 		state = IssueState.IN_PROGRESS
+		was_assigned_this_round = true
 		update_summary()
 		update_extended()
 		return true
@@ -289,6 +299,7 @@ func unassign_employee() -> bool:
 # Unassign issue from employee without completing it
 func cancel():
 	state = IssueState.IN_BACKLOG
+	subtract_progress_for_unassigning()
 	unassign_employee()
 
 func to_json():
@@ -378,3 +389,19 @@ func _on_tab_3_button_up():
 
 func _on_hide_button_button_up():
 	set_visibility_on_exteded_description(false)
+
+# Lose some progress for unassigning the issue from the current employee. Will 
+# never go below half of the current progress
+func subtract_progress_for_unassigning():
+	if was_assigned_this_round:
+		return
+	var employee_quality = $EmployeeHook.get_child(0).get_origin().quality
+	var random_value = randi_range(1, 4)
+	var subtracted_value = random_value + difficulty - employee_quality
+	if subtracted_value < 0:
+		return
+	if __progress - subtracted_value >= 0.5 * __progress:
+		__progress -= subtracted_value
+	else:
+		__progress = floori(0.5 * __progress)
+		
