@@ -261,3 +261,9 @@ func modify_stat(stat: EmployeeStatModifier.STAT, value: int):
 			morale += value
 	update_summary()
 	update_extended()
+	update_morale_visuals()
+	
+# Smile when happy, frown when unhappy
+func update_morale_visuals():
+	$Sprite.angry = morale < -1
+	$Sprite.smile = morale > 1		
