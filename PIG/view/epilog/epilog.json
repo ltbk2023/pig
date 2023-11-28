@@ -1,0 +1,22 @@
+{
+	"bad": {
+		"color": "aa2222ff",
+		"opinion": "#REPLACE People opinions are BAD\n Bla Bla Bla Bla\nBla Bla Bla Bla Bla Bla Bla Bla  ",
+		"title":"NOT GOOD"
+	},
+	"failure": {
+		"color": "666666ff",
+		"opinion": "#REPLACE other company take your project\n Bla Bla Bla Bla\nBla Bla Bla Bla Bla Bla Bla Bla ",
+		"title":"FAILURE"
+	},
+	"good": {
+		"color": "22aa22ff",
+		"opinion": "#REPLACEPeople opinions are GOOD\n Bla Bla Bla Bla\nBla Bla Bla Bla Bla Bla Bla Bla ",
+		"title":"EXCELENT WORK"
+	},
+	"mixed": {
+		"color": "aa9922ff",
+		"opinion": "#REPLACE People opinions are MIXED\n Bla Bla Bla Bla\nBla Bla Bla Bla Bla Bla Bla Bla ",
+		"title":"DECENT WORK"
+	}
+}

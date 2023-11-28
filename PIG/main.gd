@@ -113,6 +113,7 @@ func configure_scenario(dict: Dictionary):
 func start_level(file: String,internal:bool):
 	var game = load("res://game/game.tscn").instantiate()
 	add_child(game)
+	game.end_game.connect(_on_game_end_game)
 	var data
 	if internal:
 		data = Utility.load_from_resource(file)
@@ -121,6 +122,15 @@ func start_level(file: String,internal:bool):
 	configure_scenario(data)
 	$CanvasLayer.visible = false
 	$Background.visible = false
+
+func _on_game_end_game():
+	$Game.queue_free()
+	$Background.visible = true
+	$CanvasLayer.visible = true
+	$CanvasLayer/GridContainer.visible = false
+	$CanvasLayer/ControlAbout.visible = false
+	$CanvasLayer/Back.visible = false
+	$CanvasLayer/VBoxContainer.visible = true
 
 # Called when "Level1" button is released. Load first level
 func _on_level_1_button_up():
