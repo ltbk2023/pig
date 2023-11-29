@@ -4,7 +4,7 @@
 
 [sub_resource type="Gradient" id="Gradient_tw0tl"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.681327, 0.372332, 4.81307e-07, 1)
+colors = PackedColorArray(0.564706, 0.301961, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fecow"]
 gradient = SubResource("Gradient_tw0tl")
@@ -19,13 +19,13 @@ position = Vector2(180, 340)
 texture = SubResource("GradientTexture2D_fecow")
 
 [node name="Name" type="RichTextLabel" parent="Background"]
-offset_left = -81.0
+offset_left = -120.0
 offset_top = -296.0
-offset_right = 80.0
-offset_bottom = -256.0
+offset_right = 120.0
+offset_bottom = -246.0
 bbcode_enabled = true
-text = "[font_size=25]Agile Pig, Inc.[/font_size]
+text = "[center][font_size=30][b]PIG[/b] inc. Office[/font_size][/center]
 "
 
 [node name="Employees" type="Node2D" parent="Background"]
-position = Vector2(-100, -200)
+position = Vector2(-100, -215)
