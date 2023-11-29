@@ -22,5 +22,29 @@
 		"bug_issues":"This project is a disaster. I feel like there are more bugs than features in this backlog. And it's your fault!",
 		"presentation":"I feel like I'm working with a bunch of incompetents! Nothing is working at all. You're not fit for this job!",
 		"both":"What have you done with this project?! Nothing is working here. If things continue like this, I'll make sure you lose this job!"
+	},
+	"failure":{
+		"progress":"I've had enough of your laziness! We must end this collaboration. I'll talk to your boss.",
+		"bug_issues":"I feel like you're not even trying. And the bugs just keep coming. This is the end of our collaboration.",
+		"presentation":"I feel like you're not creating anything, just adding more elements that don't fit together. This is not how I envisioned it. I'm ending our collaboration.",
+		"both":"What have you done?! Nothing is working! This is not a project; it's a dumpster fire. The whole idea has collapsed because of you! Everything is in vain! It's over..."
+	},
+	"poor_win":{
+		"progress":"Alright, it doesn't fully satisfy me, but if this is to be our project, so be it! Although it would be good to add something more...",
+		"bug_issues":"Is this all you've done? You could at least not leave behind bugs... Okay, we'll somehow launch it on the market.",
+		"presentation":"It could have been better. And that button still doesn't work... We'll just hide it somehow...",
+		"both":"You've created something, but it doesn't even work... It could be better but it could be worse. We'll somehow get it up."
+	},
+	"win":{
+		"progress":"It was good working with you. I'm satisfied. Everything works well. I can honestly say that this project was a success.",
+		"bug_issues":"It looks very good. There may be a few bugs left, but I'm confident that it won't negatively impact the outcome.",
+		"presentation":"It was good working together. Sometimes it may be a bit slow, but once it launches, everything will be fine.",
+		"both":"I see more serious issues have arisen at the end. Nevertheless, I consider this project a success. We will find a way to fix it!"
+	},
+	"excellent_win":{
+		"progress":"This is amazing! I never dreamed it could be so wonderful! I will remember this moment for the rest of my life!",
+		"bug_issues":"I see there are a few bugs left, but it's nothing compared to the Eighth Wonder of the World!",
+		"presentation":"You guys are great at this job! Something is leaking here... Pass me the duct tape! I'll fix it myself!",
+		"both":"No project is without flaws! Although this one is close to perfection. These errors even give it character!"
 	}
 }

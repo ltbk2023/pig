@@ -42,6 +42,10 @@ var __last_presentation_bugs:int = 0
 var __max_client_importance:int = 0
 # flag informs if it's last sprint and need to finish level
 var __last_sprint:bool = false
+# all victory points
+var all_victory_points:int = 0
+# inform about failure
+var __failure:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -84,8 +88,11 @@ func execute_sprint_end(bugs_found: int, active_bug_issues: int, last_sprint: bo
 	__last_victory_points = sprint_victory_points
 	__last_score = client_score
 	
+	__failure = __last_score - __expected_score() <= score_boundary_of_fail
 	# save information about finish level
-	__last_sprint = last_sprint
+	__last_sprint = last_sprint or __failure 
+	# save victory points
+	all_victory_points += __last_victory_points
 	
 # Adds an issue's importance points to the total and increases the number of
 # issues done
@@ -93,11 +100,28 @@ func add_issue_importance(issue: Issue):
 	__total_client_importance += issue.importance_to_client
 	__issues_done_this_sprint += 1
 
+func update_view_on_ending():
+	$Background/NameOfScene.text = "END OF PROJECT"
+	$Background/NameOfScene/NumberOfSprint.visible = false
+	$Background/OkButton.text = "Close Project"
+	if __failure:
+		$Background/CommentBubble.update_comment(-3,__last_bug_issues,__last_presentation_bugs)
+	else:
+		var max_victory_points = points_between_boundaries * __current_sprint
+		var current_result = float(all_victory_points)/float(max_victory_points)
+		if current_result > 1.0:
+			$Background/CommentBubble.update_comment(4,__last_bug_issues,__last_presentation_bugs)
+		elif current_result >= 0.5:
+			$Background/CommentBubble.update_comment(3,__last_bug_issues,__last_presentation_bugs)
+		else:
+			$Background/CommentBubble.update_comment(0,__last_bug_issues,__last_presentation_bugs)
+
 # update view and text on SprintEnd scene
 func update_view(bugs_found: int, bug_issues: int):
 	$Background/NameOfScene/NumberOfSprint.text = str(__current_sprint)
 	
-	$Background/Info/Points.text = "Earned points: [b]" + str(__last_victory_points)+"[/b]"
+	$Background/Info/Points.text = "Earned points: [b]%d[/b] (%d%+d)"% [all_victory_points, \
+	all_victory_points - __last_victory_points, __last_victory_points]
 	
 	$Background/Info/BugIssues.text = "Bug Issues in Backlog: [b]" + str(bug_issues)+"[/b]"
 	$Background/Info/BugsFound.text = "Errors During Presentation: [b]" + str(bugs_found)+"[/b]"
@@ -114,14 +138,14 @@ func update_view(bugs_found: int, bug_issues: int):
 	
 	$Background/Info/ProgressBar.update_view(__total_client_importance, __last_bug_issues, \
 											__last_presentation_bugs, __expected_score())
+	if __last_sprint:
+		update_view_on_ending()
+
 # when press the ok button, return to main view.
 func _on_ok_button_button_up():
-	if __last_score - __expected_score() <= score_boundary_of_fail:
-		# change view to finish level when player failed
-		emit_signal("go_to_epilog", self, false)
-	elif __last_sprint:
-		# change view to finish level when player won
-		emit_signal("go_to_epilog", self, true)
+	if __last_sprint:
+		# change view to finish level
+		emit_signal("go_to_epilog", self, not __failure)
 	else:	
 		emit_signal("return_to_office_view", self)
 	
