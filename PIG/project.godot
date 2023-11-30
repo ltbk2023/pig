@@ -25,3 +25,4 @@ window/stretch/mode="canvas_items"
 
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.337255, 0.454902, 0.580392, 1)

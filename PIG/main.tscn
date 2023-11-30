@@ -1,29 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://dl2tg7dt0quws"]
+[gd_scene load_steps=6 format=3 uid="uid://2fyl15exehmg"]
 
-[ext_resource type="Texture2D" uid="uid://ccno4bqx5adkq" path="res://icon.svg" id="1_fopfc"]
 [ext_resource type="Script" path="res://main.gd" id="1_w2xem"]
-[ext_resource type="Texture2D" uid="uid://sasakcv61q8e" path="res://pg_en_logo_biale-01.png" id="3_jkhpd"]
+[ext_resource type="Texture2D" uid="uid://rh0jlx2gd3sd" path="res://menu/company_name.png" id="3_tn6wx"]
+[ext_resource type="Theme" path="res://utility/gray_button.tres" id="4_0j783"]
+[ext_resource type="Texture2D" uid="uid://sasakcv61q8e" path="res://menu/pg_en_logo_biale-01.png" id="4_qhq0m"]
+[ext_resource type="Texture2D" uid="uid://cucypcp3pq1f4" path="res://pig.png" id="5_1s6s6"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_w2xem")
 
 [node name="Background" type="Node2D" parent="."]
 
-[node name="Icon" type="Sprite2D" parent="Background"]
-position = Vector2(100, 107)
-texture = ExtResource("1_fopfc")
+[node name="Pig" type="Sprite2D" parent="Background"]
+texture_filter = 1
+position = Vector2(180, 240)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_1s6s6")
 
-[node name="Icon2" type="Sprite2D" parent="Background"]
-position = Vector2(257, 201)
-texture = ExtResource("1_fopfc")
-
-[node name="Icon3" type="Sprite2D" parent="Background"]
-position = Vector2(96, 464)
-texture = ExtResource("1_fopfc")
-
-[node name="Icon4" type="Sprite2D" parent="Background"]
-position = Vector2(255, 587)
-texture = ExtResource("1_fopfc")
+[node name="CompanyName" type="Sprite2D" parent="Background"]
+texture_filter = 1
+position = Vector2(20, 0)
+scale = Vector2(10, 10)
+texture = ExtResource("3_tn6wx")
+centered = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 editor_description = "This node allows to combine 2d with ui without losing docking options"
@@ -43,9 +42,9 @@ tooltip_text = "
 
 [node name="Description" type="RichTextLabel" parent="CanvasLayer/ControlAbout"]
 layout_mode = 0
-offset_left = 7.0
+offset_left = 10.0
 offset_top = 190.0
-offset_right = 355.0
+offset_right = 350.0
 offset_bottom = 533.0
 bbcode_enabled = true
 text = "[fill]This game was created as part of engineering diploma project. Our focus was on developing an educational game centered around project management.[/fill]
@@ -68,36 +67,48 @@ offset_top = -10.0
 offset_right = 4321.0
 offset_bottom = 2980.0
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_jkhpd")
+texture = ExtResource("4_qhq0m")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-anchors_preset = 14
-anchor_top = 0.5
+texture_filter = 1
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -33.0
-offset_bottom = 33.0
+offset_left = 10.0
+offset_top = 430.0
+offset_right = -10.0
+offset_bottom = 646.0
 grow_horizontal = 2
-grow_vertical = 2
+size_flags_vertical = 0
 
 [node name="Play" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = ExtResource("4_0j783")
 text = "Play"
 
-[node name="About" type="Button" parent="CanvasLayer/VBoxContainer"]
+[node name="Load" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = ExtResource("4_0j783")
+text = "Load"
+
+[node name="HowToPlay" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("4_0j783")
+text = "How to Play"
+
+[node name="About" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("4_0j783")
 text = "About"
 
 [node name="Quit" type="Button" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = ExtResource("4_0j783")
 text = "Quit"
-
-[node name="Back" type="Button" parent="CanvasLayer"]
-visible = false
-custom_minimum_size = Vector2(70, 25)
-offset_right = 70.0
-offset_bottom = 31.0
-text = "Back"
 
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
 visible = false
@@ -107,10 +118,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -102.0
-offset_top = -102.0
-offset_right = 102.0
-offset_bottom = 102.0
+offset_left = -152.0
+offset_top = -229.0
+offset_right = 152.0
+offset_bottom = 229.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -147,13 +158,28 @@ custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 text = "LEVEL 6"
 
+[node name="Back" type="Button" parent="CanvasLayer"]
+visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(70, 40)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme = ExtResource("4_0j783")
+text = "Back"
+
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/Play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/About" to="." method="_on_about_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
-[connection signal="button_up" from="CanvasLayer/Back" to="." method="_on_back_button_up"]
 [connection signal="button_up" from="CanvasLayer/GridContainer/Level1" to="." method="_on_level_1_button_up"]
 [connection signal="button_up" from="CanvasLayer/GridContainer/Level2" to="." method="_on_level_2_button_up"]
 [connection signal="button_up" from="CanvasLayer/GridContainer/Level3" to="." method="_on_level_3_button_up"]
 [connection signal="button_up" from="CanvasLayer/GridContainer/Level4" to="." method="_on_level_4_button_up"]
 [connection signal="button_up" from="CanvasLayer/GridContainer/Level5" to="." method="_on_level_5_button_up"]
 [connection signal="button_up" from="CanvasLayer/GridContainer/Level6" to="." method="_on_level_6_button_up"]
+[connection signal="button_up" from="CanvasLayer/Back" to="." method="_on_back_button_up"]

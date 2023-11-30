@@ -20,6 +20,7 @@ func create_entry_to_level(dict: Dictionary):
 # Called when "Play" button is released. Hides menu and adds game scene to Main node.
 func _on_play_button_up():
 	$CanvasLayer/VBoxContainer.visible = false
+	$Background.visible = false
 	$CanvasLayer/GridContainer.visible = true
 	$CanvasLayer/Back.visible = true
 
@@ -31,6 +32,7 @@ func _on_quit_button_up():
 # Called when "Back" button is released. Return to main menu
 func _on_back_button_up():
 	$CanvasLayer/VBoxContainer.visible = true
+	$Background.visible = true
 	$CanvasLayer/GridContainer.visible = false
 	$CanvasLayer/Back.visible = false
 	$CanvasLayer/ControlAbout.visible = false
@@ -159,5 +161,6 @@ func _on_level_6_button_up():
 
 func _on_about_button_up():
 	$CanvasLayer/VBoxContainer.visible = false
+	$Background.visible = false
 	$CanvasLayer/Back.visible = true
 	$CanvasLayer/ControlAbout.visible = true
