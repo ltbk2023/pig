@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sasakcv61q8e"
-path="res://.godot/imported/pg_en_logo_biale-01.png-9a943ae38e3d8815eef789e35ec04f30.ctex"
+uid="uid://rh0jlx2gd3sd"
+path="res://.godot/imported/company_name.png-0371d941afe82fa73b3fc93ead5a9b8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://pg_en_logo_biale-01.png"
-dest_files=["res://.godot/imported/pg_en_logo_biale-01.png-9a943ae38e3d8815eef789e35ec04f30.ctex"]
+source_file="res://menu/company_name.png"
+dest_files=["res://.godot/imported/company_name.png-0371d941afe82fa73b3fc93ead5a9b8c.ctex"]
 
 [params]
 
