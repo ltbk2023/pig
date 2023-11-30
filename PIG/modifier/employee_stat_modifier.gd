@@ -27,7 +27,7 @@ func _ready():
 func modify():
 	var employees = get_employees()
 	for employee in employees:
-		employee.modify_stat(__stat_type, __stat_value)
+		employee.modify_stat(__stat_type, __stat_value, false)
 		# If morale is modified, then its consequence should take place
 		# immediately instead of watiting for the next turn
 		if __stat_type == STAT.MORALE:
@@ -37,5 +37,5 @@ func modify():
 func detach_modification():
 	var employees = get_employees()
 	for employee in employees:
-		employee.modify_stat(__stat_type, -__stat_value)
+		employee.modify_stat(__stat_type, -__stat_value, false)
 		remove_employee(employee)

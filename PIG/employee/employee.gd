@@ -282,18 +282,32 @@ func update_task_display():
 func _on_hide_button_up():
 	set_visibility_of_extended_description(false)
 
-func modify_stat(stat: EmployeeStatModifier.STAT, value: int):
+func modify_stat(stat: EmployeeStatModifier.STAT, value: int, change_base: bool):
 	match stat:
 		EmployeeStatModifier.STAT.QUALITY:
-			__modified_quality += value
-			quality = __modified_quality if __modified_quality >= 0 else 0
+			if change_base:
+				__base_quality += value if __base_quality + value >= 0  else 0
+				quality += value if quality + value >= 0 else 0
+			else:
+				__modified_quality += value
+				quality = __modified_quality if __modified_quality >= 0 else 0
 		EmployeeStatModifier.STAT.SPEED:
-			__modified_speed += value
-			speed = __modified_speed if __modified_speed >= 0 else 0
+			if change_base:
+				__base_speed += value if __base_speed + value >= 0  else 0
+				speed += value if speed + value >= 0 else 0
+			else:
+				__modified_speed += value
+				speed = __modified_speed if __modified_speed >= 0 else 0
 		EmployeeStatModifier.STAT.TESTING:
-			__modified_testing += value
-			testing = __modified_testing if __modified_testing >= 0 else 0
+			if change_base:
+				__base_testing += value if __base_testing + value >= 0  else 0
+				testing += value if testing + value >= 0 else 0
+			else:
+				__modified_testing += value
+				testing = __modified_testing if __modified_testing >= 0 else 0
 		EmployeeStatModifier.STAT.MORALE:
+			if change_base:
+				__base_morale += value
 			morale += value
 	update_summary()
 	update_extended()

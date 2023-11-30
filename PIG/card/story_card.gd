@@ -42,10 +42,13 @@ func execute_option(option: int):
 	var op = options[option]
 	for type in op.effects:
 		for effect in op.effects[type]:
-			var modifier =effect.create_modifier()
-			get_tree().call_group("ModifierHandlers", "handle", modifier)
-			modifier.attach_employee(effect.employee)
-
+			if effect.duration == -1:
+				effect.employee.modify_stat(Utility.str_to_stat(effect.stat),
+				effect.stat_value, true)
+			else:
+				var modifier = effect.create_modifier()
+				get_tree().call_group("ModifierHandlers", "handle", modifier)
+				modifier.attach_employee(effect.employee)
 	emit_signal("done", self)
 
 func _on_hide_button_up():
