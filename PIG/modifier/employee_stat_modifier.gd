@@ -6,14 +6,18 @@ enum STAT {QUALITY, SPEED, TESTING, MORALE}
 var __stat_value: int
 var __stat_type: STAT
 
+# Specifies if the source of this modifier is the employee's morale
+var is_from_morale: bool
+
 # Initialize an EmployeeStatModifier object
 # Type defines what statistic is changed by modifier
 # Value is the amount of points which modifier changes the statistic
 # Turn counter decides how many turns the modifier will live
-func initialize(type: STAT, value: int, turn_counter: int):
+func initialize(type: STAT, value: int, turn_counter: int, is_from_morale: bool):
 	self.__stat_type = type
 	self.__stat_value = value
 	self.__turn_counter = turn_counter
+	self.is_from_morale = is_from_morale
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
