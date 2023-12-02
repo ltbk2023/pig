@@ -24,5 +24,5 @@ func create_and_fill_copy(reference)->ModifyStatDTO:
 func create_modifier():
 	var s = Utility.str_to_stat(stat)
 	var modifier = preload("res://modifier/employee_stat_modifier.tscn").instantiate()
-	modifier.initialize(s, stat_value, duration)
+	modifier.initialize(s, stat_value, duration, false)
 	return modifier

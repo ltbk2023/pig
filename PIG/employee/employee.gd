@@ -250,7 +250,7 @@ func configure_employee(dict: Dictionary) -> bool:
 		morale = __base_morale
 		__modified_speed = __base_speed
 		__modified_quality = __base_quality
-		__modified_testing == __base_testing
+		__modified_testing = __base_testing
 		
 		# every value from visuals will overwrite it's counterpart from presets
 		if dict.has("presets"):
