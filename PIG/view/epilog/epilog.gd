@@ -51,10 +51,22 @@ func show_epilog(failure:bool,bugs_percent):
 	$Title.text = "[center][b]"+dict.get(title_key,"")+"[/b][/center]"
 	
 func configure(dict:Dictionary):
-	data = dict
+	var comments = dict["comments"] 
+	for key in comments:
+		data[key][opinion_key] = comments[key]
 
 func to_json():
-	return data
+	var dictionary = {
+		"class" = "Epilog",
+		"name" = "Epilog",
+		"comments" = {
+			bad_key = data[bad_key][opinion_key],
+			failure_key = data[failure_key][opinion_key],
+			good_key = data[good_key][opinion_key],
+			mixed_key = data[mixed_key][opinion_key]
+		}
+	}
+	return dictionary
 
 
 func _on_ok_button_button_up():
