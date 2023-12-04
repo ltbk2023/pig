@@ -18,6 +18,18 @@ func load(dict:Dictionary):
 			list.append(ms)
 		effects[mod_stat]=list
 
+func to_json():
+	var eff= {}
+	
+	for e in effects:
+		eff[e] = []
+		for e1 in effects[e]:
+			eff[e]= e1.to_json()
+	
+	return {
+		"text":text,
+		"effects":eff
+	}
 func create_and_fill_copy(format,reference) -> OptionDTO:
 	var op = OptionDTO.new()
 	op.text = text.format(format,"_")

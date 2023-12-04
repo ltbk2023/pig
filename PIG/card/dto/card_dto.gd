@@ -19,6 +19,19 @@ func load(dict:Dictionary):
 		op.load(o)
 		options.append(op)
 
+func to_json():
+	var op = []
+	for o in options:
+		op.append(o.to_json())
+	
+	return {
+		"title":title,
+		"employee_number":employee_number,
+		"employee_filter":employee_filter,
+		"text":text,
+		"option":op
+	}
+
 func fill_card(card:StoryCard,format,reference):
 	card.title = title.format(format,"_")
 	card.story_text = text.format(format,"_")

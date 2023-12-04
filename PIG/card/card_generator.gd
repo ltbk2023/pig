@@ -1,21 +1,34 @@
 extends Node2D
 class_name CardGenerator
 
-@export var json_path: String = "story_cards.json"
 
 # Dictionary that holds story cards parsed from the file under :json_path
 var story_cards: Array[CardDTO]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var story_cards_json = Utility.load_from_resource(json_path)
+	randomize()
+
+func configure_from_data(data):
 	story_cards = []
-	for sc in story_cards_json:
+	for sc in data:
 		var card = CardDTO.new()
 		card.load(sc)
 		story_cards.append(card)
-	randomize()
 
+func configure_from_presets(dict):
+	var story_cards_data = []
+	for path in dict:
+		var data = load(path).data
+		for index in dict[path]:
+			story_cards_data.append(data[index])
+	configure_from_data(story_cards_data)
+
+func to_json():
+	var data = []
+	for card in story_cards:
+		data.append(card.to_json())
+	return data
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
