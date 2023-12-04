@@ -236,5 +236,8 @@
 		},
 		"class": "QualityDeck",
 		"name": "QualityDeck"
+	},
+	"cards_presets":{
+		"res://story_cards.json":[0,1]
 	}
 }

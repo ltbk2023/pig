@@ -12,7 +12,10 @@ func load(list):
 	stat = list[1]
 	stat_value = list[2]
 	duration = list[3]
-	
+
+func to_json():
+	return [employee,stat,stat_value,duration]
+
 func create_and_fill_copy(reference)->ModifyStatDTO:
 	var dto = ModifyStatDTO.new()
 	dto.employee = reference[employee]

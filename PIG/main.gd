@@ -46,6 +46,8 @@ func save_to_file(file_name):
 	dictionary["QualityDeck"] = $Game/Testing/QualityDeck.to_json()
 	dictionary["Testing"] = $Game/Testing.to_json()
 	dictionary["SprintEnd"] = $Game/SprintEnd.to_json()
+	dictionary["cards_data"] = $Game/DeckMaster/CardGenerator.to_json()
+	
 	for issue in $Game/Backlog.get_issues():
 		issues.append(issue.to_json())
 	dictionary["Issues"] = issues
@@ -67,6 +69,11 @@ func configure_scenario(dict: Dictionary):
 	$Game/Testing/QualityDeck.configure_quality_deck(dict["QualityDeck"])
 	$Game/SprintEnd.configure_sprint_end(dict["SprintEnd"])
 	$Game/SprintEnd.all_victory_points = $Game.victory_points
+	if dict.has("cards_presets"):
+			$Game/DeckMaster/CardGenerator.configure_from_presets(dict["cards_presets"])
+	else:
+			$Game/DeckMaster/CardGenerator. configure_from_data(dict["cards_data"])
+
 	
 	# remove current issues
 	for issue in $Game/Backlog.get_issues():
@@ -125,6 +132,7 @@ func start_level(file: String,internal:bool):
 	configure_scenario(data)
 	$CanvasLayer.visible = false
 	$Background.visible = false
+	save_to_file("test.json")
 
 func _on_game_end_game():
 	$Game.queue_free()
