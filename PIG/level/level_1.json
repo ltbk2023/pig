@@ -2,13 +2,47 @@
 	"Employees": [
 		{
 			"assigned to": "",
-			"base morale": 0,
-			"base quality": 2,
-			"base speed": 2,
-			"base testing": 2,
+			"base morale": 1,
+			"base quality": 1,
+			"base speed": 3,
+			"base testing": 0,
 			"class": "Employee",
-			"description": "[color=BLACK]DESCRITPION.[/color]\n",
-			"name": "NAME"
+			"description": "[color=BLACK]Your little apple of the eye. A small, cheerful nine-year-old girl with a big dream. She wants to be the first woman to land on the sun. She says it's not a problem, you just have to fly at night.[/color]",
+			"name": "Darling",
+			"filter": ["daughter"],
+			"presets":
+			{
+				"res://employee/sprites/preset/skin_hair_lips_color.ep.json":3,
+				"res://employee/sprites/preset/nose.ep.json":null,
+				"res://employee/sprites/preset/desk.ep.json":null,	
+				"res://employee/sprites/preset/laptop.ep.json":4,		
+
+				"res://employee/sprites/preset/clothes_for_women.ep.json":13,
+				"res://employee/sprites/preset/body_detail_for_women.ep.json":6,
+				"res://employee/sprites/preset/hair_beard_for_women.ep.json":1
+			}
+		},
+		{
+			"assigned to": "",
+			"base morale": 0,
+			"base quality": 3,
+			"base speed": 1,
+			"base testing": 3,
+			"class": "Employee",
+			"description": "[color=BLACK]You've been together for eight years now. It's been tough years. Unfortunately, it was difficult for you to communicate at the beginning because she wasn't familiar with modern management methods. BUT NOW, you'll show her how it's done![/color]",
+			"name": "Your Wife",
+			"filter": ["wife"],
+			"presets":
+			{
+				"res://employee/sprites/preset/skin_hair_lips_color.ep.json":2,
+				"res://employee/sprites/preset/nose.ep.json":null,
+				"res://employee/sprites/preset/desk.ep.json":null,	
+				"res://employee/sprites/preset/laptop.ep.json":null,		
+
+				"res://employee/sprites/preset/clothes_for_elegant_people.ep.json":8,
+				"res://employee/sprites/preset/body_detail_for_women.ep.json":0,
+				"res://employee/sprites/preset/hair_beard_for_women.ep.json":0
+			}
 		}
 	],
 	"Game": {

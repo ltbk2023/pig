@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c7rm05y0sfaof"]
+[gd_scene load_steps=13 format=3 uid="uid://c7rm05y0sfaof"]
 
 [ext_resource type="Script" path="res://employee/employee.gd" id="1_ckk1p"]
 [ext_resource type="Texture2D" uid="uid://nrs7vxh7hx5e" path="res://employee/sprites/extended/background.png" id="2_5js4y"]
 [ext_resource type="PackedScene" uid="uid://cyl4kohdffyoc" path="res://employee/sprites/employee_sprite.tscn" id="3_5jftc"]
+[ext_resource type="Theme" uid="uid://b4qdxx2oh78dl" path="res://utility/scroll_bar_theme.tres" id="3_cxue2"]
 
 [sub_resource type="Gradient" id="Gradient_vcdfr"]
 offsets = PackedFloat32Array(0.0129032, 1)
@@ -82,6 +83,7 @@ offset_left = 15.0
 offset_top = 325.0
 offset_right = 345.0
 offset_bottom = 460.0
+theme = ExtResource("3_cxue2")
 bbcode_enabled = true
 text = "[color=BLACK]implementation of desintegration unexisting information for confirmation of button aplication[/color]
 "

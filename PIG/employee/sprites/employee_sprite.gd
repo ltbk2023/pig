@@ -555,7 +555,7 @@ func configure_from_presets(dict:Dictionary):
 	for p in dict:
 		var preset:Array = load(p).data
 		var value = dict[p]
-		if (not value is int) or value < 0 or value >=preset.size():
+		if value == null or value < 0 or value >=preset.size():
 			value = randi_range(0,preset.size()-1)
 		new_dict.merge(preset[value])
 	configure_visuals(new_dict)
