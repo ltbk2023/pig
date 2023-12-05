@@ -146,7 +146,7 @@ func _on_game_end_game():
 
 # Called when "Level1" button is released. Load first level
 func _on_level_1_button_up():
-	start_level("level/basic_scenario.json",true)
+	start_level("level/level_1.json",true)
 
 # Called when "Level2" button is released. Load second level
 func _on_level_2_button_up():

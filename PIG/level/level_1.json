@@ -1,0 +1,72 @@
+{
+	"Employees": [
+		{
+			"assigned to": "",
+			"base morale": 0,
+			"base quality": 2,
+			"base speed": 2,
+			"base testing": 2,
+			"class": "Employee",
+			"description": "[color=BLACK]DESCRITPION.[/color]\n",
+			"name": "NAME"
+		}
+	],
+	"Game": {
+		"class": "Game",
+		"current sprint": 0,
+		"current turn": 0,
+		"max sprints": 1,
+		"name": "Game",
+		"turns per sprint": 5,
+		"victory points": 0
+	},
+	"Issues": [
+		{
+			"child_issues": [],
+			"class": "Issue",
+			"description": "[color=BLACK]place for description.[/color]\n",
+			"difficulty": 1,
+			"importance to client": 4,
+			"name": "XD Issue",
+			"progress": 0,
+			"remaining parents": 0,
+			"state": 1,
+			"time": 5,
+			"type": 0
+		}
+	],
+	"Testing": {
+		"class": "Testing",
+		"name": "Testing",
+		"testers limit": -1
+	},
+	"SprintEnd": {
+		"class": "SprintEnd",
+		"current sprint": 0,
+		"issues done this sprint": 0,
+		"last_victory_points": 0,
+		"name": "SprintEnd",
+		"total client importance": 0
+	},
+	"QualityDeck": {
+		"cards": {
+			"0": 0,
+			"1": 0
+		},
+		"class": "QualityDeck",
+		"name": "QualityDeck"
+	},
+	"Epilog" : {
+		"class": "Epilog",
+		"name": "Epilog",
+		"comments" : {
+			"bad" : "place for text",
+			"failure" : "place for text",
+			"good" : "place for text",
+			"mixed": "place for text"
+		}
+	},
+	"cards_presets":{
+		"res://story_cards.json":[0,1]
+	}
+}
