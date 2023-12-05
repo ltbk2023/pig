@@ -11,7 +11,7 @@ var options:Array[OptionDTO]
 func load(dict:Dictionary):
 	title = dict["title"]
 	employee_number = dict["employee_number"]
-	employee_filter = dict["employee_filter"]
+	employee_filter = dict["employee_filter"] if dict.has("employee_filter") and dict["employee_filter"] != null else []
 	text = dict["text"]
 	options = []
 	for o in dict["options"]:
@@ -27,7 +27,7 @@ func to_json():
 	return {
 		"title":title,
 		"employee_number":employee_number,
-		"employee_filter":employee_filter,
+		"employee_filter":employee_filter if employee_filter != null else [],
 		"text":text,
 		"option":op
 	}

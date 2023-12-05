@@ -26,6 +26,9 @@ var __modified_quality
 var __modified_speed
 var __modified_testing
 
+# array of characterisitc of employee
+var filter
+
 # Declares the intention to assign an issue to this employee
 signal assign(owner)
 
@@ -231,7 +234,8 @@ func to_json():
 		"base morale": __base_morale,
 		"assigned to": assigned_task_name,
 		"description": $Extended/Description.text,
-		"visuals": $Sprite.to_json()
+		"visuals": $Sprite.to_json(),
+		"filter": filter
 	}
 	return dictionary
 	
@@ -251,6 +255,8 @@ func configure_employee(dict: Dictionary) -> bool:
 		__modified_speed = __base_speed
 		__modified_quality = __base_quality
 		__modified_testing = __base_testing
+		
+		filter = dict["filter"] if dict.has("filter") and dict["filter"] != null else []
 		
 		# every value from visuals will overwrite it's counterpart from presets
 		if dict.has("presets"):
