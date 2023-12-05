@@ -227,7 +227,16 @@
 				"res://employee/sprites/preset/clothes_for_elegant_people.ep.json":null,
 				"res://employee/sprites/preset/body_detail_for_men.ep.json":null,
 				"res://employee/sprites/preset/hair_beard_for_men.ep.json":null
-			}
+			},
+		"boundaries": {
+			"fail": -20,
+			"warning":-15,
+			"low": -5,
+			"high": 5
+		},
+		"score_setting":{
+			"base_score_multiplier" : 10
+		}
 	},
 	"QualityDeck": {
 		"cards": {

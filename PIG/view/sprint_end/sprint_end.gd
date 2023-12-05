@@ -158,7 +158,16 @@ func to_json():
 		"issues done this sprint": __issues_done_this_sprint,
 		"last_victory_points": __last_victory_points,
 		"current sprint": __current_sprint,
-		"clients_visauls":$Background/Sprite.to_json()
+		"clients_visauls":$Background/Sprite.to_json(),
+		"boundaries" : {
+			"fail" : score_boundary_of_fail,
+			"warning" : score_warning_boundary,
+			"low" : score_low_boundary,
+			"high" : score_high_boundary
+		},
+		"score_settings": {
+			"base_score_multiplier": expected_score_multiplier
+		}
 	}
 	return dictionary
 
@@ -173,6 +182,15 @@ func configure_sprint_end(dict: Dictionary) -> bool:
 			$Background/Sprite.configure_from_presets(dict["clients_presets"])
 		if dict.has("clients_visuals"):
 			$Background/Sprite.configure_visuals(dict["clients_visuals"])
+		if dict.has("boundaries"):
+			score_boundary_of_fail = dict["boundaries"]["fail"]
+			score_warning_boundary = dict["boundaries"]["warning"]
+			score_low_boundary = dict["boundaries"]["low"]
+			score_high_boundary = dict["boundaries"]["high"]
+			$Background/Info/ProgressBar.update_boundry(score_low_boundary, score_high_boundary, \
+			score_boundary_of_fail)
+		if dict.has("score_settings"):
+			expected_score_multiplier = dict["score_settings"]["base_score_multiplier"]
 		return true
 	return false
 
