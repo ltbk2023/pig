@@ -460,8 +460,10 @@ func _on_sprint_end_go_to_epilog(owner, win):
 		if issue.type == Issue.IssueType.BUG_ISSUE and issue.state != Issue.IssueState.COMPLETED:
 			bugs += 1
 
-	
-	$Epilog.show_epilog(not win,bugs/(bugs+clean))
+	if bugs+clean == 0:
+		$Epilog.show_epilog(true,0)
+	else:
+		$Epilog.show_epilog(not win,bugs/(bugs+clean))
 	$Epilog.visible = true
 	
 
