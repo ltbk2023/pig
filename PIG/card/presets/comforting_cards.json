@@ -1,0 +1,147 @@
+[
+	{
+		"employee_number": 1,
+		"employee_filter": null,
+		"title": "Sad day",
+		"text": "${E1}.name is sad. What do you do?",
+		"options": 
+		[
+			{
+				"text": "Buy ${E1}.name a cupcake",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 2, 2]
+					]
+				}
+			},
+			{
+				"text": "Do nothing",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -1, 1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 1,
+		"employee_filter": null,
+		"title": "Tea break",
+		"text": "${E1}.name looks tired. How will you help?",
+		"options": 
+		[
+			{
+				"text": "Invite ${E1}.name for a tea break.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 2, 2]
+					]
+				}
+			},
+			{
+				"text": "Encourage ${E1}.name to keep working.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -1, 1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 1,
+		"employee_filter": null,
+		"title": "Recognition",
+		"text": "${E1}.name appears demotivated. How will you respond?",
+		"options": 
+		[
+			{
+				"text": "Praise ${E1}.name",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 2, 2]
+					]
+				}
+			},
+			{
+				"text": "Ignore ${E1}.name",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -1, 1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 1,
+		"employee_filter": null,
+		"title": "Tea break",
+		"text": "${E1}.name looks tired. How will you help?",
+		"options": 
+		[
+			{
+				"text": "Invite for a tea break.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 2, 2]
+					]
+				}
+			},
+			{
+				"text": "Encourage to keep working.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -1, 1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 1,
+		"employee_filter": null,
+		"title": "Assess Project Progress",
+		"text": "${E1}.name seems unsure about where the project goes. How do you respond?",
+		"options": 
+		[
+			{
+				"text": "Offer constructive feedback",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 2, 2]
+					]
+				}
+			},
+			{
+				"text": "Say: Figure it out!",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -1, 1]
+					]
+				}
+			}
+		]
+	}
+]

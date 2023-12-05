@@ -1,0 +1,196 @@
+[
+	{
+		"employee_number": 2,
+		"employee_filter": null,
+		"title": "Maple or Plane Tree?",
+		"text": "The debate has sparked over whether maple leaves or plane tree leaves would be a better roof covering for the train carriages. \n${E1}.name believes that the platanus tree is more aesthetically pleasing. \n${E2}.name believes that promoting invasive species should be avoided.",
+		"options": 
+		[
+			{
+				"text": "Support ${E1}.name opinion",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 1, 1],
+						["${E2}", "morale", -1, 1]
+					]
+				}
+			},
+			{
+				"text": "Support ${E2}.name opinion.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -1, 1],
+						["${E2}", "morale", 1, 1]
+					]
+				}
+			},
+			{
+				"text": "Go to another room and wait.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "speed", -1, 1],
+						["${E2}", "speed", -1, 1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 1,
+		"employee_filter": null,
+		"title": "Sticky situaction",
+		"text": "${E1}.name spilled on herself “Handy Glue: Bonds Forever”. Her shirt has a new ugly pattern.",
+		"options": 
+		[
+			{
+				"text": "Tell her to clean herself",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "speed", -3, 1]
+					]
+				}
+			},
+			{
+				"text": "Tell her to keep working",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "speed", -1, 3],
+						["${E1}", "quality", -1, 3]
+					]
+				}
+			}
+		]
+	},
+    {
+		"employee_number": 1,
+		"employee_filter": [["wife"]],
+		"title": "Disagreement",
+		"text": "${E1}.name is at odds with your team leadership. How do you manage this disagreement?",
+		"options": 
+		[
+			{
+				"text": "Explain your management approach",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "speed", -3, 1]
+					]
+				}
+			},
+			{
+				"text": "Explain why you should be leader",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -1, 5]
+					]
+				}
+			}
+		]
+	},
+    {
+		"employee_number": 1,
+		"employee_filter": [["wife"]],
+		"title": "Old Conflicts",
+		"text": "${E1}.name wants to talk about an old disagreement she had with you.",
+		"options": 
+		[
+			{
+				"text": "Explain how you were right then.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -1, 5]
+					]
+				}
+			},
+			{
+				"text": "Tell her that the past is past",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -1, 5]
+					]
+				}
+			}
+		]
+	},
+    {
+		"employee_number": 1,
+		"employee_filter": null,
+		"title": "Wardrobe Return",
+		"text": "${E1}.name wants to talk about broken doors to her wardrobe",
+		"options": 
+		[
+			{
+				"text": "I will do it later",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -1, 5]
+					]
+				}
+			},
+			{
+				"text": "I already did it. Check it yourself!",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "speed", -3, 1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 1,
+		"employee_filter": [["daughter"]],
+		"title": "Big Dream",
+		"text": "${E1}.name tells you about her the biggest dream. She wants to be the first woman to land on the sun.",
+		"options": 
+		[
+			{
+				"text": "Cupcake, I believe in your success",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 3, 2],
+						["${E1}", "quality", 1, -1],
+						["${E1}", "speed", 1, -1],
+						["${E1}", "testing", -1, -1]
+					]
+				}
+			},
+			{
+				"text": "Do you know that you would burn?",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -3, 1],
+						["${E1}", "quality", -1, -1],
+						["${E1}", "speed", -1, -1],
+						["${E1}", "testing", 1, -1]
+					]
+				}
+			}
+		]
+	}
+]
