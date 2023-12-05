@@ -35,6 +35,9 @@ var __state : GameState
 # Total victory points
 var victory_points
 
+var bug_names = ["Oops!!! I doesn't work ", "Who messed it up? ", "This is not a feature ", "Who wrote this? ",
+"Strange problem ", "Minor difficulty ", "Have you tested this? "]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	__state = GameState.NOT_STARTED
@@ -321,6 +324,7 @@ func _on_bug_found():
 	# The following limits should be constants/vars in the Issue script!
 	bug_issue.difficulty = randi_range(1, 4)
 	bug_issue.time = randi_range(1, 3)
+	bug_issue.name = bug_names.pick_random()
 	$Backlog.add_issue(bug_issue)
 
 # Start modifiers. They will affect employees.

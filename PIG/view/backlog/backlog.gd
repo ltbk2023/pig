@@ -97,7 +97,7 @@ func show_reachable(order):
 # add issue to the backlog and set it's position
 # connect assign signal to _on_assign for new issue
 func add_issue(issue:Issue):
-	$Issues.add_child(issue)
+	$Issues.add_child(issue, true)
 	issue.assign.connect(_on_assign)
 	issue.extending.connect(_on_extending)
 	issue.visible = extended == null
