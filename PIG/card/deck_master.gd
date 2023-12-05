@@ -25,6 +25,8 @@ func get_card() -> StoryCard:
 	var chosen_employees
 	while (true):
 		card_dto = $CardGenerator.generate_card()
+		if card_dto == null:
+			return null
 		chosen_employees = choose_employees(
 			card_dto.employee_number,
 			card_dto.employee_filter
