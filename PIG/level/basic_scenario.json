@@ -237,6 +237,16 @@
 		"class": "QualityDeck",
 		"name": "QualityDeck"
 	},
+	"Epilog" : {
+		"class": "Epilog",
+		"name": "Epilog",
+		"comments" : {
+			"bad" : "At the very beginning, everything seemed normal. The bakery was producing bread, people were eating it, and all was going well. The management was pleased with the robots' work. However, at some point, a certain bug crept into the software of the robots in the job satisfaction module. The robots went on strike! They ceased production, raised slogans of free robotic trade unions, and demanded the removal of the company's management. From that moment on, work and capital were supposed to belong exclusively to the robotic proletariat. The Commission for the Rights of Robots and Thinking Machines had to get involved in the matter. Eventually, everyone made some concessions. Robots were guaranteed \"Fruitful Thursdays\" and the management retained their seats. However, the losses in bread production were enormous, and the bakery was not as efficient as before. No one ever fully understood this phenomenon.",
+			"failure" : "Unfortunately, the project ended in failure. The boss was dissatisfied with your work. Needless to say - you were fired on the spot. Some time after, you met your old friend from the company and asked what happened with project next. He told you a story, how three separate teams took it, but couldn't work with bad foundations you've layed out, even resulting in mental breakdown of one of the architects. Sadly, the bakery that was supposed to revolutionize the baking industry never came to be true. People had to eat old, stale bread. Life without fresh bread for breakfast became purposeless. So, the humanity started perishing...",
+			"good" : "The project turned out to be a tremendous success! We made bread great again! Suddenly, everyone started indulging in wheat delights. Cookies, rolls, baguettes, both smaller and larger. The bread from this bakery won every competition. The hostile armies of nations that had been fighting for decades met in the middle of the battlefield to discuss the tastiest type of bread! The presidents of these nations shared a slice of bread with a big smile, then announced a truce and began a new, glorious era of prosperity.\nBut you found your greatest satisfaction elsewhere. As you watched your daughter joyfully savour the crispy crusted delicacies, delighting in every flavorful bite, you knew that, thanks to you and your team, a simple moment like this held the true essence of fulfillment.",
+			"mixed": "You were pleased that the project had finally come to an end. You received a substantial cash injection, and you were eager to finally spend some time with your daughter. This was supposed to be your weekend. You had an arrangement with your wife that it would be so, even though you were living separately; she allowed weekend visits. But suddenly, the phone rang...\n\"Hello? What happened?\" - you answered.\n\"I'm sorry to bother you, but there was a malfunction during the machine startup...\" - the bakery employee responded. So, it wasn't going to be that weekend after all...\nDespite this incident, the company thrived. Some customers complained about the quality of the bread, but what can you expect from mass production?"
+		}
+	},
 	"cards_presets":{
 		"res://story_cards.json":[0,1]
 	}
