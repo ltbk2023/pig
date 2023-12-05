@@ -132,7 +132,6 @@ func start_level(file: String,internal:bool):
 	configure_scenario(data)
 	$CanvasLayer.visible = false
 	$Background.visible = false
-	save_to_file("test.json")
 
 func _on_game_end_game():
 	$Game.queue_free()
