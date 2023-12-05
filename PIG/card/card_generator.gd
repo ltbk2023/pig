@@ -35,5 +35,7 @@ func _process(delta):
 
 # Return a random entry from the JSON File
 func generate_card() -> CardDTO:
+	if story_cards.size() == 0:
+		return null
 	var card_id = randi_range(0, story_cards.size() - 1)
-	return story_cards[card_id]
+	return story_cards.pop_at(card_id)

@@ -437,7 +437,8 @@ func draw_story_card():
 	if __current_turn == 1:
 		$DeckMaster.employees = $Office.get_employees()
 	var card = $DeckMaster.get_card()
-	$CanvasLayer/Message.visible = true
+	if card != null:
+		$CanvasLayer/Message.visible = true
 
 func _on_deck_master_done(owner):
 	_on_sprint_end_return_to_office_view(owner)
