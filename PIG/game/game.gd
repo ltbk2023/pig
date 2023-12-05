@@ -51,6 +51,7 @@ func _process(delta):
 # function execute turn and update current turn
 # on end of sprint call execute_end_of_sprint
 func execute_turn():
+	$Testing.new_turn()
 	var modifiers = $Modifiers.get_children()
 	for modifier in modifiers:
 		modifier.decrease_counter()
@@ -68,6 +69,7 @@ func execute_turn():
 		execute_end_of_sprint()
 	draw_story_card()
 	display_date()
+	
 
 # function execute end of sprint and update current sprint
 func execute_end_of_sprint():
@@ -305,6 +307,7 @@ func _on_office_completed(owner, issue, quality):
 		$Testing/QualityDeck.add_from_preset(quality, 1)
 	elif issue.type == Issue.IssueType.FEATURE:
 		$Testing/QualityDeck.add_from_preset(quality, 2)
+		$Testing/Background/Monitor.complexity +=2
 	else:
 		print("Warning: Unknown type of issue")
 	$SprintEnd.add_issue_importance(issue)
