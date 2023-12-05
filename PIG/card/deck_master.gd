@@ -54,10 +54,23 @@ func get_card() -> StoryCard:
 	return card
 	
 # Pick random employees that will take part in the story
-func choose_employees(number: int, filter) -> Array:
-	var possible_e = possible_employees(filter)
-	possible_e.shuffle()
-	var chosen_employees =  possible_e.slice(0, number)
+# The conditions may be defined in the JSON file.
+# Right now chosing by filter is simple, so I would recommend
+# That the first employee (E1) has rarer filter
+func choose_employees(number: int, filters) -> Array:
+	var possible_e = possible_employees()
+	var chosen_employees = []
+	if number > possible_e.size():
+		return []
+	for filter in filters:
+		var index = -1
+		for i in range(number):
+			if check_filters(possible_e[i].filter, filter):
+				index = i
+		if index == -1:
+			return []
+		number -= 1
+		chosen_employees.append(possible_e.pop_at(index))
 	return chosen_employees
 
 # check if every elemet of card filter is included in employee_filter
@@ -68,10 +81,10 @@ func check_filters(emp_filter, card_filter):
 	return true
 	
 # Return an array of employees that can take part in the story
-# The conditions may be defined in the JSON file.
-# TO BE IMPLEMENTED
-func possible_employees(filter) -> Array:
-	return employees.duplicate().filter(func(emp): return  check_filters(emp.filter, filter))
+func possible_employees() -> Array:
+	var emp = employees.duplicate()
+	emp.shuffle()
+	return emp
 
 func _on_card_done(owner):
 	emit_signal("done", self)

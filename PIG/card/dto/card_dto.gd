@@ -11,7 +11,12 @@ var options:Array[OptionDTO]
 func load(dict:Dictionary):
 	title = dict["title"]
 	employee_number = dict["employee_number"]
-	employee_filter = dict["employee_filter"] if dict.has("employee_filter") and dict["employee_filter"] != null else []
+	if dict.has("employee_filter") and dict["employee_filter"] != null:
+		employee_filter = dict["employee_filter"]
+	else:
+		employee_filter = []
+		for i in range(employee_number):
+			employee_filter.append([])
 	text = dict["text"]
 	options = []
 	for o in dict["options"]:
