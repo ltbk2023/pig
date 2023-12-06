@@ -1,0 +1,12 @@
+[
+	{
+		"name":"Daugther's Train",
+		"focus":"Introduction to Basic Mechanics",
+		"path":"res://level/level_1.json"
+	},
+	{
+		"name":"Atomic Bakery",
+		"focus":"<INTERNAL>",
+		"path":"res://level/basic_scenario.json"
+	}
+]
