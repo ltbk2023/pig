@@ -6,8 +6,20 @@ var __nr_of_current_levels : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	var metadata = preload("res://level/levels_metadata.json").data
+	var i = 0
+	for data in metadata:
+		var button = Button.new()
+		button.text = "Level "+str(i)+": "+data["name"]+"\n"+\
+			"Focus on: "+data["focus"]
+		button.theme = preload("res://menu/gray_button_2.tres")
+		
+		button.custom_minimum_size = Vector2(340,60)
+		button.alignment =HORIZONTAL_ALIGNMENT_LEFT
+		
+		$CanvasLayer/LevelsContainer.add_child(button)
+		button.button_up.connect(_on_level_button_up.bind(data["path"]))
+		i += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -21,7 +33,7 @@ func create_entry_to_level(dict: Dictionary):
 func _on_play_button_up():
 	$CanvasLayer/VBoxContainer.visible = false
 	$Background.visible = false
-	$CanvasLayer/GridContainer.visible = true
+	$CanvasLayer/LevelsContainer.visible = true
 	$CanvasLayer/Back.visible = true
 
 #TODO: implement check if game is saved before quitting the game.
@@ -33,7 +45,7 @@ func _on_quit_button_up():
 func _on_back_button_up():
 	$CanvasLayer/VBoxContainer.visible = true
 	$Background.visible = true
-	$CanvasLayer/GridContainer.visible = false
+	$CanvasLayer/LevelsContainer.visible = false
 	$CanvasLayer/Back.visible = false
 	$CanvasLayer/ControlAbout.visible = false
 
@@ -141,7 +153,7 @@ func _on_game_end_game():
 	$Game.queue_free()
 	$Background.visible = true
 	$CanvasLayer.visible = true
-	$CanvasLayer/GridContainer.visible = false
+	$CanvasLayer/LevelsContainer.visible = false
 	$CanvasLayer/ControlAbout.visible = false
 	$CanvasLayer/Back.visible = false
 	$CanvasLayer/VBoxContainer.visible = true
@@ -150,33 +162,14 @@ func _on_show_menu():
 	$Game.visible = false
 	$Game/CanvasLayer.visible = false
 	$CanvasLayer.visible = true
-	$CanvasLayer/GridContainer.visible = false
+	$CanvasLayer/LevelsContainer.visible = false
 	$CanvasLayer/VBoxContainer2.visible = true
 	$CanvasLayer/Back.visible = false
 
 # Called when "Level1" button is released. Load first level
-func _on_level_1_button_up():
-	start_level("level/level_1.json",true)
+func _on_level_button_up(path):
+	start_level(path,true)
 
-# Called when "Level2" button is released. Load second level
-func _on_level_2_button_up():
-	print("Warning: Second Level not implemented")
-
-# Called when "Level3" button is released. Load third level
-func _on_level_3_button_up():
-	print("Warning: Third Level not implemented")
-
-# Called when "Level4" button is released. Load fourth level
-func _on_level_4_button_up():
-	print("Warning: Fourth Level not implemented")
-
-# Called when "Level5" button is released. Load fifth level
-func _on_level_5_button_up():
-	print("Warning: Fifth Level not implemented")
-
-# Called when "Level6" button is released. Load sixth level
-func _on_level_6_button_up():
-	print("Warning: Sixth Level not implemented")
 
 func _on_about_button_up():
 	$CanvasLayer/VBoxContainer.visible = false

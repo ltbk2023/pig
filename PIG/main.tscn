@@ -116,9 +116,9 @@ texture_filter = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 10.0
-offset_top = 430.0
+offset_top = 80.0
 offset_right = -10.0
-offset_bottom = 646.0
+offset_bottom = 670.0
 grow_horizontal = 2
 size_flags_vertical = 0
 
@@ -146,53 +146,31 @@ layout_mode = 2
 theme = ExtResource("4_0j783")
 text = "Exit"
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+[node name="LevelsContainer" type="VBoxContainer" parent="CanvasLayer"]
 visible = false
+texture_filter = 1
 custom_minimum_size = Vector2(200, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -152.0
-offset_top = -229.0
-offset_right = 152.0
-offset_bottom = 229.0
+offset_left = -170.0
+offset_top = -280.0
+offset_right = 170.0
+offset_bottom = 178.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
-columns = 2
 
-[node name="Level1" type="Button" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(150, 150)
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/LevelsContainer"]
+custom_minimum_size = Vector2(340, 55)
 layout_mode = 2
-text = "LEVEL 1"
-
-[node name="Level2" type="Button" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-text = "LEVEL 2"
-
-[node name="Level3" type="Button" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-text = "LEVEL 3"
-
-[node name="Level4" type="Button" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-text = "LEVEL 4"
-
-[node name="Level5" type="Button" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-text = "LEVEL 5"
-
-[node name="Level6" type="Button" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-text = "LEVEL 6"
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "[center][b]LEVELS[/b][/center]"
 
 [node name="Back" type="Button" parent="CanvasLayer"]
 visible = false
@@ -214,10 +192,4 @@ text = "Back"
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer2/Resume" to="." method="_on_resume_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer2/Exit" to="." method="_on_exit_button_up"]
-[connection signal="button_up" from="CanvasLayer/GridContainer/Level1" to="." method="_on_level_1_button_up"]
-[connection signal="button_up" from="CanvasLayer/GridContainer/Level2" to="." method="_on_level_2_button_up"]
-[connection signal="button_up" from="CanvasLayer/GridContainer/Level3" to="." method="_on_level_3_button_up"]
-[connection signal="button_up" from="CanvasLayer/GridContainer/Level4" to="." method="_on_level_4_button_up"]
-[connection signal="button_up" from="CanvasLayer/GridContainer/Level5" to="." method="_on_level_5_button_up"]
-[connection signal="button_up" from="CanvasLayer/GridContainer/Level6" to="." method="_on_level_6_button_up"]
 [connection signal="button_up" from="CanvasLayer/Back" to="." method="_on_back_button_up"]
