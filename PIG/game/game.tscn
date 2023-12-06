@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://pd73wjq1goi2" path="res://game/menu_button.png" id="5_v0jtd"]
 [ext_resource type="PackedScene" uid="uid://c4xojh4ktss71" path="res://card/deck_master.tscn" id="11_gwi3w"]
 [ext_resource type="Script" path="res://game/modifier_handler.gd" id="12_00uqt"]
-[ext_resource type="PackedScene" uid="uid://g0k1wseoiycd" path="res://view/epilog/epilog.tscn" id="13_bjej8"]
+[ext_resource type="PackedScene" uid="uid://dm4lguunsm3fj" path="res://view/epilog/epilog.tscn" id="13_bjej8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hfvvy"]
 content_margin_bottom = 6.0
