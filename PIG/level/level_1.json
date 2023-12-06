@@ -68,7 +68,7 @@
 			"time": 2,
 			"type": 0
 		},
-        {
+		{
 			"child_issues": ["Placing the Engineer into the Carriages"],
 			"class": "Issue",
 			"description": "[color=BLACK]Chestnut figurines are a traditional way of representing working people among the nations of Central and Eastern Europe.[/color]",
@@ -81,7 +81,7 @@
 			"time": 2,
 			"type": 0
 		},
-        {
+		{
 			"child_issues": [],
 			"class": "Issue",
 			"description": "[color=BLACK]Your daughter clearly insists on the realization of a glitter-powered locomotive; without it, the train may never leave the station.[/color]",
@@ -94,7 +94,7 @@
 			"time": 5,
 			"type": 0
 		},
-        {
+		{
 			"child_issues": [],
 			"class": "Issue",
 			"description": "[color=BLACK]The last thing remains. It is so important that a small mistake could lead the entire project to disaster.[/color]",
@@ -112,6 +112,7 @@
 		"class": "Testing",
 		"name": "Testing",
 		"testers limit": -1
+
 	},
 	"SprintEnd": {
 		"class": "SprintEnd",
@@ -119,7 +120,27 @@
 		"issues done this sprint": 0,
 		"last_victory_points": 0,
 		"name": "SprintEnd",
-		"total client importance": 0
+		"total client importance": 0,
+		"boundaries": {
+			"fail": -9,
+			"warning":-7,
+			"low": -5,
+			"high": 5
+		},
+		"score_setting":{
+			"base_score_multiplier" : 10
+		},
+		"clients_presets":
+		{
+			"res://employee/sprites/preset/skin_hair_lips_color_for_elderly.ep.json":null,
+			"res://employee/sprites/preset/nose.ep.json":null,
+			"res://employee/sprites/preset/desk.ep.json":null,	
+			"res://employee/sprites/preset/laptop.ep.json":null,		
+
+			"res://employee/sprites/preset/clothes_for_elegant_people.ep.json":null,
+			"res://employee/sprites/preset/body_detail_for_women.ep.json":null,
+			"res://employee/sprites/preset/hair_beard_for_women.ep.json":2
+		},
 	},
 	"QualityDeck": {
 		"cards": {
