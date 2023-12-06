@@ -101,6 +101,7 @@
 		}
 	},
 	"cards_presets":{
-		"res://story_cards.json":[0,1]
+		"res://card/presets/comforting_cards.json":[0,1,2,3,4],
+		"res://level/level_1_cards.json":[0,1,2,3,4,5]
 	}
 }
