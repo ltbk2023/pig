@@ -110,6 +110,42 @@ layout_mode = 2
 theme = ExtResource("4_0j783")
 text = "Quit"
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
+texture_filter = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_top = 430.0
+offset_right = -10.0
+offset_bottom = 646.0
+grow_horizontal = 2
+size_flags_vertical = 0
+
+[node name="Resume" type="Button" parent="CanvasLayer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("4_0j783")
+text = "Resume"
+
+[node name="Save" type="Button" parent="CanvasLayer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("4_0j783")
+text = "Save"
+
+[node name="Load" type="Button" parent="CanvasLayer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("4_0j783")
+text = "Load"
+
+[node name="Exit" type="Button" parent="CanvasLayer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("4_0j783")
+text = "Exit"
+
 [node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
 visible = false
 custom_minimum_size = Vector2(200, 0)
@@ -176,6 +212,8 @@ text = "Back"
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/Play" to="." method="_on_play_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/About" to="." method="_on_about_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
+[connection signal="button_up" from="CanvasLayer/VBoxContainer2/Resume" to="." method="_on_resume_button_up"]
+[connection signal="button_up" from="CanvasLayer/VBoxContainer2/Exit" to="." method="_on_exit_button_up"]
 [connection signal="button_up" from="CanvasLayer/GridContainer/Level1" to="." method="_on_level_1_button_up"]
 [connection signal="button_up" from="CanvasLayer/GridContainer/Level2" to="." method="_on_level_2_button_up"]
 [connection signal="button_up" from="CanvasLayer/GridContainer/Level3" to="." method="_on_level_3_button_up"]

@@ -125,7 +125,9 @@ func configure_scenario(dict: Dictionary):
 func start_level(file: String,internal:bool):
 	var game = load("res://game/game.tscn").instantiate()
 	add_child(game)
+	# connect signals
 	game.end_game.connect(_on_game_end_game)
+	game.show_menu.connect(_on_show_menu)
 	var data
 	if internal:
 		data = Utility.load_from_resource(file)
@@ -143,6 +145,14 @@ func _on_game_end_game():
 	$CanvasLayer/ControlAbout.visible = false
 	$CanvasLayer/Back.visible = false
 	$CanvasLayer/VBoxContainer.visible = true
+	
+func _on_show_menu():
+	$Game.visible = false
+	$Game/CanvasLayer.visible = false
+	$CanvasLayer.visible = true
+	$CanvasLayer/GridContainer.visible = false
+	$CanvasLayer/VBoxContainer2.visible = true
+	$CanvasLayer/Back.visible = false
 
 # Called when "Level1" button is released. Load first level
 func _on_level_1_button_up():
@@ -173,3 +183,13 @@ func _on_about_button_up():
 	$Background.visible = false
 	$CanvasLayer/Back.visible = true
 	$CanvasLayer/ControlAbout.visible = true
+
+func _on_exit_button_up():
+	$CanvasLayer/VBoxContainer2.visible = false
+	_on_game_end_game()
+
+func _on_resume_button_up():
+	$Game.visible = true
+	$Game/CanvasLayer.visible = true
+	$CanvasLayer.visible = false
+	$CanvasLayer/VBoxContainer2.visible = false
