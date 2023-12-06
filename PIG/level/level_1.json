@@ -94,10 +94,10 @@
 		"class": "Epilog",
 		"name": "Epilog",
 		"comments" : {
-			"bad" : "place for text",
-			"failure" : "place for text",
-			"good" : "place for text",
-			"mixed": "place for text"
+			"bad" : "You barely managed to do that homework. You were surprised by its complexity. Teachers put too much pressure on students! Next day, your daughter presented the project in front of the class. Despite everyone laughing at the crumbling model, your daughter was proud.\n\"I did it with Daddy!\" - she said.\nHowever, your wife had enough of it. \"How could you humiliate our daughter in front of the class?!\" It was over for her. The suitcases were already waiting outside.",
+			"failure" : "It was a failure! How can you be a good manager when you can't even do homework with your daughter? All the kids at school were laughing at your little angel. She was lying in bed with a fever for a week. Then you quit your job. Someone like you shouldn't be leading future, complicated projects. You even thought your wife would leave you because of that failure! Take the kid and leave. However, it didn't happen that way. From now on she supported you until the very end.",
+			"good" : "You can honestly say that you have completed your masterpiece, the very best project in your life... well, at least the life you have known so far. The train was beautiful. After scoring highest grade, your daughter took it to a model train competition. Everyone marveled at the beautiful sight, except one person. That man asked your daughter about the glitter engine, and soon all the most prestigous academic institutions raced to recreate this new energy source. The glitter fusion reactor.\nHowever, your wife had enough of your arrogance. You wanted to show her what modern management is, and you did. So she showed you the door.",
+			"mixed": "You managed to complete the homework. Your daughter even got a good grade. Your project was nothing extraordinary, just a standard, simple train. But your daughter was boasting about it to everyone—classmates, teachers, uncles, and aunts. Everyone was slowly getting tired of it.\n\"Our daughter is becoming arrogant and big-headed. And you know what? I think it's your fault! You have a negative influence on her!\" - this is how you found out that you no longer live in your home."
 		}
 	},
 	"cards_presets":{
