@@ -87,7 +87,7 @@ func configure_scenario(dict: Dictionary):
 	if dict.has("cards_presets"):
 			$Game/DeckMaster/CardGenerator.configure_from_presets(dict["cards_presets"])
 	else:
-			$Game/DeckMaster/CardGenerator. configure_from_data(dict["cards_data"])
+			$Game/DeckMaster/CardGenerator.configure_from_data(dict["cards_data"])
 	
 	# remove current issues
 	for issue in $Game/Backlog.get_issues():
@@ -133,6 +133,10 @@ func configure_scenario(dict: Dictionary):
 	
 	# add max importance to sprint_end
 	$Game/SprintEnd.set_max_client_importance(max_client_importance)
+	
+	# Add first card
+	$Game.draw_story_card()
+	$Game/CanvasLayer/Button.visible = not $Game/DeckMaster.has_card()
 
 func start_level(file: String,internal:bool):
 	var game = load("res://game/game.tscn").instantiate()

@@ -102,6 +102,12 @@
 	},
 	"cards_presets":{
 		"res://card/presets/comforting_cards.json":[0,1,2,3,4],
-		"res://level/level_1_cards.json":[0,1,2,3,4,5]
+		"res://level/level_1_cards.json":[0,1,2,3,4,5],
+		"cards_per_turn":{
+			"0" : {
+				"path" : "res://level/level_1_cards.json",
+				"index" : 6
+			}
+		}
 	}
 }

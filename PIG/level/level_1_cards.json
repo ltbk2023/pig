@@ -192,5 +192,20 @@
 				}
 			}
 		]
+	},
+	{
+		"employee_number": 0,
+		"employee_filter": null,
+		"title": "Daugther's Train",
+		"text": "Your daughter came to you in tears and said that she has to create a model of a train for school in a week, but she doesn't know how to do it. Apparently, she had a whole month for it, but she has found out right now. It looks like the whole family will have to get to work on it.",
+		"options": 
+		[
+			{
+				"text": "Ok, let's do it!",
+				"effects":
+				{
+				}
+			}
+		]
 	}
 ]
