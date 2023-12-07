@@ -438,9 +438,9 @@ func _on_message_button_up():
 
 # Called at the beginning of each day. Fetch a story card from the Deck Master
 func draw_story_card():
-	if __current_turn == 1:
+	if $DeckMaster.employees == null:
 		$DeckMaster.employees = $Office.get_employees()
-	var card = $DeckMaster.get_card()
+	var card = $DeckMaster.get_card(__current_turn)
 	if card != null:
 		$CanvasLayer/Message.visible = true
 
