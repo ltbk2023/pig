@@ -156,14 +156,19 @@ func start_level(file: String,internal:bool):
 	$Background.visible = false
 
 func start_level_from_string(string:String):
+	var data = JSON.parse_string(string)
+	if data == null:
+		$CanvasLayer/Load/TextEdit.text = "Invalid data format!"
+		return
+	if not DataValidator.validate_game_data(data):
+		$CanvasLayer/Load/TextEdit.text = "Invalid data format!"
+		return
 	var game = load("res://game/game.tscn").instantiate()
 	add_child(game)
 	# connect signals
 	game.end_game.connect(_on_game_end_game)
 	game.show_menu.connect(_on_show_menu)
 	
-	var data = JSON.parse_string(string)
-
 	configure_scenario(data)
 	$CanvasLayer.visible = false
 	$Background.visible = false
