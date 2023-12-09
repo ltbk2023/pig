@@ -34,7 +34,7 @@ func to_json():
 		"employee_number":employee_number,
 		"employee_filter":employee_filter if employee_filter != null else [],
 		"text":text,
-		"option":op
+		"options":op
 	}
 
 func fill_card(card:StoryCard,format,reference):

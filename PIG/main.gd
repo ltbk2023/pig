@@ -69,11 +69,25 @@ func save_to_file(file_name):
 		employees.append(employee.to_json())
 	dictionary["Employees"] = employees
 	
-	var data = JSON.stringify(dictionary, "\t")
-	
-	var file = FileAccess.open(file_name, FileAccess.WRITE)
-	file.store_string(data)
-	file.close()
+	if OS.get_name() != "Web":
+		var data = JSON.stringify(dictionary, "\t")
+		var file = FileAccess.open(file_name, FileAccess.WRITE)
+		file.store_string(data)
+		file.close()
+	else:
+		var code = """
+			var data = """ + JSON.stringify(dictionary) +""";
+			var filename = \"""" + file_name + """\";
+			var blob = new Blob([JSON.stringify(data)], {type: 'text/plain'});
+			var link = document.createElement("a");
+			link.href = window.URL.createObjectURL(blob);
+			link.download = filename;
+			link.dataset.downloadurl = ['text/plain', link.download, link.href].join(':');
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		"""
+		JavaScriptBridge.eval(code)
 
 # configure whole game based on JSON
 func configure_scenario(dict: Dictionary):
@@ -158,20 +172,24 @@ func start_level(file: String,internal:bool):
 func start_level_from_string(string:String):
 	var data = JSON.parse_string(string)
 	if data == null:
-		$CanvasLayer/Load/TextEdit.text = "Invalid data format!"
+		$CanvasLayer/Load/TextEdit.text = ""
+		$CanvasLayer/Load/TextEdit.placeholder_text = "JSON parse failed!"
 		return
 	if not DataValidator.validate_game_data(data):
 		$CanvasLayer/Load/TextEdit.text = "Invalid data format!"
 		return
+
 	var game = load("res://game/game.tscn").instantiate()
 	add_child(game)
 	# connect signals
 	game.end_game.connect(_on_game_end_game)
 	game.show_menu.connect(_on_show_menu)
 	
-	configure_scenario(data)
 	$CanvasLayer.visible = false
 	$Background.visible = false
+	$CanvasLayer/Load.visible = false
+	$CanvasLayer/Back.visible = false
+	configure_scenario(data)
 	
 
 func _on_game_end_game():
@@ -224,3 +242,8 @@ func _on_load_button_up():
 
 func _on_load_from_editor_button_up():
 	start_level_from_string($CanvasLayer/Load/TextEdit.text)
+
+
+func _on_save_button_up():
+	save_to_file("save.json")
+		

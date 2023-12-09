@@ -24,7 +24,7 @@ func to_json():
 	for e in effects:
 		eff[e] = []
 		for e1 in effects[e]:
-			eff[e]= e1.to_json()
+			eff[e].append(e1.to_json())
 	
 	return {
 		"text":text,

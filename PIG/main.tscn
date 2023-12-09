@@ -191,6 +191,7 @@ offset_bottom = 40.0
 
 [node name="TextEdit" type="TextEdit" parent="CanvasLayer/Load"]
 custom_minimum_size = Vector2(340, 400)
+layout_mode = 0
 offset_left = 10.0
 offset_top = 180.0
 offset_right = 350.0
@@ -203,6 +204,7 @@ Next click Load From Editor"
 [node name="LoadFromEditor" type="Button" parent="CanvasLayer/Load"]
 texture_filter = 1
 custom_minimum_size = Vector2(340, 40)
+layout_mode = 0
 offset_left = 10.0
 offset_top = 590.0
 offset_right = 350.0
@@ -215,6 +217,7 @@ text = "Load From Editor"
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/About" to="." method="_on_about_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer/Quit" to="." method="_on_quit_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer2/Resume" to="." method="_on_resume_button_up"]
+[connection signal="button_up" from="CanvasLayer/VBoxContainer2/Save" to="." method="_on_save_button_up"]
 [connection signal="button_up" from="CanvasLayer/VBoxContainer2/Exit" to="." method="_on_exit_button_up"]
 [connection signal="button_up" from="CanvasLayer/Back" to="." method="_on_back_button_up"]
 [connection signal="button_up" from="CanvasLayer/Load/LoadFromEditor" to="." method="_on_load_from_editor_button_up"]
