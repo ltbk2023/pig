@@ -67,5 +67,28 @@
 				}
 			}
 		]
+	},
+	{
+		"employee_number": 0,
+		"employee_filter": null,
+		"title": "Stupid Client",
+		"text": "Is client stupid?",
+		"options": 
+		[
+			{
+				"text": "Yes",
+				"effects":
+				{
+					"modify_client_satisfaction": -1
+				}
+			},
+			{
+				"text": "No",
+				"effects":
+				{
+					"modify_client_satisfaction": 1
+				}
+			}
+		]
 	}
 ]

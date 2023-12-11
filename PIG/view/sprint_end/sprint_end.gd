@@ -29,7 +29,7 @@ var __total_client_importance : int
 # The number of issues completed this sprint
 var __issues_done_this_sprint: int
 # The number of present sprint
-var __current_sprint : int
+var __current_sprint : int = 0
 # Last gotten points
 var __last_victory_points: int = 0
 # last score
@@ -51,7 +51,6 @@ var __failure:bool = false
 func _ready():
 	__total_client_importance = 0
 	__issues_done_this_sprint = 0
-	__current_sprint = 0
 	__last_score = 0
 	
 	$Background/Sprite.sitting = false
@@ -157,7 +156,6 @@ func to_json():
 		"total client importance": __total_client_importance,
 		"issues done this sprint": __issues_done_this_sprint,
 		"last_victory_points": __last_victory_points,
-		"current sprint": __current_sprint,
 		"clients_visauls":$Background/Sprite.to_json(),
 		"boundaries" : {
 			"fail" : score_boundary_of_fail,
@@ -174,7 +172,6 @@ func to_json():
 # Basic configuration of Sprint End, use to load scenario
 func configure_sprint_end(dict: Dictionary) -> bool:
 	if dict["class"] == "SprintEnd":
-		__current_sprint = dict["current sprint"]
 		__last_victory_points = dict["last_victory_points"]
 		__issues_done_this_sprint = dict["issues done this sprint"]
 		__total_client_importance = dict["total client importance"]
@@ -198,3 +195,6 @@ func configure_sprint_end(dict: Dictionary) -> bool:
 func set_max_client_importance(importance: int) -> void:
 	__max_client_importance = importance
 	$Background/Info/ProgressBar.total = importance
+	
+func client_importance_change(changing_value):
+	__total_client_importance = max(__total_client_importance + changing_value,0)

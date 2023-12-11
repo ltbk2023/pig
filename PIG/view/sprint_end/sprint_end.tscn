@@ -83,7 +83,7 @@ width = 1
 height = 2
 fill_to = Vector2(0, 1)
 
-[node name="SprintEnd" type="Node2D"]
+[node name="SprintEnd" type="Node2D" groups=["ClientImportanceHandler"]]
 texture_filter = 1
 script = ExtResource("1_8xcrn")
 

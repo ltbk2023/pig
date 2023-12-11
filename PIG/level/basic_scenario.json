@@ -212,7 +212,6 @@
 	},
 	"SprintEnd": {
 		"class": "SprintEnd",
-		"current sprint": 0,
 		"issues done this sprint": 0,
 		"last_victory_points": 0,
 		"name": "SprintEnd",
@@ -257,6 +256,6 @@
 		}
 	},
 	"cards_presets":{
-		"res://story_cards.json":[0,1]
+		"res://story_cards.json":[0,1,2]
 	}
 }

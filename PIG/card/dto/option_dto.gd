@@ -5,6 +5,7 @@ var text
 var effects:Dictionary
 
 var mod_stat = "modify_stat"
+var mod_client = "modify_client_satisfaction"
 
 func load(dict:Dictionary):
 	text = dict["text"]
@@ -17,14 +18,21 @@ func load(dict:Dictionary):
 			ms.load(e)
 			list.append(ms)
 		effects[mod_stat]=list
+	if effects.has(mod_client):
+		var mcs = ModifyClientSatisfactionDTO.new()
+		mcs.load(effects[mod_client])
+		effects[mod_client]=mcs
 
 func to_json():
 	var eff= {}
 	
 	for e in effects:
-		eff[e] = []
-		for e1 in effects[e]:
-			eff[e].append(e1.to_json())
+		if effects[e] is Array:
+			eff[e] = []
+			for e1 in effects[e]:
+				eff[e].append(e1.to_json())
+		else:
+			eff[e] = effects[e].to_json()
 	
 	return {
 		"text":text,
@@ -39,4 +47,6 @@ func create_and_fill_copy(format,reference) -> OptionDTO:
 			for e in effects[type]:
 				list.append(e.create_and_fill_copy(reference))
 		op.effects[type]=list
+		if type == mod_client:
+			op.effects[type] = effects[type].create_and_fill_copy()
 	return op
