@@ -383,6 +383,7 @@ func configure_game(dict: Dictionary) -> bool:
 		__current_turn = dict["current turn"]
 		__current_sprint = dict["current sprint"]
 		victory_points = dict["victory points"]
+		display_date()
 		return true
 	return false
 
