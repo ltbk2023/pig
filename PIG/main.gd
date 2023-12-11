@@ -97,6 +97,7 @@ func configure_scenario(dict: Dictionary):
 	$Game/Testing/QualityDeck.configure_quality_deck(dict["QualityDeck"])
 	$Game/SprintEnd.configure_sprint_end(dict["SprintEnd"])
 	$Game/SprintEnd.all_victory_points = $Game.victory_points
+	$Game/SprintEnd.__current_sprint = $Game.__current_sprint
 	$Game/Epilog.configure(dict["Epilog"])
 
 	if dict.has("cards_presets"):

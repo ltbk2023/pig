@@ -140,7 +140,7 @@
 			"res://employee/sprites/preset/clothes_for_elegant_people.ep.json":null,
 			"res://employee/sprites/preset/body_detail_for_women.ep.json":null,
 			"res://employee/sprites/preset/hair_beard_for_women.ep.json":2
-		},
+		}
 	},
 	"QualityDeck": {
 		"cards": {
