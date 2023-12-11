@@ -5,14 +5,14 @@ var good_opinion_bug_limit = 0.1
 var mixed_opinion_bug_limit = 0.3
 
 
-var failure_key = "failure"
-var bad_key = "bad"
-var mixed_key = "mixed"
-var good_key = "good"
+const failure_key = "failure"
+const bad_key = "bad"
+const mixed_key = "mixed"
+const good_key = "good"
 
-var opinion_key = "opinion"
-var title_key = "title"
-var color_key = "color"
+const opinion_key = "opinion"
+const title_key = "title"
+const color_key = "color"
 
 var data
 
@@ -57,13 +57,13 @@ func configure(dict:Dictionary):
 
 func to_json():
 	var dictionary = {
-		"class" = "Epilog",
-		"name" = "Epilog",
-		"comments" = {
-			bad_key = data[bad_key][opinion_key],
-			failure_key = data[failure_key][opinion_key],
-			good_key = data[good_key][opinion_key],
-			mixed_key = data[mixed_key][opinion_key]
+		"class" : "Epilog",
+		"name" : "Epilog",
+		"comments" : {
+			bad_key : data[bad_key][opinion_key],
+			failure_key : data[failure_key][opinion_key],
+			good_key : data[good_key][opinion_key],
+			mixed_key : data[mixed_key][opinion_key]
 		}
 	}
 	return dictionary

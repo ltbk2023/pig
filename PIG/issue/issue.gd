@@ -126,6 +126,11 @@ var parent_issues: Array[Issue] = []
 # no progress will be subtracted
 var was_assigned_this_round: bool
 
+# If the issue is currently being configured from a save file and
+# it is assigned to someone, ready() should not update extended, because
+# the hooks do not exist yet
+var should_lock_extending: bool
+
 # Signal that will be emitted when the Extended node is being either shown or 
 # hidden.
 # extending - set to true if the Extended node is BEING set to visible
@@ -134,7 +139,9 @@ signal extending(owner, extending)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_summary()
-	update_extended()
+	if not should_lock_extending:
+		update_extended()
+	should_lock_extending = false
 	update_colors()
 	# it prevents changing state to IN_BACKLOG when Scene is loaded to editor
 	if not Engine.is_editor_hint():
@@ -332,6 +339,8 @@ func configure_issue(dict: Dictionary) -> bool:
 		importance_to_client = dict["importance to client"]
 		__progress = dict["progress"]
 		type = dict["type"]
+		if state == IssueState.IN_PROGRESS:
+			should_lock_extending = true
 		return true
 	return false
 	

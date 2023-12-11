@@ -48,6 +48,7 @@ func _on_back_button_up():
 	$CanvasLayer/LevelsContainer.visible = false
 	$CanvasLayer/Back.visible = false
 	$CanvasLayer/ControlAbout.visible = false
+	$CanvasLayer/Load.visible = false
 
 # save state of whole game to JSON file
 func save_to_file(file_name):
@@ -68,11 +69,25 @@ func save_to_file(file_name):
 		employees.append(employee.to_json())
 	dictionary["Employees"] = employees
 	
-	var data = JSON.stringify(dictionary, "\t")
-	
-	var file = FileAccess.open(file_name, FileAccess.WRITE)
-	file.store_string(data)
-	file.close()
+	if OS.get_name() != "Web":
+		var data = JSON.stringify(dictionary, "\t")
+		var file = FileAccess.open(file_name, FileAccess.WRITE)
+		file.store_string(data)
+		file.close()
+	else:
+		var code = """
+			var data = """ + JSON.stringify(dictionary) +""";
+			var filename = \"""" + file_name + """\";
+			var blob = new Blob([JSON.stringify(data)], {type: 'text/plain'});
+			var link = document.createElement("a");
+			link.href = window.URL.createObjectURL(blob);
+			link.download = filename;
+			link.dataset.downloadurl = ['text/plain', link.download, link.href].join(':');
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		"""
+		JavaScriptBridge.eval(code)
 
 # configure whole game based on JSON
 func configure_scenario(dict: Dictionary):
@@ -144,6 +159,7 @@ func start_level(file: String,internal:bool):
 	# connect signals
 	game.end_game.connect(_on_game_end_game)
 	game.show_menu.connect(_on_show_menu)
+	
 	var data
 	if internal:
 		data = Utility.load_from_resource(file)
@@ -153,6 +169,29 @@ func start_level(file: String,internal:bool):
 	$CanvasLayer.visible = false
 	$Background.visible = false
 
+func start_level_from_string(string:String):
+	var data = JSON.parse_string(string)
+	if data == null:
+		$CanvasLayer/Load/TextEdit.text = ""
+		$CanvasLayer/Load/TextEdit.placeholder_text = "JSON parse failed!"
+		return
+	if not DataValidator.validate_game_data(data):
+		$CanvasLayer/Load/TextEdit.text = "Invalid data format!"
+		return
+
+	var game = load("res://game/game.tscn").instantiate()
+	add_child(game)
+	# connect signals
+	game.end_game.connect(_on_game_end_game)
+	game.show_menu.connect(_on_show_menu)
+	
+	$CanvasLayer.visible = false
+	$Background.visible = false
+	$CanvasLayer/Load.visible = false
+	$CanvasLayer/Back.visible = false
+	configure_scenario(data)
+	
+
 func _on_game_end_game():
 	$Game.queue_free()
 	$Background.visible = true
@@ -161,6 +200,7 @@ func _on_game_end_game():
 	$CanvasLayer/ControlAbout.visible = false
 	$CanvasLayer/Back.visible = false
 	$CanvasLayer/VBoxContainer.visible = true
+	$CanvasLayer/Load.visible = false
 	
 func _on_show_menu():
 	$Game.visible = false
@@ -190,3 +230,20 @@ func _on_resume_button_up():
 	$Game/CanvasLayer.visible = true
 	$CanvasLayer.visible = false
 	$CanvasLayer/VBoxContainer2.visible = false
+
+
+func _on_load_button_up():
+	$CanvasLayer/VBoxContainer.visible = false
+	$Background.visible = false
+	$CanvasLayer/Back.visible = true
+	$CanvasLayer/ControlAbout.visible = false
+	$CanvasLayer/Load.visible = true
+
+
+func _on_load_from_editor_button_up():
+	start_level_from_string($CanvasLayer/Load/TextEdit.text)
+
+
+func _on_save_button_up():
+	save_to_file("save.json")
+		
