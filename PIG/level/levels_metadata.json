@@ -5,6 +5,11 @@
 		"path":"res://level/level_1.json"
 	},
 	{
+		"name":"Ad Astra",
+		"focus":"Client's Satisfaction vs Progress",
+		"path":"res://level/level_2.json"
+	},
+	{
 		"name":"Atomic Bakery",
 		"focus":"<INTERNAL>",
 		"path":"res://level/basic_scenario.json"

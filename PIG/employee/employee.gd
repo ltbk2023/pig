@@ -56,6 +56,7 @@ func _ready():
 	update_extended()
 	
 	update_task_display()
+	update_morale_visuals()
 
 # update summary text
 func update_summary():
@@ -210,6 +211,7 @@ func check_quality_preset(issue: Issue):
 # Add new modifier to employee
 func add_modifier(hook: Hook):
 	$ModifiersHooks.add_child(hook)
+	
 
 # Remove modifier from employee
 # Return false if operation was unsuccessful
@@ -265,6 +267,7 @@ func configure_employee(dict: Dictionary) -> bool:
 			$Sprite.configure_visuals(dict["visuals"])
 		update_summary()
 		update_extended()
+		update_morale_visuals()
 		return true
 	return false
 
