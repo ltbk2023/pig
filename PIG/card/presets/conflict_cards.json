@@ -1,0 +1,42 @@
+[
+	{
+		"employee_number": 2,
+		"employee_filter": null,
+		"title": "Fight",
+		"text": "${E1}.name punched ${E2}.name in face for being too loud. What do you do?",
+		"options":
+		[
+			{
+				"text": "Yell at ${E1}.name for hitting ${E2}.name",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E1}", "morale", -2, 1],
+						["${E2}", "morale", 1, 1]
+					]
+				}
+			},
+			{
+				"text": "Yell at ${E2}.name for being too loud",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E1}", "morale", 1, 1],
+						["${E2}", "morale", -4, 1]
+					]
+				}
+			},
+			{
+				"text": "Do nothing",
+				"effects":
+				{
+					 "modify_stat": [
+						["${E2}", "morale", -3, -1]
+					]
+				}
+			}
+		]
+	}
+]
