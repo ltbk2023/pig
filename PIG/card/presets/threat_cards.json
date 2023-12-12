@@ -26,7 +26,7 @@
         "employee_number": 3,
         "employee_filter": null,
         "title": "Broken Xerox",
-        "text": "Xerox is broken. Someone spilled the water on it, when was watering plants. Without it your team will be slow down.",
+        "text": "Xerox is broken. Someone spilled water on it, when they were watering plants. Without it your team will be slow down.",
         "options": [
           {
             "text": "Send ${E1}.name to fix it.",
@@ -44,7 +44,7 @@
         "employee_number": 1,
         "employee_filter": null,
         "title": "Colon and what next?",
-        "text": "${E1}.name enjoys graphical environments. When employee accidentally entered Vim while committing work, couldn't figure out how to exit and was too embarrassed to admit it. After two days, feeling remorseful, employee comes to you for advice...",
+        "text": "${E1}.name enjoys graphical environments. When the employee accidentally entered Vim while committing work, they couldn't figure out how to exit and were too embarrassed to admit it. After two days, feeling remorseful, the employee comes to you for advice...",
         "options": [
           {
             "text": "Then type 'q' and press Enter.",
@@ -90,7 +90,7 @@
         "employee_number": 3,
         "employee_filter": null,
         "title": "Broken Automatic Tests",
-        "text": "Our Automatic Test System is broken. This AI is depressed. She was dumped by other AI. Someone need to talk with her, otherwise testing will be more difficult.",
+        "text": "Our Automatic Test System is broken. This AI is depressed. She was dumped by another AI. Someone needs to talk to her, otherwise testing will be more difficult.",
         "options": [
           {
             "text": "Send ${E1}.name to fix it.",

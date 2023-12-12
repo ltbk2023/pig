@@ -3,7 +3,7 @@
 		"employee_number": 2,
 		"employee_filter": null,
 		"title": "Bootcamp",
-		"text": "${E1}.name found a two day long online course and tells you that ${E1}.name would like to practice using keyboard shortcuts so that they can write code more quickly. However, during this course, they will have less time at work.",
+		"text": "${E1}.name found a two day long online course and tells you that ${E1}.name would like to practice using keyboard shortcuts so that they can write code more quickly. However, during this course, they will have less time to work.",
 		"options":
 		[
 			{
@@ -18,7 +18,7 @@
 				}
 			},
 			{
-				"text": "It's a brilliant! Take ${E2}.name also.",
+				"text": "It's a brilliant! Take ${E2}.name with you.",
 				"effects":
 				{
 					 "modify_stat": 
@@ -129,7 +129,7 @@
 		"employee_number": 1,
 		"employee_filter": null,
 		"title": "Tutorial",
-		"text": "${E1}.name found a tutorial in Internet. However they don't know which topic to choose.",
+		"text": "${E1}.name found a tutorial on the internet. However they don't know which topic to choose.",
 		"options":
 		[
 			{

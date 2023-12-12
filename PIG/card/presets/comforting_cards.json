@@ -165,7 +165,7 @@
 				}
 			},
 			{
-				"text": "Take free for this day.",
+				"text": "Take the day off",
 				"effects":
 				{
 					"modify_stat": 
@@ -182,7 +182,7 @@
 		"employee_number": 3,
 		"employee_filter": null,
 		"title": "Birthday Party",
-		"text": "${E1}.name has birthday and comes to office with cake. Employees want to start party",
+		"text": "It's ${E1}.name's birthday and they came to office with cake. Employees want to start a party",
 		"options": 
 		[
 			{
@@ -227,7 +227,7 @@
 		"employee_number": 1,
 		"employee_filter": null,
 		"title": "Joyful creativity",
-		"text": "${E1}.name's creative input during the daily meeting turned into a lengthy dictionary-like enumeration of all possible feature configurations for the backlog, leading to no concrete outcome. He kindly requests a second chance, hoping for a more focused approach this time.",
+		"text": "${E1}.name's creative input during the daily meeting turned into a lengthy dictionary-like enumeration of all possible feature configurations for the backlog, leading to no concrete outcome. They kindly request a second chance, hoping for a more focused approach this time.",
 		"options": 
 		[
 			{
