@@ -1,0 +1,53 @@
+[
+    {
+        "employee_number": 3,
+        "employee_filter": null,
+        "title": "Innovation Challenge",
+        "text": "Your team is lacking innovative ideas. How do you encourage creativity?",
+        "options": [
+          {
+            "text": "Let's make brainstorm!",
+            "effects":  {
+				"modify_stat": [["${E1}", "morale", 1, 1], ["${E2}", "morale", 1, 1], ["${E3}", "morale", 1, 1]]
+			} 
+          },
+          {
+            "text": "Let's go for pizza!",
+            "effects": {
+				"modify_stat":[["${E1}", "morale", 2, 2], ["${E2}", "morale", 2, 2], ["${E3}", "morale", 2, 2],
+                ["${E1}", "speed", -1, 1], ["${E2}", "speed", -1, 1], ["${E3}", "speed", -1, 1]]
+			} 
+          },
+          {
+            "text": "Make 2 hours lecture about creativity",
+            "effects":{
+				"modify_stat": [["${E1}", "speed", -2, 1], ["${E2}", "speed", -2, 1], ["${E3}", "speed", -2, 1]]
+			} 
+          },
+          {
+            "text": "We don't have time for new idea.",
+            "effects": {}
+          }
+        ]
+      },
+      {
+        "employee_number": 3,
+        "employee_filter": null,
+        "title": "Check-In Meeting",
+        "text": "You should organize a check-in meeting, but you're wondering if it won't take too much time, as usual.",
+        "options": [
+          {
+            "text": "Arrange meeting.",
+            "effects":  {
+				"modify_stat": [
+                ["${E1}", "morale", 1, 2], ["${E2}", "morale", 1, 2], ["${E3}", "morale", 1, 2],
+                ["${E1}", "speed", -1, 1], ["${E2}", "speed", -1, 1], ["${E3}", "speed", -1, 1]]
+			} 
+          },
+          {
+            "text": "We don't have time for it.",
+            "effects": {}
+          }
+        ]
+      }
+]

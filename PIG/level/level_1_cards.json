@@ -71,7 +71,7 @@
 			}
 		]
 	},
-    {
+	{
 		"employee_number": 1,
 		"employee_filter": [["wife"]],
 		"title": "Disagreement",
@@ -100,7 +100,7 @@
 			}
 		]
 	},
-    {
+	{
 		"employee_number": 1,
 		"employee_filter": [["wife"]],
 		"title": "Old Conflicts",
@@ -129,7 +129,7 @@
 			}
 		]
 	},
-    {
+	{
 		"employee_number": 1,
 		"employee_filter": null,
 		"title": "Wardrobe Return",

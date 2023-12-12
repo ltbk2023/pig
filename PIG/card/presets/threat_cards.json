@@ -1,0 +1,112 @@
+[
+    {
+        "employee_number": 3,
+        "employee_filter": null,
+        "title": "Boss' Birthday",
+        "text": "Today is the birthday of your boss. How do you know? He came to office and announced it.",
+        "options": [
+          {
+            "text": "Happy birthday, boss!",
+            "effects": {
+				"modify_stat": [["${E1}", "speed", -1, 1], ["${E2}", "speed", -1, 1], ["${E3}", "speed", -1, 1]]}
+          },
+          {
+            "text": "Happy birthday, boss!",
+            "effects": {
+				"modify_stat": [["${E1}", "speed", -1, 1], ["${E2}", "speed", -1, 1], ["${E3}", "speed", -1, 1]]}
+          },
+          {
+            "text": "Happy birthday, boss!",
+            "effects": {
+				"modify_stat": [["${E1}", "speed", -1, 1], ["${E2}", "speed", -1, 1], ["${E3}", "speed", -1, 1]]}
+          }
+        ]
+      },
+      {
+        "employee_number": 3,
+        "employee_filter": null,
+        "title": "Broken Xerox",
+        "text": "Xerox is broken. Someone spilled the water on it, when was watering plants. Without it your team will be slow down.",
+        "options": [
+          {
+            "text": "Send ${E1}.name to fix it.",
+            "effects": {
+				"modify_stat": [["${E1}", "speed", -3, 1]]}
+          },
+          {
+            "text": "Leave it",
+            "effects": {
+				"modify_stat": [["${E1}", "speed", -1, 15], ["${E2}", "speed", -1, 15], ["${E3}", "speed", -1, 15]]}
+          }
+        ]
+      },
+      {
+        "employee_number": 1,
+        "employee_filter": null,
+        "title": "Colon and what next?",
+        "text": "${E1}.name enjoys graphical environments. When employee accidentally entered Vim while committing work, couldn't figure out how to exit and was too embarrassed to admit it. After two days, feeling remorseful, employee comes to you for advice...",
+        "options": [
+          {
+            "text": "Then type 'q' and press Enter.",
+            "effects": {
+				"modify_stat": [["${E1}", "speed", -3, 2]]}
+          },
+          {
+            "text": "Type 'wq!' and press Enter.",
+            "effects": {
+				"modify_stat": [["${E1}", "speed", -3, 2]]}
+          }
+        ]
+      },
+      {
+        "employee_number": 3,
+        "employee_filter": null,
+        "title": "Coffee machine malfunction",
+        "text": "In the evening you tinkered with the coffee machine and after assembling it, it turned out to have three extra parts. Everyone is annoyed and now they're trying to find the culprit of the coffee machine malfunction.",
+        "options": [
+          {
+            "text": "It's not my fault!",
+            "effects": {
+				"modify_stat": [
+                ["${E1}", "speed", -1, 1], ["${E2}", "speed", -1, 1], ["${E3}", "speed", -1, 1],
+                ["${E1}", "quality", -1, 1], ["${E2}", "quality", -1, 5], ["${E3}", "quality", -1, 1],
+                ["${E1}", "testing", -1, 1], ["${E2}", "testing", -1, 1], ["${E3}", "testing", -1, 1],
+                ["${E1}", "morale", -2, 1], ["${E2}", "morale", -2, 1], ["${E3}", "morale", -2, 1]
+                ]}
+          },
+          {
+            "text": "We need to find him!",
+            "effects": {
+				"modify_stat": [
+                ["${E1}", "speed", -1, 1], ["${E2}", "speed", -1, 1], ["${E3}", "speed", -1, 1],
+                ["${E1}", "quality", -1, 1], ["${E2}", "quality", -1, 5], ["${E3}", "quality", -1, 1],
+                ["${E1}", "testing", -1, 1], ["${E2}", "testing", -1, 1], ["${E3}", "testing", -1, 1],
+                ["${E1}", "morale", -2, 1], ["${E2}", "morale", -2, 1], ["${E3}", "morale", -2, 1]
+                ]}
+          }
+        ]
+      },
+      {
+        "employee_number": 3,
+        "employee_filter": null,
+        "title": "Broken Automatic Tests",
+        "text": "Our Automatic Test System is broken. This AI is depressed. She was dumped by other AI. Someone need to talk with her, otherwise testing will be more difficult.",
+        "options": [
+          {
+            "text": "Send ${E1}.name to fix it.",
+            "effects": {
+				"modify_stat": [["${E1}", "speed", -3, 1],["${E2}", "testing", -3, 1]]}
+          },
+          {
+            "text": "Send ${E2}.name to fix it.",
+            "effects": {
+				"modify_stat": [["${E2}", "speed", -3, 1],["${E2}", "testing", -3, 1]]}
+          },
+          {
+            "text": "Her depression is not my problem.",
+            "effects": {
+				"modify_stat": [["${E1}", "testing", -2, 15], ["${E2}", "testing", -2, 15], ["${E3}", "testing", -2, 15]]}
+          }
+        ]
+      }
+]

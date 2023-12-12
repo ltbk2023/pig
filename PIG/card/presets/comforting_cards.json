@@ -143,5 +143,138 @@
 				}
 			}
 		]
+	},
+	{
+		"employee_number": 1,
+		"employee_filter": null,
+		"title": "Occupational Burnout",
+		"text": "${E1}.name feels like it's the end of their career. ${E1}.name is very tired.",
+		"options": 
+		[
+			{
+				"text": "Really? You feel truly tired!",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "speed", -1, -1],
+						["${E1}", "quality", -1, -1],
+						["${E1}", "testing", -1, -1],
+						["${E1}", "morale", -1, -1]
+					]
+				}
+			},
+			{
+				"text": "Take free for this day.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "speed", -10, 1],
+						["${E1}", "testing", -10, 1],
+						["${E1}", "morale", 1, 3]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 3,
+		"employee_filter": null,
+		"title": "Birthday Party",
+		"text": "${E1}.name has birthday and comes to office with cake. Employees want to start party",
+		"options": 
+		[
+			{
+				"text": "Let's party!!!",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 2, 2],
+						["${E1}", "speed", -1, 1],
+						["${E2}", "speed", -1, 1],
+						["${E3}", "speed", -1, 1]
+					]
+				}
+			},
+			{
+				"text": "Happy birthday!!!",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 2, 2],
+						["${E1}", "speed", -1, 1],
+						["${E2}", "speed", -1, 1],
+						["${E3}", "speed", -1, 1]
+					]
+				}
+			},
+			{
+				"text": "We cannot party right now.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -2, 2]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 1,
+		"employee_filter": null,
+		"title": "Joyful creativity",
+		"text": "${E1}.name's creative input during the daily meeting turned into a lengthy dictionary-like enumeration of all possible feature configurations for the backlog, leading to no concrete outcome. He kindly requests a second chance, hoping for a more focused approach this time.",
+		"options": 
+		[
+			{
+				"text": "This is the end for today.",
+				"effects":
+				{
+				}
+			},
+			{
+				"text": "You have your chance.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 2, 1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 1,
+		"employee_filter": [["intern"]],
+		"title": "Insecure Intern",
+		"text": "${E1}.name came to you. This intern feels that work is overwhelming, there's a lot to learn, and ${E1}.name's unsure how to cope.",
+		"options": 
+		[
+			{
+				"text": "Each of us has been through that.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 1, 2]
+					]
+				}
+			},
+			{
+				"text": "You are simply lazy.",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", -2, 2]
+					]
+				}
+			}
+		]
 	}
 ]

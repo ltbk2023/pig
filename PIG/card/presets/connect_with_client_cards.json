@@ -1,0 +1,101 @@
+[
+    {
+		"employee_number": 2,
+		"employee_filter": null,
+		"title": "Typo in Requirements",
+		"text": "${E1}.name find out that there was typo in documents. If this will have impact on project, client can be dissatisfied",
+		"options": 
+		[
+			{
+				"text": "Send ${E1}.name to client",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "speed", -3, 1],
+                        ["${E1}", "testing", -3, 1]
+					]
+				}
+			},
+            {
+				"text": "Send ${E2}.name to client",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E2}", "speed", -3, 1],
+                        ["${E2}", "testing", -3, 1]
+					]
+				}
+			},
+			{
+				"text": "Do nothing",
+				"effects":
+				{
+					"modify_client_satisfaction": -3
+				}
+			}
+		]
+	},
+    {
+		"employee_number": 0,
+		"employee_filter": null,
+		"title": "Call form client",
+		"text": "Client is calling you. You are stressed and you know that your team need to do more.",
+		"options": 
+		[
+			{
+				"text": "Answer the phone",
+				"effects":
+				{
+					"modify_client_satisfaction": 1
+				}
+			},
+			{
+				"text": "Don't answer it",
+				"effects":
+				{
+					"modify_client_satisfaction": -1
+				}
+			}
+		]
+	},
+    {
+		"employee_number": 0,
+		"employee_filter": null,
+		"title": "Delegation to client",
+		"text": "Client needs to talk with someone from team. Who will you send",
+		"options": 
+		[
+			{
+				"text": "Send ${E1}.name to client",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "speed", -3, 1],
+                        ["${E1}", "testing", -3, 1]
+					]
+				}
+			},
+            {
+				"text": "Send ${E2}.name to client",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E2}", "speed", -3, 1],
+                        ["${E2}", "testing", -3, 1]
+					]
+				}
+			},
+			{
+				"text": "Client can come to us",
+				"effects":
+				{
+					"modify_client_satisfaction": -1
+				}
+			}
+		]
+	}
+]
