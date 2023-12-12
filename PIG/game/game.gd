@@ -248,7 +248,9 @@ func _on_office_assign(owner):
 	if not owner.check_task_can_be_assigned_to_employee():
 		return
 	if $Hooks/EmployeeToAssign.get_child_count() > 0:
-		$Hooks/EmployeeToAssign.get_child(0).queue_free()
+		var child = $Hooks/EmployeeToAssign.get_child(0)
+		$Hooks/EmployeeToAssign.remove_child(child)
+		child.queue_free()
 	var hook = Hook.new()
 	hook.set_origin(owner)
 	$Hooks/EmployeeToAssign.add_child(hook)
@@ -263,7 +265,9 @@ func save_task_to_assign(task):
 	if not task.check_employee_can_be_assigned():
 		return
 	if $Hooks/TaskToAssign.get_child_count() > 0:
-		$Hooks/TaskToAssign.get_child(0).queue_free()
+		var child = $Hooks/TaskToAssign.get_child(0)
+		$Hooks/TaskToAssign.remove_child(child)
+		child.queue_free()
 	var hook = Hook.new()
 	hook.set_origin(task)
 	$Hooks/TaskToAssign.add_child(hook)
