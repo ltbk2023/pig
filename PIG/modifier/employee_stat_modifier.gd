@@ -43,3 +43,14 @@ func detach_modification():
 	for employee in employees:
 		employee.modify_stat(__stat_type, -__stat_value, false)
 		remove_employee(employee)
+
+func to_dto():
+	var dto = ModifyStatDTO.new()
+	dto.duration = __turn_counter
+	dto.employee = get_employees()[0].name
+	dto.stat = Utility.stat_to_str(__stat_type)
+	dto.stat_value = __stat_value
+	return dto
+
+func to_json():
+	return to_dto().to_json()

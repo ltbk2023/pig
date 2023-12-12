@@ -9,6 +9,14 @@ const __stat_dictionary: Dictionary = \
 	"testing": EmployeeStatModifier.STAT.TESTING
 }
 
+const __stat_to_string_dictionary: Dictionary = \
+{
+	EmployeeStatModifier.STAT.MORALE: "morale",
+	EmployeeStatModifier.STAT.QUALITY: "quality",
+	EmployeeStatModifier.STAT.SPEED: "speed",
+	EmployeeStatModifier.STAT.TESTING: "testing"
+}
+
 static func delete_children(node: Node):
 	for n in node.get_children():
 		node.remove_child(n)
@@ -37,3 +45,6 @@ static func load_from_resource(name:String):
 # Returns an employee stat value corresponding to stat_string (case insensitive)
 static func str_to_stat(stat_string: String) -> EmployeeStatModifier.STAT:
 	return __stat_dictionary[stat_string.to_lower()]
+
+static func stat_to_str(stat: EmployeeStatModifier.STAT) -> String:
+	return __stat_to_string_dictionary[stat]

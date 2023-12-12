@@ -45,3 +45,25 @@ func modify_employee_stat(employee: Employee,
 	handle(modifier)
 	modifier.initialize(stat, value, duration, is_from_morale)
 	modifier.attach_employee(employee)
+
+func to_json():
+	var modifiers = []
+	for modifier in get_children():
+		if modifier.is_from_morale:
+			continue
+		modifiers.append(modifier.to_json())
+	return modifiers
+	
+func configure(employees: Array, modifiers: Array):
+	var employee_dict = {}
+	for employee in employees:
+		employee_dict[employee.name] = employee
+	for modifier_data in modifiers:
+		var dto = ModifyStatDTO.new()
+		dto.load(modifier_data)
+		dto = dto.create_and_fill_copy(employee_dict)
+		var modifier = dto.create_modifier()
+		handle(modifier)
+		modifier.attach_employee(dto.employee)
+		
+	
