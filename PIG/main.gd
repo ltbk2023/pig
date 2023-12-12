@@ -69,6 +69,8 @@ func save_to_file(file_name):
 		employees.append(employee.to_json())
 	dictionary["Employees"] = employees
 	
+	dictionary["Modifiers"] = $Game/Modifiers.to_json()
+	
 	if OS.get_name() != "Web":
 		var data = JSON.stringify(dictionary, "\t")
 		var file = FileAccess.open(file_name, FileAccess.WRITE)
@@ -146,7 +148,8 @@ func configure_scenario(dict: Dictionary):
 				issue_hook.set_origin(issue)
 				employee.assign_issue(issue_hook)
 				issue.assign_employee(employee_hook)
-	
+	if dict.has("Modifiers"):
+		$Game/Modifiers.configure($Game/Office.get_employees(), dict["Modifiers"])
 	# add max importance to sprint_end
 	$Game/SprintEnd.set_max_client_importance(max_client_importance)
 	
