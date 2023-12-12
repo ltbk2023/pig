@@ -1,0 +1,165 @@
+[
+	{
+		"employee_number": 2,
+		"employee_filter": null,
+		"title": "Bootcamp",
+		"text": "${E1}.name found a two day long online course and tells you that ${E1}.name would like to practice using keyboard shortcuts so that they can write code more quickly. However, during this course, they will have less time at work.",
+		"options":
+		[
+			{
+				"text": "Ok, you can go.",
+				"effects":
+				{
+					 "modify_stat": 
+					[
+						["${E1}", "speed", 1, -1],
+                        ["${E1}", "speed", -3, 2]
+					]
+				}
+			},
+			{
+				"text": "It's a brilliant! Take ${E2}.name also.",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E1}", "speed", 1, -1],
+                        ["${E1}", "speed", -3, 2],
+                        ["${E2}", "speed", 1, -1],
+                        ["${E2}", "speed", -3, 2]
+					]
+				}
+			},
+			{
+				"text": "This is nonsensical!",
+				"effects":
+				{
+					 "modify_stat": [
+						["${E1}", "morale", -1, -1]
+					]
+				}
+			}
+		]
+	},
+    {
+		"employee_number": 2,
+		"employee_filter": null,
+		"title": "Bootcamp",
+		"text": "${E1}.name found a two day long online course and tells you that ${E1}.name would like to practice code refactoring. This way, it will be more readable. However, during this course, they will have less time at work.",
+		"options":
+		[
+			{
+				"text": "Ok, you can go.",
+				"effects":
+				{
+					 "modify_stat": 
+					[
+						["${E1}", "quality", 1, -1],
+                        ["${E1}", "quality", -3, 2]
+					]
+				}
+			},
+			{
+				"text": "It's a brilliant! Take ${E2}.name also.",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E1}", "quality", 1, -1],
+                        ["${E1}", "quality", -3, 2],
+                        ["${E2}", "quality", 1, -1],
+                        ["${E2}", "quality", -3, 2]
+					]
+				}
+			},
+			{
+				"text": "This is nonsensical!",
+				"effects":
+				{
+					 "modify_stat": [
+						["${E1}", "morale", -1, -1]
+					]
+				}
+			}
+		]
+	},
+    {
+		"employee_number": 2,
+		"employee_filter": null,
+		"title": "Bootcamp",
+		"text": "${E1}.name found a two day long online course and tells you that ${E1}.name would like to practice reading with comprehension. They could point out errors. However, during this course, they will have less time at work.",
+		"options":
+		[
+			{
+				"text": "Ok, you can go.",
+				"effects":
+				{
+					 "modify_stat": 
+					[
+						["${E1}", "testing", 1, -1],
+                        ["${E1}", "testing", -3, 2]
+					]
+				}
+			},
+			{
+				"text": "It's a brilliant! Take ${E2}.name also.",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E1}", "testing", 1, -1],
+                        ["${E1}", "testing", -3, 2],
+                        ["${E2}", "testing", 1, -1],
+                        ["${E2}", "testing", -3, 2]
+					]
+				}
+			},
+			{
+				"text": "This is nonsensical!",
+				"effects":
+				{
+					 "modify_stat": [
+						["${E1}", "morale", -1, -1]
+					]
+				}
+			}
+		]
+	},
+    {
+		"employee_number": 1,
+		"employee_filter": null,
+		"title": "Tutorial",
+		"text": "${E1}.name found a tutorial in Internet. However they don't know which topic to choose.",
+		"options":
+		[
+			{
+				"text": "\"How to be more positive\"",
+				"effects":
+				{
+					 "modify_stat": 
+					[
+						["${E1}", "morale", 1, -1]
+					]
+				}
+			},
+			{
+				"text": "\"Find your mistake!\"",
+				"effects":
+				{
+					 "modify_stat": [
+						["${E1}", "testing", 1, -1]
+					]
+				}
+			},
+            {
+				"text": "\"Creative Crafting\"",
+				"effects":
+				{
+					 "modify_stat": [
+						["${E1}", "quality", 1, -1]
+					]
+				}
+			}
+		]
+	}
+]

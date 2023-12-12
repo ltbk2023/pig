@@ -38,5 +38,308 @@
 				}
 			}
 		]
-	}
+	},
+	{
+		"employee_number": 2,
+		"employee_filter": null,
+		"title": "That's my mug!",
+		"text": "${E1}.name used ${E2}.name mug and now ${E2}.name wants some recompense.",
+		"options":
+		[
+			{
+				"text": "${E2}.name it's only mug!",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E2}", "morale", -1, -1]
+					]
+				}
+			},
+			{
+				"text": "${E1}.name! Let's go bug another one!",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E1}", "morale", -1, 1]
+					]
+				}
+			},
+			{
+				"text": "It's not may problem",
+				"effects":
+				{
+					 "modify_stat": [
+						["${E1}", "morale", -1, 1],
+						["${E2}", "morale", -1, 1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 3,
+		"employee_filter": null,
+		"title": "Who's this gross mug?",
+		"text": "You found out this disgusting creation on your desk. It can't go unnoticed! You need to blame...",
+		"options":
+		[
+			{
+				"text": "${E1}.name",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E1}", "morale", -3, -1]
+					]
+				}
+			},
+			{
+				"text": "${E2}.name",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E1}", "morale", -3, -1]
+					]
+				}
+			},
+			{
+				"text": "${E3}.name",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E3}", "morale", -3, -1]
+					]
+				}
+			},
+			{
+				"text": "Let's make presentation about it!",
+				"effects":
+				{
+					 "modify_stat": 
+					 [
+						["${E1}", "speed", -1, 1],
+						["${E2}", "speed", -1, 1],
+						["${E3}", "speed", -1, 1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 3,
+		"employee_filter": null,
+		"title": "Coffee Disaster",
+		"text": "${E1}.name accidentally spills coffee on ${E2}.name's important documents. What do you do?",
+		"options": [
+			{
+				"text": "${E1}.name! Let's clean up the mess!",
+				"effects": {
+					"modify_stat": [
+						["${E1}", "morale", -1, -1],
+						["${E1}", "speed", -1, 1]
+					]
+				}
+			},
+			{
+				"text": "Coffee should be banned!",
+				"effects": {
+					"modify_stat": [
+						["${E1}", "morale", -3, 1],
+						["${E2}", "morale", -3, 1],
+						["${E3}", "morale", -3, 1]
+					]
+				}
+			},
+			{
+				"text": "Diffuse tension with jokes",
+				"effects": {
+					"modify_stat": [
+						["${E2}", "morale", 1, 1],
+						["${E1}", "morale", 1, 1],
+						["${E2}", "quality", -1, 1]
+					]
+				}
+			},
+			{
+				"text": "Ignore.",
+				"effects": {
+					"modify_stat": [
+						["${E2}", "morale", -1, -1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 2,
+		"employee_filter": null,
+		"title": "Desk Dilemma",
+		"text": "${E1}.name keeps rearranging ${E2}.name's desk without permission. How do you address this issue?",
+		"options": [
+			{
+				"text": "Confront ${E1}.name and ask them to stop.",
+				"effects": {
+					"modify_stat": [
+						["${E1}", "morale", -2, 1],
+						["${E2}", "morale", 1, 1]
+					]
+				}
+			},
+			{
+				"text": "Reorganize ${E1}.name's desk in retaliation.",
+				"effects": {
+					"modify_stat": [
+						["${E1}", "morale", -3, -1],
+						["${E2}", "morale", 1, 1]
+					]
+				}
+			},
+			{
+				"text": "Make meeting to discuss desk organization rules.",
+				"effects": {
+					"modify_stat": [
+						["${E1}", "speed", -1, 1],
+						["${E2}", "speed", -1, 1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 2,
+		"employee_filter": null,
+		"title": "Fridge robbery",
+		"text": "${E1}.name accuses ${E2}.name for stealing ${E1}.name's lunch. You know who did it. You ate it...",
+		"options": [
+			{
+				"text": "Blame ${E2}.name.",
+				"effects": {
+					"modify_stat": [
+						["${E2}", "morale", -2, -1]
+					]
+				}
+			},
+			{
+				"text": "Admit it was you.",
+				"effects": {
+					"modify_stat": [
+						["${E1}", "morale", -1, 1],
+						["${E2}", "morale", -1, 1]
+					]
+				}
+			},
+			{
+				"text": "Withdraw from situation",
+				"effects": {
+					"modify_stat": [
+						["${E1}", "morale", -1, -1],
+						["${E2}", "morale", -1, -1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 3,
+		"employee_filter": null,
+		"title": "Banana bandit",
+		"text": "Every time when your company orders fruits for your team someone takes every banana. Without fresh fruits your team will be blackout.",
+		"options": [
+			{
+				"text": "You need to find this thief!",
+				"effects": {
+					"modify_stat": [
+						["${E1}", "morale", -5, 1]
+					]
+				}
+			},
+			{
+				"text": "No one has every died form scurvy.",
+				"effects": {
+					"modify_stat": [
+						["${E1}", "speed", -1, 2],
+						["${E2}", "speed", -1, 2],
+						["${E3}", "speed", -1, 2],
+						["${E1}", "quality", -1, 2],
+						["${E2}", "quality", -1, 2],
+						["${E3}", "quality", -1, 2],
+						["${E1}", "testing", -1, 2],
+						["${E2}", "testing", -1, 2],
+						["${E3}", "testing", -1, 2],
+						["${E1}", "morale", -1, 2],
+						["${E2}", "morale", -1, 2],
+						["${E3}", "morale", -1, 2]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 3,
+		"employee_filter": null,
+		"title": "Open Space Noise Complaints",
+		"text": "Complaints about excessive noise are pouring in. Which colleague do you blame for the disturbance?",
+		"options": [
+			{
+				"text": "${E1}.name for loud music",
+				"effects": {
+					"modify_stat": [
+						["${E1}", "morale", -1, -1],
+						["${E3}", "speed", -10, 1],
+						["${E3}", "testing", -10, 1],
+						["${E3}", "quality", -10, 1]
+					]
+				}
+			},
+			{
+				"text": "${E2}.name for phone calling",
+				"effects": {
+					"modify_stat": [
+						["${E2}", "morale", -1, -1],
+						["${E3}", "speed", -10, 1],
+						["${E3}", "testing", -10, 1],
+						["${E3}", "quality", -10, 1]
+					]
+				}
+			},
+			{
+				"text": "Where is ${E3}?",
+				"effects": {
+					"modify_stat": [
+						["${E3}", "morale", -2, 1]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 2,
+		"employee_filter": null,
+		"title": "Office Prank War",
+		"text": "${E1}.name put a whoopee cushion on ${E2}.name's chair. How do you react?",
+		"options": [
+		  {
+			"text": "Scold ${E1}.name for the prank.",
+			"effects": {
+				"modify_stat": [["${E1}", "morale", -2, 1], ["${E2}", "morale", 1, 1]]
+			}
+		  },
+		  {
+			"text": "Laugh it off and join the prank.",
+			"effects": {
+				"modify_stat": [["${E1}", "morale", 1, 1], ["${E2}", "morale", -3, 1]]
+			}
+		  },
+		  {
+			"text": "Call a meeting to discuss about it.",
+			"effects": {
+				"modify_stat": [["${E1}", "speed", -1, 1], ["${E2}", "speed", -1, 1]]
+			}
+		  }
+		]
+	  }
 ]

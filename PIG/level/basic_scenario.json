@@ -256,6 +256,7 @@
 		}
 	},
 	"cards_presets":{
-		"res://story_cards.json":[0,1,2]
+		"res://story_cards.json":[0],
+		"res://card//presets//comforting_cards.json":[7]
 	}
 }
