@@ -1,0 +1,80 @@
+[
+	{
+		"employee_number": 0,
+		"employee_filter": null,
+		"title": "Atomic Bakery",
+		"text": "You haven't had a good loaf of bread in a long time. The World Baking Industry has an idea of using its spare money to change that. After combining some strange government subsidies, the creation of Atomic Bakery can begin, did I tell you about subsidies? As with all atomic constructions, any bug can be lethal. Pay attention to them.",
+		"options": 
+		[
+			{
+				"text": "Let's make world-altering bread!",
+				"effects":
+				{
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 2,
+		"employee_filter": null,
+		"title": "Most delicious bread",
+		"text": "${E1}.name argues with ${E2}.name about which bread is the most delicious. ${E1}.name says baguettes, while ${E2}.name says pretzels. Who is right?",
+		"options": 
+		[
+			{
+				"text": "Baguettes are the best!",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 2, 2]
+					]
+				}
+			},
+			{
+				"text": "Pretzels are the best!",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E2}", "morale", 2, 2]
+					]
+				}
+			},
+			{
+				"text": "Both are tasty!",
+				"effects":
+				{
+					"modify_stat": 
+					[
+						["${E1}", "morale", 1, 2],
+						["${E2}", "morale", 1, 2]
+					]
+				}
+			}
+		]
+	},
+	{
+		"employee_number": 0,
+		"employee_filter": null,
+		"title": "Men in Black",
+		"text": "At the meeting with the client, two men in black showed up. They handed you a briefcase and one of them said: \"You need to get this done. The future depends on it. Do we understand each other? And I hope you know what confidential means?'",
+		"options": 
+		[
+			{
+				"text": "I didn't see anything.",
+				"effects":
+				{
+					"modify_client_satisfaction": 3
+				}
+			},
+			{
+				"text": "No, I don't know.",
+				"effects":
+				{
+					"modify_client_satisfaction": -3
+				}
+			}
+		]
+	}
+]

@@ -1,58 +1,58 @@
 [
-    {
-        "employee_number": 1,
-        "employee_filter": null,
-        "title": "My Soul Sings",
-        "text": "${E1}.name is listening some music. Other employees are discussing, what genre is this?",
-        "options": [
-          {
-            "text": "It's house!",
-            "effects":  {
+	{
+		"employee_number": 1,
+		"employee_filter": null,
+		"title": "My Soul Sings",
+		"text": "${E1}.name is listening some music. Other employees are discussing, what genre is this?",
+		"options": [
+		  {
+			"text": "It's house!",
+			"effects":  {
 			} 
-          },
-          {
-            "text": "It's disco!",
-            "effects":  {
+		  },
+		  {
+			"text": "It's disco!",
+			"effects":  {
 			} 
-          },
-          {
-            "text": "It's post-disco!",
-            "effects":  {
+		  },
+		  {
+			"text": "It's post-disco!",
+			"effects":  {
 			} 
-          },
-          {
-            "text": "It's techno!",
-            "effects":  {
+		  },
+		  {
+			"text": "It's techno!",
+			"effects":  {
 			} 
-          },
-          {
-            "text": "It's trance!",
-            "effects":  {
+		  },
+		  {
+			"text": "It's trance!",
+			"effects":  {
 			} 
-          }
-        ]
-      },
-      {
-        "employee_number": 0,
-        "employee_filter": null,
-        "title": "My Soul Sings",
-        "text": "Over the past nights, you couldn't make up your mind. It was bothering you, as if the fate of the entire universe depended on this one small decision... What wood should the new desk be made of?",
-        "options": [
-          {
-            "text": "Rosewood!",
-            "effects":  {
+		  }
+		]
+	  },
+	  {
+		"employee_number": 0,
+		"employee_filter": null,
+		"title": "My Soul Sings",
+		"text": "Over the past nights, you couldn't make up your mind. It was bothering you, as if the fate of the entire universe depended on this one small decision... What wood should the new desk be made of?",
+		"options": [
+		  {
+			"text": "Rosewood!",
+			"effects":  {
 			} 
-          },
-          {
-            "text": "Wenge!",
-            "effects":  {
+		  },
+		  {
+			"text": "Wenge!",
+			"effects":  {
 			} 
-          },
-          {
-            "text": "Walnut!",
-            "effects":  {
+		  },
+		  {
+			"text": "Walnut!",
+			"effects":  {
 			} 
-          }
-        ]
-      }
+		  }
+		]
+	  }
 ]
