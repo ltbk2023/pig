@@ -1,0 +1,17 @@
+[
+	{
+		"employee_number": 0,
+		"employee_filter": null,
+		"title": "AD ASTRA",
+		"text": "Your team is tasked with making a huge, groundbreaking rocket that will take humanity to Mars. The billionaire that is founding this project is a bit eccentric. Be careful! Features, that she told you are the most important, can make your project hard to finish in time.",
+		"options": 
+		[
+			{
+				"text": "Ok, let's catch the stars!",
+				"effects":
+				{
+				}
+			}
+		]
+	}
+]

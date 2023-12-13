@@ -1,0 +1,379 @@
+{
+	"Employees": [
+		{
+			"assigned to": "",
+			"base morale": 2,
+			"base quality": 0,
+			"base speed": 1,
+			"base testing": 2,
+			"class": "Employee",
+			"description": "[color=BLACK]Very, very, very enthusiastic intern. She loves to listen to uncut records of transmissions between crews and Houston. She wants to become a tester to prevent the next Apollo 13 disaster.[/color]",
+			"name": "Anna",
+			"filter": ["intern"],
+			"presets":
+			{
+				"res://employee/sprites/preset/skin_hair_lips_color.ep.json":null,
+				"res://employee/sprites/preset/nose.ep.json":null,
+				"res://employee/sprites/preset/desk.ep.json":null,	
+				"res://employee/sprites/preset/laptop.ep.json":null,		
+
+				"res://employee/sprites/preset/clothes_for_women.ep.json":null,
+				"res://employee/sprites/preset/body_detail_for_women.ep.json":6,
+				"res://employee/sprites/preset/hair_beard_for_women.ep.json":1
+			}
+		},
+		{
+			"assigned to": "",
+			"base morale": 0,
+			"base quality": 1,
+			"base speed": 3,
+			"base testing": 1,
+			"class": "Employee",
+			"description": "[color=BLACK]The only client of the biggest energy drink company in the Milky Way. He was disqualified from an endurance race because he forgot his car. Pure caffeine makes him the fastest man alive but he can’t read as fast as he writes.[/color]",
+			"name": "Tom",
+			"filter": [],
+			"presets":
+			{
+				"res://employee/sprites/preset/skin_hair_lips_color.ep.json":null,
+				"res://employee/sprites/preset/nose.ep.json":null,
+				"res://employee/sprites/preset/desk.ep.json":null,	
+				"res://employee/sprites/preset/laptop.ep.json":null,		
+
+				"res://employee/sprites/preset/clothes_for_men.ep.json":null,
+				"res://employee/sprites/preset/body_detail_for_men.ep.json":null,
+				"res://employee/sprites/preset/hair_beard_for_men.ep.json":null
+			}
+		},
+		{
+			"assigned to": "",
+			"base morale": 0,
+			"base quality": 3,
+			"base speed": 1,
+			"base testing": 3,
+			"class": "Employee",
+			"description": "[color=BLACK]Slow, patient worker. She trained energy efficient movement to minimize calorie intake. In fact she never lets you see her food. Since she started working here more and more spare parts have been going missing[/color]",
+			"name": "J4N1E",
+			"filter": [],
+			"presets":
+			{
+				"res://employee/sprites/preset/nose.ep.json":null,
+				"res://employee/sprites/preset/desk.ep.json":null,	
+				"res://employee/sprites/preset/laptop.ep.json":null,		
+
+				"res://employee/sprites/preset/clothes_for_women.ep.json":null,
+				"res://employee/sprites/preset/body_detail_for_women.ep.json":null,
+				"res://employee/sprites/preset/hair_beard_for_women.ep.json":null
+			},
+			"visuals":{
+				"eyeball_color": "d0ffffff",
+				"hair_color_1": "808080fe",
+				"hair_color_2": "737373fe",
+				"iris_color": "0b0b3fff",
+				"lips_color_1": "003f2fff",
+				"lips_color_2": "00523dff",
+				"skin_color_1": "b3b3b3ff",
+				"skin_color_2": "ccccccff",
+				"skin_color_3": "e6e6e6ff"
+			}
+		},
+		{
+			"assigned to": "",
+			"base morale": -1,
+			"base quality": 2,
+			"base speed": 2,
+			"base testing": 2,
+			"class": "Employee",
+			"description": "[color=BLACK]The only not average thing about Johannes is his grumpy attitude. I don’t know him that well but he never starts small talks either. [/color]",
+			"name": "Johannes ",
+			"filter": [],
+			"presets":
+			{
+				"res://employee/sprites/preset/skin_hair_lips_color.ep.json":null,
+				"res://employee/sprites/preset/nose.ep.json":null,
+				"res://employee/sprites/preset/desk.ep.json":null,	
+				"res://employee/sprites/preset/laptop.ep.json":null,		
+
+				"res://employee/sprites/preset/clothes_for_men.ep.json":0,
+				"res://employee/sprites/preset/body_detail_for_men.ep.json":null,
+				"res://employee/sprites/preset/hair_beard_for_men.ep.json":0
+			}
+		}
+	],
+	"Game": {
+		"class": "Game",
+		"current sprint": 0,
+		"current turn": 0,
+		"max sprints": 3,
+		"name": "Game",
+		"turns per sprint": 5,
+		"victory points": 0
+	},
+	"Issues": [
+		{
+			"child_issues": ["Foldable Solar Sail","Life Support","Lava Lamp in Logo","More Pointy Top","Cargo Compartment","Crew Compartment"],
+			"class": "Issue",
+			"name": "Hull Project",
+			"description": "[color=BLACK]The first logical step in rocket Ccnstruction. The hull must be designed with absolute precision to enable a successful mission. [/color]",
+			"difficulty": 3,
+			"time": 9,
+			"importance to client": 2,
+			
+			"progress": 0,
+			"remaining parents": 0,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": ["Navigation Display"],
+			"class": "Issue",
+			"name": "Inertial Navigation",
+			"description": "[color=BLACK]Clever use of accelerometers, gyroscopes and dreaded vector math enables us to tell with some accuracy where we are. [/color]",
+			"difficulty": 2,
+			"time": 5,
+			"importance to client": 2,
+			
+			"progress": 0,
+			"remaining parents": 0,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": [],
+			"class": "Issue",
+			"name": "Foldable Solar Sail",
+			"description": "[color=BLACK]Rich people love boats, and boats have sails. Client wants them to be new, exotic and futuristic. Allow him to catch some flairs.[/color]",
+			"difficulty": 1,
+			"time": 6,
+			"importance to client": 3,
+			
+			"progress": 0,
+			"remaining parents": 1,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": [],
+			"class": "Issue",
+			"name": "Life Support",
+			"description": "[color=BLACK]Closed circulation of water in the system requires many step filtration to make sure it doesn’t have a sweet taste. Air conditioning must be installed in case an American citizen boards the flight but I have nothing against it.[/color]",
+			"difficulty": 3,
+			"time": 6,
+			"importance to client": 3,
+			
+			"progress": 0,
+			"remaining parents": 1,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": ["Navigation Display"],
+			"class": "Issue",
+			"name": "Reference Navigation",
+			"description": "[color=BLACK]How to tell where we are? Just look at the stars and emit localizer radio beams to calculate your location with ease.[/color]",
+			"difficulty": 2,
+			"time": 4,
+			"importance to client": 2,
+			
+			"progress": 0,
+			"remaining parents": 0,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": ["Engine Vector Control","Test Launch"],
+			"class": "Issue",
+			"name": "Navigation Display",
+			"description": "[color=BLACK]Just connect the screen to the navigation system. It can stop working…? Just connect another! The second one will never fail! I hope…[/color]",
+			"difficulty": 1,
+			"time": 4,
+			"importance to client": 2,
+			
+			"progress": 0,
+			"remaining parents": 2,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": ["Car From The Sky"],
+			"class": "Issue",
+			"name": "Cargo Compartment",
+			"description": "[color=BLACK]Space efficient plans to store all resources can collide with ease of access to them. This may require several attempts.[/color]",
+			"difficulty": 1,
+			"time": 6,
+			"importance to client": 3,
+			
+			"progress": 0,
+			"remaining parents": 1,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": ["Ebony floors"],
+			"class": "Issue",
+			"name": "Crew Compartment",
+			"description": "[color=BLACK]Safe, comfortable, private rooms for one hundred people on the rocket. We can do that but I can't promise any dates.[/color]",
+			"difficulty": 2,
+			"time": 10,
+			"importance to client": 3,
+			
+			"progress": 0,
+			"remaining parents": 1,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": [],
+			"class": "Issue",
+			"name": "Ebony floors",
+			"description": "[color=BLACK]Our Client wants ebony wood on the floor. We pointed out that in microgravity the concept of floors is irrelevant, prompting the Client to request all flat surfaces to be “improved” with ebony.[/color]",
+			"difficulty": 2,
+			"time": 10,
+			"importance to client": 5,
+			
+			"progress": 0,
+			"remaining parents": 1,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": [],
+			"class": "Issue",
+			"name": "Lava Lamp in Logo",
+			"description": "[color=BLACK]The rocket has a big logo on the outside wall. Now we are asked to replace the paint with a lava lamp. I have no questions… I will stare at the wall and question all my life choices…[/color]",
+			"difficulty": 4,
+			"time": 8,
+			"importance to client": 5,
+			
+			"progress": 0,
+			"remaining parents": 1,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": [],
+			"class": "Issue",
+			"name": "More Pointy Top",
+			"description": "[color=BLACK]According to the Client, the rocket is too round at the top. Only pointy rockets make it far into space! When asked where he got it from, he reenacted the whole scene from his favorite movie.[/color]",
+			"difficulty": 2,
+			"time": 5,
+			"importance to client": 5,
+			
+			"progress": 0,
+			"remaining parents": 1,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": ["Test Launch"],
+			"class": "Issue",
+			"name": "Car From The Sky",
+			"description": "[color=BLACK]Client wants to reveal his new car brand named Meteor and some marketing company came up with the slogan ”Car dropped from the sky”. Now we must rearrange the cargo compartment to fit an eight wheel, four metric ton monster with cup holders for the whole family.[/color]",
+			"difficulty": 1,
+			"time": 6,
+			"importance to client": 5,
+			
+			"progress": 0,
+			"remaining parents": 1,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": [],
+			"class": "Issue",
+			"name": "Live Stream Setup",
+			"description": "[color=BLACK]Why not monetize your expenses? A reality show on a spacecraft for the very first time, livestreamed from the habitation module![/color]",
+			"difficulty": 1,
+			"time": 4,
+			"importance to client": 4,
+			
+			"progress": 0,
+			"remaining parents": 0,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": ["Test Launch"],
+			"class": "Issue",
+			"name": "Engine Vector Control",
+			"description": "[color=BLACK]A useful feature that boosts both safety and flight ability of the spacecraft. The more smooth the flight, the fewer fancy beverages spilled on the table.[/color]",
+			"difficulty": 3,
+			"time": 6,
+			"importance to client": 3,
+			
+			"progress": 0,
+			"remaining parents": 1,
+			"state": 0,
+			"type": 0
+		},
+		{
+			"child_issues": [],
+			"class": "Issue",
+			"name": "Test Launch",
+			"description": "[color=BLACK]A test drive equivalent in rocket business. One can’t simply sell something to a customer without letting him try it first.[/color]",
+			"difficulty": 3,
+			"time": 8,
+			"importance to client": 10,
+			
+			"progress": 0,
+			"remaining parents": 3,
+			"state": 0,
+			"type": 0
+		}
+	],
+	"Testing": {
+		"class": "Testing",
+		"name": "Testing",
+		"testers limit": -1
+
+	},
+	"SprintEnd": {
+		"class": "SprintEnd",
+		"current sprint": 0,
+		"issues done this sprint": 0,
+		"last_victory_points": 0,
+		"name": "SprintEnd",
+		"total client importance": 0,
+		"clients_presets":
+		{
+			"res://employee/sprites/preset/skin_hair_lips_color_for_elderly.ep.json":null,
+			"res://employee/sprites/preset/nose.ep.json":null,
+			"res://employee/sprites/preset/desk.ep.json":null,	
+			"res://employee/sprites/preset/laptop.ep.json":null,		
+
+			"res://employee/sprites/preset/clothes_for_elegant_people.ep.json":null,
+			"res://employee/sprites/preset/body_detail_for_women.ep.json":null,
+			"res://employee/sprites/preset/hair_beard_for_women.ep.json":null
+		}
+	},
+	"QualityDeck": {
+		"cards": {
+			"0": 0,
+			"1": 0
+		},
+		"class": "QualityDeck",
+		"name": "QualityDeck"
+	},
+	"Epilog" : {
+		"class": "Epilog",
+		"name": "Epilog",
+		"comments" : {
+			"bad" : "Halfway to Mars we realize that we forgot to bring an oxygen tank. J4N1E commented simply \"that it the least of our problems.\"  She was right!",
+			"failure" : "Client just yelled  \"If you can’t make the steel wall soft to touch, NotScam.INC will make my rocket as I ask\"",
+			"good" : "Our Ship was working fine for many years. She transported over one million people and ten thousand other sentient beings to Mars. Even Johannes smiled when he saw Ad Astra starting.",
+			"mixed": "We had some issues with the power supply. By luck Tom brought a human sized hamster wheel. With a bit of engineering magic we made a Tom-powered caffeine to electricity converter."
+			}
+	},
+	"cards_presets":{
+		"res://card/presets/comforting_cards.json":[0,1,2,3,4],
+		"res://card/presets/conflict_cards.json":[0,1,2,3,4,5,6,7,8],
+		"res://card/presets/opportunity_cards.json":[0,1],
+		"res://card/presets/training_cards.json":[0,1,2,3],
+		"res://card/presets/threat_cards.json":[0,1,2,3,4],
+		"cards_per_turn":{
+			"0" : {
+				"path" : "res://level/level_2_cards.json",
+				"index" : 0
+			}
+		}
+	}
+}
