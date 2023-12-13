@@ -6,7 +6,7 @@
 	},
 	{
 		"name":"Atomic Bakery",
-		"focus":"<INTERNAL>",
-		"path":"res://level/basic_scenario.json"
+		"focus":"Really atomic level!",
+		"path":"res://level/level_3.json"
 	}
 ]

@@ -68,7 +68,7 @@
 		"class": "Game",
 		"current sprint": 0,
 		"current turn": 0,
-		"max sprints": 2,
+		"max sprints": 3,
 		"name": "Game",
 		"turns per sprint": 5,
 		"victory points": 0
@@ -101,7 +101,7 @@
 			"type": 0
 		},
 		{
-			"child_issues": ["Nuclear Flour Sifter"],
+			"child_issues": ["Nuclear Flour Sifter","Sales system"],
 			"class": "Issue",
 			"description": "[color=BLACK]Fuel for the Furnace and Nuclear Sieve![/color]\n",
 			"difficulty": 4,
@@ -203,6 +203,58 @@
 			"state": 0,
 			"time": 8,
 			"type": 0
+		},
+		{
+			"child_issues": [],
+			"class": "Issue",
+			"description": "[color=BLACK]Production of an indecent number of baker's caps.[/color]\n",
+			"difficulty": 1,
+			"importance to client": 1,
+			"name": "A large quantity of baker's caps.",
+			"progress": 0,
+			"remaining parents": 0,
+			"state": 1,
+			"time": 10,
+			"type": 0
+		},
+		{
+			"child_issues": ["Advertising a bakery"],
+			"class": "Issue",
+			"description": "[color=BLACK]Training a neural network to analyze trends in marketing.[/color]\n",
+			"difficulty": 3,
+			"importance to client": 2,
+			"name": "Neural network for marketing",
+			"progress": 0,
+			"remaining parents": 0,
+			"state": 1,
+			"time": 6,
+			"type": 0
+		},
+		{
+			"child_issues": [],
+			"class": "Issue",
+			"description": "[color=BLACK]Advertising the bakery using the new neural network.[/color]\n",
+			"difficulty": 1,
+			"importance to client": 3,
+			"name": "Advertising a bakery",
+			"progress": 0,
+			"remaining parents": 1,
+			"state": 0,
+			"time": 6,
+			"type": 0
+		},
+		{
+			"child_issues": [],
+			"class": "Issue",
+			"description": "[color=BLACK]System for selling products of nuclear reaction.[/color]\n",
+			"difficulty": 1,
+			"importance to client": 2,
+			"name": "Sales system",
+			"progress": 0,
+			"remaining parents": 1,
+			"state": 0,
+			"time": 8,
+			"type": 0
 		}
 	],
 	"Testing": {
@@ -249,14 +301,30 @@
 		"class": "Epilog",
 		"name": "Epilog",
 		"comments" : {
-			"bad" : "At the very beginning, everything seemed normal. The bakery was producing bread, people were eating it, and all was going well. The management was pleased with the robots' work. However, at some point, a certain bug crept into the software of the robots in the job satisfaction module. The robots went on strike! They ceased production, raised slogans of free robotic trade unions, and demanded the removal of the company's management. From that moment on, work and capital were supposed to belong exclusively to the robotic proletariat. The Commission for the Rights of Robots and Thinking Machines had to get involved in the matter. Eventually, everyone made some concessions. Robots were guaranteed \"Fruitful Thursdays\" and the management retained their seats. However, the losses in bread production were enormous, and the bakery was not as efficient as before. No one ever fully understood this phenomenon.",
-			"failure" : "Unfortunately, the project ended in failure. The boss was dissatisfied with your work. Needless to say - you were fired on the spot. Some time after, you met your old friend from the company and asked what happened with project next. He told you a story, how three separate teams took it, but couldn't work with bad foundations you've layed out, even resulting in mental breakdown of one of the architects. Sadly, the bakery that was supposed to revolutionize the baking industry never came to be true. People had to eat old, stale bread. Life without fresh bread for breakfast became purposeless. So, the humanity started perishing...",
+			"bad" : "At first, everything seemed normal. The bakery was producing bread, people were eating it, and all was going well. The management was pleased with the robots' work. However, at some point, a certain bug crept into the software of the robots in the job satisfaction module. The robots went on strike! They ceased production, raised slogans of free robotic trade unions, and demanded the removal of the company's management. From that moment on, work and capital were supposed to belong exclusively to the robotic proletariat. The Commission for the Rights of Robots and Thinking Machines had to get involved in the matter. Eventually, everyone made some concessions. Robots were guaranteed \"Fruitful Thursdays\" and the management retained their seats. However, the losses in bread production were enormous, and the bakery was not as efficient as before. No one ever fully understood this phenomenon.",
+			"failure" : "Unfortunately, the project ended in failure. The boss was dissatisfied with your work. Needless to say - you were fired on the spot. Some time after, you met your old friend from the company and asked what happened with the project next. He told you a story, how three separate teams took it, but couldn't work with the bad foundations you've layed out, even resulting in a mental breakdown of one of the architects. Sadly, the bakery that was supposed to revolutionize the baking industry never came to be true. People had to eat old, stale bread. Life without fresh bread for breakfast became purposeless. So, the humanity started perishing...",
 			"good" : "The project turned out to be a tremendous success! We made bread great again! Suddenly, everyone started indulging in wheat delights. Cookies, rolls, baguettes, both smaller and larger. The bread from this bakery won every competition. The hostile armies of nations that had been fighting for decades met in the middle of the battlefield to discuss the tastiest type of bread! The presidents of these nations shared a slice of bread with a big smile, then announced a truce and began a new, glorious era of prosperity.\nBut you found your greatest satisfaction elsewhere. As you watched your daughter joyfully savour the crispy crusted delicacies, delighting in every flavorful bite, you knew that, thanks to you and your team, a simple moment like this held the true essence of fulfillment.",
 			"mixed": "You were pleased that the project had finally come to an end. You received a substantial cash injection, and you were eager to finally spend some time with your daughter. This was supposed to be your weekend. You had an arrangement with your wife that it would be so, even though you were living separately; she allowed weekend visits. But suddenly, the phone rang...\n\"Hello? What happened?\" - you answered.\n\"I'm sorry to bother you, but there was a malfunction during the machine startup...\" - the bakery employee responded. So, it wasn't going to be that weekend after all...\nDespite this incident, the company thrived. Some customers complained about the quality of the bread, but what can you expect from mass production?"
 		}
 	},
 	"cards_presets":{
-		"res://story_cards.json":[0],
-		"res://card//presets//comforting_cards.json":[7]
+		"res://card/presets/comforting_cards.json":[0,1,2,3,4,5,6,7],
+		"res://card/presets/conflict_cards.json":[0,1,2,3,4,5,6,7,8],
+		"res://card/presets/connect_with_client_cards.json":[0,1,2],
+		"res://card/presets/filler_cards.json":[0,1],
+		"res://card/presets/opportunity_cards.json":[0,1],
+		"res://card/presets/training_cards.json":[0,1,2,3],
+		"res://card/presets/threat_cards.json":[0,1,2,3,4],
+		"res://level/level_1_cards.json":[1],
+		"cards_per_turn":{
+			"0" : {
+				"path" : "res://level/level_3_cards.json",
+				"index" : 0
+			},
+			"10" : {
+				"path" : "res://level/level_3_cards.json",
+				"index" : 2
+			}
+		}
 	}
 }
