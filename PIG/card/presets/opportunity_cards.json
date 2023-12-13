@@ -6,7 +6,7 @@
         "text": "Your team is lacking innovative ideas. How do you encourage creativity?",
         "options": [
           {
-            "text": "Let's make brainstorm!",
+            "text": "Let's brainstorm!",
             "effects":  {
 				"modify_stat": [["${E1}", "morale", 1, 1], ["${E2}", "morale", 1, 1], ["${E3}", "morale", 1, 1]]
 			} 

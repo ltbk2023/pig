@@ -43,7 +43,7 @@
 		"employee_number": 2,
 		"employee_filter": null,
 		"title": "That's my mug!",
-		"text": "${E1}.name used ${E2}.name mug and now ${E2}.name wants some recompense.",
+		"text": "${E1}.name used ${E2}.name's mug and now ${E2}.name wants some recompense.",
 		"options":
 		[
 			{
@@ -67,7 +67,7 @@
 				}
 			},
 			{
-				"text": "It's not may problem",
+				"text": "It's not my problem",
 				"effects":
 				{
 					 "modify_stat": [
@@ -81,8 +81,8 @@
 	{
 		"employee_number": 3,
 		"employee_filter": null,
-		"title": "Who's this gross mug?",
-		"text": "You found out this disgusting creation on your desk. It can't go unnoticed! You need to blame...",
+		"title": "Whose mug is this?",
+		"text": "You found this disgusting creation on your desk. It can't go unnoticed! You need to blame...",
 		"options":
 		[
 			{
@@ -91,7 +91,7 @@
 				{
 					 "modify_stat": 
 					 [
-						["${E1}", "morale", -3, -1]
+						["${E1}", "morale", -3, 2]
 					]
 				}
 			},
@@ -101,7 +101,7 @@
 				{
 					 "modify_stat": 
 					 [
-						["${E1}", "morale", -3, -1]
+						["${E2}", "morale", -3, 2]
 					]
 				}
 			},
@@ -111,12 +111,12 @@
 				{
 					 "modify_stat": 
 					 [
-						["${E3}", "morale", -3, -1]
+						["${E3}", "morale", -3, 2]
 					]
 				}
 			},
 			{
-				"text": "Let's make presentation about it!",
+				"text": "Make a presentation about it!",
 				"effects":
 				{
 					 "modify_stat": 
@@ -181,7 +181,7 @@
 		"text": "${E1}.name keeps rearranging ${E2}.name's desk without permission. How do you address this issue?",
 		"options": [
 			{
-				"text": "Confront ${E1}.name and ask them to stop.",
+				"text": "Confront ${E1}.name.",
 				"effects": {
 					"modify_stat": [
 						["${E1}", "morale", -2, 1],
@@ -190,7 +190,7 @@
 				}
 			},
 			{
-				"text": "Reorganize ${E1}.name's desk in retaliation.",
+				"text": "Reorganize ${E1}.name's desk.",
 				"effects": {
 					"modify_stat": [
 						["${E1}", "morale", -3, -1],
@@ -199,7 +199,7 @@
 				}
 			},
 			{
-				"text": "Make meeting to discuss desk organization rules.",
+				"text": "Organize a meeting to discuss it.",
 				"effects": {
 					"modify_stat": [
 						["${E1}", "speed", -1, 1],
@@ -213,7 +213,7 @@
 		"employee_number": 2,
 		"employee_filter": null,
 		"title": "Fridge robbery",
-		"text": "${E1}.name accuses ${E2}.name for stealing ${E1}.name's lunch. You know who did it. You ate it...",
+		"text": "${E1}.name accuses ${E2}.name of eating ${E1}.name's lunch. You know who did it. You ate it...",
 		"options": [
 			{
 				"text": "Blame ${E2}.name.",
@@ -233,7 +233,7 @@
 				}
 			},
 			{
-				"text": "Withdraw from situation",
+				"text": "Withdraw from the situation",
 				"effects": {
 					"modify_stat": [
 						["${E1}", "morale", -1, -1],
@@ -247,7 +247,7 @@
 		"employee_number": 3,
 		"employee_filter": null,
 		"title": "Banana bandit",
-		"text": "Every time when your company orders fruits for your team someone takes every banana. Without fresh fruits your team will be blackout.",
+		"text": "Every time when your company orders fruits for your team someone takes every banana. Without fresh fruits your team will be lifeless.",
 		"options": [
 			{
 				"text": "You need to find this thief!",
@@ -307,7 +307,7 @@
 				}
 			},
 			{
-				"text": "Where is ${E3}?",
+				"text": "Where is ${E3}.name?",
 				"effects": {
 					"modify_stat": [
 						["${E3}", "morale", -2, 1]
@@ -335,7 +335,7 @@
 			}
 		  },
 		  {
-			"text": "Call a meeting to discuss about it.",
+			"text": "Call a meeting to discuss it.",
 			"effects": {
 				"modify_stat": [["${E1}", "speed", -1, 1], ["${E2}", "speed", -1, 1]]
 			}

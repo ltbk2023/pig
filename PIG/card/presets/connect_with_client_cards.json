@@ -3,7 +3,7 @@
 		"employee_number": 2,
 		"employee_filter": null,
 		"title": "Typo in Requirements",
-		"text": "${E1}.name find out that there was typo in documents. If this will have impact on project, client can be dissatisfied",
+		"text": "${E1}.name found out that there was a typo in the documents. If this will have impact on project, the client may be dissatisfied.",
 		"options": 
 		[
 			{
@@ -41,7 +41,7 @@
 		"employee_number": 0,
 		"employee_filter": null,
 		"title": "Call form client",
-		"text": "Client is calling you. You are stressed and you know that your team need to do more.",
+		"text": "The client is calling you. You are stressed and you know that your team needs to do more.",
 		"options": 
 		[
 			{
@@ -64,7 +64,7 @@
 		"employee_number": 2,
 		"employee_filter": null,
 		"title": "Delegation to client",
-		"text": "Client needs to talk with someone from team. Who will you send",
+		"text": "The client needs to talk with someone from team. Who will you send",
 		"options": 
 		[
 			{
