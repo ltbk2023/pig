@@ -72,6 +72,7 @@ func save_to_file(file_name):
 	dictionary["Modifiers"] = $Game/Modifiers.to_json()
 	
 	if OS.get_name() != "Web":
+		file_name = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS)+ "/" + file_name
 		var data = JSON.stringify(dictionary, "\t")
 		var file = FileAccess.open(file_name, FileAccess.WRITE)
 		file.store_string(data)
