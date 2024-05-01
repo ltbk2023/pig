@@ -76,6 +76,7 @@ func save_to_file(file_name):
 		var data = JSON.stringify(dictionary, "\t")
 		var file = FileAccess.open(file_name, FileAccess.WRITE)
 		file.store_string(data)
+		print("File saved: " + file.get_path())		
 		file.close()
 	else:
 		var code = """
